@@ -18,6 +18,10 @@ Com dimensões reduzidas, o M8 se adapta perfeitamente a muitos locais diferente
 * Assim que o equipamento for reconhecido pelo computador, abra a IDE da sua preferencia e mão na massa!  
 <br><br/>
 
+### Documentação
+=================  
+[Documentação](http://plataforma-e1.leonwebhost.com/group__m80.html)  
+
 ### Exemplos
 =================  
 - [Android](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/Exemplos/Exemplo_E1_M8_Android)
