@@ -1,0 +1,38 @@
+inherited Form1_LgXhdpiPh: TForm1_LgXhdpiPh
+  ClientHeight = 695
+  ClientWidth = 450
+  DesignerMasterStyle = 3
+  inherited Layout1: TLayout
+    Size.Height = 588.000000000000000000
+    inherited btnScanner: TButton
+      Size.Height = 49.000000000000000000
+    end
+    inherited btnImpressaoJSONDireta: TButton
+      Position.Y = 49.000000000000000000
+    end
+    inherited btnImpressaoJSONArquivo: TButton
+      Position.Y = 93.000000000000000000
+    end
+    inherited btnPagamentoCredito: TButton
+      Position.Y = 137.000000000000000000
+    end
+    inherited btnPagamentoVoucher: TButton
+      Position.Y = 225.000000000000000000
+    end
+    inherited btnPagamentoDebito: TButton
+      Position.Y = 269.000000000000000000
+    end
+    inherited btnPagamentoCreditoPar: TButton
+      Position.Y = 181.000000000000000000
+    end
+    inherited btnReimpCliente: TButton
+      Position.Y = 357.000000000000000000
+    end
+    inherited btnReimpEstab: TButton
+      Position.Y = 313.000000000000000000
+    end
+    inherited btnCancela: TButton
+      Position.Y = 401.000000000000000000
+    end
+  end
+end
