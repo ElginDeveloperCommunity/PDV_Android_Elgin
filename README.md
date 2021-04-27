@@ -6,8 +6,8 @@ Com dimensões reduzidas, o M8 se adapta perfeitamente a muitos locais diferente
 
 ### Por onde começar?
 =================  
-* Verifique se o equipamento está na sua última versão de firmware, seguindo o manual [aqui](https://github.com/ElginDeveloperCommunity/MiniPDVM8/blob/master/Firmware/MiniPDV%20M8%20Elgin%20-%20Atualiza%C3%A7%C3%A3o%20de%20Firmware%20(OTA).pdf). Caso seja necessário, realize a atualização. 
-* Baixe o pacote de comunicação da E1 [aqui](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/Bibliotecas).
+* Verifique se o equipamento está na sua última versão de firmware, seguindo o manual [aqui](https://github.com/ElginDeveloperCommunity/MiniPDVM8/blob/master/M8/Firmware/MiniPDV%20M8%20Elgin%20-%20Atualiza%C3%A7%C3%A3o%20de%20Firmware%20(OTA).pdf). Caso seja necessário, realize a atualização. 
+* Baixe o pacote de comunicação da E1 [aqui](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Bibliotecas).
 
 ### Ativando o modo debug
 =================  
@@ -24,5 +24,6 @@ Com dimensões reduzidas, o M8 se adapta perfeitamente a muitos locais diferente
 
 ### Exemplos
 =================  
-- [Android](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/Exemplos/Exemplo_E1_M8_Android)
-- [Delphi FireMonkey](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/Exemplos/Exemplo_E1_M8_DelphiFM)
+- [Android](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/Exemplo_E1_M8_Android)
+- [Delphi FireMonkey](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/Exemplo_E1_M8_DelphiFM)
+- [WinDev](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/ExemploWindev_Amarildo)
