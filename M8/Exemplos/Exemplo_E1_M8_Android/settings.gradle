@@ -1,2 +1,0 @@
-include ':app'
-rootProject.name='Teste E1 Intent Service'
