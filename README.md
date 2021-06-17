@@ -25,5 +25,7 @@ Com dimensões reduzidas, o M8 se adapta perfeitamente a muitos locais diferente
 ### Exemplos
 =================  
 - [Android](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/Exemplo_E1_M8_Android)
-- [Delphi FireMonkey](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/Exemplo_E1_M8_DelphiFM)
+- [App eXperience Delphi FireMonkey](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/App_eXperience_FireMonkey)
+- [App eXperience Flutter](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/App_eXperience_Flutter)
+- [App eXperience ReactNative](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/App_eXperience_ReactNative)
 - [WinDev](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/ExemploWindev_Amarildo)
