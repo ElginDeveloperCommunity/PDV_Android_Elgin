@@ -91,9 +91,34 @@ export default class PrinterService{
         this.sendFunctionToAndroid(mapParam);
     };
 
+    sendPrinterCupomTEF(base64){
+        const mapParam = {
+            "typePrinter": "printerCupomTEF",
+            "base64": base64,
+        };
+
+        this.sendFunctionToAndroid(mapParam);
+    }
+
     getStatusPrinter(){
         const mapParam = {
             "typePrinter": "statusPrinter",
+        };
+
+        this.sendFunctionToAndroid(mapParam);
+    };
+
+    getStatusGaveta(){
+        const mapParam = {
+            "typePrinter": "gavetaStatus",
+        };
+
+        this.sendFunctionToAndroid(mapParam);
+    };
+
+    sendOpenGaveta(){
+        const mapParam = {
+            "typePrinter": "abrirGaveta",
         };
 
         this.sendFunctionToAndroid(mapParam);

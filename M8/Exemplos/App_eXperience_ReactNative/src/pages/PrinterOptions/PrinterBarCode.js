@@ -62,7 +62,7 @@ const PrinterBarCode = () =>{
                 setCodigo("123601057072");
                 break;
             case "UPC-E":
-                setCodigo("1234567"); //!AINDA NÃO FUNCIONA
+                setCodigo("1234567"); 
                 break;
             case "CODE 39":
                 setCodigo("*ABC123*");
@@ -74,10 +74,10 @@ const PrinterBarCode = () =>{
                 setCodigo("A3419500A");
                 break;
             case "CODE 93":
-                setCodigo("CSE370"); //!AINDA NÃO FUNCIONA
+                setCodigo("ABC123456789"); 
                 break;
             case "CODE 128":
-                setCodigo("40170725"); //!AINDA NÃO FUNCIONA
+                setCodigo("{C1233");
                 break;
         }
     };

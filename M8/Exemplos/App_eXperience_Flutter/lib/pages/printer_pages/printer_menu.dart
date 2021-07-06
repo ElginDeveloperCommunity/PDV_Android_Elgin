@@ -89,6 +89,16 @@ class _PrinterMenutPageState extends State<PrinterMenutPage> {
     Components.infoDialog(context: context, message: result.toUpperCase());
   }
 
+  getGavetaStatus() async {
+    String result = await printerService.getStatusGaveta();
+    Components.infoDialog(context: context, message: result.toUpperCase());
+  }
+
+  sendAbrirGaveta() async {
+    int result = await printerService.senOpenGaveta();
+    print("Gaveta: " + result.toString());
+  }
+
   connectInternalImp() async {
     int result = await printerService.connectInternalImp();
     print("Internal: " + result.toString());
@@ -119,7 +129,10 @@ class _PrinterMenutPageState extends State<PrinterMenutPage> {
                     padding: const EdgeInsets.only(left: 20),
                     child: Container(
                       height: mBoxScreenSizeH - 50,
-                      child: modulesPrinter(),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: modulesPrinter(),
+                      ),
                     ),
                   ),
                   Column(
@@ -184,9 +197,9 @@ class _PrinterMenutPageState extends State<PrinterMenutPage> {
         GeneralWidgets.personSelectedButton(
           nameButton: 'IMPRESSÃO\nDE TEXTO',
           assetImage: 'assets/images/printerText.png',
-          mHeight: 95,
-          iconSize: 50,
-          mWidth: 150,
+          mHeight: 80,          
+          mWidth: 140,
+          iconSize: 40,
           fontLabelSize: 12,
           color: Color(0xFF0069A5),
           isSelectedBtn: selectedModulePrinter == "text",
@@ -195,9 +208,9 @@ class _PrinterMenutPageState extends State<PrinterMenutPage> {
         GeneralWidgets.personSelectedButton(
           nameButton: 'IMPRESSÃO DE\nCÓDIGO DE BARRAS',
           assetImage: 'assets/images/printerBarCode.png',
-          mHeight: 95,
-          mWidth: 150,
-          iconSize: 50,
+          mHeight: 80,
+          mWidth: 140,
+          iconSize: 40,
           fontLabelSize: 12,
           color: Color(0xFF0069A5),
           isSelectedBtn: selectedModulePrinter == "barcode",
@@ -205,43 +218,32 @@ class _PrinterMenutPageState extends State<PrinterMenutPage> {
         ),
         GeneralWidgets.personSelectedButton(
           nameButton: 'IMPRESSÃO\nDE IMAGEM',
-          mHeight: 95,
-          mWidth: 150,
-          iconSize: 50,
+          mHeight: 80,
+          mWidth: 140,
+          iconSize: 40,
           fontLabelSize: 12,
           color: Color(0xFF0069A5),
           assetImage: 'assets/images/printerImage.png',
           isSelectedBtn: selectedModulePrinter == "image",
           onSelected: () => onChangeModulePrinter("image"),
         ),
-        TextButton(
-          onPressed: () => getImpStatus(),
-          child: Container(
-            height: 50,
-            width: 150,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.black,
-                width: 3,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.info, color: Colors.blue),
-                Text(
-                  "STATUS IMPRESSORA",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 10,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
+        GeneralWidgets.personSelectedButtonStatus(
+          nameButton: "STATUS IMPRESSORA",
+          mHeight: 45,
+          mWidth: 140,
+          onSelected: () => getImpStatus(),
+        ),
+        GeneralWidgets.personSelectedButtonStatus(
+          nameButton: "STATUS GAVETA",
+          mHeight: 45,
+          mWidth: 140,
+          onSelected: () => getGavetaStatus(),
+        ),
+        GeneralWidgets.personButton(
+          textButton: 'ABRIR GAVETA',
+          height: 35,
+          width: 140,
+          callback: () => sendAbrirGaveta(),
         ),
       ],
     );

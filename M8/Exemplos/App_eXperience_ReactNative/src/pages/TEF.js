@@ -137,10 +137,9 @@ const TEF =()=>{
 
         }else if(returnReceive === "Transacao autorizada"){
             Alert.alert("Alerta", "Transação Autorizada.");
-
-            printerService.sendPrinterImage(
+            
+            printerService.sendPrinterCupomTEF(
                 imageBase64,
-                true,
             );
 
             printerService.jumpLine(20);

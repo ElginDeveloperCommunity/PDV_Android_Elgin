@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.flutter_m8">
+    package="com.elgin.flutter_m8">
 
     <uses-feature android:name="android.hardware.usb.host" />
 
@@ -9,7 +9,7 @@
 
     <application
         android:icon="@mipmap/ic_launcher"
-        android:label="flutter_m8"
+        android:label="M8Flutter"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme"
         tools:replace="theme, label">

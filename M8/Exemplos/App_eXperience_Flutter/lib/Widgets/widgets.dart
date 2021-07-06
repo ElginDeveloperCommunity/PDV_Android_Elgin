@@ -183,7 +183,10 @@ class GeneralWidgets extends StatelessWidget {
     Color color = Colors.green,
   }) {
     return TextButton(
-      onPressed: onSelected,      
+      onPressed: onSelected,
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+      ),     
       child: Container(
         height: mHeight,
         width: mWidth,
@@ -207,6 +210,51 @@ class GeneralWidgets extends StatelessWidget {
                 color: Colors.black,
                 fontWeight: FontWeight.bold
               ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  static Widget personSelectedButtonStatus({
+    String nameButton = "",
+    String assetImage = "",
+    @required VoidCallback? onSelected,
+    double mHeight = 55,
+    double iconSize = 25,
+    double mWidth = 55,
+    double fontLabelSize = 10,
+    bool isSelectedBtn = false,
+    Color color = Colors.green,
+  }){
+    return TextButton(
+      onPressed: onSelected,
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+      ),
+      child: Container(
+        height: mHeight,
+        width: mWidth,
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: isSelectedBtn ? color : Colors.black,
+            width: 3,
+          ),
+          borderRadius: BorderRadius.all(Radius.circular(15)),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Icon(Icons.info, color: Colors.blue),
+            Text(
+              nameButton,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: fontLabelSize,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold),
             ),
           ],
         ),

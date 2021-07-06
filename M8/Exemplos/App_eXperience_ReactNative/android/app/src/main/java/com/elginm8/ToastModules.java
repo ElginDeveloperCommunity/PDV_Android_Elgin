@@ -138,6 +138,9 @@ public class ToastModules extends ReactContextBaseJavaModule implements Activity
         }else if(configsReceived.getString("typePrinter").equals("connectPrinterExtern")){
             Printer.printerExternalImpStart(configsReceived);
 
+        }else if(configsReceived.getString("typePrinter").equals("printerCupomTEF")){
+            Printer.imprimeCupomTEF(configsReceived);
+
         }else if(configsReceived.getString("typePrinter").equals("printerText")){
             Printer.imprimeTexto(configsReceived);
 
@@ -156,6 +159,16 @@ public class ToastModules extends ReactContextBaseJavaModule implements Activity
         }else if(configsReceived.getString("typePrinter").equals("printerSAT")){
             Printer.imprimeXMLSAT(configsReceived);
 
+        }else if(configsReceived.getString("typePrinter").equals("gavetaStatus")){
+            result.putString("statusGaveta", String.valueOf(Printer.statusGaveta()));
+
+            reactContext
+                .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                .emit("eventStatusGaveta", result);
+
+        }else if(configsReceived.getString("typePrinter").equals("abrirGaveta")){
+            Printer.abrirGaveta();
+
         }else if(configsReceived.getString("typePrinter").equals("jumpLine")){
             Printer.AvancaLinhas(configsReceived);
 
@@ -168,7 +181,6 @@ public class ToastModules extends ReactContextBaseJavaModule implements Activity
             reactContext
             .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
             .emit("eventStatusPrinter", result);
-
         }
     }
 }

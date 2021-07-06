@@ -214,9 +214,17 @@ public class Printer{
         return Termica.ImprimeXMLSAT(xml, param);
     }
 
+    public static int imprimeCupomTEF(ReadableMap map){
+        String base64 = (String) map.getString("base64");
+
+        return Termica.ImprimeCupomTEF(base64);
+    }
+
     public static int statusGaveta(){
         return Termica.StatusImpressora(1);
     }
+
+    public static int abrirGaveta() { return Termica.AbreGavetaElgin(); }
 
     public static int statusSensorPapel(){
         return Termica.StatusImpressora(3);

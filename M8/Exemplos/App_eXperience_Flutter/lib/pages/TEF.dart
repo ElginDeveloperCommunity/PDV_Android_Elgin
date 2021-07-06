@@ -121,9 +121,8 @@ class _SitefPageState extends State<SitefPage> {
         imageViaClientBase64 = imageViaClientBase64.trim();
       });
 
-      printerService.sendPrinterImage(
+      printerService.printerCupomTEF(
         resultMap["via_cliente"],
-        true,
       );
 
       printerService.jumpLine(10);

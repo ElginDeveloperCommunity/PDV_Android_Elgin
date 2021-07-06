@@ -64,15 +64,11 @@ class _SatPageState extends State<SatPage> {
       children: [
         GeneralWidgets.personButton(textButton: "REALIZAR VENDA", width: 200, callback: () {}),
         SizedBox(height: 10),
-        GeneralWidgets.personButton(
-          textButton: "CONSULTAR STATUS",
-          width: 200,
-          callback: () => getOperationalStatus("123456789"),
-        ),
+        GeneralWidgets.personButton(textButton: "CONSULTAR STATUS", width: 200, callback: () {}),
         SizedBox(height: 10),
         GeneralWidgets.personButton(textButton: "CANCELAMENTO", width: 200, callback: () {}),
         SizedBox(height: 10),
-        GeneralWidgets.personButton(textButton: "ATIVAR", width: 200, callback: () => sendAtivar()),
+        GeneralWidgets.personButton(textButton: "ATIVAR", width: 200, callback: () {}),
         SizedBox(height: 10),
         GeneralWidgets.personButton(textButton: "ASSOCIAR", width: 200, callback: () {}),
       ],

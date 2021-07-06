@@ -144,6 +144,7 @@ type
   JPrinterManager_1 = interface;//com.elgin.minipdvm8.PrinterManager$1
   JIPrinterCallback_Stub = interface;//com.xcheng.printerservice.IPrinterCallback$Stub
   JPrinterManager_2 = interface;//com.elgin.minipdvm8.PrinterManager$2
+  Jcloudpossdk_aar_slim_BuildConfig = interface;//com.example.cloudpossdk_aar_slim.BuildConfig
   JCommSerialAPI = interface;//com.xc.comportdemo.CommSerialAPI
   JComportNative = interface;//com.xc.comportdemo.ComportNative
   JIPrinterCallback = interface;//com.xcheng.printerservice.IPrinterCallback
@@ -175,86 +176,86 @@ type
   JAnimatorClass = interface(JObjectClass)
     ['{3F76A5DF-389E-4BD3-9861-04C5B00CEADE}']
     {class} function init: JAnimator; cdecl;//Deprecated
-    {class} procedure addListener(listener: JAnimator_AnimatorListener); cdecl;
-    {class} procedure addPauseListener(listener: JAnimator_AnimatorPauseListener); cdecl;
-    {class} procedure cancel; cdecl;
-    {class} function getInterpolator: JTimeInterpolator; cdecl;
-    {class} function getListeners: JArrayList; cdecl;
+    {class} function clone: JAnimator; cdecl;//Deprecated
+    {class} procedure &end; cdecl;//Deprecated
+    {class} function getDuration: Int64; cdecl;//Deprecated
+    {class} function isPaused: Boolean; cdecl;
+    {class} function isRunning: Boolean; cdecl;
     {class} function isStarted: Boolean; cdecl;
-    {class} procedure pause; cdecl;
-    {class} procedure removeAllListeners; cdecl;
+    {class} procedure removePauseListener(listener: JAnimator_AnimatorPauseListener); cdecl;
+    {class} procedure resume; cdecl;
     {class} function setDuration(duration: Int64): JAnimator; cdecl;
-    {class} procedure setInterpolator(value: JTimeInterpolator); cdecl;
-    {class} procedure setStartDelay(startDelay: Int64); cdecl;
-    {class} procedure start; cdecl;//Deprecated
+    {class} procedure setupEndValues; cdecl;
+    {class} procedure setupStartValues; cdecl;
+    {class} procedure start; cdecl;
   end;
 
   [JavaSignature('android/animation/Animator')]
   JAnimator = interface(JObject)
     ['{FA13E56D-1B6D-4A3D-8327-9E5BA785CF21}']
-    function clone: JAnimator; cdecl;
-    procedure &end; cdecl;
-    function getDuration: Int64; cdecl;
+    procedure addListener(listener: JAnimator_AnimatorListener); cdecl;//Deprecated
+    procedure addPauseListener(listener: JAnimator_AnimatorPauseListener); cdecl;//Deprecated
+    procedure cancel; cdecl;//Deprecated
+    function getInterpolator: JTimeInterpolator; cdecl;
+    function getListeners: JArrayList; cdecl;
     function getStartDelay: Int64; cdecl;
-    function isPaused: Boolean; cdecl;
-    function isRunning: Boolean; cdecl;
+    procedure pause; cdecl;
+    procedure removeAllListeners; cdecl;
     procedure removeListener(listener: JAnimator_AnimatorListener); cdecl;
-    procedure removePauseListener(listener: JAnimator_AnimatorPauseListener); cdecl;
-    procedure resume; cdecl;
-    procedure setTarget(target: JObject); cdecl;//Deprecated
-    procedure setupEndValues; cdecl;//Deprecated
-    procedure setupStartValues; cdecl;//Deprecated
+    procedure setInterpolator(value: JTimeInterpolator); cdecl;
+    procedure setStartDelay(startDelay: Int64); cdecl;
+    procedure setTarget(target: JObject); cdecl;
   end;
   TJAnimator = class(TJavaGenericImport<JAnimatorClass, JAnimator>) end;
 
   JAnimator_AnimatorListenerClass = interface(IJavaClass)
     ['{5ED6075A-B997-469C-B8D9-0AA8FB7E4798}']
-    {class} procedure onAnimationEnd(animation: JAnimator); cdecl;//Deprecated
-    {class} procedure onAnimationRepeat(animation: JAnimator); cdecl;//Deprecated
-    {class} procedure onAnimationStart(animation: JAnimator); cdecl;//Deprecated
+    {class} procedure onAnimationCancel(animation: JAnimator); cdecl;//Deprecated
   end;
 
   [JavaSignature('android/animation/Animator$AnimatorListener')]
   JAnimator_AnimatorListener = interface(IJavaInstance)
     ['{E2DE8DD6-628B-4D84-AA46-8A1E3F00FF13}']
-    procedure onAnimationCancel(animation: JAnimator); cdecl;//Deprecated
+    procedure onAnimationEnd(animation: JAnimator); cdecl;//Deprecated
+    procedure onAnimationRepeat(animation: JAnimator); cdecl;//Deprecated
+    procedure onAnimationStart(animation: JAnimator); cdecl;//Deprecated
   end;
   TJAnimator_AnimatorListener = class(TJavaGenericImport<JAnimator_AnimatorListenerClass, JAnimator_AnimatorListener>) end;
 
   JAnimator_AnimatorPauseListenerClass = interface(IJavaClass)
     ['{CB0DC3F0-63BC-4284-ADD0-2ED367AE11E5}']
-    {class} procedure onAnimationPause(animation: JAnimator); cdecl;//Deprecated
   end;
 
   [JavaSignature('android/animation/Animator$AnimatorPauseListener')]
   JAnimator_AnimatorPauseListener = interface(IJavaInstance)
     ['{43C9C106-65EA-4A7D-A958-FAB9E43FA4A6}']
-    procedure onAnimationResume(animation: JAnimator); cdecl;
+    procedure onAnimationPause(animation: JAnimator); cdecl;//Deprecated
+    procedure onAnimationResume(animation: JAnimator); cdecl;//Deprecated
   end;
   TJAnimator_AnimatorPauseListener = class(TJavaGenericImport<JAnimator_AnimatorPauseListenerClass, JAnimator_AnimatorPauseListener>) end;
 
   JKeyframeClass = interface(JObjectClass)
     ['{D383116E-5CCF-48D8-9EA1-B26FBF24BA39}']
     {class} function init: JKeyframe; cdecl;//Deprecated
-    {class} function clone: JKeyframe; cdecl;
-    {class} function getFraction: Single; cdecl;
-    {class} function getInterpolator: JTimeInterpolator; cdecl;
-    {class} function ofFloat(fraction: Single; value: Single): JKeyframe; cdecl; overload;//Deprecated
-    {class} function ofFloat(fraction: Single): JKeyframe; cdecl; overload;//Deprecated
-    {class} function ofInt(fraction: Single; value: Integer): JKeyframe; cdecl; overload;//Deprecated
-    {class} function ofInt(fraction: Single): JKeyframe; cdecl; overload;//Deprecated
-    {class} function ofObject(fraction: Single; value: JObject): JKeyframe; cdecl; overload;//Deprecated
-    {class} function ofObject(fraction: Single): JKeyframe; cdecl; overload;//Deprecated
-    {class} procedure setFraction(fraction: Single); cdecl;//Deprecated
-    {class} procedure setInterpolator(interpolator: JTimeInterpolator); cdecl;//Deprecated
+    {class} function getType: Jlang_Class; cdecl;
+    {class} function getValue: JObject; cdecl;
+    {class} function hasValue: Boolean; cdecl;
+    {class} function ofFloat(fraction: Single; value: Single): JKeyframe; cdecl; overload;
+    {class} function ofFloat(fraction: Single): JKeyframe; cdecl; overload;
+    {class} function ofInt(fraction: Single; value: Integer): JKeyframe; cdecl; overload;
+    {class} function ofInt(fraction: Single): JKeyframe; cdecl; overload;
+    {class} function ofObject(fraction: Single; value: JObject): JKeyframe; cdecl; overload;
+    {class} function ofObject(fraction: Single): JKeyframe; cdecl; overload;
   end;
 
   [JavaSignature('android/animation/Keyframe')]
   JKeyframe = interface(JObject)
     ['{9D0687A4-669E-440F-8290-154739405019}']
-    function getType: Jlang_Class; cdecl;//Deprecated
-    function getValue: JObject; cdecl;//Deprecated
-    function hasValue: Boolean; cdecl;//Deprecated
+    function clone: JKeyframe; cdecl;
+    function getFraction: Single; cdecl;
+    function getInterpolator: JTimeInterpolator; cdecl;
+    procedure setFraction(fraction: Single); cdecl;//Deprecated
+    procedure setInterpolator(interpolator: JTimeInterpolator); cdecl;//Deprecated
     procedure setValue(value: JObject); cdecl;//Deprecated
   end;
   TJKeyframe = class(TJavaGenericImport<JKeyframeClass, JKeyframe>) end;
@@ -267,19 +268,19 @@ type
     {class} function _GetCHANGING: Integer; cdecl;
     {class} function _GetDISAPPEARING: Integer; cdecl;
     {class} function init: JLayoutTransition; cdecl;//Deprecated
-    {class} procedure addTransitionListener(listener: JLayoutTransition_TransitionListener); cdecl;
-    {class} procedure disableTransitionType(transitionType: Integer); cdecl;
-    {class} procedure enableTransitionType(transitionType: Integer); cdecl;
-    {class} function getStagger(transitionType: Integer): Int64; cdecl;
-    {class} function getStartDelay(transitionType: Integer): Int64; cdecl;
+    {class} procedure addChild(parent: JViewGroup; child: JView); cdecl;//Deprecated
+    {class} function getAnimator(transitionType: Integer): JAnimator; cdecl;
+    {class} function getDuration(transitionType: Integer): Int64; cdecl;
+    {class} function getInterpolator(transitionType: Integer): JTimeInterpolator; cdecl;
+    {class} procedure hideChild(parent: JViewGroup; child: JView); cdecl; overload;//Deprecated
+    {class} procedure hideChild(parent: JViewGroup; child: JView; newVisibility: Integer); cdecl; overload;
     {class} function isChangingLayout: Boolean; cdecl;
-    {class} function isRunning: Boolean; cdecl;
-    {class} function isTransitionTypeEnabled(transitionType: Integer): Boolean; cdecl;
-    {class} procedure setAnimator(transitionType: Integer; animator: JAnimator); cdecl;//Deprecated
-    {class} procedure setDuration(duration: Int64); cdecl; overload;//Deprecated
-    {class} procedure setDuration(transitionType: Integer; duration: Int64); cdecl; overload;//Deprecated
+    {class} procedure removeTransitionListener(listener: JLayoutTransition_TransitionListener); cdecl;
+    {class} procedure setAnimateParentHierarchy(animateParentHierarchy: Boolean); cdecl;
+    {class} procedure setAnimator(transitionType: Integer; animator: JAnimator); cdecl;
+    {class} procedure setStagger(transitionType: Integer; duration: Int64); cdecl;
+    {class} procedure setStartDelay(transitionType: Integer; delay: Int64); cdecl;
     {class} procedure showChild(parent: JViewGroup; child: JView); cdecl; overload;//Deprecated
-    {class} procedure showChild(parent: JViewGroup; child: JView; oldVisibility: Integer); cdecl; overload;//Deprecated
     {class} property APPEARING: Integer read _GetAPPEARING;
     {class} property CHANGE_APPEARING: Integer read _GetCHANGE_APPEARING;
     {class} property CHANGE_DISAPPEARING: Integer read _GetCHANGE_DISAPPEARING;
@@ -290,19 +291,19 @@ type
   [JavaSignature('android/animation/LayoutTransition')]
   JLayoutTransition = interface(JObject)
     ['{42450BEE-EBF2-4954-B9B7-F8DAE7DF0EC1}']
-    procedure addChild(parent: JViewGroup; child: JView); cdecl;
-    function getAnimator(transitionType: Integer): JAnimator; cdecl;
-    function getDuration(transitionType: Integer): Int64; cdecl;
-    function getInterpolator(transitionType: Integer): JTimeInterpolator; cdecl;
+    procedure addTransitionListener(listener: JLayoutTransition_TransitionListener); cdecl;
+    procedure disableTransitionType(transitionType: Integer); cdecl;
+    procedure enableTransitionType(transitionType: Integer); cdecl;
+    function getStagger(transitionType: Integer): Int64; cdecl;
+    function getStartDelay(transitionType: Integer): Int64; cdecl;
     function getTransitionListeners: JList; cdecl;
-    procedure hideChild(parent: JViewGroup; child: JView); cdecl; overload;//Deprecated
-    procedure hideChild(parent: JViewGroup; child: JView; newVisibility: Integer); cdecl; overload;
-    procedure removeChild(parent: JViewGroup; child: JView); cdecl;//Deprecated
-    procedure removeTransitionListener(listener: JLayoutTransition_TransitionListener); cdecl;//Deprecated
-    procedure setAnimateParentHierarchy(animateParentHierarchy: Boolean); cdecl;//Deprecated
-    procedure setInterpolator(transitionType: Integer; interpolator: JTimeInterpolator); cdecl;//Deprecated
-    procedure setStagger(transitionType: Integer; duration: Int64); cdecl;//Deprecated
-    procedure setStartDelay(transitionType: Integer; delay: Int64); cdecl;//Deprecated
+    function isRunning: Boolean; cdecl;
+    function isTransitionTypeEnabled(transitionType: Integer): Boolean; cdecl;
+    procedure removeChild(parent: JViewGroup; child: JView); cdecl;
+    procedure setDuration(duration: Int64); cdecl; overload;
+    procedure setDuration(transitionType: Integer; duration: Int64); cdecl; overload;
+    procedure setInterpolator(transitionType: Integer; interpolator: JTimeInterpolator); cdecl;
+    procedure showChild(parent: JViewGroup; child: JView; oldVisibility: Integer); cdecl; overload;//Deprecated
   end;
   TJLayoutTransition = class(TJavaGenericImport<JLayoutTransitionClass, JLayoutTransition>) end;
 
@@ -397,17 +398,24 @@ type
     {class} function init: JValueAnimator; cdecl;//Deprecated
     {class} procedure &end; cdecl;//Deprecated
     {class} function getAnimatedFraction: Single; cdecl;//Deprecated
-    {class} function getDuration: Int64; cdecl;//Deprecated
+    {class} function getAnimatedValue: JObject; cdecl; overload;
+    {class} function getAnimatedValue(propertyName: JString): JObject; cdecl; overload;
+    {class} function getCurrentPlayTime: Int64; cdecl;
     {class} function getFrameDelay: Int64; cdecl;//Deprecated
+    {class} function getRepeatCount: Integer; cdecl;//Deprecated
+    {class} function getRepeatMode: Integer; cdecl;//Deprecated
     {class} function getStartDelay: Int64; cdecl;//Deprecated
-    {class} function getValues: TJavaObjectArray<JPropertyValuesHolder>; cdecl;//Deprecated
-    {class} function isRunning: Boolean; cdecl;//Deprecated
-    {class} procedure resume; cdecl;
-    {class} procedure reverse; cdecl;
-    {class} procedure setCurrentFraction(fraction: Single); cdecl;
+    {class} procedure removeAllUpdateListeners; cdecl;//Deprecated
+    {class} procedure removeUpdateListener(listener: JValueAnimator_AnimatorUpdateListener); cdecl;//Deprecated
+    {class} procedure resume; cdecl;//Deprecated
+    {class} procedure setCurrentPlayTime(playTime: Int64); cdecl;//Deprecated
+    {class} function setDuration(duration: Int64): JValueAnimator; cdecl;//Deprecated
+    {class} procedure setEvaluator(value: JTypeEvaluator); cdecl;//Deprecated
     {class} procedure setFrameDelay(frameDelay: Int64); cdecl;
-    {class} procedure setRepeatMode(value: Integer); cdecl;
-    {class} procedure setStartDelay(startDelay: Int64); cdecl;
+    {class} procedure setInterpolator(value: JTimeInterpolator); cdecl;
+    {class} procedure setRepeatCount(value: Integer); cdecl;
+    {class} procedure start; cdecl;
+    {class} function toString: JString; cdecl;
     {class} property INFINITE: Integer read _GetINFINITE;
     {class} property RESTART: Integer read _GetRESTART;
     {class} property REVERSE: Integer read _GetREVERSE;
@@ -419,34 +427,27 @@ type
     procedure addUpdateListener(listener: JValueAnimator_AnimatorUpdateListener); cdecl;//Deprecated
     procedure cancel; cdecl;//Deprecated
     function clone: JValueAnimator; cdecl;//Deprecated
-    function getAnimatedValue: JObject; cdecl; overload;//Deprecated
-    function getAnimatedValue(propertyName: JString): JObject; cdecl; overload;//Deprecated
-    function getCurrentPlayTime: Int64; cdecl;//Deprecated
+    function getDuration: Int64; cdecl;//Deprecated
     function getInterpolator: JTimeInterpolator; cdecl;//Deprecated
-    function getRepeatCount: Integer; cdecl;//Deprecated
-    function getRepeatMode: Integer; cdecl;//Deprecated
+    function getValues: TJavaObjectArray<JPropertyValuesHolder>; cdecl;//Deprecated
+    function isRunning: Boolean; cdecl;//Deprecated
     function isStarted: Boolean; cdecl;//Deprecated
-    procedure pause; cdecl;
-    procedure removeAllUpdateListeners; cdecl;
-    procedure removeUpdateListener(listener: JValueAnimator_AnimatorUpdateListener); cdecl;
-    procedure setCurrentPlayTime(playTime: Int64); cdecl;
-    function setDuration(duration: Int64): JValueAnimator; cdecl;
-    procedure setEvaluator(value: JTypeEvaluator); cdecl;
-    procedure setInterpolator(value: JTimeInterpolator); cdecl;
-    procedure setRepeatCount(value: Integer); cdecl;
-    procedure start; cdecl;
-    function toString: JString; cdecl;
+    procedure pause; cdecl;//Deprecated
+    procedure reverse; cdecl;//Deprecated
+    procedure setCurrentFraction(fraction: Single); cdecl;//Deprecated
+    procedure setRepeatMode(value: Integer); cdecl;
+    procedure setStartDelay(startDelay: Int64); cdecl;
   end;
   TJValueAnimator = class(TJavaGenericImport<JValueAnimatorClass, JValueAnimator>) end;
 
   JValueAnimator_AnimatorUpdateListenerClass = interface(IJavaClass)
     ['{9CA50CBF-4462-4445-82CD-13CE985E2DE4}']
+    {class} procedure onAnimationUpdate(animation: JValueAnimator); cdecl;//Deprecated
   end;
 
   [JavaSignature('android/animation/ValueAnimator$AnimatorUpdateListener')]
   JValueAnimator_AnimatorUpdateListener = interface(IJavaInstance)
     ['{0F883491-52EF-4A40-B7D2-FC23E11E46FE}']
-    procedure onAnimationUpdate(animation: JValueAnimator); cdecl;
   end;
   TJValueAnimator_AnimatorUpdateListener = class(TJavaGenericImport<JValueAnimator_AnimatorUpdateListenerClass, JValueAnimator_AnimatorUpdateListener>) end;
 
@@ -454,12 +455,12 @@ type
     ['{E1CD1A94-115C-492C-A490-37F0E72956EB}']
     {class} function init: JPathMotion; cdecl; overload;//Deprecated
     {class} function init(context: JContext; attrs: JAttributeSet): JPathMotion; cdecl; overload;//Deprecated
+    {class} function getPath(startX: Single; startY: Single; endX: Single; endY: Single): JPath; cdecl;//Deprecated
   end;
 
   [JavaSignature('android/transition/PathMotion')]
   JPathMotion = interface(JObject)
     ['{BDC08353-C9FB-42D7-97CC-C35837D2F536}']
-    function getPath(startX: Single; startY: Single; endX: Single; endY: Single): JPath; cdecl;
   end;
   TJPathMotion = class(TJavaGenericImport<JPathMotionClass, JPathMotion>) end;
 
@@ -468,17 +469,17 @@ type
     {class} function init(sceneRoot: JViewGroup): JScene; cdecl; overload;//Deprecated
     {class} function init(sceneRoot: JViewGroup; layout: JView): JScene; cdecl; overload;//Deprecated
     {class} function init(sceneRoot: JViewGroup; layout: JViewGroup): JScene; cdecl; overload;//Deprecated
-    {class} procedure exit; cdecl;//Deprecated
+    {class} procedure enter; cdecl;
+    {class} procedure exit; cdecl;
     {class} function getSceneForLayout(sceneRoot: JViewGroup; layoutId: Integer; context: JContext): JScene; cdecl;//Deprecated
-    {class} function getSceneRoot: JViewGroup; cdecl;//Deprecated
+    {class} procedure setExitAction(action: JRunnable); cdecl;//Deprecated
   end;
 
   [JavaSignature('android/transition/Scene')]
   JScene = interface(JObject)
     ['{85A60B99-5837-4F1F-A344-C627DD586B82}']
-    procedure enter; cdecl;//Deprecated
+    function getSceneRoot: JViewGroup; cdecl;//Deprecated
     procedure setEnterAction(action: JRunnable); cdecl;//Deprecated
-    procedure setExitAction(action: JRunnable); cdecl;//Deprecated
   end;
   TJScene = class(TJavaGenericImport<JSceneClass, JScene>) end;
 
@@ -490,28 +491,27 @@ type
     {class} function _GetMATCH_NAME: Integer; cdecl;
     {class} function init: JTransition; cdecl; overload;//Deprecated
     {class} function init(context: JContext; attrs: JAttributeSet): JTransition; cdecl; overload;//Deprecated
-    {class} function addListener(listener: JTransition_TransitionListener): JTransition; cdecl;
-    {class} function addTarget(targetId: Integer): JTransition; cdecl; overload;
-    {class} function canRemoveViews: Boolean; cdecl;
-    {class} procedure captureEndValues(transitionValues: JTransitionValues); cdecl;
-    {class} procedure captureStartValues(transitionValues: JTransitionValues); cdecl;
-    {class} function excludeChildren(target: JView; exclude: Boolean): JTransition; cdecl; overload;
-    {class} function excludeChildren(type_: Jlang_Class; exclude: Boolean): JTransition; cdecl; overload;
-    {class} function excludeTarget(targetId: Integer; exclude: Boolean): JTransition; cdecl; overload;
+    {class} function addTarget(targetType: Jlang_Class): JTransition; cdecl; overload;//Deprecated
+    {class} function addTarget(target: JView): JTransition; cdecl; overload;//Deprecated
+    {class} function canRemoveViews: Boolean; cdecl;//Deprecated
+    {class} function createAnimator(sceneRoot: JViewGroup; startValues: JTransitionValues; endValues: JTransitionValues): JAnimator; cdecl;//Deprecated
+    {class} function excludeChildren(targetId: Integer; exclude: Boolean): JTransition; cdecl; overload;//Deprecated
+    {class} function excludeChildren(target: JView; exclude: Boolean): JTransition; cdecl; overload;//Deprecated
+    {class} function excludeTarget(target: JView; exclude: Boolean): JTransition; cdecl; overload;
+    {class} function excludeTarget(type_: Jlang_Class; exclude: Boolean): JTransition; cdecl; overload;
     {class} function getDuration: Int64; cdecl;
-    {class} function getEpicenter: JRect; cdecl;
-    {class} function getEpicenterCallback: JTransition_EpicenterCallback; cdecl;
-    {class} function getPathMotion: JPathMotion; cdecl;//Deprecated
-    {class} function getPropagation: JTransitionPropagation; cdecl;//Deprecated
-    {class} function getStartDelay: Int64; cdecl;//Deprecated
-    {class} function getTargets: JList; cdecl;//Deprecated
-    {class} function getTransitionProperties: TJavaObjectArray<JString>; cdecl;//Deprecated
-    {class} function getTransitionValues(view: JView; start: Boolean): JTransitionValues; cdecl;//Deprecated
-    {class} function removeTarget(targetName: JString): JTransition; cdecl; overload;//Deprecated
-    {class} function removeTarget(target: JView): JTransition; cdecl; overload;//Deprecated
-    {class} function removeTarget(target: Jlang_Class): JTransition; cdecl; overload;//Deprecated
-    {class} procedure setPathMotion(pathMotion: JPathMotion); cdecl;//Deprecated
-    {class} procedure setPropagation(transitionPropagation: JTransitionPropagation); cdecl;//Deprecated
+    {class} function getInterpolator: JTimeInterpolator; cdecl;
+    {class} function getName: JString; cdecl;
+    {class} function getPathMotion: JPathMotion; cdecl;
+    {class} function getTargetNames: JList; cdecl;
+    {class} function getTargetTypes: JList; cdecl;
+    {class} function getTargets: JList; cdecl;
+    {class} function removeListener(listener: JTransition_TransitionListener): JTransition; cdecl;
+    {class} function removeTarget(targetId: Integer): JTransition; cdecl; overload;
+    {class} function removeTarget(targetName: JString): JTransition; cdecl; overload;
+    {class} procedure setEpicenterCallback(epicenterCallback: JTransition_EpicenterCallback); cdecl;//Deprecated
+    {class} function setInterpolator(interpolator: JTimeInterpolator): JTransition; cdecl;//Deprecated
+    {class} function toString: JString; cdecl;//Deprecated
     {class} property MATCH_ID: Integer read _GetMATCH_ID;
     {class} property MATCH_INSTANCE: Integer read _GetMATCH_INSTANCE;
     {class} property MATCH_ITEM_ID: Integer read _GetMATCH_ITEM_ID;
@@ -521,28 +521,29 @@ type
   [JavaSignature('android/transition/Transition')]
   JTransition = interface(JObject)
     ['{C2F8200F-1C83-40AE-8C5B-C0C8BFF17F88}']
-    function addTarget(targetName: JString): JTransition; cdecl; overload;
-    function addTarget(targetType: Jlang_Class): JTransition; cdecl; overload;
-    function addTarget(target: JView): JTransition; cdecl; overload;
-    function clone: JTransition; cdecl;
-    function createAnimator(sceneRoot: JViewGroup; startValues: JTransitionValues; endValues: JTransitionValues): JAnimator; cdecl;
-    function excludeChildren(targetId: Integer; exclude: Boolean): JTransition; cdecl; overload;
+    function addListener(listener: JTransition_TransitionListener): JTransition; cdecl;//Deprecated
+    function addTarget(targetId: Integer): JTransition; cdecl; overload;//Deprecated
+    function addTarget(targetName: JString): JTransition; cdecl; overload;//Deprecated
+    procedure captureEndValues(transitionValues: JTransitionValues); cdecl;//Deprecated
+    procedure captureStartValues(transitionValues: JTransitionValues); cdecl;//Deprecated
+    function clone: JTransition; cdecl;//Deprecated
+    function excludeChildren(type_: Jlang_Class; exclude: Boolean): JTransition; cdecl; overload;
+    function excludeTarget(targetId: Integer; exclude: Boolean): JTransition; cdecl; overload;
     function excludeTarget(targetName: JString; exclude: Boolean): JTransition; cdecl; overload;
-    function excludeTarget(target: JView; exclude: Boolean): JTransition; cdecl; overload;
-    function excludeTarget(type_: Jlang_Class; exclude: Boolean): JTransition; cdecl; overload;
-    function getInterpolator: JTimeInterpolator; cdecl;//Deprecated
-    function getName: JString; cdecl;//Deprecated
-    function getTargetIds: JList; cdecl;//Deprecated
-    function getTargetNames: JList; cdecl;//Deprecated
-    function getTargetTypes: JList; cdecl;//Deprecated
-    function isTransitionRequired(startValues: JTransitionValues; endValues: JTransitionValues): Boolean; cdecl;//Deprecated
-    function removeListener(listener: JTransition_TransitionListener): JTransition; cdecl;//Deprecated
-    function removeTarget(targetId: Integer): JTransition; cdecl; overload;//Deprecated
+    function getEpicenter: JRect; cdecl;
+    function getEpicenterCallback: JTransition_EpicenterCallback; cdecl;
+    function getPropagation: JTransitionPropagation; cdecl;
+    function getStartDelay: Int64; cdecl;
+    function getTargetIds: JList; cdecl;
+    function getTransitionProperties: TJavaObjectArray<JString>; cdecl;
+    function getTransitionValues(view: JView; start: Boolean): JTransitionValues; cdecl;
+    function isTransitionRequired(startValues: JTransitionValues; endValues: JTransitionValues): Boolean; cdecl;
+    function removeTarget(target: JView): JTransition; cdecl; overload;//Deprecated
+    function removeTarget(target: Jlang_Class): JTransition; cdecl; overload;//Deprecated
     function setDuration(duration: Int64): JTransition; cdecl;//Deprecated
-    procedure setEpicenterCallback(epicenterCallback: JTransition_EpicenterCallback); cdecl;//Deprecated
-    function setInterpolator(interpolator: JTimeInterpolator): JTransition; cdecl;//Deprecated
-    function setStartDelay(startDelay: Int64): JTransition; cdecl;
-    function toString: JString; cdecl;
+    procedure setPathMotion(pathMotion: JPathMotion); cdecl;//Deprecated
+    procedure setPropagation(transitionPropagation: JTransitionPropagation); cdecl;//Deprecated
+    function setStartDelay(startDelay: Int64): JTransition; cdecl;//Deprecated
   end;
   TJTransition = class(TJavaGenericImport<JTransitionClass, JTransition>) end;
 
@@ -554,21 +555,21 @@ type
   [JavaSignature('android/transition/Transition$EpicenterCallback')]
   JTransition_EpicenterCallback = interface(JObject)
     ['{CE004917-266F-4076-8913-F23184824FBA}']
-    function onGetEpicenter(transition: JTransition): JRect; cdecl;
+    function onGetEpicenter(transition: JTransition): JRect; cdecl;//Deprecated
   end;
   TJTransition_EpicenterCallback = class(TJavaGenericImport<JTransition_EpicenterCallbackClass, JTransition_EpicenterCallback>) end;
 
   JTransition_TransitionListenerClass = interface(IJavaClass)
     ['{D5083752-E8A6-46DF-BE40-AE11073C387E}']
-    {class} procedure onTransitionEnd(transition: JTransition); cdecl;
-    {class} procedure onTransitionPause(transition: JTransition); cdecl;
-    {class} procedure onTransitionResume(transition: JTransition); cdecl;
+    {class} procedure onTransitionCancel(transition: JTransition); cdecl;//Deprecated
+    {class} procedure onTransitionEnd(transition: JTransition); cdecl;//Deprecated
   end;
 
   [JavaSignature('android/transition/Transition$TransitionListener')]
   JTransition_TransitionListener = interface(IJavaInstance)
     ['{C32BE107-6E05-4898-AF0A-FAD970D66E29}']
-    procedure onTransitionCancel(transition: JTransition); cdecl;
+    procedure onTransitionPause(transition: JTransition); cdecl;
+    procedure onTransitionResume(transition: JTransition); cdecl;
     procedure onTransitionStart(transition: JTransition); cdecl;
   end;
   TJTransition_TransitionListener = class(TJavaGenericImport<JTransition_TransitionListenerClass, JTransition_TransitionListener>) end;
@@ -576,51 +577,52 @@ type
   JTransitionManagerClass = interface(JObjectClass)
     ['{4160EFA0-3499-4964-817E-46497BB5B957}']
     {class} function init: JTransitionManager; cdecl;//Deprecated
-    {class} procedure beginDelayedTransition(sceneRoot: JViewGroup); cdecl; overload;//Deprecated
-    {class} procedure beginDelayedTransition(sceneRoot: JViewGroup; transition: JTransition); cdecl; overload;//Deprecated
-    {class} procedure endTransitions(sceneRoot: JViewGroup); cdecl;//Deprecated
-    {class} procedure go(scene: JScene); cdecl; overload;//Deprecated
-    {class} procedure go(scene: JScene; transition: JTransition); cdecl; overload;//Deprecated
-    {class} procedure transitionTo(scene: JScene); cdecl;//Deprecated
+    {class} procedure beginDelayedTransition(sceneRoot: JViewGroup); cdecl; overload;
+    {class} procedure beginDelayedTransition(sceneRoot: JViewGroup; transition: JTransition); cdecl; overload;
+    {class} procedure endTransitions(sceneRoot: JViewGroup); cdecl;
+    {class} procedure go(scene: JScene); cdecl; overload;
+    {class} procedure go(scene: JScene; transition: JTransition); cdecl; overload;
+    {class} procedure setTransition(scene: JScene; transition: JTransition); cdecl; overload;
+    {class} procedure setTransition(fromScene: JScene; toScene: JScene; transition: JTransition); cdecl; overload;
   end;
 
   [JavaSignature('android/transition/TransitionManager')]
   JTransitionManager = interface(JObject)
     ['{FF5E1210-1F04-4F81-9CAC-3D7A5C4E972B}']
-    procedure setTransition(scene: JScene; transition: JTransition); cdecl; overload;//Deprecated
-    procedure setTransition(fromScene: JScene; toScene: JScene; transition: JTransition); cdecl; overload;//Deprecated
+    procedure transitionTo(scene: JScene); cdecl;//Deprecated
   end;
   TJTransitionManager = class(TJavaGenericImport<JTransitionManagerClass, JTransitionManager>) end;
 
   JTransitionPropagationClass = interface(JObjectClass)
     ['{A881388A-C877-4DD9-9BAD-1BA4F56133EE}']
     {class} function init: JTransitionPropagation; cdecl;//Deprecated
-    {class} function getStartDelay(sceneRoot: JViewGroup; transition: JTransition; startValues: JTransitionValues; endValues: JTransitionValues): Int64; cdecl;
+    {class} procedure captureValues(transitionValues: JTransitionValues); cdecl;//Deprecated
+    {class} function getPropagationProperties: TJavaObjectArray<JString>; cdecl;//Deprecated
+    {class} function getStartDelay(sceneRoot: JViewGroup; transition: JTransition; startValues: JTransitionValues; endValues: JTransitionValues): Int64; cdecl;//Deprecated
   end;
 
   [JavaSignature('android/transition/TransitionPropagation')]
   JTransitionPropagation = interface(JObject)
     ['{7595B7EF-6BCE-4281-BC67-335E2FB6C091}']
-    procedure captureValues(transitionValues: JTransitionValues); cdecl;
-    function getPropagationProperties: TJavaObjectArray<JString>; cdecl;
   end;
   TJTransitionPropagation = class(TJavaGenericImport<JTransitionPropagationClass, JTransitionPropagation>) end;
 
   JTransitionValuesClass = interface(JObjectClass)
     ['{3BF98CFA-6A4D-4815-8D42-15E97C916D91}']
+    {class} function _Getvalues: JMap; cdecl;
     {class} function _Getview: JView; cdecl;
+    {class} procedure _Setview(Value: JView); cdecl;
     {class} function init: JTransitionValues; cdecl;//Deprecated
-    {class} function equals(other: JObject): Boolean; cdecl;
-    {class} property view: JView read _Getview;
+    {class} property values: JMap read _Getvalues;
+    {class} property view: JView read _Getview write _Setview;
   end;
 
   [JavaSignature('android/transition/TransitionValues')]
   JTransitionValues = interface(JObject)
     ['{178E09E6-D32C-48A9-ADCF-8CCEA804052A}']
-    function _Getvalues: JMap; cdecl;
-    function hashCode: Integer; cdecl;
-    function toString: JString; cdecl;
-    property values: JMap read _Getvalues;
+    function equals(other: JObject): Boolean; cdecl;//Deprecated
+    function hashCode: Integer; cdecl;//Deprecated
+    function toString: JString; cdecl;//Deprecated
   end;
   TJTransitionValues = class(TJavaGenericImport<JTransitionValuesClass, JTransitionValues>) end;
 
@@ -653,23 +655,23 @@ type
   TJToolbar_LayoutParams = class(TJavaGenericImport<JToolbar_LayoutParamsClass, JToolbar_LayoutParams>) end;
 
   JBalancaClass = interface(JObjectClass)
-    ['{483AB65D-5BAB-41E2-A7DC-ADCE97A3A64C}']
+    ['{C3BBCD1B-74D4-4D32-9EFB-EC01C4135C24}']
   end;
 
   [JavaSignature('com/elgin/e1/Balanca/Balanca')]
   JBalanca = interface(JObject)
-    ['{67CDE8AE-BFAC-48AC-B99C-E19356D3072F}']
+    ['{64A833C7-1AB6-4BC1-A68A-953EA8606002}']
   end;
   TJBalanca = class(TJavaGenericImport<JBalancaClass, JBalanca>) end;
 
   JBalanca_ConfigClass = interface(JObjectClass)
-    ['{22E676C2-AB2D-4B13-A3E9-DDA4462D8613}']
+    ['{2B2DA864-BC43-4118-8FBD-B712DA2D9010}']
     {class} function init(P1: Integer; P2: Integer; P3: Integer; P4: Integer): JBalanca_Config; cdecl;
   end;
 
   [JavaSignature('com/elgin/e1/Balanca/Balanca$Config')]
   JBalanca_Config = interface(JObject)
-    ['{0F3D4B99-F872-4702-9D61-89B8CBE00A05}']
+    ['{393CCA8C-4DBA-423D-A790-A7CE19CFD6C5}']
     function _Getlength: Integer; cdecl;
     function _Getparity: Integer; cdecl;
     function _Getstopbits: Integer; cdecl;
@@ -680,7 +682,7 @@ type
   TJBalanca_Config = class(TJavaGenericImport<JBalanca_ConfigClass, JBalanca_Config>) end;
 
   JBalanca_ConfigAltValuesClass = interface(JEnumClass)
-    ['{E9B34596-598C-422B-BA62-AFF82D7BEDB5}']
+    ['{E9F2333B-8DDB-45E9-8602-85CA66A10784}']
     {class} function _GetEvenParity: JBalanca_ConfigAltValues; cdecl;
     {class} function _GetNenhum: JBalanca_ConfigAltValues; cdecl;
     {class} function _GetNoParity: JBalanca_ConfigAltValues; cdecl;
@@ -697,14 +699,14 @@ type
 
   [JavaSignature('com/elgin/e1/Balanca/Balanca$ConfigAltValues')]
   JBalanca_ConfigAltValues = interface(JEnum)
-    ['{D923213A-1972-4101-BDA7-FA3565091796}']
+    ['{0A53FA6D-0518-4D1F-8C0D-9CFEA0399A48}']
     function _Getvalor: Integer; cdecl;
     property valor: Integer read _Getvalor;
   end;
   TJBalanca_ConfigAltValues = class(TJavaGenericImport<JBalanca_ConfigAltValuesClass, JBalanca_ConfigAltValues>) end;
 
   JBalanca_ModeloBalancaClass = interface(JEnumClass)
-    ['{50C0FB5D-A4A6-493D-BCF3-DB7626F9F4AF}']
+    ['{004F2FFD-7B99-4F0A-9DBE-795FA327CE1C}']
     {class} function _GetDP3005: JBalanca_ModeloBalanca; cdecl;
     {class} function _GetDPSC: JBalanca_ModeloBalanca; cdecl;
     {class} function _GetSA110: JBalanca_ModeloBalanca; cdecl;
@@ -719,14 +721,14 @@ type
 
   [JavaSignature('com/elgin/e1/Balanca/Balanca$ModeloBalanca')]
   JBalanca_ModeloBalanca = interface(JEnum)
-    ['{7B6DC4E6-844B-4B26-8151-E1247CE391B3}']
+    ['{61F57B43-AF44-4018-8D40-264A13836121}']
     function _Getvalor: Integer; cdecl;
     property valor: Integer read _Getvalor;
   end;
   TJBalanca_ModeloBalanca = class(TJavaGenericImport<JBalanca_ModeloBalancaClass, JBalanca_ModeloBalanca>) end;
 
   JBalanca_ProtocoloComunicacaoClass = interface(JEnumClass)
-    ['{30393895-DAF8-4116-8793-BDD7451E81E5}']
+    ['{D0E64D22-381D-4E8B-AB90-1157F8894CF3}']
     {class} function _GetProtocolo0: JBalanca_ProtocoloComunicacao; cdecl;
     {class} function _GetProtocolo1: JBalanca_ProtocoloComunicacao; cdecl;
     {class} function _GetProtocolo2: JBalanca_ProtocoloComunicacao; cdecl;
@@ -749,72 +751,72 @@ type
 
   [JavaSignature('com/elgin/e1/Balanca/Balanca$ProtocoloComunicacao')]
   JBalanca_ProtocoloComunicacao = interface(JEnum)
-    ['{93CA1C49-3933-49C2-B200-C9FC7A768EC3}']
+    ['{AB0D76D5-41E5-4CAA-A662-7CB98FF566FA}']
     function _Getvalor: Integer; cdecl;
     property valor: Integer read _Getvalor;
   end;
   TJBalanca_ProtocoloComunicacao = class(TJavaGenericImport<JBalanca_ProtocoloComunicacaoClass, JBalanca_ProtocoloComunicacao>) end;
 
   JBalancaE1Class = interface(JObjectClass)
-    ['{73B45EF3-2EBC-48DE-9E39-8CCC9AD0BACB}']
-    {class} function AbrirSerial(P1: Integer; P2: Integer; P3: Char; P4: Integer): Integer; cdecl;
-    {class} function ConfigurarModeloBalanca(P1: Integer): Integer; cdecl;
-    {class} function ConfigurarProtocoloComunicacao(P1: Integer): Integer; cdecl;
-    {class} function DirectIO(P1: TJavaArray<Byte>; P2: Integer; P3: TJavaArray<Byte>; P4: Integer; P5: Boolean): Integer; cdecl;
-    {class} function Fechar: Integer; cdecl;
-    {class} function GetContinuousReadTime: Integer; cdecl;
-    {class} function LerPeso(P1: Integer): JString; cdecl;
-    {class} function LerPreco(P1: Integer): JString; cdecl;
-    {class} function LerTara: JString; cdecl;
-    {class} function LerTotal(P1: Double): JString; cdecl;
-    {class} function LigarDesligarDisplay: Integer; cdecl;
-    {class} function ObterModeloBalanca: Integer; cdecl;
-    {class} function ObterProtocoloComunicacao: Integer; cdecl;
-    {class} function ObterTipoConexao: Integer; cdecl;
-    {class} procedure SetContinuousReadTime(P1: Integer); cdecl;
-    {class} function TararBalanca: Integer; cdecl;
-    {class} function ZerarBalanca: Integer; cdecl;
-    {class} function init: JBalancaE1; cdecl;
+    ['{652F0D17-F4F0-4CD8-830D-FA162CBA22C3}']
+    {class} function AbrirSerial(P1: Integer; P2: Integer; P3: Char; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function ConfigurarModeloBalanca(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function ConfigurarProtocoloComunicacao(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function DirectIO(P1: TJavaArray<Byte>; P2: Integer; P3: TJavaArray<Byte>; P4: Integer; P5: Boolean): Integer; cdecl;//Deprecated
+    {class} function Fechar: Integer; cdecl;//Deprecated
+    {class} function GetContinuousReadTime: Integer; cdecl;//Deprecated
+    {class} function LerPeso(P1: Integer): JString; cdecl;//Deprecated
+    {class} function LerPreco(P1: Integer): JString; cdecl;//Deprecated
+    {class} function LerTara: JString; cdecl;//Deprecated
+    {class} function LerTotal(P1: Double): JString; cdecl;//Deprecated
+    {class} function LigarDesligarDisplay: Integer; cdecl;//Deprecated
+    {class} function ObterModeloBalanca: Integer; cdecl;//Deprecated
+    {class} function ObterProtocoloComunicacao: Integer; cdecl;//Deprecated
+    {class} function ObterTipoConexao: Integer; cdecl;//Deprecated
+    {class} procedure SetContinuousReadTime(P1: Integer); cdecl;//Deprecated
+    {class} function TararBalanca: Integer; cdecl;//Deprecated
+    {class} function ZerarBalanca: Integer; cdecl;//Deprecated
+    {class} function init: JBalancaE1; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Balanca/BalancaE1')]
   JBalancaE1 = interface(JObject)
-    ['{39C86186-DD3B-4EB1-9898-011CAE0FD7B3}']
+    ['{1B8ADB03-3A98-474A-A501-90A8540B2C3D}']
   end;
   TJBalancaE1 = class(TJavaGenericImport<JBalancaE1Class, JBalancaE1>) end;
 
   JBalancasClass = interface(JObjectClass)
-    ['{614D2A46-A607-4986-AE7A-75AFDFAAAC04}']
+    ['{45AAE47A-EAF3-4226-AEF2-97EDA8D790AF}']
   end;
 
   [JavaSignature('com/elgin/e1/Balanca/Balancas')]
   JBalancas = interface(JObject)
-    ['{0EDC0EFC-FFB7-4B80-90CA-AC365B99B603}']
+    ['{21727A53-99C9-4C6D-B5BE-A108466A3554}']
   end;
   TJBalancas = class(TJavaGenericImport<JBalancasClass, JBalancas>) end;
 
   JCommClass = interface(JObjectClass)
-    ['{33733BC3-089D-48BB-ABC1-BF6C710C4F1D}']
+    ['{914322EC-C47E-45C3-881D-31FC64336F0C}']
   end;
 
   [JavaSignature('com/elgin/e1/Balanca/Comm')]
   JComm = interface(JObject)
-    ['{74AE423E-4B96-4B41-BFA4-7A5EB20E080D}']
+    ['{CE711072-69FF-42FB-9F8B-C4AF91F70FB7}']
   end;
   TJComm = class(TJavaGenericImport<JCommClass, JComm>) end;
 
   JComm_1Class = interface(JObjectClass)
-    ['{0F04E442-06C0-4DA4-8530-1CB39298CC17}']
+    ['{BB99ADB8-3A2A-4697-BB98-9ED8284F550E}']
   end;
 
   [JavaSignature('com/elgin/e1/Balanca/Comm$1')]
   JComm_1 = interface(JObject)
-    ['{D98989E2-D491-46CF-B5E2-1966C28257A5}']
+    ['{FDB52A20-97BC-4CD7-9E22-007C0FFE8F5D}']
   end;
   TJComm_1 = class(TJavaGenericImport<JComm_1Class, JComm_1>) end;
 
   JComm_TipoConexaoClass = interface(JEnumClass)
-    ['{1491E33B-B09E-4B38-A92C-5789F2B6D750}']
+    ['{DDA016E2-2BF3-4BC7-BD00-E2DE0624BE62}']
     {class} function _GetConexaoSerial: JComm_TipoConexao; cdecl;
     {class} function _GetConexaoTCP: JComm_TipoConexao; cdecl;
     {class} function _GetSemConexao: JComm_TipoConexao; cdecl;
@@ -827,35 +829,35 @@ type
 
   [JavaSignature('com/elgin/e1/Balanca/Comm$TipoConexao')]
   JComm_TipoConexao = interface(JEnum)
-    ['{C9231470-99F1-4EF5-83ED-D92DA523A7A3}']
+    ['{7B3C1547-6C17-42D6-995D-AEE44CDA6341}']
     function _Getvalor: Integer; cdecl;
     property valor: Integer read _Getvalor;
   end;
   TJComm_TipoConexao = class(TJavaGenericImport<JComm_TipoConexaoClass, JComm_TipoConexao>) end;
 
   JCommSerialClass = interface(JObjectClass)
-    ['{3FE3A275-BF70-4DEF-A2BA-B0DB0D9C67E9}']
-    {class} function isAuthAPI: Boolean; cdecl;
+    ['{23AD5E8C-C583-48B6-B9AA-6AA410483514}']
+    {class} function isAuthAPI: Boolean; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Balanca/CommSerial')]
   JCommSerial = interface(JObject)
-    ['{5083E6DA-9BBC-4868-81D7-2E6F8B972A85}']
+    ['{018F6043-2DAC-49C4-B780-6562FADE1014}']
   end;
   TJCommSerial = class(TJavaGenericImport<JCommSerialClass, JCommSerial>) end;
 
   JCommTCPClass = interface(JObjectClass)
-    ['{0B361547-D526-4928-AB0A-9A16856436C1}']
+    ['{49DA3FEE-C57F-4AC5-B285-3080C8003482}']
   end;
 
   [JavaSignature('com/elgin/e1/Balanca/CommTCP')]
   JCommTCP = interface(JObject)
-    ['{427ED75E-58E9-4ED7-9FD2-7C9890092167}']
+    ['{937A7CB6-4AC7-4CB3-B039-FFDC90BD0E81}']
   end;
   TJCommTCP = class(TJavaGenericImport<JCommTCPClass, JCommTCP>) end;
 
   JCommTCP_TimeoutsClass = interface(JEnumClass)
-    ['{82474D37-9029-44CD-9CF5-90485C8D9D13}']
+    ['{0BE56B0B-CC91-48F6-A0A4-99E4D5DA9026}']
     {class} function _GetTCPReadTimeout: JCommTCP_Timeouts; cdecl;
     {class} function _GetTCPWriteTimeout: JCommTCP_Timeouts; cdecl;
     {class} function valueOf(P1: JString): JCommTCP_Timeouts; cdecl;
@@ -866,80 +868,80 @@ type
 
   [JavaSignature('com/elgin/e1/Balanca/CommTCP$Timeouts')]
   JCommTCP_Timeouts = interface(JEnum)
-    ['{DED6A64E-8E66-439B-972E-6191482F137E}']
+    ['{3221A84B-35CA-4A08-9239-5857CD406CCA}']
     function _Getvalor: Integer; cdecl;
     property valor: Integer read _Getvalor;
   end;
   TJCommTCP_Timeouts = class(TJavaGenericImport<JCommTCP_TimeoutsClass, JCommTCP_Timeouts>) end;
 
   JInterfaceBalancaClass = interface(IJavaClass)
-    ['{B73851AE-3281-45EC-8548-1C41C3EEBD1E}']
-    {class} function abrir(P1: JString; P2: Integer): Integer; cdecl; overload;
-    {class} function abrir(P1: Integer; P2: Integer; P3: Char; P4: Integer): Integer; cdecl; overload;
-    {class} function configurarModeloBalanca(P1: Integer): Integer; cdecl;
-    {class} function configurarProtocoloComunicacao(P1: Integer): Integer; cdecl;
-    {class} function directIO(P1: TJavaArray<Byte>; P2: Integer; P3: TJavaArray<Byte>; P4: Integer; P5: Boolean): Integer; cdecl;
-    {class} function fechar: Integer; cdecl;
-    {class} function getContinuousReadTime: Integer; cdecl;
-    {class} function lerPeso(P1: Integer): JString; cdecl;
-    {class} function lerPreco(P1: Integer): JString; cdecl;
-    {class} function lerTara: JString; cdecl;
-    {class} function lerTotal(P1: Double): JString; cdecl;
-    {class} function ligarDesligarDisplay: Integer; cdecl;
-    {class} function obterModeloBalanca: Integer; cdecl;
-    {class} function obterProtocoloComunicacao: Integer; cdecl;
-    {class} function obterTipoConexao: Integer; cdecl;
-    {class} procedure setContinuousReadTime(P1: Integer); cdecl;
-    {class} function tararBalanca: Integer; cdecl;
-    {class} function zerarBalanca: Integer; cdecl;
+    ['{BEE07FA6-7C2B-4CBF-9A84-9B8104E99018}']
+    {class} function abrir(P1: JString; P2: Integer): Integer; cdecl; overload;//Deprecated
+    {class} function abrir(P1: Integer; P2: Integer; P3: Char; P4: Integer): Integer; cdecl; overload;//Deprecated
+    {class} function configurarModeloBalanca(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function configurarProtocoloComunicacao(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function directIO(P1: TJavaArray<Byte>; P2: Integer; P3: TJavaArray<Byte>; P4: Integer; P5: Boolean): Integer; cdecl;//Deprecated
+    {class} function fechar: Integer; cdecl;//Deprecated
+    {class} function getContinuousReadTime: Integer; cdecl;//Deprecated
+    {class} function lerPeso(P1: Integer): JString; cdecl;//Deprecated
+    {class} function lerPreco(P1: Integer): JString; cdecl;//Deprecated
+    {class} function lerTara: JString; cdecl;//Deprecated
+    {class} function lerTotal(P1: Double): JString; cdecl;//Deprecated
+    {class} function ligarDesligarDisplay: Integer; cdecl;//Deprecated
+    {class} function obterModeloBalanca: Integer; cdecl;//Deprecated
+    {class} function obterProtocoloComunicacao: Integer; cdecl;//Deprecated
+    {class} function obterTipoConexao: Integer; cdecl;//Deprecated
+    {class} procedure setContinuousReadTime(P1: Integer); cdecl;//Deprecated
+    {class} function tararBalanca: Integer; cdecl;//Deprecated
+    {class} function zerarBalanca: Integer; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Balanca/InterfaceBalanca')]
   JInterfaceBalanca = interface(IJavaInstance)
-    ['{483F1D4D-860E-43DC-80B5-4D40D31170D5}']
+    ['{FD48A1CE-4710-47C4-859A-E54B25B8BD43}']
   end;
   TJInterfaceBalanca = class(TJavaGenericImport<JInterfaceBalancaClass, JInterfaceBalanca>) end;
 
   JImplementacaoBalancaClass = interface(JInterfaceBalancaClass)
-    ['{B27849A6-ADD4-4746-96C3-E2698C84AD42}']
-    {class} function abrir(P1: JString; P2: Integer): Integer; cdecl; overload;
-    {class} function abrir(P1: Integer; P2: Integer; P3: Char; P4: Integer): Integer; cdecl; overload;
-    {class} function configurarModeloBalanca(P1: Integer): Integer; cdecl;
-    {class} function configurarProtocoloComunicacao(P1: Integer): Integer; cdecl;
-    {class} function directIO(P1: TJavaArray<Byte>; P2: Integer; P3: TJavaArray<Byte>; P4: Integer; P5: Boolean): Integer; cdecl;
-    {class} function fechar: Integer; cdecl;
-    {class} function getContinuousReadTime: Integer; cdecl;
-    {class} function lerPeso(P1: Integer): JString; cdecl;
-    {class} function lerPreco(P1: Integer): JString; cdecl;
-    {class} function lerTara: JString; cdecl;
-    {class} function lerTotal(P1: Double): JString; cdecl;
-    {class} function ligarDesligarDisplay: Integer; cdecl;
-    {class} function obterModeloBalanca: Integer; cdecl;
-    {class} function obterProtocoloComunicacao: Integer; cdecl;
-    {class} function obterTipoConexao: Integer; cdecl;
-    {class} procedure setContinuousReadTime(P1: Integer); cdecl;
-    {class} function tararBalanca: Integer; cdecl;
-    {class} function zerarBalanca: Integer; cdecl;
+    ['{C98709F0-A17C-422E-88A0-94867A64F8E5}']
+    {class} function abrir(P1: JString; P2: Integer): Integer; cdecl; overload;//Deprecated
+    {class} function abrir(P1: Integer; P2: Integer; P3: Char; P4: Integer): Integer; cdecl; overload;//Deprecated
+    {class} function configurarModeloBalanca(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function configurarProtocoloComunicacao(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function directIO(P1: TJavaArray<Byte>; P2: Integer; P3: TJavaArray<Byte>; P4: Integer; P5: Boolean): Integer; cdecl;//Deprecated
+    {class} function fechar: Integer; cdecl;//Deprecated
+    {class} function getContinuousReadTime: Integer; cdecl;//Deprecated
+    {class} function lerPeso(P1: Integer): JString; cdecl;//Deprecated
+    {class} function lerPreco(P1: Integer): JString; cdecl;//Deprecated
+    {class} function lerTara: JString; cdecl;//Deprecated
+    {class} function lerTotal(P1: Double): JString; cdecl;//Deprecated
+    {class} function ligarDesligarDisplay: Integer; cdecl;//Deprecated
+    {class} function obterModeloBalanca: Integer; cdecl;//Deprecated
+    {class} function obterProtocoloComunicacao: Integer; cdecl;//Deprecated
+    {class} function obterTipoConexao: Integer; cdecl;//Deprecated
+    {class} procedure setContinuousReadTime(P1: Integer); cdecl;//Deprecated
+    {class} function tararBalanca: Integer; cdecl;//Deprecated
+    {class} function zerarBalanca: Integer; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Balanca/ImplementacaoBalanca')]
   JImplementacaoBalanca = interface(JInterfaceBalanca)
-    ['{E94EF2A4-C463-44B8-93F8-016AE1B5530F}']
+    ['{0D4CE8B9-87BC-4667-9671-FFA71E42B1B9}']
   end;
   TJImplementacaoBalanca = class(TJavaGenericImport<JImplementacaoBalancaClass, JImplementacaoBalanca>) end;
 
   JImplementacaoBalanca_1Class = interface(JObjectClass)
-    ['{A238C791-4DD3-4534-A6B4-BA98A7AAF3DF}']
+    ['{12690966-D03A-43A9-9582-2B2046CF796F}']
   end;
 
   [JavaSignature('com/elgin/e1/Balanca/ImplementacaoBalanca$1')]
   JImplementacaoBalanca_1 = interface(JObject)
-    ['{15C3BD14-309F-4784-B8B8-5013BA5544B1}']
+    ['{CB5B2543-7261-4874-9996-155B2DD906DC}']
   end;
   TJImplementacaoBalanca_1 = class(TJavaGenericImport<JImplementacaoBalanca_1Class, JImplementacaoBalanca_1>) end;
 
   Je1_BuildConfigClass = interface(JObjectClass)
-    ['{60A24AB9-263C-4218-BF03-4CC33FD8C5EF}']
+    ['{CD1BAD5F-52E1-4585-B3F0-950F52FFB7A2}']
     {class} function _GetAPPLICATION_ID: JString; cdecl;
     {class} function _GetBUILD_TYPE: JString; cdecl;
     {class} function _GetDEBUG: Boolean; cdecl;
@@ -957,12 +959,12 @@ type
 
   [JavaSignature('com/elgin/e1/BuildConfig')]
   Je1_BuildConfig = interface(JObject)
-    ['{ADD0AAFF-D6E5-43E7-9643-1723744765E1}']
+    ['{C387C3DF-FD01-4541-8304-A8112C629405}']
   end;
   TJe1_BuildConfig = class(TJavaGenericImport<Je1_BuildConfigClass, Je1_BuildConfig>) end;
 
   JConexaoClass = interface(JObjectClass)
-    ['{AA9EE03B-10E8-4126-9908-9AEEDAFC24AD}']
+    ['{1591CA3A-B573-4F2C-85BA-90327BD5F9FC}']
     {class} function _GetBLUETOOTH_MAX_RETURN_LENGTH: Integer; cdecl;
     {class} function _GetBLUETOOTH_WTIMEOUT: Integer; cdecl;
     {class} function _GetCONEXAO_BLUETOOTH: Integer; cdecl;
@@ -1020,7 +1022,7 @@ type
 
   [JavaSignature('com/elgin/e1/Comunicacao/Conexao')]
   JConexao = interface(JObject)
-    ['{878CC520-82E8-481A-B091-969106AB9378}']
+    ['{B181FFE6-CC25-42F0-A84D-F3A2B0926256}']
     function Abrir(P1: JContext; P2: Integer; P3: JString; P4: JString; P5: Integer): Integer; cdecl;
     function Escrever(P1: TJavaArray<Byte>): Integer; cdecl;
     function Fechar: Integer; cdecl;
@@ -1031,36 +1033,36 @@ type
   TJConexao = class(TJavaGenericImport<JConexaoClass, JConexao>) end;
 
   JConBluetoothClass = interface(JConexaoClass)
-    ['{339D6F98-C80C-4BE1-BDEC-FAAB9925E619}']
+    ['{E5956C33-1D61-459A-98C6-0BF2CC067FF3}']
   end;
 
   [JavaSignature('com/elgin/e1/Comunicacao/ConBluetooth')]
   JConBluetooth = interface(JConexao)
-    ['{9C8F31D7-2C9A-400E-BEFE-1C0FDF877247}']
+    ['{16FB82EC-0994-49E9-B6AE-55C10E72EE54}']
   end;
   TJConBluetooth = class(TJavaGenericImport<JConBluetoothClass, JConBluetooth>) end;
 
   JConBluetooth_1GetBluetoothDataClass = interface(JRunnableClass)
-    ['{6A749BD0-8235-474D-BC75-3E7F07436B1B}']
-    {class} function getData: TJavaArray<Byte>; cdecl;
-    {class} function getError: Integer; cdecl;
-    {class} procedure run; cdecl;
+    ['{7EAAFC1C-E492-4456-A879-411319A53F7E}']
+    {class} function getData: TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function getError: Integer; cdecl;//Deprecated
+    {class} procedure run; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Comunicacao/ConBluetooth$1GetBluetoothData')]
   JConBluetooth_1GetBluetoothData = interface(JRunnable)
-    ['{63ED67DB-2E6F-4A94-8191-17BA98F02AE5}']
+    ['{3F947FCB-E74C-44AE-97C1-AF4B297338F3}']
   end;
   TJConBluetooth_1GetBluetoothData = class(TJavaGenericImport<JConBluetooth_1GetBluetoothDataClass, JConBluetooth_1GetBluetoothData>) end;
 
   JConBluetooth_1GetPrinterBluetoothClass = interface(JRunnableClass)
-    ['{427F57E9-4AC7-4222-90FD-21D8B26C0096}']
+    ['{13D1BC52-F94C-488A-8894-E001F83FDB37}']
     {class} function init: JConBluetooth_1GetPrinterBluetooth; cdecl;
   end;
 
   [JavaSignature('com/elgin/e1/Comunicacao/ConBluetooth$1GetPrinterBluetooth')]
   JConBluetooth_1GetPrinterBluetooth = interface(JRunnable)
-    ['{9938B9A8-1E6F-49EA-914A-D5849552926E}']
+    ['{9A185239-4036-4672-B44C-7CAB7CB7E735}']
     function _GetvalMacAddress: JString; cdecl;
     function getBluetoothSocket: JBluetoothSocket; cdecl;
     function getError: Integer; cdecl;
@@ -1070,13 +1072,13 @@ type
   TJConBluetooth_1GetPrinterBluetooth = class(TJavaGenericImport<JConBluetooth_1GetPrinterBluetoothClass, JConBluetooth_1GetPrinterBluetooth>) end;
 
   JConBluetooth_1SendDataClass = interface(JRunnableClass)
-    ['{5F8B2C56-DFED-440D-9320-0427760EDD98}']
+    ['{B97C6E4D-839E-48D9-AF12-A210BD382035}']
     {class} function init: JConBluetooth_1SendData; cdecl;
   end;
 
   [JavaSignature('com/elgin/e1/Comunicacao/ConBluetooth$1SendData')]
   JConBluetooth_1SendData = interface(JRunnable)
-    ['{2E3D9D6C-8E05-4EEE-AB02-69372E040346}']
+    ['{DA338913-7865-40E6-9810-52C8964B0B41}']
     function getError: Integer; cdecl;
     function getSz: Integer; cdecl;
     procedure run; cdecl;
@@ -1084,82 +1086,82 @@ type
   TJConBluetooth_1SendData = class(TJavaGenericImport<JConBluetooth_1SendDataClass, JConBluetooth_1SendData>) end;
 
   JConM8Class = interface(JObjectClass)
-    ['{4987CAC7-063E-48D0-8B3D-87228D0D0894}']
-    {class} function getPrinterManager: JPrinterManager; cdecl;
-    {class} function init: JConM8; cdecl;
+    ['{7963FD90-7FCF-4BC0-B6A7-086C232695FD}']
+    {class} function getPrinterManager: JPrinterManager; cdecl;//Deprecated
+    {class} function init: JConM8; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Comunicacao/ConM8')]
   JConM8 = interface(JObject)
-    ['{6E360D7D-0752-4EC3-B962-110D74A4A636}']
+    ['{E092F854-0E16-4F39-8269-0339F31BFE49}']
   end;
   TJConM8 = class(TJavaGenericImport<JConM8Class, JConM8>) end;
 
   JPrinterManager_PrinterManagerListenerClass = interface(IJavaClass)
-    ['{72BC4A32-26CC-48C9-A765-2610D01DD17B}']
-    {class} procedure onServiceConnected; cdecl;
+    ['{CF9C1F18-DA4F-40EE-A715-2476FF3A92D0}']
+    {class} procedure onServiceConnected; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/minipdvm8/PrinterManager$PrinterManagerListener')]
   JPrinterManager_PrinterManagerListener = interface(IJavaInstance)
-    ['{8CB954AA-4920-4D02-945F-E639B2DB9E19}']
+    ['{4575C89E-872C-4D68-BB1C-65613849D8BC}']
   end;
   TJPrinterManager_PrinterManagerListener = class(TJavaGenericImport<JPrinterManager_PrinterManagerListenerClass, JPrinterManager_PrinterManagerListener>) end;
 
   JConM8_1Class = interface(JPrinterManager_PrinterManagerListenerClass)
-    ['{F6414514-63EE-4D8D-A372-13DA9964B03F}']
+    ['{544CC8C2-7677-41BE-B027-88A53B30BB32}']
     {class} function init(P1: JConM8): JConM8_1; cdecl;
   end;
 
   [JavaSignature('com/elgin/e1/Comunicacao/ConM8$1')]
   JConM8_1 = interface(JPrinterManager_PrinterManagerListener)
-    ['{4189A6F3-0D34-48F0-BD2A-8CB066E73A5E}']
+    ['{4BF46D46-6136-4CA8-82A0-3C7145851786}']
     procedure onServiceConnected; cdecl;
   end;
   TJConM8_1 = class(TJavaGenericImport<JConM8_1Class, JConM8_1>) end;
 
   JConSerialClass = interface(JConexaoClass)
-    ['{D4E4059C-1C58-4224-A19D-95D213317298}']
+    ['{ED1AA179-5CFF-4BF8-854F-317D994661AC}']
   end;
 
   [JavaSignature('com/elgin/e1/Comunicacao/ConSerial')]
   JConSerial = interface(JConexao)
-    ['{E966967B-DEE6-4072-A23E-4FFA92865D94}']
+    ['{C11AC377-813D-44A3-80F9-AE2BA8F0E8F0}']
   end;
   TJConSerial = class(TJavaGenericImport<JConSerialClass, JConSerial>) end;
 
   JConServiceClass = interface(JConexaoClass)
-    ['{968E2839-D15C-4DFF-91DE-843B1B1F3CD1}']
+    ['{A8E9F0E0-EA8D-49FE-8C1E-8D7D8CDD4A1D}']
   end;
 
   [JavaSignature('com/elgin/e1/Comunicacao/ConService')]
   JConService = interface(JConexao)
-    ['{CBBFA27C-AA44-467A-8021-FBAD942FE5FD}']
+    ['{EB046DE4-007A-4A1D-92FB-41535576FC5D}']
   end;
   TJConService = class(TJavaGenericImport<JConServiceClass, JConService>) end;
 
   JConService_1GetDataClass = interface(JRunnableClass)
-    ['{78DC740E-D438-412A-AA2B-BB4C51638CBE}']
-    {class} function getError: Integer; cdecl;
-    {class} function getNumReadTotal: Integer; cdecl;
-    {class} function getRdBuffer: TJavaArray<Byte>; cdecl;
-    {class} procedure run; cdecl;
+    ['{F2A8A468-0A57-4E4C-85C3-F4EDF79C84B2}']
+    {class} function getError: Integer; cdecl;//Deprecated
+    {class} function getNumReadTotal: Integer; cdecl;//Deprecated
+    {class} function getRdBuffer: TJavaArray<Byte>; cdecl;//Deprecated
+    {class} procedure run; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Comunicacao/ConService$1GetData')]
   JConService_1GetData = interface(JRunnable)
-    ['{C7C3DC8C-FF21-4FFD-A643-03C0B43BFD2C}']
+    ['{5A9D4419-200E-4976-BD08-AE66B1988FFC}']
   end;
   TJConService_1GetData = class(TJavaGenericImport<JConService_1GetDataClass, JConService_1GetData>) end;
 
   JConService_1GetPrinterClass = interface(JRunnableClass)
-    ['{A0CD771C-F6D3-4372-9863-3B6776C677C5}']
+    ['{FED9B89F-FFB1-409C-BFA8-A36F91A5530A}']
     {class} function init: JConService_1GetPrinter; cdecl;
   end;
 
   [JavaSignature('com/elgin/e1/Comunicacao/ConService$1GetPrinter')]
   JConService_1GetPrinter = interface(JRunnable)
-    ['{293AAEA7-E4F1-4E8C-876D-4F97262F49A2}']
+    ['{E80E6358-20C9-4172-8966-E9C077F27D73}']
     function _Getvalparametro: Integer; cdecl;
     function getError: Integer; cdecl;
     function getSocket: JSocket; cdecl;
@@ -1169,13 +1171,13 @@ type
   TJConService_1GetPrinter = class(TJavaGenericImport<JConService_1GetPrinterClass, JConService_1GetPrinter>) end;
 
   JConService_1SendDataClass = interface(JRunnableClass)
-    ['{B978CC9D-B2AF-4111-9608-EC9F821BFC47}']
+    ['{A8F1BD99-DA19-4646-8B06-75E604E46124}']
     {class} function init: JConService_1SendData; cdecl;
   end;
 
   [JavaSignature('com/elgin/e1/Comunicacao/ConService$1SendData')]
   JConService_1SendData = interface(JRunnable)
-    ['{5A533832-E0B0-44B5-9C19-A8E57020AAD1}']
+    ['{C90960FD-254D-4EC1-BC21-705C01DE38D0}']
     function getError: Integer; cdecl;
     function getSz: Integer; cdecl;
     procedure run; cdecl;
@@ -1183,13 +1185,13 @@ type
   TJConService_1SendData = class(TJavaGenericImport<JConService_1SendDataClass, JConService_1SendData>) end;
 
   JConService_2GetDataClass = interface(JRunnableClass)
-    ['{A7A907E5-8A0C-4DEB-B2AB-7B31368EAF6F}']
+    ['{E9E61EBF-AF1D-488D-9A2D-5CB86B30BFEC}']
     {class} function init: JConService_2GetData; cdecl;
   end;
 
   [JavaSignature('com/elgin/e1/Comunicacao/ConService$2GetData')]
   JConService_2GetData = interface(JRunnable)
-    ['{96B4FEBB-3544-4D2F-B9D9-69AE10E7EDCF}']
+    ['{9AAF816D-ED92-46B4-AC7A-3F46A08F449C}']
     function getError: Integer; cdecl;
     function getNumReadTotal: Integer; cdecl;
     function getRdBuffer: TJavaArray<Byte>; cdecl;
@@ -1198,48 +1200,48 @@ type
   TJConService_2GetData = class(TJavaGenericImport<JConService_2GetDataClass, JConService_2GetData>) end;
 
   JConSmartPOSClass = interface(JConexaoClass)
-    ['{0EA6297C-E88E-4612-9C6C-D965A370BF0A}']
-    {class} //function getPrinterDevice(P1: Integer): JPrinterDevice; cdecl;
-    {class} function init: JConSmartPOS; cdecl;
+    ['{5EF50CB6-EB3C-4C03-8D04-7F0A5084F789}']
+    {class} //function getPrinterDevice(P1: Integer): JPrinterDevice; cdecl;//Deprecated
+    {class} function init: JConSmartPOS; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Comunicacao/ConSmartPOS')]
   JConSmartPOS = interface(JConexao)
-    ['{953F8F98-235B-4ACD-AB70-3098D3E1FBB7}']
+    ['{F83352D0-BA5B-4FE5-93B5-7BFC28A67F3C}']
   end;
   TJConSmartPOS = class(TJavaGenericImport<JConSmartPOSClass, JConSmartPOS>) end;
 
   JConTCP_IPClass = interface(JConexaoClass)
-    ['{5A8851E1-0461-4EBD-885B-95C2065C774B}']
+    ['{A1941494-D177-4C9B-A093-18D9664DD25E}']
   end;
 
   [JavaSignature('com/elgin/e1/Comunicacao/ConTCP_IP')]
   JConTCP_IP = interface(JConexao)
-    ['{052DABF6-4C11-4294-9A3C-30434E68CFF4}']
+    ['{C67837D6-279A-4975-97C2-3FC6229D5B5F}']
   end;
   TJConTCP_IP = class(TJavaGenericImport<JConTCP_IPClass, JConTCP_IP>) end;
 
   JConTCP_IP_1GetDataClass = interface(JRunnableClass)
-    ['{D87541BF-ED82-47D3-9028-F5C2A45A9C53}']
-    {class} function getData: TJavaArray<Byte>; cdecl;
-    {class} function getError: Integer; cdecl;
-    {class} procedure run; cdecl;
+    ['{D9C0426A-8B2B-4399-ADD5-8632A4FB2DD6}']
+    {class} function getData: TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function getError: Integer; cdecl;//Deprecated
+    {class} procedure run; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Comunicacao/ConTCP_IP$1GetData')]
   JConTCP_IP_1GetData = interface(JRunnable)
-    ['{976D06FF-A04C-41A7-AEC9-E1B07BF24491}']
+    ['{05D00EF3-1F5B-4EA4-8168-EB5BDE048336}']
   end;
   TJConTCP_IP_1GetData = class(TJavaGenericImport<JConTCP_IP_1GetDataClass, JConTCP_IP_1GetData>) end;
 
   JConTCP_IP_1GetPrinterClass = interface(JRunnableClass)
-    ['{00A07BB0-DB6D-4537-AAC3-768D45A354E2}']
+    ['{37746E39-2814-43C6-A1EE-22435FA2D074}']
     {class} function init: JConTCP_IP_1GetPrinter; cdecl;
   end;
 
   [JavaSignature('com/elgin/e1/Comunicacao/ConTCP_IP$1GetPrinter')]
   JConTCP_IP_1GetPrinter = interface(JRunnable)
-    ['{224EFDCB-08F6-4BDF-AD8C-A379861D84A0}']
+    ['{70DB5EC3-CF36-47F6-8DA4-FD543435840A}']
     function _Getvalparametro: Integer; cdecl;
     function getError: Integer; cdecl;
     function getSocket: JSocket; cdecl;
@@ -1249,13 +1251,13 @@ type
   TJConTCP_IP_1GetPrinter = class(TJavaGenericImport<JConTCP_IP_1GetPrinterClass, JConTCP_IP_1GetPrinter>) end;
 
   JConTCP_IP_1SendDataClass = interface(JRunnableClass)
-    ['{73895DA4-33D1-4565-8FB1-42ADD4D6E0E5}']
+    ['{89D3D29A-E139-4F56-B7AC-9F97D2A5F13A}']
     {class} function init: JConTCP_IP_1SendData; cdecl;
   end;
 
   [JavaSignature('com/elgin/e1/Comunicacao/ConTCP_IP$1SendData')]
   JConTCP_IP_1SendData = interface(JRunnable)
-    ['{A43B8C30-C207-46C4-A97F-11A922029FFE}']
+    ['{35E1059A-86B8-42F4-8A0C-1C42B97934AE}']
     function getError: Integer; cdecl;
     function getSz: Integer; cdecl;
     procedure run; cdecl;
@@ -1263,247 +1265,247 @@ type
   TJConTCP_IP_1SendData = class(TJavaGenericImport<JConTCP_IP_1SendDataClass, JConTCP_IP_1SendData>) end;
 
   JConUSBClass = interface(JConexaoClass)
-    ['{442844A1-D9B5-476B-80A9-041B19FC0796}']
+    ['{C8EC5040-ECB6-4900-8E05-3A5C2D03DF19}']
   end;
 
   [JavaSignature('com/elgin/e1/Comunicacao/ConUSB')]
   JConUSB = interface(JConexao)
-    ['{884522A7-37F1-40E8-8372-9B38A6DA4D29}']
+    ['{2FCDF4AA-1262-4E17-9B64-9E3FBA256A27}']
   end;
   TJConUSB = class(TJavaGenericImport<JConUSBClass, JConUSB>) end;
 
   JInterfaceFactoryXMLSATClass = interface(IJavaClass)
-    ['{D49EAD93-32A7-4771-BA0A-86560FE7C7A2}']
-    {class} function AbreCupomCancelamento(P1: JString; P2: JString; P3: JString; P4: JString; P5: Integer): Integer; cdecl;
-    {class} function AbreCupomVenda(P1: JString; P2: JString; P3: JString; P4: JString; P5: Integer; P6: JString; P7: JString; P8: JString; P9: JString; P10: JString; P11: JString; P12: JString; P13: JString): Integer; cdecl;
-    {class} function InformaCOFINSAliq(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaCOFINSNT(P1: JString; P2: Integer; P3: JString): Integer; cdecl;
-    {class} function InformaCOFINSOutr(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString; P6: JString): Integer; cdecl;
-    {class} function InformaCOFINSQtde(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaCOFINSSN(P1: JString; P2: Integer; P3: JString): Integer; cdecl;
-    {class} function InformaCOFINSST(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaEntrega(P1: JString; P2: JString; P3: JString; P4: JString; P5: JString; P6: JString; P7: JString): Integer; cdecl;
-    {class} function InformaICMS00(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaICMS40(P1: JString; P2: Integer; P3: Integer; P4: JString): Integer; cdecl;
-    {class} function InformaICMSSN102(P1: JString; P2: Integer; P3: Integer; P4: JString): Integer; cdecl;
-    {class} function InformaICMSSN900(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaISSQN(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString; P6: JString; P7: JString; P8: JString; P9: JString): Integer; cdecl;
-    {class} function InformaImposto(P1: JString; P2: Integer; P3: JString): Integer; cdecl;
-    {class} function InformaObsFiscoDet(P1: JString; P2: Integer; P3: JString; P4: JString): Integer; cdecl;
-    {class} function InformaPISAliq(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaPISNT(P1: JString; P2: Integer; P3: JString): Integer; cdecl;
-    {class} function InformaPISOutr(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString; P6: JString): Integer; cdecl;
-    {class} function InformaPISQtde(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaPISSN(P1: JString; P2: Integer; P3: JString): Integer; cdecl;
-    {class} function InformaPISST(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaProduto(P1: JString; P2: JString; P3: JString; P4: JString; P5: JString; P6: JString; P7: JString; P8: JString; P9: JString; P10: JString; P11: JString; P12: JString; P13: JString): Integer; cdecl;
-    {class} function InformaTotal(P1: JString; P2: JString; P3: JString; P4: JString): Integer; cdecl;
-    {class} function InformainfAdProd(P1: JString; P2: Integer; P3: JString): Integer; cdecl;
-    {class} function InformainfAdic(P1: JString; P2: JString): Integer; cdecl;
-    {class} function Informapgto(P1: JString; P2: JString; P3: JString; P4: JString): Integer; cdecl;
+    ['{1629307B-14D6-496A-A374-5EA9563C9DC5}']
+    {class} function AbreCupomCancelamento(P1: JString; P2: JString; P3: JString; P4: JString; P5: Integer): Integer; cdecl;//Deprecated
+    {class} function AbreCupomVenda(P1: JString; P2: JString; P3: JString; P4: JString; P5: Integer; P6: JString; P7: JString; P8: JString; P9: JString; P10: JString; P11: JString; P12: JString; P13: JString): Integer; cdecl;//Deprecated
+    {class} function InformaCOFINSAliq(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaCOFINSNT(P1: JString; P2: Integer; P3: JString): Integer; cdecl;//Deprecated
+    {class} function InformaCOFINSOutr(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString; P6: JString): Integer; cdecl;//Deprecated
+    {class} function InformaCOFINSQtde(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaCOFINSSN(P1: JString; P2: Integer; P3: JString): Integer; cdecl;//Deprecated
+    {class} function InformaCOFINSST(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaEntrega(P1: JString; P2: JString; P3: JString; P4: JString; P5: JString; P6: JString; P7: JString): Integer; cdecl;//Deprecated
+    {class} function InformaICMS00(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaICMS40(P1: JString; P2: Integer; P3: Integer; P4: JString): Integer; cdecl;//Deprecated
+    {class} function InformaICMSSN102(P1: JString; P2: Integer; P3: Integer; P4: JString): Integer; cdecl;//Deprecated
+    {class} function InformaICMSSN900(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaISSQN(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString; P6: JString; P7: JString; P8: JString; P9: JString): Integer; cdecl;//Deprecated
+    {class} function InformaImposto(P1: JString; P2: Integer; P3: JString): Integer; cdecl;//Deprecated
+    {class} function InformaObsFiscoDet(P1: JString; P2: Integer; P3: JString; P4: JString): Integer; cdecl;//Deprecated
+    {class} function InformaPISAliq(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaPISNT(P1: JString; P2: Integer; P3: JString): Integer; cdecl;//Deprecated
+    {class} function InformaPISOutr(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString; P6: JString): Integer; cdecl;//Deprecated
+    {class} function InformaPISQtde(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaPISSN(P1: JString; P2: Integer; P3: JString): Integer; cdecl;//Deprecated
+    {class} function InformaPISST(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaProduto(P1: JString; P2: JString; P3: JString; P4: JString; P5: JString; P6: JString; P7: JString; P8: JString; P9: JString; P10: JString; P11: JString; P12: JString; P13: JString): Integer; cdecl;//Deprecated
+    {class} function InformaTotal(P1: JString; P2: JString; P3: JString; P4: JString): Integer; cdecl;//Deprecated
+    {class} function InformainfAdProd(P1: JString; P2: Integer; P3: JString): Integer; cdecl;//Deprecated
+    {class} function InformainfAdic(P1: JString; P2: JString): Integer; cdecl;//Deprecated
+    {class} function Informapgto(P1: JString; P2: JString; P3: JString; P4: JString): Integer; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Fiscal/InterfaceFactoryXMLSAT')]
   JInterfaceFactoryXMLSAT = interface(IJavaInstance)
-    ['{A2E91A6C-322F-4B27-8588-85C4692DE12A}']
+    ['{C499C273-5F56-4F95-B2D6-A04ADE466211}']
   end;
   TJInterfaceFactoryXMLSAT = class(TJavaGenericImport<JInterfaceFactoryXMLSATClass, JInterfaceFactoryXMLSAT>) end;
 
   JImplementacaoFactoryXMLSATClass = interface(JInterfaceFactoryXMLSATClass)
-    ['{2E32D03B-3B58-40A4-ADD6-EDABC18D2065}']
-    {class} function AbreCupomCancelamento(P1: JString; P2: JString; P3: JString; P4: JString; P5: Integer): Integer; cdecl;
-    {class} function AbreCupomVenda(P1: JString; P2: JString; P3: JString; P4: JString; P5: Integer; P6: JString; P7: JString; P8: JString; P9: JString; P10: JString; P11: JString; P12: JString; P13: JString): Integer; cdecl;
-    {class} function InformaCOFINSAliq(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaCOFINSNT(P1: JString; P2: Integer; P3: JString): Integer; cdecl;
-    {class} function InformaCOFINSOutr(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString; P6: JString): Integer; cdecl;
-    {class} function InformaCOFINSQtde(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaCOFINSSN(P1: JString; P2: Integer; P3: JString): Integer; cdecl;
-    {class} function InformaCOFINSST(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaEntrega(P1: JString; P2: JString; P3: JString; P4: JString; P5: JString; P6: JString; P7: JString): Integer; cdecl;
-    {class} function InformaICMS00(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaICMS40(P1: JString; P2: Integer; P3: Integer; P4: JString): Integer; cdecl;
-    {class} function InformaICMSSN102(P1: JString; P2: Integer; P3: Integer; P4: JString): Integer; cdecl;
-    {class} function InformaICMSSN900(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaISSQN(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString; P6: JString; P7: JString; P8: JString; P9: JString): Integer; cdecl;
-    {class} function InformaImposto(P1: JString; P2: Integer; P3: JString): Integer; cdecl;
-    {class} function InformaObsFiscoDet(P1: JString; P2: Integer; P3: JString; P4: JString): Integer; cdecl;
-    {class} function InformaPISAliq(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaPISNT(P1: JString; P2: Integer; P3: JString): Integer; cdecl;
-    {class} function InformaPISOutr(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString; P6: JString): Integer; cdecl;
-    {class} function InformaPISQtde(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaPISSN(P1: JString; P2: Integer; P3: JString): Integer; cdecl;
-    {class} function InformaPISST(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaProduto(P1: JString; P2: JString; P3: JString; P4: JString; P5: JString; P6: JString; P7: JString; P8: JString; P9: JString; P10: JString; P11: JString; P12: JString; P13: JString): Integer; cdecl;
-    {class} function InformaTotal(P1: JString; P2: JString; P3: JString; P4: JString): Integer; cdecl;
-    {class} function InformainfAdProd(P1: JString; P2: Integer; P3: JString): Integer; cdecl;
-    {class} function InformainfAdic(P1: JString; P2: JString): Integer; cdecl;
-    {class} function Informapgto(P1: JString; P2: JString; P3: JString; P4: JString): Integer; cdecl;
+    ['{36C4DF3C-A08C-41AE-993D-699E5E58AD62}']
+    {class} function AbreCupomCancelamento(P1: JString; P2: JString; P3: JString; P4: JString; P5: Integer): Integer; cdecl;//Deprecated
+    {class} function AbreCupomVenda(P1: JString; P2: JString; P3: JString; P4: JString; P5: Integer; P6: JString; P7: JString; P8: JString; P9: JString; P10: JString; P11: JString; P12: JString; P13: JString): Integer; cdecl;//Deprecated
+    {class} function InformaCOFINSAliq(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaCOFINSNT(P1: JString; P2: Integer; P3: JString): Integer; cdecl;//Deprecated
+    {class} function InformaCOFINSOutr(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString; P6: JString): Integer; cdecl;//Deprecated
+    {class} function InformaCOFINSQtde(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaCOFINSSN(P1: JString; P2: Integer; P3: JString): Integer; cdecl;//Deprecated
+    {class} function InformaCOFINSST(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaEntrega(P1: JString; P2: JString; P3: JString; P4: JString; P5: JString; P6: JString; P7: JString): Integer; cdecl;//Deprecated
+    {class} function InformaICMS00(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaICMS40(P1: JString; P2: Integer; P3: Integer; P4: JString): Integer; cdecl;//Deprecated
+    {class} function InformaICMSSN102(P1: JString; P2: Integer; P3: Integer; P4: JString): Integer; cdecl;//Deprecated
+    {class} function InformaICMSSN900(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaISSQN(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString; P6: JString; P7: JString; P8: JString; P9: JString): Integer; cdecl;//Deprecated
+    {class} function InformaImposto(P1: JString; P2: Integer; P3: JString): Integer; cdecl;//Deprecated
+    {class} function InformaObsFiscoDet(P1: JString; P2: Integer; P3: JString; P4: JString): Integer; cdecl;//Deprecated
+    {class} function InformaPISAliq(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaPISNT(P1: JString; P2: Integer; P3: JString): Integer; cdecl;//Deprecated
+    {class} function InformaPISOutr(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString; P6: JString): Integer; cdecl;//Deprecated
+    {class} function InformaPISQtde(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaPISSN(P1: JString; P2: Integer; P3: JString): Integer; cdecl;//Deprecated
+    {class} function InformaPISST(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaProduto(P1: JString; P2: JString; P3: JString; P4: JString; P5: JString; P6: JString; P7: JString; P8: JString; P9: JString; P10: JString; P11: JString; P12: JString; P13: JString): Integer; cdecl;//Deprecated
+    {class} function InformaTotal(P1: JString; P2: JString; P3: JString; P4: JString): Integer; cdecl;//Deprecated
+    {class} function InformainfAdProd(P1: JString; P2: Integer; P3: JString): Integer; cdecl;//Deprecated
+    {class} function InformainfAdic(P1: JString; P2: JString): Integer; cdecl;//Deprecated
+    {class} function Informapgto(P1: JString; P2: JString; P3: JString; P4: JString): Integer; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Fiscal/ImplementacaoFactoryXMLSAT')]
   JImplementacaoFactoryXMLSAT = interface(JInterfaceFactoryXMLSAT)
-    ['{7A3C4930-737E-45D3-B43B-BC6F2E28F297}']
+    ['{2D372364-0468-4232-B8F9-45138ECFB260}']
   end;
   TJImplementacaoFactoryXMLSAT = class(TJavaGenericImport<JImplementacaoFactoryXMLSATClass, JImplementacaoFactoryXMLSAT>) end;
 
   JInterfaceSATClass = interface(IJavaClass)
-    ['{C76719ED-2E1F-49AA-972D-60498D2C74CE}']
-    {class} function AssociarAssinatura(P1: Integer; P2: JString; P3: JString; P4: JString): JString; cdecl;
-    {class} function AtivarSAT(P1: Integer; P2: Integer; P3: JString; P4: JString; P5: Integer): JString; cdecl;
-    {class} function AtualizarSoftwareSAT(P1: Integer; P2: JString): JString; cdecl;
-    {class} function BloquearSAT(P1: Integer; P2: JString): JString; cdecl;
-    {class} function CancelaVendaImpressaSAT(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: JString; P6: JString): JString; cdecl;
-    {class} function CancelarUltimaVenda(P1: Integer; P2: JString; P3: JString; P4: JString): JString; cdecl;
-    {class} function ConfigurarInterfaceDeRede(P1: Integer; P2: JString; P3: JString): JString; cdecl;
-    {class} function ConsultarNumeroSessao(P1: Integer; P2: JString; P3: Integer): JString; cdecl;
-    {class} function ConsultarSat(P1: Integer): JString; cdecl;
-    {class} function ConsultarStatusEspecifico(P1: Integer; P2: Integer; P3: JString): JString; cdecl;
-    {class} function ConsultarStatusOperacional(P1: Integer; P2: JString): JString; cdecl;
-    {class} function ConsultarUltimaSessaoFiscal(P1: Integer; P2: JString): JString; cdecl;
-    {class} function CriaXMLCancelamentoSAT(P1: JString; P2: JString; P3: JString): JString; cdecl;
-    {class} function DecodificaBase64(P1: JString): JString; cdecl;
-    {class} function DesbloquearSAT(P1: Integer; P2: JString): JString; cdecl;
-    {class} function EnviarDadosVenda(P1: Integer; P2: JString; P3: JString): JString; cdecl;
-    {class} function ExtrairLogs(P1: Integer; P2: JString): JString; cdecl;
-    {class} function GetVersaoDLL: JString; cdecl;
-    {class} function TesteFimAFim(P1: Integer; P2: JString; P3: JString): JString; cdecl;
-    {class} function TrocarCodigoDeAtivacao(P1: Integer; P2: JString; P3: Integer; P4: JString; P5: JString): JString; cdecl;
-    {class} function VendaImpressaSAT(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: JString; P7: JString): JString; cdecl;
+    ['{A335F466-E99C-4D2D-BECE-A2BD33D90ED3}']
+    {class} function AssociarAssinatura(P1: Integer; P2: JString; P3: JString; P4: JString): JString; cdecl;//Deprecated
+    {class} function AtivarSAT(P1: Integer; P2: Integer; P3: JString; P4: JString; P5: Integer): JString; cdecl;//Deprecated
+    {class} function AtualizarSoftwareSAT(P1: Integer; P2: JString): JString; cdecl;//Deprecated
+    {class} function BloquearSAT(P1: Integer; P2: JString): JString; cdecl;//Deprecated
+    {class} function CancelaVendaImpressaSAT(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: JString; P6: JString): JString; cdecl;//Deprecated
+    {class} function CancelarUltimaVenda(P1: Integer; P2: JString; P3: JString; P4: JString): JString; cdecl;//Deprecated
+    {class} function ConfigurarInterfaceDeRede(P1: Integer; P2: JString; P3: JString): JString; cdecl;//Deprecated
+    {class} function ConsultarNumeroSessao(P1: Integer; P2: JString; P3: Integer): JString; cdecl;//Deprecated
+    {class} function ConsultarSat(P1: Integer): JString; cdecl;//Deprecated
+    {class} function ConsultarStatusEspecifico(P1: Integer; P2: Integer; P3: JString): JString; cdecl;//Deprecated
+    {class} function ConsultarStatusOperacional(P1: Integer; P2: JString): JString; cdecl;//Deprecated
+    {class} function ConsultarUltimaSessaoFiscal(P1: Integer; P2: JString): JString; cdecl;//Deprecated
+    {class} function CriaXMLCancelamentoSAT(P1: JString; P2: JString; P3: JString): JString; cdecl;//Deprecated
+    {class} function DecodificaBase64(P1: JString): JString; cdecl;//Deprecated
+    {class} function DesbloquearSAT(P1: Integer; P2: JString): JString; cdecl;//Deprecated
+    {class} function EnviarDadosVenda(P1: Integer; P2: JString; P3: JString): JString; cdecl;//Deprecated
+    {class} function ExtrairLogs(P1: Integer; P2: JString): JString; cdecl;//Deprecated
+    {class} function GetVersaoDLL: JString; cdecl;//Deprecated
+    {class} function TesteFimAFim(P1: Integer; P2: JString; P3: JString): JString; cdecl;//Deprecated
+    {class} function TrocarCodigoDeAtivacao(P1: Integer; P2: JString; P3: Integer; P4: JString; P5: JString): JString; cdecl;//Deprecated
+    {class} function VendaImpressaSAT(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: JString; P7: JString): JString; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Fiscal/InterfaceSAT')]
   JInterfaceSAT = interface(IJavaInstance)
-    ['{975E7646-B169-433C-BE77-66C1B89D015B}']
+    ['{0C84FFAE-8A4F-4915-B336-5467D492161D}']
   end;
   TJInterfaceSAT = class(TJavaGenericImport<JInterfaceSATClass, JInterfaceSAT>) end;
 
   JImplementacaoSATClass = interface(JInterfaceSATClass)
-    ['{8EA54884-9D69-44B3-B2D6-DA16257C3657}']
-    {class} function AssociarAssinatura(P1: Integer; P2: JString; P3: JString; P4: JString): JString; cdecl;
-    {class} function AtivarSAT(P1: Integer; P2: Integer; P3: JString; P4: JString; P5: Integer): JString; cdecl;
-    {class} function AtualizarSoftwareSAT(P1: Integer; P2: JString): JString; cdecl;
-    {class} function BloquearSAT(P1: Integer; P2: JString): JString; cdecl;
-    {class} function CancelaVendaImpressaSAT(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: JString; P6: JString): JString; cdecl;
-    {class} function CancelarUltimaVenda(P1: Integer; P2: JString; P3: JString; P4: JString): JString; cdecl;
-    {class} function ConfigurarInterfaceDeRede(P1: Integer; P2: JString; P3: JString): JString; cdecl;
-    {class} function ConsultarNumeroSessao(P1: Integer; P2: JString; P3: Integer): JString; cdecl;
-    {class} function ConsultarSat(P1: Integer): JString; cdecl;
-    {class} function ConsultarStatusEspecifico(P1: Integer; P2: Integer; P3: JString): JString; cdecl;
-    {class} function ConsultarStatusOperacional(P1: Integer; P2: JString): JString; cdecl;
-    {class} function ConsultarUltimaSessaoFiscal(P1: Integer; P2: JString): JString; cdecl;
-    {class} function CriaXMLCancelamentoSAT(P1: JString; P2: JString; P3: JString): JString; cdecl;
-    {class} function DecodificaBase64(P1: JString): JString; cdecl;
-    {class} function DesbloquearSAT(P1: Integer; P2: JString): JString; cdecl;
-    {class} function EnviarDadosVenda(P1: Integer; P2: JString; P3: JString): JString; cdecl;
-    {class} function ExtrairLogs(P1: Integer; P2: JString): JString; cdecl;
-    {class} function GetVersaoDLL: JString; cdecl;
-    {class} function TesteFimAFim(P1: Integer; P2: JString; P3: JString): JString; cdecl;
-    {class} function TrocarCodigoDeAtivacao(P1: Integer; P2: JString; P3: Integer; P4: JString; P5: JString): JString; cdecl;
-    {class} function VendaImpressaSAT(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: JString; P7: JString): JString; cdecl;
+    ['{F12C6B43-D8C8-4352-A6CC-5CC7D0C30CCD}']
+    {class} function AssociarAssinatura(P1: Integer; P2: JString; P3: JString; P4: JString): JString; cdecl;//Deprecated
+    {class} function AtivarSAT(P1: Integer; P2: Integer; P3: JString; P4: JString; P5: Integer): JString; cdecl;//Deprecated
+    {class} function AtualizarSoftwareSAT(P1: Integer; P2: JString): JString; cdecl;//Deprecated
+    {class} function BloquearSAT(P1: Integer; P2: JString): JString; cdecl;//Deprecated
+    {class} function CancelaVendaImpressaSAT(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: JString; P6: JString): JString; cdecl;//Deprecated
+    {class} function CancelarUltimaVenda(P1: Integer; P2: JString; P3: JString; P4: JString): JString; cdecl;//Deprecated
+    {class} function ConfigurarInterfaceDeRede(P1: Integer; P2: JString; P3: JString): JString; cdecl;//Deprecated
+    {class} function ConsultarNumeroSessao(P1: Integer; P2: JString; P3: Integer): JString; cdecl;//Deprecated
+    {class} function ConsultarSat(P1: Integer): JString; cdecl;//Deprecated
+    {class} function ConsultarStatusEspecifico(P1: Integer; P2: Integer; P3: JString): JString; cdecl;//Deprecated
+    {class} function ConsultarStatusOperacional(P1: Integer; P2: JString): JString; cdecl;//Deprecated
+    {class} function ConsultarUltimaSessaoFiscal(P1: Integer; P2: JString): JString; cdecl;//Deprecated
+    {class} function CriaXMLCancelamentoSAT(P1: JString; P2: JString; P3: JString): JString; cdecl;//Deprecated
+    {class} function DecodificaBase64(P1: JString): JString; cdecl;//Deprecated
+    {class} function DesbloquearSAT(P1: Integer; P2: JString): JString; cdecl;//Deprecated
+    {class} function EnviarDadosVenda(P1: Integer; P2: JString; P3: JString): JString; cdecl;//Deprecated
+    {class} function ExtrairLogs(P1: Integer; P2: JString): JString; cdecl;//Deprecated
+    {class} function GetVersaoDLL: JString; cdecl;//Deprecated
+    {class} function TesteFimAFim(P1: Integer; P2: JString; P3: JString): JString; cdecl;//Deprecated
+    {class} function TrocarCodigoDeAtivacao(P1: Integer; P2: JString; P3: Integer; P4: JString; P5: JString): JString; cdecl;//Deprecated
+    {class} function VendaImpressaSAT(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: JString; P7: JString): JString; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Fiscal/ImplementacaoSAT')]
   JImplementacaoSAT = interface(JInterfaceSAT)
-    ['{A40344EA-927B-4268-9798-5172D1625F91}']
+    ['{0C8339FC-1E4F-4A01-8B98-0201E9979699}']
   end;
   TJImplementacaoSAT = class(TJavaGenericImport<JImplementacaoSATClass, JImplementacaoSAT>) end;
 
   JMFeClass = interface(JObjectClass)
-    ['{F44773CF-6EC0-4F34-B3BD-795627AAF2DC}']
-    {class} function init: JMFe; cdecl;
+    ['{7E86673A-70A8-4658-912E-C3070B3F717A}']
+    {class} function init: JMFe; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Fiscal/MFe')]
   JMFe = interface(JObject)
-    ['{D1553818-0685-4F6F-A642-806C6CE477BC}']
+    ['{DFF8A378-6977-4C7C-A782-46354C2F8DCC}']
   end;
   TJMFe = class(TJavaGenericImport<JMFeClass, JMFe>) end;
 
   JNFCeClass = interface(JObjectClass)
-    ['{AF4DE2D1-EBAC-41B9-BFC6-BD854A579D3D}']
-    {class} function init: JNFCe; cdecl;
+    ['{BAF7543E-EEF0-4494-BBFC-D609D1C97A9F}']
+    {class} function init: JNFCe; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Fiscal/NFCe')]
   JNFCe = interface(JObject)
-    ['{44AF9F75-AD7A-4A6C-9489-27939662FBFE}']
+    ['{A4E7FACF-639A-4FF9-9FAC-A94876AD20DB}']
   end;
   TJNFCe = class(TJavaGenericImport<JNFCeClass, JNFCe>) end;
 
   JSATClass = interface(JObjectClass)
-    ['{29812683-AD56-4909-B53B-308042D1DADD}']
-    {class} function AbreCupomCancelamento(P1: JString; P2: JString; P3: JString; P4: JString; P5: Integer): Integer; cdecl;
-    {class} function AbreCupomVenda(P1: JString; P2: JString; P3: JString; P4: JString; P5: Integer; P6: JString; P7: JString; P8: JString; P9: JString; P10: JString; P11: JString; P12: JString; P13: JString): Integer; cdecl;
-    {class} function AssociarAssinatura(P1: Integer; P2: JString; P3: JString; P4: JString): JString; cdecl;
-    {class} function AtivarSAT(P1: Integer; P2: Integer; P3: JString; P4: JString; P5: Integer): JString; cdecl;
-    {class} function AtualizarSoftwareSAT(P1: Integer; P2: JString): JString; cdecl;
-    {class} function BloquearSAT(P1: Integer; P2: JString): JString; cdecl;
-    {class} function CancelaVendaImpressaSAT(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: JString; P6: JString): JString; cdecl;
-    {class} function CancelarUltimaVenda(P1: Integer; P2: JString; P3: JString; P4: JString): JString; cdecl;
-    {class} function ConfigurarInterfaceDeRede(P1: Integer; P2: JString; P3: JString): JString; cdecl;
-    {class} function ConsultarNumeroSessao(P1: Integer; P2: JString; P3: Integer): JString; cdecl;
-    {class} function ConsultarSat(P1: Integer): JString; cdecl;
-    {class} function ConsultarStatusEspecifico(P1: Integer; P2: Integer; P3: JString): JString; cdecl;
-    {class} function ConsultarStatusOperacional(P1: Integer; P2: JString): JString; cdecl;
-    {class} function ConsultarUltimaSessaoFiscal(P1: Integer; P2: JString): JString; cdecl;
-    {class} function CriaXMLCancelamentoSAT(P1: JString; P2: JString; P3: JString): JString; cdecl;
-    {class} function DecodificaBase64(P1: JString): JString; cdecl;
-    {class} function DesbloquearSAT(P1: Integer; P2: JString): JString; cdecl;
-    {class} function EnviarDadosVenda(P1: Integer; P2: JString; P3: JString): JString; cdecl;
-    {class} function ExtrairLogs(P1: Integer; P2: JString): JString; cdecl;
-    {class} function GetVersaoDLL: JString; cdecl;
-    {class} function InformaCOFINSAliq(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaCOFINSNT(P1: JString; P2: Integer; P3: JString): Integer; cdecl;
-    {class} function InformaCOFINSOutr(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString; P6: JString): Integer; cdecl;
-    {class} function InformaCOFINSQtde(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaCOFINSSN(P1: JString; P2: Integer; P3: JString): Integer; cdecl;
-    {class} function InformaCOFINSST(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaEntrega(P1: JString; P2: JString; P3: JString; P4: JString; P5: JString; P6: JString; P7: JString): Integer; cdecl;
-    {class} function InformaICMS00(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaICMS40(P1: JString; P2: Integer; P3: Integer; P4: JString): Integer; cdecl;
-    {class} function InformaICMSSN102(P1: JString; P2: Integer; P3: Integer; P4: JString): Integer; cdecl;
-    {class} function InformaICMSSN900(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaISSQN(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString; P6: JString; P7: JString; P8: JString; P9: JString): Integer; cdecl;
-    {class} function InformaImposto(P1: JString; P2: Integer; P3: JString): Integer; cdecl;
-    {class} function InformaInfAdProd(P1: JString; P2: Integer; P3: JString): Integer; cdecl;
-    {class} function InformaInfAdic(P1: JString; P2: JString): Integer; cdecl;
-    {class} function InformaObsFiscoDet(P1: JString; P2: Integer; P3: JString; P4: JString): Integer; cdecl;
-    {class} function InformaPISAliq(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaPISNT(P1: JString; P2: Integer; P3: JString): Integer; cdecl;
-    {class} function InformaPISOutr(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString; P6: JString): Integer; cdecl;
-    {class} function InformaPISQtde(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaPISSN(P1: JString; P2: Integer; P3: JString): Integer; cdecl;
-    {class} function InformaPISST(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;
-    {class} function InformaPgto(P1: JString; P2: JString; P3: JString; P4: JString): Integer; cdecl;
-    {class} function InformaProduto(P1: JString; P2: JString; P3: JString; P4: JString; P5: JString; P6: JString; P7: JString; P8: JString; P9: JString; P10: JString; P11: JString; P12: JString; P13: JString): Integer; cdecl;
-    {class} function InformaTotal(P1: JString; P2: JString; P3: JString; P4: JString): Integer; cdecl;
-    {class} function TesteFimAFim(P1: Integer; P2: JString; P3: JString): JString; cdecl;
-    {class} function TrocarCodigoDeAtivacao(P1: Integer; P2: JString; P3: Integer; P4: JString; P5: JString): JString; cdecl;
-    {class} function VendaImpressaSAT(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: JString; P7: JString): JString; cdecl;
-    {class} function getServiceResult: Integer; cdecl;
-    {class} function init: JSAT; cdecl;
+    ['{B15E47D2-4DBC-4040-94FD-C7B3B8135A7A}']
+    {class} function AbreCupomCancelamento(P1: JString; P2: JString; P3: JString; P4: JString; P5: Integer): Integer; cdecl;//Deprecated
+    {class} function AbreCupomVenda(P1: JString; P2: JString; P3: JString; P4: JString; P5: Integer; P6: JString; P7: JString; P8: JString; P9: JString; P10: JString; P11: JString; P12: JString; P13: JString): Integer; cdecl;//Deprecated
+    {class} function AssociarAssinatura(P1: Integer; P2: JString; P3: JString; P4: JString): JString; cdecl;//Deprecated
+    {class} function AtivarSAT(P1: Integer; P2: Integer; P3: JString; P4: JString; P5: Integer): JString; cdecl;//Deprecated
+    {class} function AtualizarSoftwareSAT(P1: Integer; P2: JString): JString; cdecl;//Deprecated
+    {class} function BloquearSAT(P1: Integer; P2: JString): JString; cdecl;//Deprecated
+    {class} function CancelaVendaImpressaSAT(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: JString; P6: JString): JString; cdecl;//Deprecated
+    {class} function CancelarUltimaVenda(P1: Integer; P2: JString; P3: JString; P4: JString): JString; cdecl;//Deprecated
+    {class} function ConfigurarInterfaceDeRede(P1: Integer; P2: JString; P3: JString): JString; cdecl;//Deprecated
+    {class} function ConsultarNumeroSessao(P1: Integer; P2: JString; P3: Integer): JString; cdecl;//Deprecated
+    {class} function ConsultarSat(P1: Integer): JString; cdecl;//Deprecated
+    {class} function ConsultarStatusEspecifico(P1: Integer; P2: Integer; P3: JString): JString; cdecl;//Deprecated
+    {class} function ConsultarStatusOperacional(P1: Integer; P2: JString): JString; cdecl;//Deprecated
+    {class} function ConsultarUltimaSessaoFiscal(P1: Integer; P2: JString): JString; cdecl;//Deprecated
+    {class} function CriaXMLCancelamentoSAT(P1: JString; P2: JString; P3: JString): JString; cdecl;//Deprecated
+    {class} function DecodificaBase64(P1: JString): JString; cdecl;//Deprecated
+    {class} function DesbloquearSAT(P1: Integer; P2: JString): JString; cdecl;//Deprecated
+    {class} function EnviarDadosVenda(P1: Integer; P2: JString; P3: JString): JString; cdecl;//Deprecated
+    {class} function ExtrairLogs(P1: Integer; P2: JString): JString; cdecl;//Deprecated
+    {class} function GetVersaoDLL: JString; cdecl;//Deprecated
+    {class} function InformaCOFINSAliq(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaCOFINSNT(P1: JString; P2: Integer; P3: JString): Integer; cdecl;//Deprecated
+    {class} function InformaCOFINSOutr(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString; P6: JString): Integer; cdecl;//Deprecated
+    {class} function InformaCOFINSQtde(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaCOFINSSN(P1: JString; P2: Integer; P3: JString): Integer; cdecl;//Deprecated
+    {class} function InformaCOFINSST(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaEntrega(P1: JString; P2: JString; P3: JString; P4: JString; P5: JString; P6: JString; P7: JString): Integer; cdecl;//Deprecated
+    {class} function InformaICMS00(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaICMS40(P1: JString; P2: Integer; P3: Integer; P4: JString): Integer; cdecl;//Deprecated
+    {class} function InformaICMSSN102(P1: JString; P2: Integer; P3: Integer; P4: JString): Integer; cdecl;//Deprecated
+    {class} function InformaICMSSN900(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaISSQN(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString; P6: JString; P7: JString; P8: JString; P9: JString): Integer; cdecl;//Deprecated
+    {class} function InformaImposto(P1: JString; P2: Integer; P3: JString): Integer; cdecl;//Deprecated
+    {class} function InformaInfAdProd(P1: JString; P2: Integer; P3: JString): Integer; cdecl;//Deprecated
+    {class} function InformaInfAdic(P1: JString; P2: JString): Integer; cdecl;//Deprecated
+    {class} function InformaObsFiscoDet(P1: JString; P2: Integer; P3: JString; P4: JString): Integer; cdecl;//Deprecated
+    {class} function InformaPISAliq(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaPISNT(P1: JString; P2: Integer; P3: JString): Integer; cdecl;//Deprecated
+    {class} function InformaPISOutr(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString; P6: JString): Integer; cdecl;//Deprecated
+    {class} function InformaPISQtde(P1: JString; P2: Integer; P3: JString; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaPISSN(P1: JString; P2: Integer; P3: JString): Integer; cdecl;//Deprecated
+    {class} function InformaPISST(P1: JString; P2: Integer; P3: Integer; P4: JString; P5: JString): Integer; cdecl;//Deprecated
+    {class} function InformaPgto(P1: JString; P2: JString; P3: JString; P4: JString): Integer; cdecl;//Deprecated
+    {class} function InformaProduto(P1: JString; P2: JString; P3: JString; P4: JString; P5: JString; P6: JString; P7: JString; P8: JString; P9: JString; P10: JString; P11: JString; P12: JString; P13: JString): Integer; cdecl;//Deprecated
+    {class} function InformaTotal(P1: JString; P2: JString; P3: JString; P4: JString): Integer; cdecl;//Deprecated
+    {class} function TesteFimAFim(P1: Integer; P2: JString; P3: JString): JString; cdecl;//Deprecated
+    {class} function TrocarCodigoDeAtivacao(P1: Integer; P2: JString; P3: Integer; P4: JString; P5: JString): JString; cdecl;//Deprecated
+    {class} function VendaImpressaSAT(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: JString; P7: JString): JString; cdecl;//Deprecated
+    {class} function getServiceResult: Integer; cdecl;//Deprecated
+    {class} function init: JSAT; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Fiscal/SAT')]
   JSAT = interface(JObject)
-    ['{B475F07E-9B7E-4CD1-A5EF-4C88AB68832D}']
+    ['{6E7D6D26-8DA4-4AAA-B94E-5E042E85A95A}']
   end;
   TJSAT = class(TJavaGenericImport<JSATClass, JSAT>) end;
 
   JAndroidClass = interface(JObjectClass)
-    ['{A3787D75-EB75-44F5-96DC-CEA9A01FE21E}']
-    {class} function GetNumeroSerie: JString; cdecl;
-    {class} function init: JAndroid; cdecl;
+    ['{2BF9F246-BE29-4BAA-8DFD-B90AD86E9649}']
+    {class} function GetNumeroSerie: JString; cdecl;//Deprecated
+    {class} function init: JAndroid; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Android')]
   JAndroid = interface(JObject)
-    ['{F0B0E0EC-3194-4D64-83C6-0341FE97864E}']
+    ['{63F32E6E-D7C1-4C16-A9DD-F130B60EEC01}']
   end;
   TJAndroid = class(TJavaGenericImport<JAndroidClass, JAndroid>) end;
 
   JdsImpressoraClass = interface(JObjectClass)
-    ['{A130DAA3-6FFA-46C5-A607-30BDA89C52A7}']
+    ['{8AE620E3-5049-47D5-9EB6-15B728F69972}']
     {class} function _GettimeoutLeitura: Integer; cdecl;
     {class} function init: JdsImpressora; cdecl;
     {class} property timeoutLeitura: Integer read _GettimeoutLeitura;
@@ -1511,7 +1513,7 @@ type
 
   [JavaSignature('com/elgin/e1/Impressora/Config/dsImpressora')]
   JdsImpressora = interface(JObject)
-    ['{61D94C26-ED94-4F48-AE22-FF877CA8CECC}']
+    ['{39F49DF9-4422-4927-87E6-74DD4C344AAF}']
     function getIDHardwareImpressora(P1: Integer): JdsImpressora_infoHW; cdecl;
     function getIDHardwareImpressoraSize: Integer; cdecl;
     function getVersoesNFCSuportada(P1: Integer): JString; cdecl;
@@ -1520,17 +1522,17 @@ type
   TJdsImpressora = class(TJavaGenericImport<JdsImpressoraClass, JdsImpressora>) end;
 
   JdsImpressora_1Class = interface(JObjectClass)
-    ['{CC0CD909-1CA9-46E9-8863-608F5E6EA0C1}']
+    ['{A629FF05-E0CC-49BF-B9F0-697A507D9FC2}']
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Config/dsImpressora$1')]
   JdsImpressora_1 = interface(JObject)
-    ['{978D4C73-B4C0-4852-B53F-12F15467265F}']
+    ['{84739736-2527-4E6B-A229-CB2D215F3037}']
   end;
   TJdsImpressora_1 = class(TJavaGenericImport<JdsImpressora_1Class, JdsImpressora_1>) end;
 
   JdsImpressora_infoHWClass = interface(JObjectClass)
-    ['{D829F9A3-D9FC-4AD3-BE0C-2A94C36D90B5}']
+    ['{092C17E7-96CE-4EBC-823E-73751F95968B}']
     {class} function _Getid: Integer; cdecl;
     {class} function init(P1: JdsImpressora; P2: Integer; P3: JString; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: Integer; P9: Integer; P10: Integer; P11: JdsImpressora_1): JdsImpressora_infoHW; cdecl;
     {class} property id: Integer read _Getid;
@@ -1538,7 +1540,7 @@ type
 
   [JavaSignature('com/elgin/e1/Impressora/Config/dsImpressora$infoHW')]
   JdsImpressora_infoHW = interface(JObject)
-    ['{9E21AD29-B7D6-4B7A-81E8-382D9CD132BC}']
+    ['{FB18470C-400D-4A65-AA51-165007570251}']
     function _GetPID: Integer; cdecl;
     function _GetVID: Integer; cdecl;
     function _GetalinhamentoQRCodeModoPaginaH: Integer; cdecl;
@@ -1547,7 +1549,7 @@ type
     function _Getmodelo: JString; cdecl;
     function _GetnumColunaA: Integer; cdecl;
     function _GetnumColunaB: Integer; cdecl;
-    function _Getthis: JdsImpressora; cdecl;
+    function _Getthis0: JdsImpressora; cdecl;
     property PID: Integer read _GetPID;
     property VID: Integer read _GetVID;
     property alinhamentoQRCodeModoPaginaH: Integer read _GetalinhamentoQRCodeModoPaginaH;
@@ -1556,35 +1558,35 @@ type
     property modelo: JString read _Getmodelo;
     property numColunaA: Integer read _GetnumColunaA;
     property numColunaB: Integer read _GetnumColunaB;
-    property this: JdsImpressora read _Getthis;
+    property this0: JdsImpressora read _Getthis0;
   end;
   TJdsImpressora_infoHW = class(TJavaGenericImport<JdsImpressora_infoHWClass, JdsImpressora_infoHW>) end;
 
   JdsSATClass = interface(JObjectClass)
-    ['{3CD9680A-303F-4570-9660-B34191E448B4}']
-    {class} function getChaves(P1: Integer): JdsSAT_ChaveDePesquisa; cdecl;
-    {class} function getChavesSize: Integer; cdecl;
-    {class} function init: JdsSAT; cdecl;
+    ['{52629B4F-749F-4052-B315-53D1B83DF4EA}']
+    {class} function getChaves(P1: Integer): JdsSAT_ChaveDePesquisa; cdecl;//Deprecated
+    {class} function getChavesSize: Integer; cdecl;//Deprecated
+    {class} function init: JdsSAT; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Config/dsSAT')]
   JdsSAT = interface(JObject)
-    ['{9CBFF232-752C-4E82-93D6-0BDFF87E2229}']
+    ['{20ADA798-55C6-4639-B5C7-2AA982E63F07}']
   end;
   TJdsSAT = class(TJavaGenericImport<JdsSATClass, JdsSAT>) end;
 
   JdsSAT_1Class = interface(JObjectClass)
-    ['{509D42C8-ABE5-4CE2-8389-597032A2DE87}']
+    ['{4D85AEDE-4713-4A2A-8D68-05F03A0B338E}']
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Config/dsSAT$1')]
   JdsSAT_1 = interface(JObject)
-    ['{0061D89D-5420-414C-A4BD-23802D490A39}']
+    ['{06F8962F-DFF4-4320-ABD7-1B1D974AFA60}']
   end;
   TJdsSAT_1 = class(TJavaGenericImport<JdsSAT_1Class, JdsSAT_1>) end;
 
   JdsSAT_ChaveDePesquisaClass = interface(JObjectClass)
-    ['{5BDAE1F3-A7DE-49AC-A926-56F21AE02A6D}']
+    ['{FBA65BF3-68BD-43AC-B222-A7EE88E770AE}']
     {class} function _Getindex: Integer; cdecl;
     {class} function init(P1: JdsSAT; P2: Integer; P3: TJavaObjectArray<JString>; P4: JdsSAT_1): JdsSAT_ChaveDePesquisa; cdecl;
     {class} property index: Integer read _Getindex;
@@ -1592,90 +1594,90 @@ type
 
   [JavaSignature('com/elgin/e1/Impressora/Config/dsSAT$ChaveDePesquisa')]
   JdsSAT_ChaveDePesquisa = interface(JObject)
-    ['{A91426CD-AD04-4FEE-9BBC-4093B555EAC1}']
+    ['{4C6CE88B-2133-40D0-9B69-379C0B6913F5}']
     function _Getchave: TJavaObjectArray<JString>; cdecl;
-    function _Getthis: JdsSAT; cdecl;
+    function _Getthis0: JdsSAT; cdecl;
     property chave: TJavaObjectArray<JString> read _Getchave;
-    property this: JdsSAT read _Getthis;
+    property this0: JdsSAT read _Getthis0;
   end;
   TJdsSAT_ChaveDePesquisa = class(TJavaGenericImport<JdsSAT_ChaveDePesquisaClass, JdsSAT_ChaveDePesquisa>) end;
 
   JEtiquetaClass = interface(JObjectClass)
-    ['{45815C40-900B-422C-A9D9-73C4EBD3BE23}']
-    {class} function DespejarArquivo(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: JString): Integer; cdecl;
-    {class} function DirectIO(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: TJavaArray<Byte>; P6: Integer; P7: TJavaArray<Byte>; P8: Integer): TJavaArray<Integer>; cdecl;
-    {class} function EnviaImagem(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: Integer; P7: JString; P8: JString): Integer; cdecl;
-    {class} function ExcluiImagem(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: JString): Integer; cdecl;
-    {class} function Feed(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;
-    {class} function GerarBarCode1D(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString; P9: Integer): Integer; cdecl;
-    {class} function GerarBox(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer): Integer; cdecl;
-    {class} function GerarDataBar(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString; P9: JString): Integer; cdecl;
-    {class} function GerarDataBarExpanded(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString; P9: JString): Integer; cdecl;
-    {class} function GerarDataMatrix(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;
-    {class} function GerarImagem(P1: Integer; P2: Integer; P3: JString): Integer; cdecl;
-    {class} function GerarLinha(P1: Integer; P2: Integer; P3: Integer; P4: Integer): Integer; cdecl;
-    {class} function GerarMaxiCode(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString): Integer; cdecl;
-    {class} function GerarPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: Integer; P9: Integer; P10: Integer; P11: JString): Integer; cdecl;
-    {class} function GerarQRCodeAuto(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: JString): Integer; cdecl;
-    {class} function GerarQRCodeManual(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: Integer; P9: Integer; P10: Integer; P11: JString): Integer; cdecl;
-    {class} function GerarTexto(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;
-    {class} function GerarTextoASD(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;
-    {class} function GerarTextoCourier(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;
-    {class} function GetVersaoDLL: JString; cdecl;
-    {class} function Imprime(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;
-    {class} function Limpa(P1: Integer): Integer; cdecl;
-    {class} function LimpaMemoria(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;
-    {class} function LimpaModulo(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): Integer; cdecl;
-    {class} function MemoryStatus(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): JString; cdecl;
-    {class} function Reset(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;
-    {class} function SetAlturaGap(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): Integer; cdecl;
-    {class} function SetBackfeed(P1: Integer): Integer; cdecl;
-    {class} function SetBaudrate(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: Integer): Integer; cdecl;
-    {class} function SetCalor(P1: Integer): Integer; cdecl;
-    {class} function SetCortarZero(P1: Integer): Integer; cdecl;
-    {class} function SetLength(P1: Integer): Integer; cdecl;
-    {class} function SetLogicImgMode(P1: Integer): Integer; cdecl;
-    {class} function SetMedidas(P1: Integer): Integer; cdecl;
-    {class} function SetMirror(P1: Integer): Integer; cdecl;
-    {class} function SetModoContinuo(P1: Integer): Integer; cdecl;
-    {class} function SetOffsetColuna(P1: Integer): Integer; cdecl;
-    {class} function SetOffsetLinha(P1: Integer): Integer; cdecl;
-    {class} function SetPrintStPos(P1: Integer): Integer; cdecl;
-    {class} function SetQtde(P1: Integer): Integer; cdecl;
-    {class} function SetSensor(P1: Integer): Integer; cdecl;
-    {class} function SetSymbolASD(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): Integer; cdecl;
-    {class} function SetTamPixel(P1: Integer; P2: Integer): Integer; cdecl;
-    {class} function SetTipoTransferencia(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): Integer; cdecl;
-    {class} function SetVelImpressao(P1: Integer): Integer; cdecl;
-    {class} function Status(P1: Integer; P2: JString; P3: JString; P4: Integer): JString; cdecl;
-    {class} function StatusEPL(P1: Integer; P2: JString; P3: JString; P4: Integer): JString; cdecl;
-    {class} function Teste(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;
-    {class} function init: JEtiqueta; cdecl;
-    {class} function setContext(P1: JContext): Integer; cdecl;
+    ['{58A39179-4A8F-4AFE-8A96-9C57AD3B4388}']
+    {class} function DespejarArquivo(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: JString): Integer; cdecl;//Deprecated
+    {class} function DirectIO(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: TJavaArray<Byte>; P6: Integer; P7: TJavaArray<Byte>; P8: Integer): TJavaArray<Integer>; cdecl;//Deprecated
+    {class} function EnviaImagem(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: Integer; P7: JString; P8: JString): Integer; cdecl;//Deprecated
+    {class} function ExcluiImagem(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: JString): Integer; cdecl;//Deprecated
+    {class} function Feed(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function GerarBarCode1D(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString; P9: Integer): Integer; cdecl;//Deprecated
+    {class} function GerarBox(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer): Integer; cdecl;//Deprecated
+    {class} function GerarDataBar(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString; P9: JString): Integer; cdecl;//Deprecated
+    {class} function GerarDataBarExpanded(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString; P9: JString): Integer; cdecl;//Deprecated
+    {class} function GerarDataMatrix(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;//Deprecated
+    {class} function GerarImagem(P1: Integer; P2: Integer; P3: JString): Integer; cdecl;//Deprecated
+    {class} function GerarLinha(P1: Integer; P2: Integer; P3: Integer; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function GerarMaxiCode(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString): Integer; cdecl;//Deprecated
+    {class} function GerarPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: Integer; P9: Integer; P10: Integer; P11: JString): Integer; cdecl;//Deprecated
+    {class} function GerarQRCodeAuto(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: JString): Integer; cdecl;//Deprecated
+    {class} function GerarQRCodeManual(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: Integer; P9: Integer; P10: Integer; P11: JString): Integer; cdecl;//Deprecated
+    {class} function GerarTexto(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;//Deprecated
+    {class} function GerarTextoASD(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;//Deprecated
+    {class} function GerarTextoCourier(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;//Deprecated
+    {class} function GetVersaoDLL: JString; cdecl;//Deprecated
+    {class} function Imprime(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function Limpa(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function LimpaMemoria(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function LimpaModulo(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): Integer; cdecl;//Deprecated
+    {class} function MemoryStatus(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): JString; cdecl;//Deprecated
+    {class} function Reset(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function SetAlturaGap(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): Integer; cdecl;//Deprecated
+    {class} function SetBackfeed(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetBaudrate(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: Integer): Integer; cdecl;//Deprecated
+    {class} function SetCalor(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetCortarZero(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetLength(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetLogicImgMode(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetMedidas(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetMirror(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetModoContinuo(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetOffsetColuna(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetOffsetLinha(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetPrintStPos(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetQtde(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetSensor(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetSymbolASD(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): Integer; cdecl;//Deprecated
+    {class} function SetTamPixel(P1: Integer; P2: Integer): Integer; cdecl;//Deprecated
+    {class} function SetTipoTransferencia(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): Integer; cdecl;//Deprecated
+    {class} function SetVelImpressao(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function Status(P1: Integer; P2: JString; P3: JString; P4: Integer): JString; cdecl;//Deprecated
+    {class} function StatusEPL(P1: Integer; P2: JString; P3: JString; P4: Integer): JString; cdecl;//Deprecated
+    {class} function Teste(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function init: JEtiqueta; cdecl;//Deprecated
+    {class} function setContext(P1: JContext): Integer; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Etiqueta')]
   JEtiqueta = interface(JObject)
-    ['{FD7AABB7-3447-4EC0-BB54-3B55BA803426}']
+    ['{E1E2FB87-22FE-4128-8847-AE22A8CB4CF6}']
   end;
   TJEtiqueta = class(TJavaGenericImport<JEtiquetaClass, JEtiqueta>) end;
 
   JInterfaceAndroidClass = interface(IJavaClass)
-    ['{524C14FF-1BD1-40F3-AC7F-9F6572D99261}']
-    {class} function EnviaDadosNFCeImpressao(P1: JImplementacaoOBJXMLNFCE; P2: Integer; P3: JString; P4: Integer; P5: Integer): Integer; cdecl;
-    {class} function GetNumeroSerie: JString; cdecl;
-    {class} function IImprimeXMLCancelamentoSAT(P1: JString; P2: JString; P3: Integer): Integer; cdecl;
-    {class} function IImprimeXMLSAT(P1: JString; P2: Integer): Integer; cdecl;
+    ['{F66430C7-EFE8-490B-BC25-C79884743CB5}']
+    {class} function EnviaDadosNFCeImpressao(P1: JImplementacaoOBJXMLNFCE; P2: Integer; P3: JString; P4: Integer; P5: Integer): Integer; cdecl;//Deprecated
+    {class} function GetNumeroSerie: JString; cdecl;//Deprecated
+    {class} function IImprimeXMLCancelamentoSAT(P1: JString; P2: JString; P3: Integer): Integer; cdecl;//Deprecated
+    {class} function IImprimeXMLSAT(P1: JString; P2: Integer): Integer; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Impressoras/InterfaceAndroid')]
   JInterfaceAndroid = interface(IJavaInstance)
-    ['{4E24990E-3BBD-4DE0-9B51-C94F15ABDB96}']
+    ['{7EBD3047-F065-4523-8A05-F3F355B8BD84}']
   end;
   TJInterfaceAndroid = class(TJavaGenericImport<JInterfaceAndroidClass, JInterfaceAndroid>) end;
 
   JImplementacaoAndroidClass = interface(JInterfaceAndroidClass)
-    ['{41A47EE0-58A1-4339-8CEA-AAD7813ECC18}']
+    ['{BC9AEBFE-AA15-4AB1-A8A0-09B4E94E67D8}']
     {class} function _GetGAVETA_ABERTA: Integer; cdecl;
     {class} function _GetGAVETA_FECHADA: Integer; cdecl;
     {class} function _GetID_M8: Integer; cdecl;
@@ -1692,7 +1694,7 @@ type
 
   [JavaSignature('com/elgin/e1/Impressora/Impressoras/ImplementacaoAndroid')]
   JImplementacaoAndroid = interface(JInterfaceAndroid)
-    ['{80423994-241A-434E-B8D1-BAE01815A7F2}']
+    ['{089A141A-63BC-4812-9238-242C0ED1FDBD}']
     function _Getcon: JConexao; cdecl;
     function EnviaDadosNFCeImpressao(P1: JImplementacaoOBJXMLNFCE; P2: Integer; P3: JString; P4: Integer; P5: Integer): Integer; cdecl;
     function GetBarCodeBitmap(P1: Integer; P2: JString; P3: Integer; P4: Integer): JBitmap; cdecl;
@@ -1708,107 +1710,107 @@ type
   TJImplementacaoAndroid = class(TJavaGenericImport<JImplementacaoAndroidClass, JImplementacaoAndroid>) end;
 
   JImplementacaoAndroid_IIImpressaoTextoClass = interface(IJavaClass)
-    ['{BA599896-AFB2-4FA6-A16F-4F9E671BA165}']
-    {class} function IImpressaoTexto(P1: JString): Integer; cdecl;
+    ['{E1BBDFE8-D981-4E40-97CA-F2A45C3E2B73}']
+    {class} function IImpressaoTexto(P1: JString): Integer; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Impressoras/ImplementacaoAndroid$IIImpressaoTexto')]
   JImplementacaoAndroid_IIImpressaoTexto = interface(IJavaInstance)
-    ['{8178DA00-7040-4C3E-AE50-6573E0BC3CA2}']
+    ['{AA416AAA-643F-4E21-B566-F87AEE963A9C}']
   end;
   TJImplementacaoAndroid_IIImpressaoTexto = class(TJavaGenericImport<JImplementacaoAndroid_IIImpressaoTextoClass, JImplementacaoAndroid_IIImpressaoTexto>) end;
 
   JInterfaceBematechClass = interface(IJavaClass)
-    ['{826F9E2A-6306-4849-86B3-472DAE803D84}']
-    {class} function FormatarMoeda(P1: JString): JString; cdecl;
-    {class} function LinhaProduto(P1: Integer; P2: JImplementacaoOBJPRODUTOXMLNFCE): TJavaArray<Char>; cdecl;
-    {class} function PreencheLegendaProduto(P1: Integer): TJavaArray<Char>; cdecl;
-    {class} function imprimeCode128(P1: JString): Integer; cdecl;
-    {class} function imprimeQRCodeBema(P1: JString; P2: Integer; P3: Integer): Integer; cdecl;
+    ['{FDD885A7-0DB8-4F56-8933-64EE1D86B8AC}']
+    {class} function FormatarMoeda(P1: JString): JString; cdecl;//Deprecated
+    {class} function LinhaProduto(P1: Integer; P2: JImplementacaoOBJPRODUTOXMLNFCE): TJavaArray<Char>; cdecl;//Deprecated
+    {class} function PreencheLegendaProduto(P1: Integer): TJavaArray<Char>; cdecl;//Deprecated
+    {class} function imprimeCode128(P1: JString): Integer; cdecl;//Deprecated
+    {class} function imprimeQRCodeBema(P1: JString; P2: Integer; P3: Integer): Integer; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Impressoras/InterfaceBematech')]
   JInterfaceBematech = interface(IJavaInstance)
-    ['{0E3537C9-BE9B-4F4B-B595-C632A9EDE969}']
+    ['{C33F0DB0-A397-4106-B831-40FF638C4BEF}']
   end;
   TJInterfaceBematech = class(TJavaGenericImport<JInterfaceBematechClass, JInterfaceBematech>) end;
 
   JImplementacaoBematechClass = interface(JInterfaceBematechClass)
-    ['{1183CB97-ABF4-4285-B41E-267409234FF2}']
-    {class} function FormatarMoeda(P1: JString): JString; cdecl;
-    {class} function LinhaProduto(P1: Integer; P2: JImplementacaoOBJPRODUTOXMLNFCE): TJavaArray<Char>; cdecl;
-    {class} function PreencheLegendaProduto(P1: Integer): TJavaArray<Char>; cdecl;
-    {class} function imprimeCode128(P1: JString): Integer; cdecl;
-    {class} function imprimeQRCodeBema(P1: JString; P2: Integer; P3: Integer): Integer; cdecl;
-    {class} function init(P1: JConexao): JImplementacaoBematech; cdecl;
+    ['{849487CD-26EF-42C0-9A0B-FF9649575B93}']
+    {class} function FormatarMoeda(P1: JString): JString; cdecl;//Deprecated
+    {class} function LinhaProduto(P1: Integer; P2: JImplementacaoOBJPRODUTOXMLNFCE): TJavaArray<Char>; cdecl;//Deprecated
+    {class} function PreencheLegendaProduto(P1: Integer): TJavaArray<Char>; cdecl;//Deprecated
+    {class} function imprimeCode128(P1: JString): Integer; cdecl;//Deprecated
+    {class} function imprimeQRCodeBema(P1: JString; P2: Integer; P3: Integer): Integer; cdecl;//Deprecated
+    {class} function init(P1: JConexao): JImplementacaoBematech; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Impressoras/ImplementacaoBematech')]
   JImplementacaoBematech = interface(JInterfaceBematech)
-    ['{F5CEC7A2-815B-494E-A222-F1E768E31EB2}']
+    ['{7087873D-44DB-47B8-95B7-D6A837A915B3}']
   end;
   TJImplementacaoBematech = class(TJavaGenericImport<JImplementacaoBematechClass, JImplementacaoBematech>) end;
 
   JInterfaceEtiquetaClass = interface(IJavaClass)
-    ['{D36B4C06-8736-484E-8F7B-E3586E802CC6}']
-    {class} function DespejarArquivo(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: JString): Integer; cdecl;
-    {class} function DirectIO(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: TJavaArray<Byte>; P6: Integer; P7: TJavaArray<Byte>; P8: Integer; P9: Boolean): TJavaArray<Integer>; cdecl;
-    {class} function EnviaImagem(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: Integer; P7: JString; P8: JString): Integer; cdecl;
-    {class} function ExcluiImagem(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: JString): Integer; cdecl;
-    {class} function Feed(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;
-    {class} function GerarBarCode1D(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString; P9: Integer): Integer; cdecl;
-    {class} function GerarBox(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer): Integer; cdecl;
-    {class} function GerarDataBar(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString; P9: JString): Integer; cdecl;
-    {class} function GerarDataBarExpanded(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString; P9: JString): Integer; cdecl;
-    {class} function GerarDataMatrix(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;
-    {class} function GerarImagem(P1: Integer; P2: Integer; P3: JString): Integer; cdecl;
-    {class} function GerarLinha(P1: Integer; P2: Integer; P3: Integer; P4: Integer): Integer; cdecl;
-    {class} function GerarMaxiCode(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString): Integer; cdecl;
-    {class} function GerarPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: Integer; P9: Integer; P10: Integer; P11: JString): Integer; cdecl;
-    {class} function GerarQRCodeAuto(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: JString): Integer; cdecl;
-    {class} function GerarQRCodeManual(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: Integer; P9: Integer; P10: Integer; P11: JString): Integer; cdecl;
-    {class} function GerarTexto(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;
-    {class} function GerarTextoASD(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;
-    {class} function GerarTextoCourier(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;
-    {class} function GetVersaoDLL: JString; cdecl;
-    {class} function Imprime(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;
-    {class} function Limpa(P1: Integer): Integer; cdecl;
-    {class} function LimpaMemoria(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;
-    {class} function LimpaModulo(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): Integer; cdecl;
-    {class} function MemoryStatus(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): JString; cdecl;
-    {class} function Reset(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;
-    {class} function SetAlturaGap(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): Integer; cdecl;
-    {class} function SetBackfeed(P1: Integer): Integer; cdecl;
-    {class} function SetBaudrate(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: Integer): Integer; cdecl;
-    {class} function SetCalor(P1: Integer): Integer; cdecl;
-    {class} function SetCortarZero(P1: Integer): Integer; cdecl;
-    {class} function SetLength(P1: Integer): Integer; cdecl;
-    {class} function SetLogicImgMode(P1: Integer): Integer; cdecl;
-    {class} function SetMedidas(P1: Integer): Integer; cdecl;
-    {class} function SetMirror(P1: Integer): Integer; cdecl;
-    {class} function SetModoContinuo(P1: Integer): Integer; cdecl;
-    {class} function SetOffsetColuna(P1: Integer): Integer; cdecl;
-    {class} function SetOffsetLinha(P1: Integer): Integer; cdecl;
-    {class} function SetPrintStPos(P1: Integer): Integer; cdecl;
-    {class} function SetQtde(P1: Integer): Integer; cdecl;
-    {class} function SetSensor(P1: Integer): Integer; cdecl;
-    {class} function SetSymbolASD(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): Integer; cdecl;
-    {class} function SetTamPixel(P1: Integer; P2: Integer): Integer; cdecl;
-    {class} function SetTipoTransferencia(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): Integer; cdecl;
-    {class} function SetVelImpressao(P1: Integer): Integer; cdecl;
-    {class} function Status(P1: Integer; P2: JString; P3: JString; P4: Integer): JString; cdecl;
-    {class} function StatusEPL(P1: Integer; P2: JString; P3: JString; P4: Integer): JString; cdecl;
-    {class} function Teste(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;
+    ['{5579CAAC-E578-4558-B2BE-0B90F04B6AF4}']
+    {class} function DespejarArquivo(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: JString): Integer; cdecl;//Deprecated
+    {class} function DirectIO(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: TJavaArray<Byte>; P6: Integer; P7: TJavaArray<Byte>; P8: Integer; P9: Boolean): TJavaArray<Integer>; cdecl;//Deprecated
+    {class} function EnviaImagem(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: Integer; P7: JString; P8: JString): Integer; cdecl;//Deprecated
+    {class} function ExcluiImagem(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: JString): Integer; cdecl;//Deprecated
+    {class} function Feed(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function GerarBarCode1D(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString; P9: Integer): Integer; cdecl;//Deprecated
+    {class} function GerarBox(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer): Integer; cdecl;//Deprecated
+    {class} function GerarDataBar(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString; P9: JString): Integer; cdecl;//Deprecated
+    {class} function GerarDataBarExpanded(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString; P9: JString): Integer; cdecl;//Deprecated
+    {class} function GerarDataMatrix(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;//Deprecated
+    {class} function GerarImagem(P1: Integer; P2: Integer; P3: JString): Integer; cdecl;//Deprecated
+    {class} function GerarLinha(P1: Integer; P2: Integer; P3: Integer; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function GerarMaxiCode(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString): Integer; cdecl;//Deprecated
+    {class} function GerarPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: Integer; P9: Integer; P10: Integer; P11: JString): Integer; cdecl;//Deprecated
+    {class} function GerarQRCodeAuto(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: JString): Integer; cdecl;//Deprecated
+    {class} function GerarQRCodeManual(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: Integer; P9: Integer; P10: Integer; P11: JString): Integer; cdecl;//Deprecated
+    {class} function GerarTexto(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;//Deprecated
+    {class} function GerarTextoASD(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;//Deprecated
+    {class} function GerarTextoCourier(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;//Deprecated
+    {class} function GetVersaoDLL: JString; cdecl;//Deprecated
+    {class} function Imprime(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function Limpa(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function LimpaMemoria(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function LimpaModulo(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): Integer; cdecl;//Deprecated
+    {class} function MemoryStatus(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): JString; cdecl;//Deprecated
+    {class} function Reset(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function SetAlturaGap(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): Integer; cdecl;//Deprecated
+    {class} function SetBackfeed(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetBaudrate(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: Integer): Integer; cdecl;//Deprecated
+    {class} function SetCalor(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetCortarZero(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetLength(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetLogicImgMode(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetMedidas(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetMirror(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetModoContinuo(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetOffsetColuna(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetOffsetLinha(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetPrintStPos(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetQtde(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetSensor(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SetSymbolASD(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): Integer; cdecl;//Deprecated
+    {class} function SetTamPixel(P1: Integer; P2: Integer): Integer; cdecl;//Deprecated
+    {class} function SetTipoTransferencia(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): Integer; cdecl;//Deprecated
+    {class} function SetVelImpressao(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function Status(P1: Integer; P2: JString; P3: JString; P4: Integer): JString; cdecl;//Deprecated
+    {class} function StatusEPL(P1: Integer; P2: JString; P3: JString; P4: Integer): JString; cdecl;//Deprecated
+    {class} function Teste(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Impressoras/InterfaceEtiqueta')]
   JInterfaceEtiqueta = interface(IJavaInstance)
-    ['{4987D595-D4FB-46DA-B6D0-04517CAC5421}']
+    ['{3B7EE708-9F31-4720-B34B-A76A2EA159A1}']
   end;
   TJInterfaceEtiqueta = class(TJavaGenericImport<JInterfaceEtiquetaClass, JInterfaceEtiqueta>) end;
 
   JImplementacaoEtiquetaClass = interface(JInterfaceEtiquetaClass)
-    ['{D18FB98C-A4D2-46D2-B42D-759D4B9D822C}']
+    ['{AA9C17FC-B984-4493-801F-D9C89242D53B}']
     {class} function _GettContext: JContext; cdecl;
     {class} function init: JImplementacaoEtiqueta; cdecl;
     {class} property tContext: JContext read _GettContext;
@@ -1816,7 +1818,7 @@ type
 
   [JavaSignature('com/elgin/e1/Impressora/Impressoras/ImplementacaoEtiqueta')]
   JImplementacaoEtiqueta = interface(JInterfaceEtiqueta)
-    ['{BCAFBCB0-D023-433A-9C57-31557FE46B26}']
+    ['{72643586-2223-4C16-B1B7-51AFB1872976}']
     function DespejarArquivo(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: JString): Integer; cdecl;
     function DirectIO(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: TJavaArray<Byte>; P6: Integer; P7: TJavaArray<Byte>; P8: Integer; P9: Boolean): TJavaArray<Integer>; cdecl;
     function EnviaImagem(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: Integer; P7: JString; P8: JString): Integer; cdecl;
@@ -1870,262 +1872,265 @@ type
   TJImplementacaoEtiqueta = class(TJavaGenericImport<JImplementacaoEtiquetaClass, JImplementacaoEtiqueta>) end;
 
   JImplementacaoM8Class = interface(JImplementacaoAndroidClass)
-    ['{5BAB496C-024F-4627-8765-246AED54CC64}']
-    {class} function IAbreGaveta(P1: Integer; P2: Integer; P3: Integer): Integer; cdecl;
-    {class} function IAbreGavetaElgin: Integer; cdecl;
-    {class} function IDefinePosicao(P1: Integer): Integer; cdecl;
-    {class} function IDirectIO(P1: TJavaArray<Byte>; P2: Integer): Integer; cdecl;
-    {class} function IImpressaoCodigoBarras(P1: Integer; P2: JString; P3: Integer; P4: Integer; P5: Integer; P6: Integer): Integer; cdecl;
-    {class} function IImpressaoPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString; P8: Integer): Integer; cdecl;
-    {class} function IImpressaoQRCode(P1: JString; P2: Integer; P3: Integer; P4: Integer): Integer; cdecl;
-    {class} function IImpressaoTexto(P1: JString): Integer; cdecl;
-    {class} function IImprimeBitmap(P1: JBitmap; P2: Integer): Integer; cdecl;
-    {class} function IImprimeImagemMemoria(P1: JString; P2: Integer): Integer; cdecl;
-    {class} function IStatusImpressora(P1: Integer): Integer; cdecl;
-    {class} function init(P1: JConexao; P2: JImplementacaoTermica): JImplementacaoM8; cdecl;
+    ['{A5080C33-1B74-41B1-B17F-2E019068FCBC}']
+    {class} function IAbreGaveta(P1: Integer; P2: Integer; P3: Integer): Integer; cdecl;//Deprecated
+    {class} function IAbreGavetaElgin: Integer; cdecl;//Deprecated
+    {class} function IDefinePosicao(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function IDirectIO(P1: TJavaArray<Byte>; P2: Integer): Integer; cdecl;//Deprecated
+    {class} function IImpressaoCodigoBarras(P1: Integer; P2: JString; P3: Integer; P4: Integer; P5: Integer; P6: Integer): Integer; cdecl;//Deprecated
+    {class} function IImpressaoPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString; P8: Integer): Integer; cdecl;//Deprecated
+    {class} function IImpressaoQRCode(P1: JString; P2: Integer; P3: Integer; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function IImpressaoTexto(P1: JString): Integer; cdecl;//Deprecated
+    {class} function IImprimeBitmap(P1: JBitmap; P2: Integer): Integer; cdecl;//Deprecated
+    {class} function IImprimeImagemMemoria(P1: JString; P2: Integer): Integer; cdecl;//Deprecated
+    {class} function IStatusImpressora(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function init(P1: JConexao; P2: JImplementacaoTermica): JImplementacaoM8; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Impressoras/ImplementacaoM8')]
   JImplementacaoM8 = interface(JImplementacaoAndroid)
-    ['{9F9300ED-912F-4964-BF4A-B9E35667F0F8}']
+    ['{B40E4FB3-A49A-48FB-980C-A491854271E9}']
   end;
   TJImplementacaoM8 = class(TJavaGenericImport<JImplementacaoM8Class, JImplementacaoM8>) end;
 
   JImplementacaoM8_1Class = interface(JImplementacaoAndroid_IIImpressaoTextoClass)
-    ['{D3709C4E-4A3D-42DD-A592-5BDC660DB3BB}']
+    ['{B8A6CEC9-E6F4-4DD4-ACEF-847FA8C39E84}']
     {class} function init(P1: JImplementacaoM8): JImplementacaoM8_1; cdecl;
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Impressoras/ImplementacaoM8$1')]
   JImplementacaoM8_1 = interface(JImplementacaoAndroid_IIImpressaoTexto)
-    ['{62485130-B532-4571-8003-862DADF051A4}']
+    ['{FB77F70E-02B1-4CE6-B339-072D609D2F3A}']
     function IImpressaoTexto(P1: JString): Integer; cdecl;
   end;
   TJImplementacaoM8_1 = class(TJavaGenericImport<JImplementacaoM8_1Class, JImplementacaoM8_1>) end;
 
   JImplementacaoSmartPOSClass = interface(JImplementacaoAndroidClass)
-    ['{861494B2-E823-415E-8360-DFB2D9AF971F}']
-    {class} function IDefinePosicao(P1: Integer): JString; cdecl;
-    {class} function IDirectIO(P1: TJavaArray<Byte>; P2: Integer): Integer; cdecl;
-    {class} function IImpressaoCodigoBarras(P1: Integer; P2: JString; P3: Integer; P4: Integer; P5: Integer; P6: JString): Integer; cdecl;
-    {class} function IImpressaoPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString; P8: JString): Integer; cdecl;
-    {class} function IImpressaoQRCode(P1: JString; P2: Integer; P3: Integer; P4: JString): Integer; cdecl;
-    {class} function IImpressaoTexto(P1: JString): Integer; cdecl;
-    {class} function IImprimeBitmap(P1: JBitmap; P2: JString): Integer; cdecl;
-    {class} function IImprimeImagemMemoria(P1: JString; P2: JString): Integer; cdecl;
-    {class} function IStatusImpressora(P1: Integer): Integer; cdecl;
-    {class} function init(P1: JConexao; P2: JImplementacaoTermica): JImplementacaoSmartPOS; cdecl;
+    ['{CFD7183E-E68E-4517-AA1D-07EFB67CC41A}']
+    {class} function IDefinePosicao(P1: Integer): JString; cdecl;//Deprecated
+    {class} function IDirectIO(P1: TJavaArray<Byte>; P2: Integer): Integer; cdecl;//Deprecated
+    {class} function IImpressaoCodigoBarras(P1: Integer; P2: JString; P3: Integer; P4: Integer; P5: Integer; P6: JString): Integer; cdecl;//Deprecated
+    {class} function IImpressaoPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString; P8: JString): Integer; cdecl;//Deprecated
+    {class} function IImpressaoQRCode(P1: JString; P2: Integer; P3: Integer; P4: JString): Integer; cdecl;//Deprecated
+    {class} function IImpressaoTexto(P1: JString): Integer; cdecl;//Deprecated
+    {class} function IImprimeBitmap(P1: JBitmap; P2: JString): Integer; cdecl;//Deprecated
+    {class} function IImprimeImagemMemoria(P1: JString; P2: JString): Integer; cdecl;//Deprecated
+    {class} function IStatusImpressora(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function init(P1: JConexao; P2: JImplementacaoTermica): JImplementacaoSmartPOS; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Impressoras/ImplementacaoSmartPOS')]
   JImplementacaoSmartPOS = interface(JImplementacaoAndroid)
-    ['{1BE2E118-951A-4A76-9E9C-CED0BCA9091F}']
+    ['{D47E8878-D4F9-432B-B002-D1EAD4147DD4}']
   end;
   TJImplementacaoSmartPOS = class(TJavaGenericImport<JImplementacaoSmartPOSClass, JImplementacaoSmartPOS>) end;
 
   JImplementacaoSmartPOS_1Class = interface(JImplementacaoAndroid_IIImpressaoTextoClass)
-    ['{10977F19-3BD4-45F5-A01F-F9F0FCABA775}']
+    ['{4ED6135E-D1EF-4C18-BF76-9D7B5304BAB2}']
     {class} function init(P1: JImplementacaoSmartPOS): JImplementacaoSmartPOS_1; cdecl;
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Impressoras/ImplementacaoSmartPOS$1')]
   JImplementacaoSmartPOS_1 = interface(JImplementacaoAndroid_IIImpressaoTexto)
-    ['{A0FFD2D8-ADE6-4EF5-8E5F-23F85C447EB6}']
+    ['{40054D65-8D7D-4A38-ADA7-58E6FAA11123}']
     function IImpressaoTexto(P1: JString): Integer; cdecl;
   end;
   TJImplementacaoSmartPOS_1 = class(TJavaGenericImport<JImplementacaoSmartPOS_1Class, JImplementacaoSmartPOS_1>) end;
 
   JInterfaceTermicaClass = interface(IJavaClass)
-    ['{683E7CF1-BF8F-4813-81A9-C63A0928308F}']
-    {class} function IAbreConexaoImpressora(P1: JContext; P2: Integer; P3: JString; P4: JString; P5: Integer): Integer; cdecl;
-    {class} function IAbreGaveta(P1: Integer; P2: Integer; P3: Integer): Integer; cdecl;
-    {class} function IAbreGavetaElgin: Integer; cdecl;
-    {class} function IAvancaPapel(P1: Integer): Integer; cdecl;
-    {class} function ICorte(P1: Integer): Integer; cdecl;
-    {class} function IDefineAreaImpressao(P1: Integer; P2: Integer; P3: Integer; P4: Integer): Integer; cdecl;
-    {class} function IDefinePosicao(P1: Integer): Integer; cdecl;
-    {class} function IDirecaoImpressao(P1: Integer): Integer; cdecl;
-    {class} function IDirectIO(P1: TJavaArray<Byte>; P2: Integer; P3: TJavaArray<Byte>; P4: JInteiro): Integer; cdecl;
-    {class} function IFechaConexaoImpressora: Integer; cdecl;
-    {class} function IGetVersaoDLL: JString; cdecl;
-    {class} function IImpressaoCodigoBarras(P1: Integer; P2: JString; P3: Integer; P4: Integer; P5: Integer): Integer; cdecl;
-    {class} function IImpressaoPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;
-    {class} function IImpressaoQRCode(P1: JString; P2: Integer; P3: Integer): Integer; cdecl;
-    {class} function IImpressaoTexto(P1: JString; P2: Integer; P3: Integer; P4: Integer): Integer; cdecl;
-    {class} function IImprimeBitmap(P1: JBitmap): Integer; cdecl;
-    {class} function IImprimeImagemMemoria(P1: JString; P2: Integer): Integer; cdecl;
-    {class} function IImprimeMPeRetornaPadrao: Integer; cdecl;
-    {class} function IImprimeModoPagina: Integer; cdecl;
-    {class} function IImprimeXMLCancelamentoSAT(P1: JString; P2: JString; P3: Integer): Integer; cdecl;
-    {class} function IImprimeXMLNFCe(P1: JString; P2: Integer; P3: JString; P4: Integer): Integer; cdecl;
-    {class} function IImprimeXMLSAT(P1: JString; P2: Integer): Integer; cdecl;
-    {class} function IInicializaImpressora: Integer; cdecl;
-    {class} function ILimpaBufferModoPagina: Integer; cdecl;
-    {class} function IModoPadrao: Integer; cdecl;
-    {class} function IModoPagina: Integer; cdecl;
-    {class} function IPosicaoImpressaoHorizontal(P1: Integer): Integer; cdecl;
-    {class} function IPosicaoImpressaoVertical(P1: Integer): Integer; cdecl;
-    {class} function ISinalSonoro(P1: Integer; P2: Integer; P3: Integer): Integer; cdecl;
-    {class} function IStatusImpressora(P1: Integer): Integer; cdecl;
+    ['{6B72197C-F747-44FA-B36B-D9888540F1FA}']
+    {class} function IAbreConexaoImpressora(P1: JContext; P2: Integer; P3: JString; P4: JString; P5: Integer): Integer; cdecl;//Deprecated
+    {class} function IAbreGaveta(P1: Integer; P2: Integer; P3: Integer): Integer; cdecl;//Deprecated
+    {class} function IAbreGavetaElgin: Integer; cdecl;//Deprecated
+    {class} function IAvancaPapel(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function ICorte(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function IDefineAreaImpressao(P1: Integer; P2: Integer; P3: Integer; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function IDefinePosicao(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function IDirecaoImpressao(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function IDirectIO(P1: TJavaArray<Byte>; P2: Integer; P3: TJavaArray<Byte>; P4: JInteiro): Integer; cdecl;//Deprecated
+    {class} function IFechaConexaoImpressora: Integer; cdecl;//Deprecated
+    {class} function IGetVersaoDLL: JString; cdecl;//Deprecated
+    {class} function IImpressaoCodigoBarras(P1: Integer; P2: JString; P3: Integer; P4: Integer; P5: Integer): Integer; cdecl;//Deprecated
+    {class} function IImpressaoPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;//Deprecated
+    {class} function IImpressaoQRCode(P1: JString; P2: Integer; P3: Integer): Integer; cdecl;//Deprecated
+    {class} function IImpressaoTexto(P1: JString; P2: Integer; P3: Integer; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function IImprimeBitmap(P1: JBitmap): Integer; cdecl;//Deprecated
+    {class} function IImprimeCupomTEF(P1: JString): Integer; cdecl;//Deprecated
+    {class} function IImprimeImagemMemoria(P1: JString; P2: Integer): Integer; cdecl;//Deprecated
+    {class} function IImprimeMPeRetornaPadrao: Integer; cdecl;//Deprecated
+    {class} function IImprimeModoPagina: Integer; cdecl;//Deprecated
+    {class} function IImprimeXMLCancelamentoSAT(P1: JString; P2: JString; P3: Integer): Integer; cdecl;//Deprecated
+    {class} function IImprimeXMLNFCe(P1: JString; P2: Integer; P3: JString; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function IImprimeXMLSAT(P1: JString; P2: Integer): Integer; cdecl;//Deprecated
+    {class} function IInicializaImpressora: Integer; cdecl;//Deprecated
+    {class} function ILimpaBufferModoPagina: Integer; cdecl;//Deprecated
+    {class} function IModoPadrao: Integer; cdecl;//Deprecated
+    {class} function IModoPagina: Integer; cdecl;//Deprecated
+    {class} function IPosicaoImpressaoHorizontal(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function IPosicaoImpressaoVertical(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function ISinalSonoro(P1: Integer; P2: Integer; P3: Integer): Integer; cdecl;//Deprecated
+    {class} function IStatusImpressora(P1: Integer): Integer; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Impressoras/InterfaceTermica')]
   JInterfaceTermica = interface(IJavaInstance)
-    ['{115C9938-97FC-4EA3-8279-B86C31BEE902}']
+    ['{425B7E01-3741-46A4-B12D-1672B4EB8E02}']
   end;
   TJInterfaceTermica = class(TJavaGenericImport<JInterfaceTermicaClass, JInterfaceTermica>) end;
 
   JImplementacaoTermicaClass = interface(JInterfaceTermicaClass)
-    ['{49FEB797-42D1-4091-94FE-A14C56C840BF}']
-    {class} function IAbreConexaoImpressora(P1: JContext; P2: Integer; P3: JString; P4: JString; P5: Integer): Integer; cdecl;
-    {class} function IAbreGaveta(P1: Integer; P2: Integer; P3: Integer): Integer; cdecl;
-    {class} function IAbreGavetaElgin: Integer; cdecl;
-    {class} function IAvancaPapel(P1: Integer): Integer; cdecl;
-    {class} function ICorte(P1: Integer): Integer; cdecl;
-    {class} function IDefineAreaImpressao(P1: Integer; P2: Integer; P3: Integer; P4: Integer): Integer; cdecl;
-    {class} function IDefinePosicao(P1: Integer): Integer; cdecl;
-    {class} function IDirecaoImpressao(P1: Integer): Integer; cdecl;
-    {class} function IDirectIO(P1: TJavaArray<Byte>; P2: Integer; P3: TJavaArray<Byte>; P4: JInteiro): Integer; cdecl;
-    {class} function IFechaConexaoImpressora: Integer; cdecl;
-    {class} function IGetVersaoDLL: JString; cdecl;
-    {class} function IImpressaoCodigoBarras(P1: Integer; P2: JString; P3: Integer; P4: Integer; P5: Integer): Integer; cdecl;
-    {class} function IImpressaoPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;
-    {class} function IImpressaoQRCode(P1: JString; P2: Integer; P3: Integer): Integer; cdecl;
-    {class} function IImpressaoTexto(P1: JString; P2: Integer; P3: Integer; P4: Integer): Integer; cdecl;
-    {class} function IImprimeBitmap(P1: JBitmap): Integer; cdecl;
-    {class} function IImprimeImagemMemoria(P1: JString; P2: Integer): Integer; cdecl;
-    {class} function IImprimeMPeRetornaPadrao: Integer; cdecl;
-    {class} function IImprimeModoPagina: Integer; cdecl;
-    {class} function IImprimeXMLCancelamentoSAT(P1: JString; P2: JString; P3: Integer): Integer; cdecl;
-    {class} function IImprimeXMLNFCe(P1: JString; P2: Integer; P3: JString; P4: Integer): Integer; cdecl;
-    {class} function IImprimeXMLSAT(P1: JString; P2: Integer): Integer; cdecl;
-    {class} function IInicializaImpressora: Integer; cdecl;
-    {class} function ILimpaBufferModoPagina: Integer; cdecl;
-    {class} function IModoPadrao: Integer; cdecl;
-    {class} function IModoPagina: Integer; cdecl;
-    {class} function IPosicaoImpressaoHorizontal(P1: Integer): Integer; cdecl;
-    {class} function IPosicaoImpressaoVertical(P1: Integer): Integer; cdecl;
-    {class} function ISinalSonoro(P1: Integer; P2: Integer; P3: Integer): Integer; cdecl;
-    {class} function IStatusImpressora(P1: Integer): Integer; cdecl;
-    {class} function getServiceResult: Integer; cdecl;
-    {class} function init: JImplementacaoTermica; cdecl;
-    {class} function printText(P1: JString): Integer; cdecl;
+    ['{60DCB1CA-0D68-4F4E-AE5D-E6F3238D848E}']
+    {class} function IAbreConexaoImpressora(P1: JContext; P2: Integer; P3: JString; P4: JString; P5: Integer): Integer; cdecl;//Deprecated
+    {class} function IAbreGaveta(P1: Integer; P2: Integer; P3: Integer): Integer; cdecl;//Deprecated
+    {class} function IAbreGavetaElgin: Integer; cdecl;//Deprecated
+    {class} function IAvancaPapel(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function ICorte(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function IDefineAreaImpressao(P1: Integer; P2: Integer; P3: Integer; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function IDefinePosicao(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function IDirecaoImpressao(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function IDirectIO(P1: TJavaArray<Byte>; P2: Integer; P3: TJavaArray<Byte>; P4: JInteiro): Integer; cdecl;//Deprecated
+    {class} function IFechaConexaoImpressora: Integer; cdecl;//Deprecated
+    {class} function IGetVersaoDLL: JString; cdecl;//Deprecated
+    {class} function IImpressaoCodigoBarras(P1: Integer; P2: JString; P3: Integer; P4: Integer; P5: Integer): Integer; cdecl;//Deprecated
+    {class} function IImpressaoPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;//Deprecated
+    {class} function IImpressaoQRCode(P1: JString; P2: Integer; P3: Integer): Integer; cdecl;//Deprecated
+    {class} function IImpressaoTexto(P1: JString; P2: Integer; P3: Integer; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function IImprimeBitmap(P1: JBitmap): Integer; cdecl;//Deprecated
+    {class} function IImprimeCupomTEF(P1: JString): Integer; cdecl;//Deprecated
+    {class} function IImprimeImagemMemoria(P1: JString; P2: Integer): Integer; cdecl;//Deprecated
+    {class} function IImprimeMPeRetornaPadrao: Integer; cdecl;//Deprecated
+    {class} function IImprimeModoPagina: Integer; cdecl;//Deprecated
+    {class} function IImprimeXMLCancelamentoSAT(P1: JString; P2: JString; P3: Integer): Integer; cdecl;//Deprecated
+    {class} function IImprimeXMLNFCe(P1: JString; P2: Integer; P3: JString; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function IImprimeXMLSAT(P1: JString; P2: Integer): Integer; cdecl;//Deprecated
+    {class} function IInicializaImpressora: Integer; cdecl;//Deprecated
+    {class} function ILimpaBufferModoPagina: Integer; cdecl;//Deprecated
+    {class} function IModoPadrao: Integer; cdecl;//Deprecated
+    {class} function IModoPagina: Integer; cdecl;//Deprecated
+    {class} function IPosicaoImpressaoHorizontal(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function IPosicaoImpressaoVertical(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function ISinalSonoro(P1: Integer; P2: Integer; P3: Integer): Integer; cdecl;//Deprecated
+    {class} function IStatusImpressora(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function getServiceResult: Integer; cdecl;//Deprecated
+    {class} function init: JImplementacaoTermica; cdecl;//Deprecated
+    {class} function printText(P1: JString): Integer; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Impressoras/ImplementacaoTermica')]
   JImplementacaoTermica = interface(JInterfaceTermica)
-    ['{649E8271-07DB-4F4D-9AEA-61D96922A524}']
+    ['{EBC7D234-2A67-44FF-90DB-1246EF8D2393}']
   end;
   TJImplementacaoTermica = class(TJavaGenericImport<JImplementacaoTermicaClass, JImplementacaoTermica>) end;
 
   JInterfaceM8Class = interface(IJavaClass)
-    ['{C78E60E8-9F26-4C3D-8E5C-CBBB12E12489}']
-    {class} function IAbreGaveta(P1: Integer; P2: Integer; P3: Integer): Integer; cdecl;
-    {class} function IAbreGavetaElgin: Integer; cdecl;
-    {class} function IDefinePosicao(P1: Integer): Integer; cdecl;
-    {class} function IDirectIO(P1: TJavaArray<Byte>; P2: Integer): Integer; cdecl;
-    {class} function IImpressaoCodigoBarras(P1: Integer; P2: JString; P3: Integer; P4: Integer; P5: Integer; P6: Integer): Integer; cdecl;
-    {class} function IImpressaoPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString; P8: Integer): Integer; cdecl;
-    {class} function IImpressaoQRCode(P1: JString; P2: Integer; P3: Integer; P4: Integer): Integer; cdecl;
-    {class} function IImpressaoTexto(P1: JString): Integer; cdecl;
-    {class} function IImprimeBitmap(P1: JBitmap; P2: Integer): Integer; cdecl;
-    {class} function IImprimeImagemMemoria(P1: JString; P2: Integer): Integer; cdecl;
-    {class} function IStatusImpressora(P1: Integer): Integer; cdecl;
+    ['{3CAB3F8F-5BFB-43B5-BF9A-BD55FCCECC72}']
+    {class} function IAbreGaveta(P1: Integer; P2: Integer; P3: Integer): Integer; cdecl;//Deprecated
+    {class} function IAbreGavetaElgin: Integer; cdecl;//Deprecated
+    {class} function IDefinePosicao(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function IDirectIO(P1: TJavaArray<Byte>; P2: Integer): Integer; cdecl;//Deprecated
+    {class} function IImpressaoCodigoBarras(P1: Integer; P2: JString; P3: Integer; P4: Integer; P5: Integer; P6: Integer): Integer; cdecl;//Deprecated
+    {class} function IImpressaoPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString; P8: Integer): Integer; cdecl;//Deprecated
+    {class} function IImpressaoQRCode(P1: JString; P2: Integer; P3: Integer; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function IImpressaoTexto(P1: JString): Integer; cdecl;//Deprecated
+    {class} function IImprimeBitmap(P1: JBitmap; P2: Integer): Integer; cdecl;//Deprecated
+    {class} function IImprimeImagemMemoria(P1: JString; P2: Integer): Integer; cdecl;//Deprecated
+    {class} function IStatusImpressora(P1: Integer): Integer; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Impressoras/InterfaceM8')]
   JInterfaceM8 = interface(IJavaInstance)
-    ['{921546D7-848C-49CE-98D2-06DF3B9EAD6D}']
+    ['{5ACF98AA-4E1C-4983-BED9-529C671E71AF}']
   end;
   TJInterfaceM8 = class(TJavaGenericImport<JInterfaceM8Class, JInterfaceM8>) end;
 
   JInterfaceSmartPOSClass = interface(IJavaClass)
-    ['{AE0DF7EE-E7FA-4840-A659-EAC98070C3FA}']
-    {class} function IDefinePosicao(P1: Integer): JString; cdecl;
-    {class} function IDirectIO(P1: TJavaArray<Byte>; P2: Integer): Integer; cdecl;
-    {class} function IImpressaoCodigoBarras(P1: Integer; P2: JString; P3: Integer; P4: Integer; P5: Integer; P6: JString): Integer; cdecl;
-    {class} function IImpressaoPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString; P8: JString): Integer; cdecl;
-    {class} function IImpressaoQRCode(P1: JString; P2: Integer; P3: Integer; P4: JString): Integer; cdecl;
-    {class} function IImpressaoTexto(P1: JString): Integer; cdecl;
-    {class} function IImprimeBitmap(P1: JBitmap; P2: JString): Integer; cdecl;
-    {class} function IImprimeImagemMemoria(P1: JString; P2: JString): Integer; cdecl;
-    {class} function IStatusImpressora(P1: Integer): Integer; cdecl;
+    ['{4A4F6408-34C9-40CB-8BA5-4B9CB37ED484}']
+    {class} function IDefinePosicao(P1: Integer): JString; cdecl;//Deprecated
+    {class} function IDirectIO(P1: TJavaArray<Byte>; P2: Integer): Integer; cdecl;//Deprecated
+    {class} function IImpressaoCodigoBarras(P1: Integer; P2: JString; P3: Integer; P4: Integer; P5: Integer; P6: JString): Integer; cdecl;//Deprecated
+    {class} function IImpressaoPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString; P8: JString): Integer; cdecl;//Deprecated
+    {class} function IImpressaoQRCode(P1: JString; P2: Integer; P3: Integer; P4: JString): Integer; cdecl;//Deprecated
+    {class} function IImpressaoTexto(P1: JString): Integer; cdecl;//Deprecated
+    {class} function IImprimeBitmap(P1: JBitmap; P2: JString): Integer; cdecl;//Deprecated
+    {class} function IImprimeImagemMemoria(P1: JString; P2: JString): Integer; cdecl;//Deprecated
+    {class} function IStatusImpressora(P1: Integer): Integer; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Impressoras/InterfaceSmartPOS')]
   JInterfaceSmartPOS = interface(IJavaInstance)
-    ['{0E54EB1F-D357-4D61-9314-ED515A5B22B6}']
+    ['{1CB27010-F9BC-4107-8322-14480AABFD07}']
   end;
   TJInterfaceSmartPOS = class(TJavaGenericImport<JInterfaceSmartPOSClass, JInterfaceSmartPOS>) end;
 
   JMiniPDVM8Class = interface(JObjectClass)
-    ['{95356496-09F9-4F69-96FA-F0AD5289468B}']
-    {class} function GetNumeroSerie: JString; cdecl;
-    {class} function init: JMiniPDVM8; cdecl;
+    ['{5FF09D78-EA42-4736-AC41-F5B6375CACC9}']
+    {class} function GetNumeroSerie: JString; cdecl;//Deprecated
+    {class} function init: JMiniPDVM8; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/MiniPDVM8')]
   JMiniPDVM8 = interface(JObject)
-    ['{B0F571AD-3D42-4704-BE01-B73E484871BD}']
+    ['{47660AB1-286B-48B4-A73C-3999E7F22716}']
   end;
   TJMiniPDVM8 = class(TJavaGenericImport<JMiniPDVM8Class, JMiniPDVM8>) end;
 
   JSmartClass = interface(JObjectClass)
-    ['{FA4205DE-3690-4586-B8F1-3554FC37B857}']
-    {class} function GetNumeroSerie: JString; cdecl;
-    {class} function init: JSmart; cdecl;
+    ['{596B85E7-3C4F-493B-9851-947EC7B10D2B}']
+    {class} function GetNumeroSerie: JString; cdecl;//Deprecated
+    {class} function init: JSmart; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Smart')]
   JSmart = interface(JObject)
-    ['{E39F2F9E-B27D-4B2B-BDF7-71A244DEDE9A}']
+    ['{D915AAF5-76C6-48DB-97C9-1E233756228D}']
   end;
   TJSmart = class(TJavaGenericImport<JSmartClass, JSmart>) end;
 
   JTermicaClass = interface(JObjectClass)
-    ['{5DB31AC3-4651-4E70-895C-F32A1B6C4196}']
-    {class} function AbreConexaoImpressora(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;
-    {class} function AbreGaveta(P1: Integer; P2: Integer; P3: Integer): Integer; cdecl;
-    {class} function AbreGavetaElgin: Integer; cdecl;
-    {class} function AvancaPapel(P1: Integer): Integer; cdecl;
-    {class} function Corte(P1: Integer): Integer; cdecl;
-    {class} function DefineAreaImpressao(P1: Integer; P2: Integer; P3: Integer; P4: Integer): Integer; cdecl;
-    {class} function DefinePosicao(P1: Integer): Integer; cdecl;
-    {class} function DirecaoImpressao(P1: Integer): Integer; cdecl;
-    {class} function DirectIO(P1: TJavaArray<Byte>; P2: Integer; P3: TJavaArray<Byte>; P4: JInteiro): Integer; cdecl;
-    {class} function FechaConexaoImpressora: Integer; cdecl;
-    {class} function GetVersaoDLL: JString; cdecl;
-    {class} function ImpressaoCodigoBarras(P1: Integer; P2: JString; P3: Integer; P4: Integer; P5: Integer): Integer; cdecl;
-    {class} function ImpressaoPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;
-    {class} function ImpressaoQRCode(P1: JString; P2: Integer; P3: Integer): Integer; cdecl;
-    {class} function ImpressaoTexto(P1: JString; P2: Integer; P3: Integer; P4: Integer): Integer; cdecl;
-    {class} function ImprimeBitmap(P1: JBitmap): Integer; cdecl;
-    {class} function ImprimeImagemMemoria(P1: JString; P2: Integer): Integer; cdecl;
-    {class} function ImprimeMPeRetornaPadrao: Integer; cdecl;
-    {class} function ImprimeModoPagina: Integer; cdecl;
-    {class} function ImprimeXMLCancelamentoSAT(P1: JString; P2: JString; P3: Integer): Integer; cdecl;
-    {class} function ImprimeXMLNFCe(P1: JString; P2: Integer; P3: JString; P4: Integer): Integer; cdecl;
-    {class} function ImprimeXMLSAT(P1: JString; P2: Integer): Integer; cdecl;
-    {class} function InicializaImpressora: Integer; cdecl;
-    {class} function LimpaBufferModoPagina: Integer; cdecl;
-    {class} function ModoPadrao: Integer; cdecl;
-    {class} function ModoPagina: Integer; cdecl;
-    {class} function PosicaoImpressaoHorizontal(P1: Integer): Integer; cdecl;
-    {class} function PosicaoImpressaoVertical(P1: Integer): Integer; cdecl;
-    {class} function SinalSonoro(P1: Integer; P2: Integer; P3: Integer): Integer; cdecl;
-    {class} function StatusImpressora(P1: Integer): Integer; cdecl;
-    {class} function init: JTermica; cdecl;
-    {class} function setContext(P1: JContext): Integer; cdecl;
+    ['{7BAEBC62-9D0E-41F1-987B-8F02672285FA}']
+    {class} function AbreConexaoImpressora(P1: Integer; P2: JString; P3: JString; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function AbreGaveta(P1: Integer; P2: Integer; P3: Integer): Integer; cdecl;//Deprecated
+    {class} function AbreGavetaElgin: Integer; cdecl;//Deprecated
+    {class} function AvancaPapel(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function Corte(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function DefineAreaImpressao(P1: Integer; P2: Integer; P3: Integer; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function DefinePosicao(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function DirecaoImpressao(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function DirectIO(P1: TJavaArray<Byte>; P2: Integer; P3: TJavaArray<Byte>; P4: JInteiro): Integer; cdecl;//Deprecated
+    {class} function FechaConexaoImpressora: Integer; cdecl;//Deprecated
+    {class} function GetVersaoDLL: JString; cdecl;//Deprecated
+    {class} function ImpressaoCodigoBarras(P1: Integer; P2: JString; P3: Integer; P4: Integer; P5: Integer): Integer; cdecl;//Deprecated
+    {class} function ImpressaoPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): Integer; cdecl;//Deprecated
+    {class} function ImpressaoQRCode(P1: JString; P2: Integer; P3: Integer): Integer; cdecl;//Deprecated
+    {class} function ImpressaoTexto(P1: JString; P2: Integer; P3: Integer; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function ImprimeBitmap(P1: JBitmap): Integer; cdecl;//Deprecated
+    {class} function ImprimeCupomTEF(P1: JString): Integer; cdecl;//Deprecated
+    {class} function ImprimeImagemMemoria(P1: JString; P2: Integer): Integer; cdecl;//Deprecated
+    {class} function ImprimeMPeRetornaPadrao: Integer; cdecl;//Deprecated
+    {class} function ImprimeModoPagina: Integer; cdecl;//Deprecated
+    {class} function ImprimeXMLCancelamentoSAT(P1: JString; P2: JString; P3: Integer): Integer; cdecl;//Deprecated
+    {class} function ImprimeXMLNFCe(P1: JString; P2: Integer; P3: JString; P4: Integer): Integer; cdecl;//Deprecated
+    {class} function ImprimeXMLSAT(P1: JString; P2: Integer): Integer; cdecl;//Deprecated
+    {class} function InicializaImpressora: Integer; cdecl;//Deprecated
+    {class} function LimpaBufferModoPagina: Integer; cdecl;//Deprecated
+    {class} function ModoPadrao: Integer; cdecl;//Deprecated
+    {class} function ModoPagina: Integer; cdecl;//Deprecated
+    {class} function PosicaoImpressaoHorizontal(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function PosicaoImpressaoVertical(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function SinalSonoro(P1: Integer; P2: Integer; P3: Integer): Integer; cdecl;//Deprecated
+    {class} function StatusImpressora(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function init: JTermica; cdecl;//Deprecated
+    {class} function setContext(P1: JContext): Integer; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Termica')]
   JTermica = interface(JObject)
-    ['{7825CB21-8C87-43F0-B91E-732081C10056}']
+    ['{E4B09845-DF9A-4309-B170-7DC4019F3F3F}']
   end;
   TJTermica = class(TJavaGenericImport<JTermicaClass, JTermica>) end;
 
   JCodigoErroClass = interface(JObjectClass)
-    ['{3EA78438-8DD8-490D-9AA4-0A960A68CB8B}']
+    ['{68E2CD11-26F7-4A29-AF92-2CB821F192F3}']
     {class} function _GetALIQUOTA_IMPOSTO_INVALIDA: Integer; cdecl;
     {class} function _GetALIQUOTA_ISSQN_INVALIDA: Integer; cdecl;
     {class} function _GetARQUIVO_NAO_ENCONTRADO: Integer; cdecl;
@@ -2795,12 +2800,12 @@ type
 
   [JavaSignature('com/elgin/e1/Impressora/Utilidades/CodigoErro')]
   JCodigoErro = interface(JObject)
-    ['{DFC34281-DFEA-4A0D-BC39-7F4C45D1331A}']
+    ['{46A186A2-C83C-43F1-8741-2751021C8D00}']
   end;
   TJCodigoErro = class(TJavaGenericImport<JCodigoErroClass, JCodigoErro>) end;
 
   JESCPOSClass = interface(JObjectClass)
-    ['{FC3A5308-D641-4363-AF41-60A4531D1852}']
+    ['{0B2CBE67-DCEB-4194-BCDE-5AED924A6177}']
     {class} function _GetABRE_GAVETA: TJavaArray<Byte>; cdecl;
     {class} function _GetABRE_GAVETA_ELGIN: TJavaArray<Byte>; cdecl;
     {class} function _GetALTURA_CODIGO_BARRAS: TJavaArray<Byte>; cdecl;
@@ -2918,27 +2923,27 @@ type
 
   [JavaSignature('com/elgin/e1/Impressora/Utilidades/ESCPOS')]
   JESCPOS = interface(JObject)
-    ['{CBF7575C-038D-45EE-B313-5E536A7829C6}']
+    ['{8CFEC99B-D2EB-45E5-B83B-BAC62DDE0CE4}']
   end;
   TJESCPOS = class(TJavaGenericImport<JESCPOSClass, JESCPOS>) end;
 
   JInteiroClass = interface(JObjectClass)
-    ['{F02CB174-84B9-4A19-B0F0-3994834C8469}']
-    {class} function getValor: Integer; cdecl;
-    {class} function init: JInteiro; cdecl; overload;
-    {class} function init(P1: Integer): JInteiro; cdecl; overload;
-    {class} procedure setValor(P1: Integer); cdecl;
-    {class} function toString: JString; cdecl;
+    ['{2AFDACD6-3EE1-4ECD-A20F-C92D183BACF1}']
+    {class} function getValor: Integer; cdecl;//Deprecated
+    {class} function init: JInteiro; cdecl; overload;//Deprecated
+    {class} function init(P1: Integer): JInteiro; cdecl; overload;//Deprecated
+    {class} procedure setValor(P1: Integer); cdecl;//Deprecated
+    {class} function toString: JString; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Utilidades/Inteiro')]
   JInteiro = interface(JObject)
-    ['{009ACFFA-E199-49F3-97F1-3CE693941230}']
+    ['{7D6273A6-700F-44EE-95C0-26FB117BA13B}']
   end;
   TJInteiro = class(TJavaGenericImport<JInteiroClass, JInteiro>) end;
 
   JPPLAClass = interface(JObjectClass)
-    ['{689B4B3E-6EC3-40D9-B0D8-AFA269024451}']
+    ['{13488D70-2150-4A23-854B-7C8A2A8DB0B3}']
     {class} function _GetALTURA_GAP: TJavaArray<Byte>; cdecl;
     {class} function _GetBACKFEED: TJavaArray<Byte>; cdecl;
     {class} function _GetBAUDRATE: TJavaArray<Byte>; cdecl;
@@ -3022,198 +3027,198 @@ type
 
   [JavaSignature('com/elgin/e1/Impressora/Utilidades/PPLA')]
   JPPLA = interface(JObject)
-    ['{B35FB308-331E-419B-824B-953A7D868F35}']
+    ['{2F7C1937-9F27-44BC-B021-B020D4670885}']
   end;
   TJPPLA = class(TJavaGenericImport<JPPLAClass, JPPLA>) end;
 
   JUtilidadesClass = interface(JObjectClass)
-    ['{A94080BA-4270-4D7B-AC2F-ED46588C3CD3}']
-    {class} function appendChild(P1: JNode; P2: JNode): JNode; cdecl;
-    {class} function arg1(P1: JString; P2: Integer; P3: Char): JString; cdecl;
-    {class} function array2bytes(P1: Boolean; P2: JArrayList): TJavaArray<Byte>; cdecl;
-    {class} function attribute(P1: JNode; P2: JString): JString; cdecl;
-    {class} function doc2string(P1: JDocument): JString; cdecl;
-    {class} function elementsByTagName(P1: JNode; P2: JString): JNodeList; cdecl;
-    {class} function getInt(P1: JString): Integer; cdecl;
-    {class} function init: JUtilidades; cdecl;
-    {class} function insert(P1: JString; P2: Integer; P3: JString): JString; cdecl;
-    {class} function insertAfter(P1: JNode; P2: JNode; P3: JNode): JNode; cdecl;
-    {class} function insertBefore(P1: JNode; P2: JNode; P3: JNode): JNode; cdecl;
-    {class} function intToBits(P1: Integer): JBitSet; cdecl;
-    {class} function larg2px(P1: Integer; P2: JString): Integer; cdecl;
-    {class} function left(P1: JString; P2: Integer): JString; cdecl;
-    {class} function leftJustified(P1: JString; P2: Integer; P3: Char; P4: Boolean): JString; cdecl;
-    {class} function mid(P1: JString; P2: Integer; P3: Integer): JString; cdecl;
-    {class} function namedItem(P1: JNode; P2: JString; P3: Boolean): JNode; cdecl;
-    {class} function newDocument: JDocument; cdecl;
-    {class} function numFmt(P1: Double): JString; cdecl;
-    {class} function prepend(P1: JString; P2: JString): JString; cdecl;
-    {class} function removeChild(P1: JNode; P2: JNode): JNode; cdecl;
-    {class} function replaceChild(P1: JNode; P2: JNode; P3: JNode): JNode; cdecl;
-    {class} function right(P1: JString; P2: Integer): JString; cdecl;
-    {class} function rightJustified(P1: JString; P2: Integer; P3: Char; P4: Boolean): JString; cdecl;
-    {class} function tam2px(P1: Integer; P2: JString): Integer; cdecl;
-    {class} function toHex(P1: TJavaArray<Byte>; P2: Boolean): JString; cdecl;
-    {class} function trimBitmap(P1: JBitmap; P2: Integer): JBitmap; cdecl;
-    {class} function truncate(P1: JString; P2: Integer): JString; cdecl;
+    ['{59024CEE-4D3A-4D8A-A32D-08F7FFCD0F3B}']
+    {class} function appendChild(P1: JNode; P2: JNode): JNode; cdecl;//Deprecated
+    {class} function arg1(P1: JString; P2: Integer; P3: Char): JString; cdecl;//Deprecated
+    {class} function array2bytes(P1: Boolean; P2: JArrayList): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function attribute(P1: JNode; P2: JString): JString; cdecl;//Deprecated
+    {class} function doc2string(P1: JDocument): JString; cdecl;//Deprecated
+    {class} function elementsByTagName(P1: JNode; P2: JString): JNodeList; cdecl;//Deprecated
+    {class} function getInt(P1: JString): Integer; cdecl;//Deprecated
+    {class} function init: JUtilidades; cdecl;//Deprecated
+    {class} function insert(P1: JString; P2: Integer; P3: JString): JString; cdecl;//Deprecated
+    {class} function insertAfter(P1: JNode; P2: JNode; P3: JNode): JNode; cdecl;//Deprecated
+    {class} function insertBefore(P1: JNode; P2: JNode; P3: JNode): JNode; cdecl;//Deprecated
+    {class} function intToBits(P1: Integer): JBitSet; cdecl;//Deprecated
+    {class} function larg2px(P1: Integer; P2: JString): Integer; cdecl;//Deprecated
+    {class} function left(P1: JString; P2: Integer): JString; cdecl;//Deprecated
+    {class} function leftJustified(P1: JString; P2: Integer; P3: Char; P4: Boolean): JString; cdecl;//Deprecated
+    {class} function mid(P1: JString; P2: Integer; P3: Integer): JString; cdecl;//Deprecated
+    {class} function namedItem(P1: JNode; P2: JString; P3: Boolean): JNode; cdecl;//Deprecated
+    {class} function newDocument: JDocument; cdecl;//Deprecated
+    {class} function numFmt(P1: Double): JString; cdecl;//Deprecated
+    {class} function prepend(P1: JString; P2: JString): JString; cdecl;//Deprecated
+    {class} function removeChild(P1: JNode; P2: JNode): JNode; cdecl;//Deprecated
+    {class} function replaceChild(P1: JNode; P2: JNode; P3: JNode): JNode; cdecl;//Deprecated
+    {class} function right(P1: JString; P2: Integer): JString; cdecl;//Deprecated
+    {class} function rightJustified(P1: JString; P2: Integer; P3: Char; P4: Boolean): JString; cdecl;//Deprecated
+    {class} function tam2px(P1: Integer; P2: JString): Integer; cdecl;//Deprecated
+    {class} function toHex(P1: TJavaArray<Byte>; P2: Boolean): JString; cdecl;//Deprecated
+    {class} function trimBitmap(P1: JBitmap; P2: Integer): JBitmap; cdecl;//Deprecated
+    {class} function truncate(P1: JString; P2: Integer): JString; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Utilidades/Utilidades')]
   JUtilidades = interface(JObject)
-    ['{764F9ED0-9A64-4515-AA6D-A9AEC09CB5D9}']
+    ['{C0960CDD-0051-4455-ADED-A560FE3FB806}']
   end;
   TJUtilidades = class(TJavaGenericImport<JUtilidadesClass, JUtilidades>) end;
 
   JNodeListClass = interface(IJavaClass)
     ['{6F6D0FED-4199-4F79-ABA2-C93007B65A8C}']
-    {class} function getLength: Integer; cdecl;//Deprecated
-    {class} function item(index: Integer): JNode; cdecl;//Deprecated
   end;
 
   [JavaSignature('org/w3c/dom/NodeList')]
   JNodeList = interface(IJavaInstance)
     ['{E6AE0711-1F43-4D8B-A153-47286455EFAF}']
+    function getLength: Integer; cdecl;
+    function item(index: Integer): JNode; cdecl;
   end;
   TJNodeList = class(TJavaGenericImport<JNodeListClass, JNodeList>) end;
 
   JUtilidades_1Class = interface(JNodeListClass)
-    ['{51910172-DD70-42FF-8CF9-5F63924F835C}']
-    {class} function getLength: Integer; cdecl;
-    {class} function item(P1: Integer): JNode; cdecl;
+    ['{BFCD6616-3DF5-49F0-BDF3-BD20B58C98B1}']
+    {class} function getLength: Integer; cdecl;//Deprecated
+    {class} function item(P1: Integer): JNode; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/Utilidades/Utilidades$1')]
   JUtilidades_1 = interface(JNodeList)
-    ['{6665464A-3530-47FA-B995-F72AF007F680}']
+    ['{695A9DBD-AD5F-48D0-998D-F966EE4592B7}']
   end;
   TJUtilidades_1 = class(TJavaGenericImport<JUtilidades_1Class, JUtilidades_1>) end;
 
   JInterfaceOBJXMLPRODUTOClass = interface(IJavaClass)
-    ['{4379A291-C565-4C38-9DCC-E0D82DEA9526}']
-    {class} function GetCodProduto: JString; cdecl;
-    {class} function GetDescricao: JString; cdecl;
-    {class} function GetNItem: JString; cdecl;
-    {class} function GetQTD: JString; cdecl;
-    {class} function GetUnidadeMed: JString; cdecl;
-    {class} function GetVDesc: JString; cdecl;
-    {class} function GetVDescProd: JString; cdecl;
-    {class} function GetVOutros: JString; cdecl;
-    {class} function GetVOutrosProd: JString; cdecl;
-    {class} function GetValorBrutoProduto: JString; cdecl;
-    {class} function GetValorUnit: JString; cdecl;
-    {class} procedure SetCodProduto(P1: JString); cdecl;
-    {class} procedure SetDescricao(P1: JString); cdecl;
-    {class} procedure SetNItem(P1: JString); cdecl;
-    {class} procedure SetQTD(P1: JString); cdecl;
-    {class} procedure SetUnidadeMed(P1: JString); cdecl;
-    {class} procedure SetVDesc(P1: JString); cdecl;
-    {class} procedure SetVDescProd(P1: JString); cdecl;
-    {class} procedure SetVOutros(P1: JString); cdecl;
-    {class} procedure SetVOutrosProd(P1: JString); cdecl;
-    {class} procedure SetValorBrutoProduto(P1: JString); cdecl;
-    {class} procedure SetValorUnit(P1: JString); cdecl;
+    ['{08C46EEA-209F-4720-BD9E-8E91E15615B8}']
+    {class} function GetCodProduto: JString; cdecl;//Deprecated
+    {class} function GetDescricao: JString; cdecl;//Deprecated
+    {class} function GetNItem: JString; cdecl;//Deprecated
+    {class} function GetQTD: JString; cdecl;//Deprecated
+    {class} function GetUnidadeMed: JString; cdecl;//Deprecated
+    {class} function GetVDesc: JString; cdecl;//Deprecated
+    {class} function GetVDescProd: JString; cdecl;//Deprecated
+    {class} function GetVOutros: JString; cdecl;//Deprecated
+    {class} function GetVOutrosProd: JString; cdecl;//Deprecated
+    {class} function GetValorBrutoProduto: JString; cdecl;//Deprecated
+    {class} function GetValorUnit: JString; cdecl;//Deprecated
+    {class} procedure SetCodProduto(P1: JString); cdecl;//Deprecated
+    {class} procedure SetDescricao(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNItem(P1: JString); cdecl;//Deprecated
+    {class} procedure SetQTD(P1: JString); cdecl;//Deprecated
+    {class} procedure SetUnidadeMed(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVDesc(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVDescProd(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVOutros(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVOutrosProd(P1: JString); cdecl;//Deprecated
+    {class} procedure SetValorBrutoProduto(P1: JString); cdecl;//Deprecated
+    {class} procedure SetValorUnit(P1: JString); cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/XML/InterfaceOBJXMLPRODUTO')]
   JInterfaceOBJXMLPRODUTO = interface(IJavaInstance)
-    ['{9FA38AD1-C2D6-4712-B3E8-A5234D9FC5D9}']
+    ['{D8466476-EA39-4BC0-83E6-89FCA01D4BD8}']
   end;
   TJInterfaceOBJXMLPRODUTO = class(TJavaGenericImport<JInterfaceOBJXMLPRODUTOClass, JInterfaceOBJXMLPRODUTO>) end;
 
   JImplementacaoOBJXMLPRODUTOClass = interface(JInterfaceOBJXMLPRODUTOClass)
-    ['{5AB10838-8322-4B3F-B504-7DF7703E453A}']
-    {class} function GetCodProduto: JString; cdecl;
-    {class} function GetDescricao: JString; cdecl;
-    {class} function GetNItem: JString; cdecl;
-    {class} function GetQTD: JString; cdecl;
-    {class} function GetUnidadeMed: JString; cdecl;
-    {class} function GetVDesc: JString; cdecl;
-    {class} function GetVDescProd: JString; cdecl;
-    {class} function GetVOutros: JString; cdecl;
-    {class} function GetVOutrosProd: JString; cdecl;
-    {class} function GetValorBrutoProduto: JString; cdecl;
-    {class} function GetValorUnit: JString; cdecl;
-    {class} procedure SetCodProduto(P1: JString); cdecl;
-    {class} procedure SetDescricao(P1: JString); cdecl;
-    {class} procedure SetNItem(P1: JString); cdecl;
-    {class} procedure SetQTD(P1: JString); cdecl;
-    {class} procedure SetUnidadeMed(P1: JString); cdecl;
-    {class} procedure SetVDesc(P1: JString); cdecl;
-    {class} procedure SetVDescProd(P1: JString); cdecl;
-    {class} procedure SetVOutros(P1: JString); cdecl;
-    {class} procedure SetVOutrosProd(P1: JString); cdecl;
-    {class} procedure SetValorBrutoProduto(P1: JString); cdecl;
-    {class} procedure SetValorUnit(P1: JString); cdecl;
-    {class} function init: JImplementacaoOBJXMLPRODUTO; cdecl;
+    ['{4E0B1CFF-E9DF-49FC-83C1-3927D36AE87A}']
+    {class} function GetCodProduto: JString; cdecl;//Deprecated
+    {class} function GetDescricao: JString; cdecl;//Deprecated
+    {class} function GetNItem: JString; cdecl;//Deprecated
+    {class} function GetQTD: JString; cdecl;//Deprecated
+    {class} function GetUnidadeMed: JString; cdecl;//Deprecated
+    {class} function GetVDesc: JString; cdecl;//Deprecated
+    {class} function GetVDescProd: JString; cdecl;//Deprecated
+    {class} function GetVOutros: JString; cdecl;//Deprecated
+    {class} function GetVOutrosProd: JString; cdecl;//Deprecated
+    {class} function GetValorBrutoProduto: JString; cdecl;//Deprecated
+    {class} function GetValorUnit: JString; cdecl;//Deprecated
+    {class} procedure SetCodProduto(P1: JString); cdecl;//Deprecated
+    {class} procedure SetDescricao(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNItem(P1: JString); cdecl;//Deprecated
+    {class} procedure SetQTD(P1: JString); cdecl;//Deprecated
+    {class} procedure SetUnidadeMed(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVDesc(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVDescProd(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVOutros(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVOutrosProd(P1: JString); cdecl;//Deprecated
+    {class} procedure SetValorBrutoProduto(P1: JString); cdecl;//Deprecated
+    {class} procedure SetValorUnit(P1: JString); cdecl;//Deprecated
+    {class} function init: JImplementacaoOBJXMLPRODUTO; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/XML/ImplementacaoOBJXMLPRODUTO')]
   JImplementacaoOBJXMLPRODUTO = interface(JInterfaceOBJXMLPRODUTO)
-    ['{4E793E39-4BC5-4484-997F-D6504BD61C63}']
+    ['{04FD195C-7A22-4F26-89B3-DA7211AB755D}']
   end;
   TJImplementacaoOBJXMLPRODUTO = class(TJavaGenericImport<JImplementacaoOBJXMLPRODUTOClass, JImplementacaoOBJXMLPRODUTO>) end;
 
   JImplementacaoOBJPRODUTOXMLNFCEClass = interface(JImplementacaoOBJXMLPRODUTOClass)
-    ['{665A4AE5-B5DB-45EB-A7FF-CC6EC34777D2}']
-    {class} function GetEAN13: JString; cdecl;
-    {class} procedure SetEAN13(P1: JString); cdecl;
-    {class} function init: JImplementacaoOBJPRODUTOXMLNFCE; cdecl;
+    ['{EE918C63-75C9-440E-8E0F-DB61EC4AAD72}']
+    {class} function GetEAN13: JString; cdecl;//Deprecated
+    {class} procedure SetEAN13(P1: JString); cdecl;//Deprecated
+    {class} function init: JImplementacaoOBJPRODUTOXMLNFCE; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/XML/ImplementacaoOBJPRODUTOXMLNFCE')]
   JImplementacaoOBJPRODUTOXMLNFCE = interface(JImplementacaoOBJXMLPRODUTO)
-    ['{F78CD226-4703-4630-B274-3353CF17DE52}']
+    ['{4A86ACFD-2FFE-488B-9135-F5DA6B9DCC44}']
   end;
   TJImplementacaoOBJPRODUTOXMLNFCE = class(TJavaGenericImport<JImplementacaoOBJPRODUTOXMLNFCEClass, JImplementacaoOBJPRODUTOXMLNFCE>) end;
 
   JImplementacaoOBJPRODUTOXMLSATClass = interface(JImplementacaoOBJXMLPRODUTOClass)
-    ['{F63E911E-8575-4AA7-8E4F-9FE14990AEB5}']
-    {class} function GetVBC: JString; cdecl;
-    {class} function GetVDeducISSQN: JString; cdecl;
-    {class} function GetVDescProd: JString; cdecl;
-    {class} function GetVOutrasProd: JString; cdecl;
-    {class} function GetVRatAcr: JString; cdecl;
-    {class} function GetVRatDesc: JString; cdecl;
-    {class} function GetValorAproxTributos: JString; cdecl;
-    {class} procedure SetVBC(P1: JString); cdecl;
-    {class} procedure SetVDeducISSQN(P1: JString); cdecl;
-    {class} procedure SetVDescProd(P1: JString); cdecl;
-    {class} procedure SetVOutrasProd(P1: JString); cdecl;
-    {class} procedure SetVRatAcr(P1: JString); cdecl;
-    {class} procedure SetVRatDesc(P1: JString); cdecl;
-    {class} procedure SetValorAproxTributos(P1: JString); cdecl;
-    {class} function init: JImplementacaoOBJPRODUTOXMLSAT; cdecl;
+    ['{EF05D65A-0B47-40E4-A0F1-5C459C5597E0}']
+    {class} function GetVBC: JString; cdecl;//Deprecated
+    {class} function GetVDeducISSQN: JString; cdecl;//Deprecated
+    {class} function GetVDescProd: JString; cdecl;//Deprecated
+    {class} function GetVOutrasProd: JString; cdecl;//Deprecated
+    {class} function GetVRatAcr: JString; cdecl;//Deprecated
+    {class} function GetVRatDesc: JString; cdecl;//Deprecated
+    {class} function GetValorAproxTributos: JString; cdecl;//Deprecated
+    {class} procedure SetVBC(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVDeducISSQN(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVDescProd(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVOutrasProd(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVRatAcr(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVRatDesc(P1: JString); cdecl;//Deprecated
+    {class} procedure SetValorAproxTributos(P1: JString); cdecl;//Deprecated
+    {class} function init: JImplementacaoOBJPRODUTOXMLSAT; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/XML/ImplementacaoOBJPRODUTOXMLSAT')]
   JImplementacaoOBJPRODUTOXMLSAT = interface(JImplementacaoOBJXMLPRODUTO)
-    ['{623A469B-2B52-49A6-B5B0-45B3B09FBB05}']
+    ['{13B032B2-740E-48D0-AD73-94CD353EDC16}']
   end;
   TJImplementacaoOBJPRODUTOXMLSAT = class(TJavaGenericImport<JImplementacaoOBJPRODUTOXMLSATClass, JImplementacaoOBJPRODUTOXMLSAT>) end;
 
   JInterfaceOBJXMLClass = interface(IJavaClass)
-    ['{1234A811-0680-42A6-8058-89CA657DA7E5}']
-    {class} function ConverterQString(P1: JString): TJavaArray<Char>; cdecl;
-    {class} function FormatarData(P1: JString): TJavaArray<Char>; cdecl;
-    {class} function FormatarDataSAT(P1: JString): TJavaArray<Char>; cdecl;
-    {class} function FormatarMoeda(P1: JString): JString; cdecl;
-    {class} function GetStatusXML: JString; cdecl;
-    {class} function ObtemUF(P1: Integer): JString; cdecl;
-    {class} procedure SetStatusXML(P1: JString); cdecl;
-    {class} function getList(P1: JString): JNodeList; cdecl;
-    {class} function getProp(P1: JString): JString; cdecl;
-    {class} function getValue(P1: JString): JString; cdecl;
-    {class} procedure imprimirLogo(P1: JString; P2: Integer; P3: JConexao; P4: JImplementacaoTermica); cdecl;
+    ['{EEFC5284-7C02-40BE-9399-B1BCB687133A}']
+    {class} function ConverterQString(P1: JString): TJavaArray<Char>; cdecl;//Deprecated
+    {class} function FormatarData(P1: JString): TJavaArray<Char>; cdecl;//Deprecated
+    {class} function FormatarDataSAT(P1: JString): TJavaArray<Char>; cdecl;//Deprecated
+    {class} function FormatarMoeda(P1: JString): JString; cdecl;//Deprecated
+    {class} function GetStatusXML: JString; cdecl;//Deprecated
+    {class} function ObtemUF(P1: Integer): JString; cdecl;//Deprecated
+    {class} procedure SetStatusXML(P1: JString); cdecl;//Deprecated
+    {class} function getList(P1: JString): JNodeList; cdecl;//Deprecated
+    {class} function getProp(P1: JString): JString; cdecl;//Deprecated
+    {class} function getValue(P1: JString): JString; cdecl;//Deprecated
+    {class} procedure imprimirLogo(P1: JString; P2: Integer; P3: JConexao; P4: JImplementacaoTermica); cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/XML/InterfaceOBJXML')]
   JInterfaceOBJXML = interface(IJavaInstance)
-    ['{251C3071-F3D5-44F4-B473-99BDBB17FDA8}']
+    ['{BCF39669-6D9E-4591-80C8-35DD20FFCAE3}']
   end;
   TJInterfaceOBJXML = class(TJavaGenericImport<JInterfaceOBJXMLClass, JInterfaceOBJXML>) end;
 
   JImplementacaoOBJXMLClass = interface(JInterfaceOBJXMLClass)
-    ['{F9C9FAB8-D30E-4BCB-AEF2-785EB8319D94}']
+    ['{94DEC02D-A0A4-4A80-AB1A-B69BC8181813}']
     {class} function _Getcon: JConexao; cdecl;
     {class} function init(P1: TJavaArray<Byte>): JImplementacaoOBJXML; cdecl;
     {class} property con: JConexao read _Getcon;
@@ -3221,7 +3226,7 @@ type
 
   [JavaSignature('com/elgin/e1/Impressora/XML/ImplementacaoOBJXML')]
   JImplementacaoOBJXML = interface(JInterfaceOBJXML)
-    ['{838DBABE-9310-4503-AC39-5232C750E8F1}']
+    ['{4B8499BD-C7E3-470E-A7E6-6960F813E189}']
     function _Getib: JImplementacaoBematech; cdecl;
     function ConverterQString(P1: JString): TJavaArray<Char>; cdecl;
     function FormatarData(P1: JString): TJavaArray<Char>; cdecl;
@@ -3239,20 +3244,20 @@ type
   TJImplementacaoOBJXML = class(TJavaGenericImport<JImplementacaoOBJXMLClass, JImplementacaoOBJXML>) end;
 
   JImplementacaoOBJXML_1Class = interface(JNodeListClass)
-    ['{83C3EF54-F690-4861-BDA3-6250FADECC56}']
+    ['{470EDBE4-0EFA-4327-885E-6ECF8B47D120}']
     {class} function init(P1: JImplementacaoOBJXML): JImplementacaoOBJXML_1; cdecl;
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/XML/ImplementacaoOBJXML$1')]
   JImplementacaoOBJXML_1 = interface(JNodeList)
-    ['{B66CEDB2-5EC5-48CE-97C5-B9E0BC4705B2}']
+    ['{589CF683-291D-4373-A88D-3C138E685E43}']
     function getLength: Integer; cdecl;
     function item(P1: Integer): JNode; cdecl;
   end;
   TJImplementacaoOBJXML_1 = class(TJavaGenericImport<JImplementacaoOBJXML_1Class, JImplementacaoOBJXML_1>) end;
 
   JImplementacaoOBJXML_infoPagClass = interface(JObjectClass)
-    ['{CD65AB9B-D454-466F-8919-A2D30AD53A00}']
+    ['{539DEF23-9040-4374-B98C-240F5CF84C0C}']
     {class} function _GetmeioPgto: JString; cdecl;
     {class} function init(P1: JImplementacaoOBJXML): JImplementacaoOBJXML_infoPag; cdecl; overload;
     {class} function init(P1: JImplementacaoOBJXML; P2: JString; P3: Double): JImplementacaoOBJXML_infoPag; cdecl; overload;
@@ -3261,445 +3266,449 @@ type
 
   [JavaSignature('com/elgin/e1/Impressora/XML/ImplementacaoOBJXML$infoPag')]
   JImplementacaoOBJXML_infoPag = interface(JObject)
-    ['{C690D795-E73D-4476-8CC4-DDB29D2B8099}']
-    function _Getthis: JImplementacaoOBJXML; cdecl;
+    ['{21920B82-3B41-4224-ACD2-1FA0E12FDB28}']
+    function _Getthis0: JImplementacaoOBJXML; cdecl;
     function _GetvalorPago: Double; cdecl;
-    property this: JImplementacaoOBJXML read _Getthis;
+    property this0: JImplementacaoOBJXML read _Getthis0;
     property valorPago: Double read _GetvalorPago;
   end;
   TJImplementacaoOBJXML_infoPag = class(TJavaGenericImport<JImplementacaoOBJXML_infoPagClass, JImplementacaoOBJXML_infoPag>) end;
 
   JImplementacaoOBJXMLCANCELAMENTOClass = interface(JImplementacaoOBJXMLClass)
-    ['{A3B451F6-0B77-4805-B91D-2207B8183DA4}']
-    {class} function ConstroiObj: Boolean; cdecl;
-    {class} function GetAssQRCode: JString; cdecl;
-    {class} function GetCNPJ: JString; cdecl;
-    {class} function GetCPF_CNPJ: JString; cdecl;
-    {class} function GetChaveAcesso: JString; cdecl;
-    {class} function GetChaveAcessoACancelar: JString; cdecl;
-    {class} function GetDtHrCupomACancelar: JString; cdecl;
-    {class} function GetDtHrEmissao: JString; cdecl;
-    {class} function GetEndereco: JString; cdecl;
-    {class} function GetIE: JString; cdecl;
-    {class} function GetIM: JString; cdecl;
-    {class} function GetNCfe: JString; cdecl;
-    {class} function GetNomeFantasia: JString; cdecl;
-    {class} function GetNumSerieSAT: JString; cdecl;
-    {class} function GetRazaoSocial: JString; cdecl;
-    {class} function GetVCfe: JString; cdecl;
-    {class} function PreencheOBJ(P1: Integer): Boolean; cdecl;
-    {class} procedure SetAssQRCode(P1: JString); cdecl;
-    {class} procedure SetCNPJ(P1: JString); cdecl;
-    {class} procedure SetCPF_CNPJ(P1: JString); cdecl;
-    {class} procedure SetChaveAcesso(P1: JString); cdecl;
-    {class} procedure SetChaveAcessoACancelar(P1: JString); cdecl;
-    {class} procedure SetDtHrCupomACancelar(P1: JString); cdecl;
-    {class} procedure SetDtHrEmissao(P1: JString); cdecl;
-    {class} procedure SetEndereco(P1: JString); cdecl;
-    {class} procedure SetIE(P1: JString); cdecl;
-    {class} procedure SetIM(P1: JString); cdecl;
-    {class} procedure SetNCfe(P1: JString); cdecl;
-    {class} procedure SetNomeFantasia(P1: JString); cdecl;
-    {class} procedure SetNumSeriaSAT(P1: JString); cdecl;
-    {class} procedure SetRazaoSocial(P1: JString); cdecl;
-    {class} procedure SetVCfe(P1: JString); cdecl;
-    {class} function init(P1: TJavaArray<Byte>): JImplementacaoOBJXMLCANCELAMENTO; cdecl;
+    ['{E369F2F7-EC34-4670-B2ED-FD83F64DDB16}']
+    {class} function ConstroiObj: Boolean; cdecl;//Deprecated
+    {class} function GetAssQRCode: JString; cdecl;//Deprecated
+    {class} function GetCNPJ: JString; cdecl;//Deprecated
+    {class} function GetCPF_CNPJ: JString; cdecl;//Deprecated
+    {class} function GetChaveAcesso: JString; cdecl;//Deprecated
+    {class} function GetChaveAcessoACancelar: JString; cdecl;//Deprecated
+    {class} function GetDtHrCupomACancelar: JString; cdecl;//Deprecated
+    {class} function GetDtHrEmissao: JString; cdecl;//Deprecated
+    {class} function GetEndereco: JString; cdecl;//Deprecated
+    {class} function GetIE: JString; cdecl;//Deprecated
+    {class} function GetIM: JString; cdecl;//Deprecated
+    {class} function GetNCfe: JString; cdecl;//Deprecated
+    {class} function GetNomeFantasia: JString; cdecl;//Deprecated
+    {class} function GetNumSerieSAT: JString; cdecl;//Deprecated
+    {class} function GetRazaoSocial: JString; cdecl;//Deprecated
+    {class} function GetVCfe: JString; cdecl;//Deprecated
+    {class} function PreencheOBJ(P1: Integer): Boolean; cdecl;//Deprecated
+    {class} procedure SetAssQRCode(P1: JString); cdecl;//Deprecated
+    {class} procedure SetCNPJ(P1: JString); cdecl;//Deprecated
+    {class} procedure SetCPF_CNPJ(P1: JString); cdecl;//Deprecated
+    {class} procedure SetChaveAcesso(P1: JString); cdecl;//Deprecated
+    {class} procedure SetChaveAcessoACancelar(P1: JString); cdecl;//Deprecated
+    {class} procedure SetDtHrCupomACancelar(P1: JString); cdecl;//Deprecated
+    {class} procedure SetDtHrEmissao(P1: JString); cdecl;//Deprecated
+    {class} procedure SetEndereco(P1: JString); cdecl;//Deprecated
+    {class} procedure SetIE(P1: JString); cdecl;//Deprecated
+    {class} procedure SetIM(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNCfe(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNomeFantasia(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNumSeriaSAT(P1: JString); cdecl;//Deprecated
+    {class} procedure SetRazaoSocial(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVCfe(P1: JString); cdecl;//Deprecated
+    {class} function init(P1: TJavaArray<Byte>): JImplementacaoOBJXMLCANCELAMENTO; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/XML/ImplementacaoOBJXMLCANCELAMENTO')]
   JImplementacaoOBJXMLCANCELAMENTO = interface(JImplementacaoOBJXML)
-    ['{585C5827-5A42-470F-B138-D9697ECD3C27}']
+    ['{5FE94580-DAC0-49EB-ADA4-67319C5FC378}']
   end;
   TJImplementacaoOBJXMLCANCELAMENTO = class(TJavaGenericImport<JImplementacaoOBJXMLCANCELAMENTOClass, JImplementacaoOBJXMLCANCELAMENTO>) end;
 
   JImplementacaoOBJXMLNFCEClass = interface(JImplementacaoOBJXMLClass)
-    ['{8C1E1038-7ACF-48AC-9079-B1AEEFF2366C}']
-    {class} function ConstroiInfQRCode(P1: Integer; P2: JString): JString; cdecl;
-    {class} function ConstroiOBJ: Boolean; cdecl;
-    {class} function GetCNPJConsumidor: JString; cdecl;
-    {class} function GetCNPJEmit: JString; cdecl;
-    {class} function GetCPFConsumidor: JString; cdecl;
-    {class} function GetChaveConsulta: JString; cdecl;
-    {class} function GetDHEmi: JString; cdecl;
-    {class} function GetDHRecpto: JString; cdecl;
-    {class} function GetDigestValue: JString; cdecl;
-    {class} function GetEndereco: JString; cdecl;
-    {class} function GetEnderecoDest: JString; cdecl;
-    {class} function GetEnderecoEntrega: JString; cdecl;
-    {class} function GetIDEstrConsumidor: JString; cdecl;
-    {class} function GetIE: JString; cdecl;
-    {class} function GetInfAdFisco: JString; cdecl;
-    {class} function GetInfCpl: JString; cdecl;
-    {class} function GetInfoPag: JArrayList; cdecl;
-    {class} function GetNNF: JString; cdecl;
-    {class} function GetNProtocolo: JString; cdecl;
-    {class} function GetNomeDest: JString; cdecl;
-    {class} function GetProdutos: JArrayList; cdecl;
-    {class} function GetRazaoSocial: JString; cdecl;
-    {class} function GetSerie: JString; cdecl;
-    {class} function GetTpAmb: JString; cdecl;
-    {class} function GetTpEmis: JString; cdecl;
-    {class} function GetVDesc: JString; cdecl;
-    {class} function GetVFrete: JString; cdecl;
-    {class} function GetVNF: JString; cdecl;
-    {class} function GetVOutros: JString; cdecl;
-    {class} function GetVSeg: JString; cdecl;
-    {class} function GetVTotTrib: JString; cdecl;
-    {class} function GetVTroco: JString; cdecl;
-    {class} function ObtemURL(P1: Integer; P2: Integer): JString; cdecl;
-    {class} function PreencheCabecalho(P1: Integer; P2: Boolean): TJavaArray<Char>; cdecl;
-    {class} function PreencheLegendaProduto(P1: Integer; P2: Integer): TJavaArray<Char>; cdecl;
-    {class} function PreencheLinhaProduto(P1: JImplementacaoOBJPRODUTOXMLNFCE; P2: Integer; P3: Integer): TJavaArray<Char>; cdecl;
-    {class} function PreencheOBJ(P1: Integer): Boolean; cdecl;
-    {class} procedure SetCNPJConsumidor(P1: JString); cdecl;
-    {class} procedure SetCNPJEmit(P1: JString); cdecl;
-    {class} procedure SetCPFConsumidor(P1: JString); cdecl;
-    {class} procedure SetChaveConsulta(P1: JString); cdecl;
-    {class} procedure SetDHEmi(P1: JString); cdecl;
-    {class} procedure SetDHRecpto(P1: JString); cdecl;
-    {class} procedure SetDigestValue(P1: JString); cdecl;
-    {class} procedure SetEndereco(P1: JString); cdecl;
-    {class} procedure SetEnderecoDest(P1: JString); cdecl;
-    {class} procedure SetEnderecoEntrega(P1: JString); cdecl;
-    {class} procedure SetIDEstrConsumidor(P1: JString); cdecl;
-    {class} procedure SetIE(P1: JString); cdecl;
-    {class} procedure SetInfAdFisco(P1: JString); cdecl;
-    {class} procedure SetInfCpl(P1: JString); cdecl;
-    {class} procedure SetNNF(P1: JString); cdecl;
-    {class} procedure SetNProtocolo(P1: JString); cdecl;
-    {class} procedure SetNomeDest(P1: JString); cdecl;
-    {class} procedure SetRazaoSocial(P1: JString); cdecl;
-    {class} procedure SetSerie(P1: JString); cdecl;
-    {class} procedure SetTpAmb(P1: JString); cdecl;
-    {class} procedure SetTpEmis(P1: JString); cdecl;
-    {class} procedure SetVDesc(P1: JString); cdecl;
-    {class} procedure SetVFrete(P1: JString); cdecl;
-    {class} procedure SetVNF(P1: JString); cdecl;
-    {class} procedure SetVOutros(P1: JString); cdecl;
-    {class} procedure SetVSeg(P1: JString); cdecl;
-    {class} procedure SetVTotTrib(P1: JString); cdecl;
-    {class} procedure SetVTroco(P1: JString); cdecl;
-    {class} function init(P1: TJavaArray<Byte>): JImplementacaoOBJXMLNFCE; cdecl;
+    ['{EA8A7A9D-1E6E-4461-9912-87596C751A87}']
+    {class} function ConstroiInfQRCode(P1: Integer; P2: JString): JString; cdecl;//Deprecated
+    {class} function ConstroiOBJ: Boolean; cdecl;//Deprecated
+    {class} function GetCNPJConsumidor: JString; cdecl;//Deprecated
+    {class} function GetCNPJEmit: JString; cdecl;//Deprecated
+    {class} function GetCPFConsumidor: JString; cdecl;//Deprecated
+    {class} function GetChaveConsulta: JString; cdecl;//Deprecated
+    {class} function GetDHEmi: JString; cdecl;//Deprecated
+    {class} function GetDHRecpto: JString; cdecl;//Deprecated
+    {class} function GetDigestValue: JString; cdecl;//Deprecated
+    {class} function GetEndereco: JString; cdecl;//Deprecated
+    {class} function GetEnderecoDest: JString; cdecl;//Deprecated
+    {class} function GetEnderecoEntrega: JString; cdecl;//Deprecated
+    {class} function GetIDEstrConsumidor: JString; cdecl;//Deprecated
+    {class} function GetIE: JString; cdecl;//Deprecated
+    {class} function GetInfAdFisco: JString; cdecl;//Deprecated
+    {class} function GetInfCpl: JString; cdecl;//Deprecated
+    {class} function GetInfoPag: JArrayList; cdecl;//Deprecated
+    {class} function GetNNF: JString; cdecl;//Deprecated
+    {class} function GetNProtocolo: JString; cdecl;//Deprecated
+    {class} function GetNomeDest: JString; cdecl;//Deprecated
+    {class} function GetProdutos: JArrayList; cdecl;//Deprecated
+    {class} function GetRazaoSocial: JString; cdecl;//Deprecated
+    {class} function GetSerie: JString; cdecl;//Deprecated
+    {class} function GetTpAmb: JString; cdecl;//Deprecated
+    {class} function GetTpEmis: JString; cdecl;//Deprecated
+    {class} function GetVDesc: JString; cdecl;//Deprecated
+    {class} function GetVFrete: JString; cdecl;//Deprecated
+    {class} function GetVNF: JString; cdecl;//Deprecated
+    {class} function GetVOutros: JString; cdecl;//Deprecated
+    {class} function GetVProd: JString; cdecl;//Deprecated
+    {class} function GetVSeg: JString; cdecl;//Deprecated
+    {class} function GetVTotTrib: JString; cdecl;//Deprecated
+    {class} function GetVTroco: JString; cdecl;//Deprecated
+    {class} function ObtemURL(P1: Integer; P2: Integer): JString; cdecl;//Deprecated
+    {class} function PreencheCabecalho(P1: Integer; P2: Boolean): TJavaArray<Char>; cdecl;//Deprecated
+    {class} function PreencheLegendaProduto(P1: Integer; P2: Integer): TJavaArray<Char>; cdecl;//Deprecated
+    {class} function PreencheLinhaProduto(P1: JImplementacaoOBJPRODUTOXMLNFCE; P2: Integer; P3: Integer): TJavaArray<Char>; cdecl;//Deprecated
+    {class} function PreencheOBJ(P1: Integer): Boolean; cdecl;//Deprecated
+    {class} procedure SetCNPJConsumidor(P1: JString); cdecl;//Deprecated
+    {class} procedure SetCNPJEmit(P1: JString); cdecl;//Deprecated
+    {class} procedure SetCPFConsumidor(P1: JString); cdecl;//Deprecated
+    {class} procedure SetChaveConsulta(P1: JString); cdecl;//Deprecated
+    {class} procedure SetDHEmi(P1: JString); cdecl;//Deprecated
+    {class} procedure SetDHRecpto(P1: JString); cdecl;//Deprecated
+    {class} procedure SetDigestValue(P1: JString); cdecl;//Deprecated
+    {class} procedure SetEndereco(P1: JString); cdecl;//Deprecated
+    {class} procedure SetEnderecoDest(P1: JString); cdecl;//Deprecated
+    {class} procedure SetEnderecoEntrega(P1: JString); cdecl;//Deprecated
+    {class} procedure SetIDEstrConsumidor(P1: JString); cdecl;//Deprecated
+    {class} procedure SetIE(P1: JString); cdecl;//Deprecated
+    {class} procedure SetInfAdFisco(P1: JString); cdecl;//Deprecated
+    {class} procedure SetInfCpl(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNNF(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNProtocolo(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNomeDest(P1: JString); cdecl;//Deprecated
+    {class} procedure SetRazaoSocial(P1: JString); cdecl;//Deprecated
+    {class} procedure SetSerie(P1: JString); cdecl;//Deprecated
+    {class} procedure SetTpAmb(P1: JString); cdecl;//Deprecated
+    {class} procedure SetTpEmis(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVDesc(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVFrete(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVNF(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVOutros(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVProd(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVSeg(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVTotTrib(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVTroco(P1: JString); cdecl;//Deprecated
+    {class} function init(P1: TJavaArray<Byte>): JImplementacaoOBJXMLNFCE; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/XML/ImplementacaoOBJXMLNFCE')]
   JImplementacaoOBJXMLNFCE = interface(JImplementacaoOBJXML)
-    ['{7A106AB2-31EB-4C8B-BD6C-759AE2AF7F68}']
+    ['{DF6E9A87-FCFF-4971-A672-9A4F3B70BB1D}']
   end;
   TJImplementacaoOBJXMLNFCE = class(TJavaGenericImport<JImplementacaoOBJXMLNFCEClass, JImplementacaoOBJXMLNFCE>) end;
 
   JImplementacaoOBJXMLSATClass = interface(JImplementacaoOBJXMLClass)
-    ['{0EB44B05-2EA4-432A-BC11-10E64E9A0737}']
-    {class} function ConstruirObj: Boolean; cdecl;
-    {class} function GetCNPJ: JString; cdecl;
-    {class} function GetCNPJSH: JString; cdecl;
-    {class} function GetCodQRCode: JString; cdecl;
-    {class} function GetCodigoBarras: JString; cdecl;
-    {class} function GetDocDest: JString; cdecl;
-    {class} function GetDocDestRaw: JString; cdecl;
-    {class} function GetDtHrEmissao: JString; cdecl;
-    {class} function GetEndDest: JString; cdecl;
-    {class} function GetEndereco: JString; cdecl;
-    {class} function GetIE: JString; cdecl;
-    {class} function GetIM: JString; cdecl;
-    {class} function GetInfCpl: JString; cdecl;
-    {class} function GetNomeDest: JString; cdecl;
-    {class} function GetNomeFantasia: JString; cdecl;
-    {class} function GetNumDoc: JString; cdecl;
-    {class} function GetNumSerieSAT: JString; cdecl;
-    {class} function GetPagamentos: JArrayList; cdecl;
-    {class} function GetProdutos: JArrayList; cdecl;
-    {class} function GetRazaoSocial: JString; cdecl;
-    {class} function GetSignAC: JString; cdecl;
-    {class} function GetVAcresSubtot: JString; cdecl;
-    {class} function GetVCFeLei12741: JString; cdecl;
-    {class} function GetVDesc: JString; cdecl;
-    {class} function GetVDescSubtot: JString; cdecl;
-    {class} function GetVOutras: JString; cdecl;
-    {class} function GetVProd: JString; cdecl;
-    {class} function GetVTroco: JString; cdecl;
-    {class} function GetValorCfe: JString; cdecl;
-    {class} function GetXCampo: JString; cdecl;
-    {class} function GetXTexto: JString; cdecl;
-    {class} function PreencheLinhaProduto(P1: JImplementacaoOBJPRODUTOXMLSAT; P2: Integer; P3: Integer): TJavaArray<Char>; cdecl;
-    {class} function PreencheOBJ(P1: Integer): Boolean; cdecl;
-    {class} procedure SetCNPJ(P1: JString); cdecl;
-    {class} procedure SetCNPJSH(P1: JString); cdecl;
-    {class} procedure SetCodQRCode(P1: JString); cdecl;
-    {class} procedure SetCodigoBarras(P1: JString); cdecl;
-    {class} procedure SetDocDest(P1: JString); cdecl;
-    {class} procedure SetDocDestRaw(P1: JString); cdecl;
-    {class} procedure SetDtHrEmissao(P1: JString); cdecl;
-    {class} procedure SetEndDest(P1: JString); cdecl;
-    {class} procedure SetEndereco(P1: JString); cdecl;
-    {class} procedure SetIE(P1: JString); cdecl;
-    {class} procedure SetIM(P1: JString); cdecl;
-    {class} procedure SetInfCpl(P1: JString); cdecl;
-    {class} procedure SetNomeDest(P1: JString); cdecl;
-    {class} procedure SetNomeFantasia(P1: JString); cdecl;
-    {class} procedure SetNumDoc(P1: JString); cdecl;
-    {class} procedure SetNumSerieSAT(P1: JString); cdecl;
-    {class} procedure SetProdutos(P1: JImplementacaoOBJPRODUTOXMLSAT); cdecl;
-    {class} procedure SetRazaoSocial(P1: JString); cdecl;
-    {class} procedure SetSignAC(P1: JString); cdecl;
-    {class} procedure SetVAcresSubtot(P1: JString); cdecl;
-    {class} procedure SetVCFeLei12741(P1: JString); cdecl;
-    {class} procedure SetVDesc(P1: JString); cdecl;
-    {class} procedure SetVDescSubtot(P1: JString); cdecl;
-    {class} procedure SetVOutras(P1: JString); cdecl;
-    {class} procedure SetVProd(P1: JString); cdecl;
-    {class} procedure SetVTroco(P1: JString); cdecl;
-    {class} procedure SetValorCfe(P1: JString); cdecl;
-    {class} procedure SetXCampo(P1: JString); cdecl;
-    {class} procedure SetXTexto(P1: JString); cdecl;
-    {class} function init(P1: TJavaArray<Byte>): JImplementacaoOBJXMLSAT; cdecl;
+    ['{0F443FE6-1B95-48C2-A31D-2F71A3F485EE}']
+    {class} function ConstruirObj: Boolean; cdecl;//Deprecated
+    {class} function GetCNPJ: JString; cdecl;//Deprecated
+    {class} function GetCNPJSH: JString; cdecl;//Deprecated
+    {class} function GetCodQRCode: JString; cdecl;//Deprecated
+    {class} function GetCodigoBarras: JString; cdecl;//Deprecated
+    {class} function GetDocDest: JString; cdecl;//Deprecated
+    {class} function GetDocDestRaw: JString; cdecl;//Deprecated
+    {class} function GetDtHrEmissao: JString; cdecl;//Deprecated
+    {class} function GetEndDest: JString; cdecl;//Deprecated
+    {class} function GetEndereco: JString; cdecl;//Deprecated
+    {class} function GetIE: JString; cdecl;//Deprecated
+    {class} function GetIM: JString; cdecl;//Deprecated
+    {class} function GetInfCpl: JString; cdecl;//Deprecated
+    {class} function GetNomeDest: JString; cdecl;//Deprecated
+    {class} function GetNomeFantasia: JString; cdecl;//Deprecated
+    {class} function GetNumDoc: JString; cdecl;//Deprecated
+    {class} function GetNumSerieSAT: JString; cdecl;//Deprecated
+    {class} function GetPagamentos: JArrayList; cdecl;//Deprecated
+    {class} function GetProdutos: JArrayList; cdecl;//Deprecated
+    {class} function GetRazaoSocial: JString; cdecl;//Deprecated
+    {class} function GetSignAC: JString; cdecl;//Deprecated
+    {class} function GetVAcresSubtot: JString; cdecl;//Deprecated
+    {class} function GetVCFeLei12741: JString; cdecl;//Deprecated
+    {class} function GetVDesc: JString; cdecl;//Deprecated
+    {class} function GetVDescSubtot: JString; cdecl;//Deprecated
+    {class} function GetVOutras: JString; cdecl;//Deprecated
+    {class} function GetVProd: JString; cdecl;//Deprecated
+    {class} function GetVTroco: JString; cdecl;//Deprecated
+    {class} function GetValorCfe: JString; cdecl;//Deprecated
+    {class} function GetXCampo: JString; cdecl;//Deprecated
+    {class} function GetXTexto: JString; cdecl;//Deprecated
+    {class} function PreencheLinhaProduto(P1: JImplementacaoOBJPRODUTOXMLSAT; P2: Integer; P3: Integer): TJavaArray<Char>; cdecl;//Deprecated
+    {class} function PreencheOBJ(P1: Integer): Boolean; cdecl;//Deprecated
+    {class} procedure SetCNPJ(P1: JString); cdecl;//Deprecated
+    {class} procedure SetCNPJSH(P1: JString); cdecl;//Deprecated
+    {class} procedure SetCodQRCode(P1: JString); cdecl;//Deprecated
+    {class} procedure SetCodigoBarras(P1: JString); cdecl;//Deprecated
+    {class} procedure SetDocDest(P1: JString); cdecl;//Deprecated
+    {class} procedure SetDocDestRaw(P1: JString); cdecl;//Deprecated
+    {class} procedure SetDtHrEmissao(P1: JString); cdecl;//Deprecated
+    {class} procedure SetEndDest(P1: JString); cdecl;//Deprecated
+    {class} procedure SetEndereco(P1: JString); cdecl;//Deprecated
+    {class} procedure SetIE(P1: JString); cdecl;//Deprecated
+    {class} procedure SetIM(P1: JString); cdecl;//Deprecated
+    {class} procedure SetInfCpl(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNomeDest(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNomeFantasia(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNumDoc(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNumSerieSAT(P1: JString); cdecl;//Deprecated
+    {class} procedure SetProdutos(P1: JImplementacaoOBJPRODUTOXMLSAT); cdecl;//Deprecated
+    {class} procedure SetRazaoSocial(P1: JString); cdecl;//Deprecated
+    {class} procedure SetSignAC(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVAcresSubtot(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVCFeLei12741(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVDesc(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVDescSubtot(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVOutras(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVProd(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVTroco(P1: JString); cdecl;//Deprecated
+    {class} procedure SetValorCfe(P1: JString); cdecl;//Deprecated
+    {class} procedure SetXCampo(P1: JString); cdecl;//Deprecated
+    {class} procedure SetXTexto(P1: JString); cdecl;//Deprecated
+    {class} function init(P1: TJavaArray<Byte>): JImplementacaoOBJXMLSAT; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/XML/ImplementacaoOBJXMLSAT')]
   JImplementacaoOBJXMLSAT = interface(JImplementacaoOBJXML)
-    ['{9B07DC13-DFA1-40B0-B7B5-7F0528F5E187}']
+    ['{E1F60D53-A7FF-4971-9F35-3085971FE000}']
   end;
   TJImplementacaoOBJXMLSAT = class(TJavaGenericImport<JImplementacaoOBJXMLSATClass, JImplementacaoOBJXMLSAT>) end;
 
   JInterfaceOBJPRODUTOXMLNFCEClass = interface(JInterfaceOBJXMLPRODUTOClass)
-    ['{BF88AED8-6619-4D59-93BC-FDF539F33909}']
-    {class} function GetEAN13: JString; cdecl;
-    {class} procedure SetEAN13(P1: JString); cdecl;
+    ['{28F7AC94-3058-49E1-8023-4B998E01BA1C}']
+    {class} function GetEAN13: JString; cdecl;//Deprecated
+    {class} procedure SetEAN13(P1: JString); cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/XML/InterfaceOBJPRODUTOXMLNFCE')]
   JInterfaceOBJPRODUTOXMLNFCE = interface(JInterfaceOBJXMLPRODUTO)
-    ['{B419B86D-F0EC-4858-95F7-F94A626E24A1}']
+    ['{13BBABE3-1299-4B4C-A7CD-1E1B36435344}']
   end;
   TJInterfaceOBJPRODUTOXMLNFCE = class(TJavaGenericImport<JInterfaceOBJPRODUTOXMLNFCEClass, JInterfaceOBJPRODUTOXMLNFCE>) end;
 
   JInterfaceOBJPRODUTOXMLSATClass = interface(JInterfaceOBJXMLPRODUTOClass)
-    ['{D76585BB-C1DA-4DF1-A6F1-4ED775949A53}']
-    {class} function GetVBC: JString; cdecl;
-    {class} function GetVDeducISSQN: JString; cdecl;
-    {class} function GetVDescProd: JString; cdecl;
-    {class} function GetVOutrasProd: JString; cdecl;
-    {class} function GetVRatAcr: JString; cdecl;
-    {class} function GetVRatDesc: JString; cdecl;
-    {class} function GetValorAproxTributos: JString; cdecl;
-    {class} procedure SetVBC(P1: JString); cdecl;
-    {class} procedure SetVDeducISSQN(P1: JString); cdecl;
-    {class} procedure SetVDescProd(P1: JString); cdecl;
-    {class} procedure SetVOutrasProd(P1: JString); cdecl;
-    {class} procedure SetVRatAcr(P1: JString); cdecl;
-    {class} procedure SetVRatDesc(P1: JString); cdecl;
-    {class} procedure SetValorAproxTributos(P1: JString); cdecl;
+    ['{B915C992-F1F7-457C-A8C0-87DAD03DB5AD}']
+    {class} function GetVBC: JString; cdecl;//Deprecated
+    {class} function GetVDeducISSQN: JString; cdecl;//Deprecated
+    {class} function GetVDescProd: JString; cdecl;//Deprecated
+    {class} function GetVOutrasProd: JString; cdecl;//Deprecated
+    {class} function GetVRatAcr: JString; cdecl;//Deprecated
+    {class} function GetVRatDesc: JString; cdecl;//Deprecated
+    {class} function GetValorAproxTributos: JString; cdecl;//Deprecated
+    {class} procedure SetVBC(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVDeducISSQN(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVDescProd(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVOutrasProd(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVRatAcr(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVRatDesc(P1: JString); cdecl;//Deprecated
+    {class} procedure SetValorAproxTributos(P1: JString); cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/XML/InterfaceOBJPRODUTOXMLSAT')]
   JInterfaceOBJPRODUTOXMLSAT = interface(JInterfaceOBJXMLPRODUTO)
-    ['{1CEC8A66-E18A-43DE-B3BE-0BDC58F3E5AC}']
+    ['{1E6A2138-9014-468C-9404-674256481470}']
   end;
   TJInterfaceOBJPRODUTOXMLSAT = class(TJavaGenericImport<JInterfaceOBJPRODUTOXMLSATClass, JInterfaceOBJPRODUTOXMLSAT>) end;
 
   JInterfaceOBJXMLCANCELAMENTOClass = interface(JInterfaceOBJXMLClass)
-    ['{417D1AF5-B6DA-401A-95F1-7CE228376FB8}']
-    {class} function ConstroiObj: Boolean; cdecl;
-    {class} function GetAssQRCode: JString; cdecl;
-    {class} function GetCNPJ: JString; cdecl;
-    {class} function GetCPF_CNPJ: JString; cdecl;
-    {class} function GetChaveAcesso: JString; cdecl;
-    {class} function GetChaveAcessoACancelar: JString; cdecl;
-    {class} function GetDtHrCupomACancelar: JString; cdecl;
-    {class} function GetDtHrEmissao: JString; cdecl;
-    {class} function GetEndereco: JString; cdecl;
-    {class} function GetIE: JString; cdecl;
-    {class} function GetIM: JString; cdecl;
-    {class} function GetNCfe: JString; cdecl;
-    {class} function GetNomeFantasia: JString; cdecl;
-    {class} function GetNumSerieSAT: JString; cdecl;
-    {class} function GetRazaoSocial: JString; cdecl;
-    {class} function GetVCfe: JString; cdecl;
-    {class} function PreencheOBJ(P1: Integer): Boolean; cdecl;
-    {class} procedure SetAssQRCode(P1: JString); cdecl;
-    {class} procedure SetCNPJ(P1: JString); cdecl;
-    {class} procedure SetCPF_CNPJ(P1: JString); cdecl;
-    {class} procedure SetChaveAcesso(P1: JString); cdecl;
-    {class} procedure SetChaveAcessoACancelar(P1: JString); cdecl;
-    {class} procedure SetDtHrCupomACancelar(P1: JString); cdecl;
-    {class} procedure SetDtHrEmissao(P1: JString); cdecl;
-    {class} procedure SetEndereco(P1: JString); cdecl;
-    {class} procedure SetIE(P1: JString); cdecl;
-    {class} procedure SetIM(P1: JString); cdecl;
-    {class} procedure SetNCfe(P1: JString); cdecl;
-    {class} procedure SetNomeFantasia(P1: JString); cdecl;
-    {class} procedure SetNumSeriaSAT(P1: JString); cdecl;
-    {class} procedure SetRazaoSocial(P1: JString); cdecl;
-    {class} procedure SetVCfe(P1: JString); cdecl;
+    ['{8E162996-FB3C-4386-A1D8-B80F14E48816}']
+    {class} function ConstroiObj: Boolean; cdecl;//Deprecated
+    {class} function GetAssQRCode: JString; cdecl;//Deprecated
+    {class} function GetCNPJ: JString; cdecl;//Deprecated
+    {class} function GetCPF_CNPJ: JString; cdecl;//Deprecated
+    {class} function GetChaveAcesso: JString; cdecl;//Deprecated
+    {class} function GetChaveAcessoACancelar: JString; cdecl;//Deprecated
+    {class} function GetDtHrCupomACancelar: JString; cdecl;//Deprecated
+    {class} function GetDtHrEmissao: JString; cdecl;//Deprecated
+    {class} function GetEndereco: JString; cdecl;//Deprecated
+    {class} function GetIE: JString; cdecl;//Deprecated
+    {class} function GetIM: JString; cdecl;//Deprecated
+    {class} function GetNCfe: JString; cdecl;//Deprecated
+    {class} function GetNomeFantasia: JString; cdecl;//Deprecated
+    {class} function GetNumSerieSAT: JString; cdecl;//Deprecated
+    {class} function GetRazaoSocial: JString; cdecl;//Deprecated
+    {class} function GetVCfe: JString; cdecl;//Deprecated
+    {class} function PreencheOBJ(P1: Integer): Boolean; cdecl;//Deprecated
+    {class} procedure SetAssQRCode(P1: JString); cdecl;//Deprecated
+    {class} procedure SetCNPJ(P1: JString); cdecl;//Deprecated
+    {class} procedure SetCPF_CNPJ(P1: JString); cdecl;//Deprecated
+    {class} procedure SetChaveAcesso(P1: JString); cdecl;//Deprecated
+    {class} procedure SetChaveAcessoACancelar(P1: JString); cdecl;//Deprecated
+    {class} procedure SetDtHrCupomACancelar(P1: JString); cdecl;//Deprecated
+    {class} procedure SetDtHrEmissao(P1: JString); cdecl;//Deprecated
+    {class} procedure SetEndereco(P1: JString); cdecl;//Deprecated
+    {class} procedure SetIE(P1: JString); cdecl;//Deprecated
+    {class} procedure SetIM(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNCfe(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNomeFantasia(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNumSeriaSAT(P1: JString); cdecl;//Deprecated
+    {class} procedure SetRazaoSocial(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVCfe(P1: JString); cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/XML/InterfaceOBJXMLCANCELAMENTO')]
   JInterfaceOBJXMLCANCELAMENTO = interface(JInterfaceOBJXML)
-    ['{91E46B7B-3A86-48D9-8CB8-E5162B80EDB7}']
+    ['{E68ECB3E-117A-4A94-AE5D-D425914E9997}']
   end;
   TJInterfaceOBJXMLCANCELAMENTO = class(TJavaGenericImport<JInterfaceOBJXMLCANCELAMENTOClass, JInterfaceOBJXMLCANCELAMENTO>) end;
 
   JInterfaceOBJXMLNFCEClass = interface(JInterfaceOBJXMLClass)
-    ['{3783D732-0B5A-492E-BB71-95642EDC3A3B}']
-    {class} function ConstroiInfQRCode(P1: Integer; P2: JString): JString; cdecl;
-    {class} function ConstroiOBJ: Boolean; cdecl;
-    {class} function GetCNPJConsumidor: JString; cdecl;
-    {class} function GetCNPJEmit: JString; cdecl;
-    {class} function GetCPFConsumidor: JString; cdecl;
-    {class} function GetChaveConsulta: JString; cdecl;
-    {class} function GetDHEmi: JString; cdecl;
-    {class} function GetDHRecpto: JString; cdecl;
-    {class} function GetDigestValue: JString; cdecl;
-    {class} function GetEndereco: JString; cdecl;
-    {class} function GetEnderecoDest: JString; cdecl;
-    {class} function GetEnderecoEntrega: JString; cdecl;
-    {class} function GetIDEstrConsumidor: JString; cdecl;
-    {class} function GetIE: JString; cdecl;
-    {class} function GetInfAdFisco: JString; cdecl;
-    {class} function GetInfCpl: JString; cdecl;
-    {class} function GetInfoPag: JArrayList; cdecl;
-    {class} function GetNNF: JString; cdecl;
-    {class} function GetNProtocolo: JString; cdecl;
-    {class} function GetNomeDest: JString; cdecl;
-    {class} function GetProdutos: JArrayList; cdecl;
-    {class} function GetRazaoSocial: JString; cdecl;
-    {class} function GetSerie: JString; cdecl;
-    {class} function GetTpAmb: JString; cdecl;
-    {class} function GetTpEmis: JString; cdecl;
-    {class} function GetVDesc: JString; cdecl;
-    {class} function GetVFrete: JString; cdecl;
-    {class} function GetVNF: JString; cdecl;
-    {class} function GetVOutros: JString; cdecl;
-    {class} function GetVSeg: JString; cdecl;
-    {class} function GetVTotTrib: JString; cdecl;
-    {class} function GetVTroco: JString; cdecl;
-    {class} function ObtemURL(P1: Integer; P2: Integer): JString; cdecl;
-    {class} function PreencheCabecalho(P1: Integer; P2: Boolean): TJavaArray<Char>; cdecl;
-    {class} function PreencheLegendaProduto(P1: Integer; P2: Integer): TJavaArray<Char>; cdecl;
-    {class} function PreencheLinhaProduto(P1: JImplementacaoOBJPRODUTOXMLNFCE; P2: Integer; P3: Integer): TJavaArray<Char>; cdecl;
-    {class} function PreencheOBJ(P1: Integer): Boolean; cdecl;
-    {class} procedure SetCNPJConsumidor(P1: JString); cdecl;
-    {class} procedure SetCNPJEmit(P1: JString); cdecl;
-    {class} procedure SetCPFConsumidor(P1: JString); cdecl;
-    {class} procedure SetChaveConsulta(P1: JString); cdecl;
-    {class} procedure SetDHEmi(P1: JString); cdecl;
-    {class} procedure SetDHRecpto(P1: JString); cdecl;
-    {class} procedure SetDigestValue(P1: JString); cdecl;
-    {class} procedure SetEndereco(P1: JString); cdecl;
-    {class} procedure SetEnderecoDest(P1: JString); cdecl;
-    {class} procedure SetEnderecoEntrega(P1: JString); cdecl;
-    {class} procedure SetIDEstrConsumidor(P1: JString); cdecl;
-    {class} procedure SetIE(P1: JString); cdecl;
-    {class} procedure SetInfAdFisco(P1: JString); cdecl;
-    {class} procedure SetInfCpl(P1: JString); cdecl;
-    {class} procedure SetNNF(P1: JString); cdecl;
-    {class} procedure SetNProtocolo(P1: JString); cdecl;
-    {class} procedure SetNomeDest(P1: JString); cdecl;
-    {class} procedure SetRazaoSocial(P1: JString); cdecl;
-    {class} procedure SetSerie(P1: JString); cdecl;
-    {class} procedure SetTpAmb(P1: JString); cdecl;
-    {class} procedure SetTpEmis(P1: JString); cdecl;
-    {class} procedure SetVDesc(P1: JString); cdecl;
-    {class} procedure SetVFrete(P1: JString); cdecl;
-    {class} procedure SetVNF(P1: JString); cdecl;
-    {class} procedure SetVOutros(P1: JString); cdecl;
-    {class} procedure SetVSeg(P1: JString); cdecl;
-    {class} procedure SetVTotTrib(P1: JString); cdecl;
-    {class} procedure SetVTroco(P1: JString); cdecl;
+    ['{16E0EC91-2B3D-472A-B526-7AA3CA729E4A}']
+    {class} function ConstroiInfQRCode(P1: Integer; P2: JString): JString; cdecl;//Deprecated
+    {class} function ConstroiOBJ: Boolean; cdecl;//Deprecated
+    {class} function GetCNPJConsumidor: JString; cdecl;//Deprecated
+    {class} function GetCNPJEmit: JString; cdecl;//Deprecated
+    {class} function GetCPFConsumidor: JString; cdecl;//Deprecated
+    {class} function GetChaveConsulta: JString; cdecl;//Deprecated
+    {class} function GetDHEmi: JString; cdecl;//Deprecated
+    {class} function GetDHRecpto: JString; cdecl;//Deprecated
+    {class} function GetDigestValue: JString; cdecl;//Deprecated
+    {class} function GetEndereco: JString; cdecl;//Deprecated
+    {class} function GetEnderecoDest: JString; cdecl;//Deprecated
+    {class} function GetEnderecoEntrega: JString; cdecl;//Deprecated
+    {class} function GetIDEstrConsumidor: JString; cdecl;//Deprecated
+    {class} function GetIE: JString; cdecl;//Deprecated
+    {class} function GetInfAdFisco: JString; cdecl;//Deprecated
+    {class} function GetInfCpl: JString; cdecl;//Deprecated
+    {class} function GetInfoPag: JArrayList; cdecl;//Deprecated
+    {class} function GetNNF: JString; cdecl;//Deprecated
+    {class} function GetNProtocolo: JString; cdecl;//Deprecated
+    {class} function GetNomeDest: JString; cdecl;//Deprecated
+    {class} function GetProdutos: JArrayList; cdecl;//Deprecated
+    {class} function GetRazaoSocial: JString; cdecl;//Deprecated
+    {class} function GetSerie: JString; cdecl;//Deprecated
+    {class} function GetTpAmb: JString; cdecl;//Deprecated
+    {class} function GetTpEmis: JString; cdecl;//Deprecated
+    {class} function GetVDesc: JString; cdecl;//Deprecated
+    {class} function GetVFrete: JString; cdecl;//Deprecated
+    {class} function GetVNF: JString; cdecl;//Deprecated
+    {class} function GetVOutros: JString; cdecl;//Deprecated
+    {class} function GetVProd: JString; cdecl;//Deprecated
+    {class} function GetVSeg: JString; cdecl;//Deprecated
+    {class} function GetVTotTrib: JString; cdecl;//Deprecated
+    {class} function GetVTroco: JString; cdecl;//Deprecated
+    {class} function ObtemURL(P1: Integer; P2: Integer): JString; cdecl;//Deprecated
+    {class} function PreencheCabecalho(P1: Integer; P2: Boolean): TJavaArray<Char>; cdecl;//Deprecated
+    {class} function PreencheLegendaProduto(P1: Integer; P2: Integer): TJavaArray<Char>; cdecl;//Deprecated
+    {class} function PreencheLinhaProduto(P1: JImplementacaoOBJPRODUTOXMLNFCE; P2: Integer; P3: Integer): TJavaArray<Char>; cdecl;//Deprecated
+    {class} function PreencheOBJ(P1: Integer): Boolean; cdecl;//Deprecated
+    {class} procedure SetCNPJConsumidor(P1: JString); cdecl;//Deprecated
+    {class} procedure SetCNPJEmit(P1: JString); cdecl;//Deprecated
+    {class} procedure SetCPFConsumidor(P1: JString); cdecl;//Deprecated
+    {class} procedure SetChaveConsulta(P1: JString); cdecl;//Deprecated
+    {class} procedure SetDHEmi(P1: JString); cdecl;//Deprecated
+    {class} procedure SetDHRecpto(P1: JString); cdecl;//Deprecated
+    {class} procedure SetDigestValue(P1: JString); cdecl;//Deprecated
+    {class} procedure SetEndereco(P1: JString); cdecl;//Deprecated
+    {class} procedure SetEnderecoDest(P1: JString); cdecl;//Deprecated
+    {class} procedure SetEnderecoEntrega(P1: JString); cdecl;//Deprecated
+    {class} procedure SetIDEstrConsumidor(P1: JString); cdecl;//Deprecated
+    {class} procedure SetIE(P1: JString); cdecl;//Deprecated
+    {class} procedure SetInfAdFisco(P1: JString); cdecl;//Deprecated
+    {class} procedure SetInfCpl(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNNF(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNProtocolo(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNomeDest(P1: JString); cdecl;//Deprecated
+    {class} procedure SetRazaoSocial(P1: JString); cdecl;//Deprecated
+    {class} procedure SetSerie(P1: JString); cdecl;//Deprecated
+    {class} procedure SetTpAmb(P1: JString); cdecl;//Deprecated
+    {class} procedure SetTpEmis(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVDesc(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVFrete(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVNF(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVOutros(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVProd(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVSeg(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVTotTrib(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVTroco(P1: JString); cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/XML/InterfaceOBJXMLNFCE')]
   JInterfaceOBJXMLNFCE = interface(JInterfaceOBJXML)
-    ['{C4B6CC0D-3F89-414F-8334-6E72F6E52203}']
+    ['{4FBE89F1-0C0D-40D2-B8A2-A6626A518FA5}']
   end;
   TJInterfaceOBJXMLNFCE = class(TJavaGenericImport<JInterfaceOBJXMLNFCEClass, JInterfaceOBJXMLNFCE>) end;
 
   JInterfaceOBJXMLSATClass = interface(JInterfaceOBJXMLClass)
-    ['{0A4E6C2A-645B-4179-8A1E-B2E78A46B5B0}']
-    {class} function ConstruirObj: Boolean; cdecl;
-    {class} function GetCNPJ: JString; cdecl;
-    {class} function GetCNPJSH: JString; cdecl;
-    {class} function GetCodQRCode: JString; cdecl;
-    {class} function GetCodigoBarras: JString; cdecl;
-    {class} function GetDocDest: JString; cdecl;
-    {class} function GetDocDestRaw: JString; cdecl;
-    {class} function GetDtHrEmissao: JString; cdecl;
-    {class} function GetEndDest: JString; cdecl;
-    {class} function GetEndereco: JString; cdecl;
-    {class} function GetIE: JString; cdecl;
-    {class} function GetIM: JString; cdecl;
-    {class} function GetInfCpl: JString; cdecl;
-    {class} function GetNomeDest: JString; cdecl;
-    {class} function GetNomeFantasia: JString; cdecl;
-    {class} function GetNumDoc: JString; cdecl;
-    {class} function GetNumSerieSAT: JString; cdecl;
-    {class} function GetPagamentos: JArrayList; cdecl;
-    {class} function GetProdutos: JArrayList; cdecl;
-    {class} function GetRazaoSocial: JString; cdecl;
-    {class} function GetSignAC: JString; cdecl;
-    {class} function GetVAcresSubtot: JString; cdecl;
-    {class} function GetVCFeLei12741: JString; cdecl;
-    {class} function GetVDesc: JString; cdecl;
-    {class} function GetVDescSubtot: JString; cdecl;
-    {class} function GetVOutras: JString; cdecl;
-    {class} function GetVProd: JString; cdecl;
-    {class} function GetVTroco: JString; cdecl;
-    {class} function GetValorCfe: JString; cdecl;
-    {class} function GetXCampo: JString; cdecl;
-    {class} function GetXTexto: JString; cdecl;
-    {class} function PreencheLinhaProduto(P1: JImplementacaoOBJPRODUTOXMLSAT; P2: Integer; P3: Integer): TJavaArray<Char>; cdecl;
-    {class} function PreencheOBJ(P1: Integer): Boolean; cdecl;
-    {class} procedure SetCNPJ(P1: JString); cdecl;
-    {class} procedure SetCNPJSH(P1: JString); cdecl;
-    {class} procedure SetCodQRCode(P1: JString); cdecl;
-    {class} procedure SetCodigoBarras(P1: JString); cdecl;
-    {class} procedure SetDocDest(P1: JString); cdecl;
-    {class} procedure SetDocDestRaw(P1: JString); cdecl;
-    {class} procedure SetDtHrEmissao(P1: JString); cdecl;
-    {class} procedure SetEndDest(P1: JString); cdecl;
-    {class} procedure SetEndereco(P1: JString); cdecl;
-    {class} procedure SetIE(P1: JString); cdecl;
-    {class} procedure SetIM(P1: JString); cdecl;
-    {class} procedure SetInfCpl(P1: JString); cdecl;
-    {class} procedure SetNomeDest(P1: JString); cdecl;
-    {class} procedure SetNomeFantasia(P1: JString); cdecl;
-    {class} procedure SetNumDoc(P1: JString); cdecl;
-    {class} procedure SetNumSerieSAT(P1: JString); cdecl;
-    {class} procedure SetProdutos(P1: JImplementacaoOBJPRODUTOXMLSAT); cdecl;
-    {class} procedure SetRazaoSocial(P1: JString); cdecl;
-    {class} procedure SetSignAC(P1: JString); cdecl;
-    {class} procedure SetVAcresSubtot(P1: JString); cdecl;
-    {class} procedure SetVCFeLei12741(P1: JString); cdecl;
-    {class} procedure SetVDesc(P1: JString); cdecl;
-    {class} procedure SetVDescSubtot(P1: JString); cdecl;
-    {class} procedure SetVOutras(P1: JString); cdecl;
-    {class} procedure SetVProd(P1: JString); cdecl;
-    {class} procedure SetVTroco(P1: JString); cdecl;
-    {class} procedure SetValorCfe(P1: JString); cdecl;
-    {class} procedure SetXCampo(P1: JString); cdecl;
-    {class} procedure SetXTexto(P1: JString); cdecl;
+    ['{BA20C860-E4F1-4BCB-8B1E-A4180B35F5AE}']
+    {class} function ConstruirObj: Boolean; cdecl;//Deprecated
+    {class} function GetCNPJ: JString; cdecl;//Deprecated
+    {class} function GetCNPJSH: JString; cdecl;//Deprecated
+    {class} function GetCodQRCode: JString; cdecl;//Deprecated
+    {class} function GetCodigoBarras: JString; cdecl;//Deprecated
+    {class} function GetDocDest: JString; cdecl;//Deprecated
+    {class} function GetDocDestRaw: JString; cdecl;//Deprecated
+    {class} function GetDtHrEmissao: JString; cdecl;//Deprecated
+    {class} function GetEndDest: JString; cdecl;//Deprecated
+    {class} function GetEndereco: JString; cdecl;//Deprecated
+    {class} function GetIE: JString; cdecl;//Deprecated
+    {class} function GetIM: JString; cdecl;//Deprecated
+    {class} function GetInfCpl: JString; cdecl;//Deprecated
+    {class} function GetNomeDest: JString; cdecl;//Deprecated
+    {class} function GetNomeFantasia: JString; cdecl;//Deprecated
+    {class} function GetNumDoc: JString; cdecl;//Deprecated
+    {class} function GetNumSerieSAT: JString; cdecl;//Deprecated
+    {class} function GetPagamentos: JArrayList; cdecl;//Deprecated
+    {class} function GetProdutos: JArrayList; cdecl;//Deprecated
+    {class} function GetRazaoSocial: JString; cdecl;//Deprecated
+    {class} function GetSignAC: JString; cdecl;//Deprecated
+    {class} function GetVAcresSubtot: JString; cdecl;//Deprecated
+    {class} function GetVCFeLei12741: JString; cdecl;//Deprecated
+    {class} function GetVDesc: JString; cdecl;//Deprecated
+    {class} function GetVDescSubtot: JString; cdecl;//Deprecated
+    {class} function GetVOutras: JString; cdecl;//Deprecated
+    {class} function GetVProd: JString; cdecl;//Deprecated
+    {class} function GetVTroco: JString; cdecl;//Deprecated
+    {class} function GetValorCfe: JString; cdecl;//Deprecated
+    {class} function GetXCampo: JString; cdecl;//Deprecated
+    {class} function GetXTexto: JString; cdecl;//Deprecated
+    {class} function PreencheLinhaProduto(P1: JImplementacaoOBJPRODUTOXMLSAT; P2: Integer; P3: Integer): TJavaArray<Char>; cdecl;//Deprecated
+    {class} function PreencheOBJ(P1: Integer): Boolean; cdecl;//Deprecated
+    {class} procedure SetCNPJ(P1: JString); cdecl;//Deprecated
+    {class} procedure SetCNPJSH(P1: JString); cdecl;//Deprecated
+    {class} procedure SetCodQRCode(P1: JString); cdecl;//Deprecated
+    {class} procedure SetCodigoBarras(P1: JString); cdecl;//Deprecated
+    {class} procedure SetDocDest(P1: JString); cdecl;//Deprecated
+    {class} procedure SetDocDestRaw(P1: JString); cdecl;//Deprecated
+    {class} procedure SetDtHrEmissao(P1: JString); cdecl;//Deprecated
+    {class} procedure SetEndDest(P1: JString); cdecl;//Deprecated
+    {class} procedure SetEndereco(P1: JString); cdecl;//Deprecated
+    {class} procedure SetIE(P1: JString); cdecl;//Deprecated
+    {class} procedure SetIM(P1: JString); cdecl;//Deprecated
+    {class} procedure SetInfCpl(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNomeDest(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNomeFantasia(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNumDoc(P1: JString); cdecl;//Deprecated
+    {class} procedure SetNumSerieSAT(P1: JString); cdecl;//Deprecated
+    {class} procedure SetProdutos(P1: JImplementacaoOBJPRODUTOXMLSAT); cdecl;//Deprecated
+    {class} procedure SetRazaoSocial(P1: JString); cdecl;//Deprecated
+    {class} procedure SetSignAC(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVAcresSubtot(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVCFeLei12741(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVDesc(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVDescSubtot(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVOutras(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVProd(P1: JString); cdecl;//Deprecated
+    {class} procedure SetVTroco(P1: JString); cdecl;//Deprecated
+    {class} procedure SetValorCfe(P1: JString); cdecl;//Deprecated
+    {class} procedure SetXCampo(P1: JString); cdecl;//Deprecated
+    {class} procedure SetXTexto(P1: JString); cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Impressora/XML/InterfaceOBJXMLSAT')]
   JInterfaceOBJXMLSAT = interface(JInterfaceOBJXML)
-    ['{0BEC9C95-38BD-4FE6-9A9D-C17045FC51D4}']
+    ['{AA257560-BBA5-4702-A501-55CFCDD985C9}']
   end;
   TJInterfaceOBJXMLSAT = class(TJavaGenericImport<JInterfaceOBJXMLSATClass, JInterfaceOBJXMLSAT>) end;
 
   JScanner_ScannerClass = interface(JObjectClass)
-    ['{2BBCDF17-3C78-4155-B893-287E9B8B2E6C}']
-    {class} function getScanner(P1: JContext): JIntent; cdecl;
-    {class} function init: JScanner_Scanner; cdecl;
+    ['{65EC32B5-0F1C-4548-9A2C-4B52ECB2C712}']
+    {class} function getScanner(P1: JContext): JIntent; cdecl;//Deprecated
+    {class} function init: JScanner_Scanner; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Scanner/Scanner')]
   JScanner_Scanner = interface(JObject)
-    ['{304A0639-9543-4B91-B665-0E5D6F91A844}']
+    ['{FCFDA060-72AA-455A-B19E-B4ED05913FBC}']
   end;
   TJScanner_Scanner = class(TJavaGenericImport<JScanner_ScannerClass, JScanner_Scanner>) end;
 
   JAssinaturasClass = interface(JObjectClass)
-    ['{FE8A3E09-906A-464C-A1AC-AEEE6F5F3730}']
+    ['{3DA936B3-5954-4449-B3AE-DE178DF3984F}']
     {class} function _GetBOOLEAN: Integer; cdecl;
     {class} function _GetBYTE: Integer; cdecl;
     {class} function _GetCHAR: Integer; cdecl;
@@ -3726,22 +3735,22 @@ type
 
   [JavaSignature('com/elgin/e1/Servico/Assinaturas')]
   JAssinaturas = interface(JObject)
-    ['{34A7453C-8EAC-48F2-9045-7752279179F2}']
+    ['{B1AB549D-4911-470E-80FB-53659FDF2788}']
   end;
   TJAssinaturas = class(TJavaGenericImport<JAssinaturasClass, JAssinaturas>) end;
 
   JParametrosClass = interface(JObjectClass)
-    ['{8EC74349-E3DF-448E-8BD8-9AC11C182F95}']
+    ['{4015A2F6-84B9-488B-BBF2-6E8B4292DBF8}']
   end;
 
   [JavaSignature('com/elgin/e1/Servico/Parametros')]
   JParametros = interface(JObject)
-    ['{75002989-5A38-440B-8FF6-9FA4BFE4583C}']
+    ['{B0F2D4D4-4FD6-4EC5-8757-6F5EB570774A}']
   end;
   TJParametros = class(TJavaGenericImport<JParametrosClass, JParametros>) end;
 
   JServicoE1Class = interface(JObjectClass)
-    ['{D461D07E-59F8-4358-98D5-0A3A7287C071}']
+    ['{83B1006B-2F9B-4C26-8307-F33FAB658F05}']
     {class} function _GetCOMANDO_DELIMITADO: Integer; cdecl;
     {class} function _GetCOMANDO_JSON: Integer; cdecl;
     {class} function _GetMODULO_ETIQUETA: JString; cdecl;
@@ -3769,141 +3778,141 @@ type
 
   [JavaSignature('com/elgin/e1/Servico/ServicoE1')]
   JServicoE1 = interface(JObject)
-    ['{A4C572E4-FCE0-43B3-8620-4F14F422E3A2}']
+    ['{DB1BB745-FC38-40C0-8208-B3E70329F251}']
   end;
   TJServicoE1 = class(TJavaGenericImport<JServicoE1Class, JServicoE1>) end;
 
   JServicoE1_EtiquetaClass = interface(JObjectClass)
-    ['{1F433714-4057-4D0D-BA5E-C80A606ECF09}']
-    {class} function DespejarArquivo(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: JString): TJavaArray<Byte>; cdecl;
-    {class} function EnviaImagem(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: Integer; P7: JString; P8: JString): TJavaArray<Byte>; cdecl;
-    {class} function ExcluiImagem(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: JString): TJavaArray<Byte>; cdecl;
-    {class} function Feed(P1: Integer; P2: JString; P3: JString; P4: Integer): TJavaArray<Byte>; cdecl;
-    {class} function GerarBarCode1D(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString; P9: Integer): TJavaArray<Byte>; cdecl;
-    {class} function GerarBox(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer): TJavaArray<Byte>; cdecl;
-    {class} function GerarDataBar(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString; P9: JString): TJavaArray<Byte>; cdecl;
-    {class} function GerarDataBarExpanded(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString; P9: JString): TJavaArray<Byte>; cdecl;
-    {class} function GerarDataMatrix(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): TJavaArray<Byte>; cdecl;
-    {class} function GerarImagem(P1: Integer; P2: Integer; P3: JString): TJavaArray<Byte>; cdecl;
-    {class} function GerarLinha(P1: Integer; P2: Integer; P3: Integer; P4: Integer): TJavaArray<Byte>; cdecl;
-    {class} function GerarMaxiCode(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString): TJavaArray<Byte>; cdecl;
-    {class} function GerarPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: Integer; P9: Integer; P10: Integer; P11: JString): TJavaArray<Byte>; cdecl;
-    {class} function GerarQRCodeAuto(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: JString): TJavaArray<Byte>; cdecl;
-    {class} function GerarQRCodeManual(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: Integer; P9: Integer; P10: Integer; P11: JString): TJavaArray<Byte>; cdecl;
-    {class} function GerarTexto(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): TJavaArray<Byte>; cdecl;
-    {class} function GerarTextoASD(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): TJavaArray<Byte>; cdecl;
-    {class} function GerarTextoCourier(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): TJavaArray<Byte>; cdecl;
-    {class} function GetVersaoDLL: TJavaArray<Byte>; cdecl;
-    {class} function Imprime(P1: Integer; P2: JString; P3: JString; P4: Integer): TJavaArray<Byte>; cdecl;
-    {class} function Limpa(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function LimpaMemoria(P1: Integer; P2: JString; P3: JString; P4: Integer): TJavaArray<Byte>; cdecl;
-    {class} function LimpaModulo(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): TJavaArray<Byte>; cdecl;
-    {class} function MemoryStatus(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): TJavaArray<Byte>; cdecl;
-    {class} function Reset(P1: Integer; P2: JString; P3: JString; P4: Integer): TJavaArray<Byte>; cdecl;
-    {class} function SetAlturaGap(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): TJavaArray<Byte>; cdecl;
-    {class} function SetBackfeed(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function SetBaudrate(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: Integer): TJavaArray<Byte>; cdecl;
-    {class} function SetCalor(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function SetCortarZero(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function SetLength(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function SetLogicImgMode(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function SetMedidas(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function SetMirror(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function SetModoContinuo(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function SetOffsetColuna(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function SetOffsetLinha(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function SetPrintStPos(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function SetQtde(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function SetSensor(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function SetSymbolASD(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): TJavaArray<Byte>; cdecl;
-    {class} function SetTamPixel(P1: Integer; P2: Integer): TJavaArray<Byte>; cdecl;
-    {class} function SetTipoTransferencia(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): TJavaArray<Byte>; cdecl;
-    {class} function SetVelImpressao(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function Status(P1: Integer; P2: JString; P3: JString; P4: Integer): TJavaArray<Byte>; cdecl;
-    {class} function StatusEPL(P1: Integer; P2: JString; P3: JString; P4: Integer): TJavaArray<Byte>; cdecl;
-    {class} function Teste(P1: Integer; P2: JString; P3: JString; P4: Integer): TJavaArray<Byte>; cdecl;
-    {class} function init: JServicoE1_Etiqueta; cdecl;
+    ['{710612A2-3FEF-4907-8D32-E6A079D0621A}']
+    {class} function DespejarArquivo(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function EnviaImagem(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: Integer; P7: JString; P8: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function ExcluiImagem(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function Feed(P1: Integer; P2: JString; P3: JString; P4: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function GerarBarCode1D(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString; P9: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function GerarBox(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function GerarDataBar(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString; P9: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function GerarDataBarExpanded(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString; P9: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function GerarDataMatrix(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function GerarImagem(P1: Integer; P2: Integer; P3: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function GerarLinha(P1: Integer; P2: Integer; P3: Integer; P4: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function GerarMaxiCode(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function GerarPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: Integer; P9: Integer; P10: Integer; P11: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function GerarQRCodeAuto(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function GerarQRCodeManual(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: Integer; P9: Integer; P10: Integer; P11: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function GerarTexto(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function GerarTextoASD(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function GerarTextoCourier(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function GetVersaoDLL: TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function Imprime(P1: Integer; P2: JString; P3: JString; P4: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function Limpa(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function LimpaMemoria(P1: Integer; P2: JString; P3: JString; P4: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function LimpaModulo(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function MemoryStatus(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function Reset(P1: Integer; P2: JString; P3: JString; P4: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function SetAlturaGap(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function SetBackfeed(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function SetBaudrate(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: Integer; P7: Integer; P8: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function SetCalor(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function SetCortarZero(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function SetLength(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function SetLogicImgMode(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function SetMedidas(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function SetMirror(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function SetModoContinuo(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function SetOffsetColuna(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function SetOffsetLinha(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function SetPrintStPos(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function SetQtde(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function SetSensor(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function SetSymbolASD(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function SetTamPixel(P1: Integer; P2: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function SetTipoTransferencia(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function SetVelImpressao(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function Status(P1: Integer; P2: JString; P3: JString; P4: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function StatusEPL(P1: Integer; P2: JString; P3: JString; P4: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function Teste(P1: Integer; P2: JString; P3: JString; P4: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function init: JServicoE1_Etiqueta; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Servico/ServicoE1$Etiqueta')]
   JServicoE1_Etiqueta = interface(JObject)
-    ['{A1CE523F-5FA6-4AB3-96BD-8EED4DA53A1A}']
+    ['{2E081BE9-CBFF-4B6D-9925-3B68D64EF46B}']
   end;
   TJServicoE1_Etiqueta = class(TJavaGenericImport<JServicoE1_EtiquetaClass, JServicoE1_Etiqueta>) end;
 
   JServicoE1_SATClass = interface(JObjectClass)
-    ['{B4657816-9D3C-4CBA-B03C-DCF7A24FC629}']
-    {class} function AssociarAssinatura(P1: Integer; P2: JString; P3: JString; P4: JString): TJavaArray<Byte>; cdecl;
-    {class} function AtivarSAT(P1: Integer; P2: Integer; P3: JString; P4: JString; P5: Integer): TJavaArray<Byte>; cdecl;
-    {class} function AtualizarSoftwareSAT(P1: Integer; P2: JString): TJavaArray<Byte>; cdecl;
-    {class} function BloquearSAT(P1: Integer; P2: JString): TJavaArray<Byte>; cdecl;
-    {class} function CancelaVendaImpressaSAT(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: JString; P6: JString): TJavaArray<Byte>; cdecl;
-    {class} function CancelarUltimaVenda(P1: Integer; P2: JString; P3: JString; P4: JString): TJavaArray<Byte>; cdecl;
-    {class} function ConfigurarInterfaceDeRede(P1: Integer; P2: JString; P3: JString): TJavaArray<Byte>; cdecl;
-    {class} function ConsultarNumeroSessao(P1: Integer; P2: JString; P3: Integer): TJavaArray<Byte>; cdecl;
-    {class} function ConsultarSat(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function ConsultarStatusEspecifico(P1: Integer; P2: Integer; P3: JString): TJavaArray<Byte>; cdecl;
-    {class} function ConsultarStatusOperacional(P1: Integer; P2: JString): TJavaArray<Byte>; cdecl;
-    {class} function ConsultarUltimaSessaoFiscal(P1: Integer; P2: JString): TJavaArray<Byte>; cdecl;
-    {class} function CriaXMLCancelamentoSAT(P1: JString; P2: JString; P3: JString): TJavaArray<Byte>; cdecl;
-    {class} function DecodificaBase64(P1: JString): TJavaArray<Byte>; cdecl;
-    {class} function DesbloquearSAT(P1: Integer; P2: JString): TJavaArray<Byte>; cdecl;
-    {class} function EnviarDadosVenda(P1: Integer; P2: JString; P3: JString): TJavaArray<Byte>; cdecl;
-    {class} function ExtrairLogs(P1: Integer; P2: JString): TJavaArray<Byte>; cdecl;
-    {class} function GetVersaoDLL: TJavaArray<Byte>; cdecl;
-    {class} function TesteFimAFim(P1: Integer; P2: JString; P3: JString): TJavaArray<Byte>; cdecl;
-    {class} function TrocarCodigoDeAtivacao(P1: Integer; P2: JString; P3: Integer; P4: JString; P5: JString): TJavaArray<Byte>; cdecl;
-    {class} function VendaImpressaSAT(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: JString; P7: JString): TJavaArray<Byte>; cdecl;
-    {class} function init: JServicoE1_SAT; cdecl;
+    ['{EBD51332-5699-4DAA-B366-236474FE2055}']
+    {class} function AssociarAssinatura(P1: Integer; P2: JString; P3: JString; P4: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function AtivarSAT(P1: Integer; P2: Integer; P3: JString; P4: JString; P5: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function AtualizarSoftwareSAT(P1: Integer; P2: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function BloquearSAT(P1: Integer; P2: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function CancelaVendaImpressaSAT(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: JString; P6: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function CancelarUltimaVenda(P1: Integer; P2: JString; P3: JString; P4: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function ConfigurarInterfaceDeRede(P1: Integer; P2: JString; P3: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function ConsultarNumeroSessao(P1: Integer; P2: JString; P3: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function ConsultarSat(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function ConsultarStatusEspecifico(P1: Integer; P2: Integer; P3: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function ConsultarStatusOperacional(P1: Integer; P2: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function ConsultarUltimaSessaoFiscal(P1: Integer; P2: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function CriaXMLCancelamentoSAT(P1: JString; P2: JString; P3: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function DecodificaBase64(P1: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function DesbloquearSAT(P1: Integer; P2: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function EnviarDadosVenda(P1: Integer; P2: JString; P3: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function ExtrairLogs(P1: Integer; P2: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function GetVersaoDLL: TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function TesteFimAFim(P1: Integer; P2: JString; P3: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function TrocarCodigoDeAtivacao(P1: Integer; P2: JString; P3: Integer; P4: JString; P5: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function VendaImpressaSAT(P1: Integer; P2: JString; P3: JString; P4: Integer; P5: Integer; P6: JString; P7: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function init: JServicoE1_SAT; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Servico/ServicoE1$SAT')]
   JServicoE1_SAT = interface(JObject)
-    ['{47E9AD8D-5ADB-49AF-A3E5-B6172D348611}']
+    ['{5EDB8BFD-1941-469E-873C-46B6BEF823E2}']
   end;
   TJServicoE1_SAT = class(TJavaGenericImport<JServicoE1_SATClass, JServicoE1_SAT>) end;
 
   JServicoE1_TermicaClass = interface(JObjectClass)
-    ['{77AB7193-0C10-4E83-BC3C-FC1A1F4CD7C9}']
-    {class} function AbreConexaoImpressora(P1: Integer; P2: JString; P3: JString; P4: Integer): TJavaArray<Byte>; cdecl;
-    {class} function AbreGaveta(P1: Integer; P2: Integer; P3: Integer): TJavaArray<Byte>; cdecl;
-    {class} function AbreGavetaElgin: TJavaArray<Byte>; cdecl;
-    {class} function AvancaPapel(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function Corte(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function DefineAreaImpressao(P1: Integer; P2: Integer; P3: Integer; P4: Integer): TJavaArray<Byte>; cdecl;
-    {class} function DefinePosicao(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function DirecaoImpressao(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function FechaConexaoImpressora: TJavaArray<Byte>; cdecl;
-    {class} function GetVersaoDLL: TJavaArray<Byte>; cdecl;
-    {class} function ImpressaoCodigoBarras(P1: Integer; P2: JString; P3: Integer; P4: Integer; P5: Integer): TJavaArray<Byte>; cdecl;
-    {class} function ImpressaoPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): TJavaArray<Byte>; cdecl;
-    {class} function ImpressaoQRCode(P1: JString; P2: Integer; P3: Integer): TJavaArray<Byte>; cdecl;
-    {class} function ImpressaoTexto(P1: JString; P2: Integer; P3: Integer; P4: Integer): TJavaArray<Byte>; cdecl;
-    {class} function ImprimeImagemMemoria(P1: JString; P2: Integer): TJavaArray<Byte>; cdecl;
-    {class} function ImprimeMPeRetornaPadrao: TJavaArray<Byte>; cdecl;
-    {class} function ImprimeModoPagina: TJavaArray<Byte>; cdecl;
-    {class} function ImprimeXMLCancelamentoSAT(P1: JString; P2: JString; P3: Integer): TJavaArray<Byte>; cdecl;
-    {class} function ImprimeXMLNFCe(P1: JString; P2: Integer; P3: JString; P4: Integer): TJavaArray<Byte>; cdecl;
-    {class} function ImprimeXMLSAT(P1: JString; P2: Integer): TJavaArray<Byte>; cdecl;
-    {class} function InicializaImpressora: TJavaArray<Byte>; cdecl;
-    {class} function LimpaBufferModoPagina: TJavaArray<Byte>; cdecl;
-    {class} function ModoPadrao: TJavaArray<Byte>; cdecl;
-    {class} function ModoPagina: TJavaArray<Byte>; cdecl;
-    {class} function PosicaoImpressaoHorizontal(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function PosicaoImpressaoVertical(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function SinalSonoro(P1: Integer; P2: Integer; P3: Integer): TJavaArray<Byte>; cdecl;
-    {class} function StatusImpressora(P1: Integer): TJavaArray<Byte>; cdecl;
-    {class} function init: JServicoE1_Termica; cdecl;
+    ['{E0392D92-0ECB-4E20-8AEF-8A98E7F743C0}']
+    {class} function AbreConexaoImpressora(P1: Integer; P2: JString; P3: JString; P4: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function AbreGaveta(P1: Integer; P2: Integer; P3: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function AbreGavetaElgin: TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function AvancaPapel(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function Corte(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function DefineAreaImpressao(P1: Integer; P2: Integer; P3: Integer; P4: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function DefinePosicao(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function DirecaoImpressao(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function FechaConexaoImpressora: TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function GetVersaoDLL: TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function ImpressaoCodigoBarras(P1: Integer; P2: JString; P3: Integer; P4: Integer; P5: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function ImpressaoPDF417(P1: Integer; P2: Integer; P3: Integer; P4: Integer; P5: Integer; P6: Integer; P7: JString): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function ImpressaoQRCode(P1: JString; P2: Integer; P3: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function ImpressaoTexto(P1: JString; P2: Integer; P3: Integer; P4: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function ImprimeImagemMemoria(P1: JString; P2: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function ImprimeMPeRetornaPadrao: TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function ImprimeModoPagina: TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function ImprimeXMLCancelamentoSAT(P1: JString; P2: JString; P3: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function ImprimeXMLNFCe(P1: JString; P2: Integer; P3: JString; P4: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function ImprimeXMLSAT(P1: JString; P2: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function InicializaImpressora: TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function LimpaBufferModoPagina: TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function ModoPadrao: TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function ModoPagina: TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function PosicaoImpressaoHorizontal(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function PosicaoImpressaoVertical(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function SinalSonoro(P1: Integer; P2: Integer; P3: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function StatusImpressora(P1: Integer): TJavaArray<Byte>; cdecl;//Deprecated
+    {class} function init: JServicoE1_Termica; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/elgin/e1/Servico/ServicoE1$Termica')]
   JServicoE1_Termica = interface(JObject)
-    ['{226E51EF-5505-451E-A754-B2CA67FCD16F}']
+    ['{FCED04F8-90BF-410B-9FD6-89A0CFD578FA}']
   end;
   TJServicoE1_Termica = class(TJavaGenericImport<JServicoE1_TermicaClass, JServicoE1_Termica>) end;
 
   Jminipdvm8_BuildConfigClass = interface(JObjectClass)
-    ['{0F39CECD-02AC-4537-B3F5-4E985616C4B7}']
+    ['{42787BDB-18AC-468F-A2C8-DF7E72AE0B4A}']
     {class} function _GetAPPLICATION_ID: JString; cdecl;
     {class} function _GetBUILD_TYPE: JString; cdecl;
     {class} function _GetDEBUG: Boolean; cdecl;
@@ -3921,12 +3930,12 @@ type
 
   [JavaSignature('com/elgin/minipdvm8/BuildConfig')]
   Jminipdvm8_BuildConfig = interface(JObject)
-    ['{2AFA78F9-2659-4CBB-8F57-C93C9AD3A3A0}']
+    ['{3180CE76-80EE-44E1-B254-2666431077EB}']
   end;
   TJminipdvm8_BuildConfig = class(TJavaGenericImport<Jminipdvm8_BuildConfigClass, Jminipdvm8_BuildConfig>) end;
 
   JPrinterManagerClass = interface(JObjectClass)
-    ['{E4780880-41A9-4F44-AAD8-D002D017B66C}']
+    ['{5C471287-4D06-4DD5-B508-77E256EB30A1}']
     {class} function _GetALIGN_CENTER: Integer; cdecl;
     {class} function _GetALIGN_LEFT: Integer; cdecl;
     {class} function _GetALIGN_RIGHT: Integer; cdecl;
@@ -3968,7 +3977,7 @@ type
 
   [JavaSignature('com/elgin/minipdvm8/PrinterManager')]
   JPrinterManager = interface(JObject)
-    ['{B7FC2F32-4D46-4F38-823B-B2647711F86B}']
+    ['{A2254878-9F9B-490D-9C62-F2AEE34A0027}']
     function getBootloaderVersion: JString; cdecl;
     function getFirmwareVersion: JString; cdecl;
     function hasXChengPrinter(P1: JContext): Boolean; cdecl;
@@ -3993,20 +4002,20 @@ type
   TJPrinterManager = class(TJavaGenericImport<JPrinterManagerClass, JPrinterManager>) end;
 
   JPrinterManager_1Class = interface(JServiceConnectionClass)
-    ['{7BBABDF3-85A9-474B-8691-2CC149F2C07A}']
+    ['{1449C43E-FDEC-4964-8AAA-0F80BACA5C3B}']
     {class} function init(P1: JPrinterManager): JPrinterManager_1; cdecl;
   end;
 
   [JavaSignature('com/elgin/minipdvm8/PrinterManager$1')]
   JPrinterManager_1 = interface(JServiceConnection)
-    ['{67AD35C2-7525-4AA4-88C2-5A64D8045B89}']
+    ['{189EFBF8-9DC9-4C28-AFEC-82E2F7E693BF}']
     procedure onServiceConnected(P1: JComponentName; P2: JIBinder); cdecl;
     procedure onServiceDisconnected(P1: JComponentName); cdecl;
   end;
   TJPrinterManager_1 = class(TJavaGenericImport<JPrinterManager_1Class, JPrinterManager_1>) end;
 
   JIPrinterCallback_StubClass = interface(JBinderClass)
-    ['{115BDF7F-DB8D-4B8D-B4D5-9CC0B12AED10}']
+    ['{504B86A2-F18D-4427-B48E-8A0B3B50A019}']
     {class} function _GetTRANSACTION_onComplete: Integer; cdecl;
     {class} function _GetTRANSACTION_onLength: Integer; cdecl;
     {class} function asInterface(P1: JIBinder): JIPrinterCallback; cdecl;
@@ -4017,108 +4026,131 @@ type
 
   [JavaSignature('com/xcheng/printerservice/IPrinterCallback$Stub')]
   JIPrinterCallback_Stub = interface(JBinder)
-    ['{044BD249-9511-4D41-9737-9CD2FF2BC233}']
+    ['{02E6AA2E-C6C4-4673-A850-AE5A5A772012}']
     function asBinder: JIBinder; cdecl;
     function onTransact(P1: Integer; P2: JParcel; P3: JParcel; P4: Integer): Boolean; cdecl;
   end;
   TJIPrinterCallback_Stub = class(TJavaGenericImport<JIPrinterCallback_StubClass, JIPrinterCallback_Stub>) end;
 
   JPrinterManager_2Class = interface(JIPrinterCallback_StubClass)
-    ['{F0ADC62C-11E5-490E-A827-02E1DAEFA919}']
+    ['{EF8287E8-7409-4C69-90D8-8882ED0112DA}']
     {class} function init(P1: JPrinterManager): JPrinterManager_2; cdecl;
   end;
 
   [JavaSignature('com/elgin/minipdvm8/PrinterManager$2')]
   JPrinterManager_2 = interface(JIPrinterCallback_Stub)
-    ['{1EE04B4A-6263-4833-B4D9-EB02C72B6A94}']
+    ['{EC163A75-1DD8-4202-8F67-4E86782173D0}']
     procedure onComplete; cdecl;
     procedure onException(P1: Integer; P2: JString); cdecl;
     procedure onLength(P1: Int64; P2: Int64); cdecl;
   end;
   TJPrinterManager_2 = class(TJavaGenericImport<JPrinterManager_2Class, JPrinterManager_2>) end;
 
+  Jcloudpossdk_aar_slim_BuildConfigClass = interface(JObjectClass)
+    ['{5BF6550C-571F-4498-BA10-00412ABD0BB8}']
+    {class} function _GetAPPLICATION_ID: JString; cdecl;
+    {class} function _GetBUILD_TYPE: JString; cdecl;
+    {class} function _GetDEBUG: Boolean; cdecl;
+    {class} function _GetFLAVOR: JString; cdecl;
+    {class} function _GetVERSION_CODE: Integer; cdecl;
+    {class} function _GetVERSION_NAME: JString; cdecl;
+    {class} function init: Jcloudpossdk_aar_slim_BuildConfig; cdecl;
+    {class} property APPLICATION_ID: JString read _GetAPPLICATION_ID;
+    {class} property BUILD_TYPE: JString read _GetBUILD_TYPE;
+    {class} property DEBUG: Boolean read _GetDEBUG;
+    {class} property FLAVOR: JString read _GetFLAVOR;
+    {class} property VERSION_CODE: Integer read _GetVERSION_CODE;
+    {class} property VERSION_NAME: JString read _GetVERSION_NAME;
+  end;
+
+  [JavaSignature('com/example/cloudpossdk_aar_slim/BuildConfig')]
+  Jcloudpossdk_aar_slim_BuildConfig = interface(JObject)
+    ['{0EE5210E-6973-4644-8B88-A161DB1483D3}']
+  end;
+  TJcloudpossdk_aar_slim_BuildConfig = class(TJavaGenericImport<Jcloudpossdk_aar_slim_BuildConfigClass, Jcloudpossdk_aar_slim_BuildConfig>) end;
+
   JCommSerialAPIClass = interface(JObjectClass)
-    ['{3C298CA3-8A31-483C-A1DB-A04DA535EB3C}']
-    {class} function comPortClose(P1: Integer): Integer; cdecl;
-    {class} function comPortOpen(P1: JString; P2: Integer; P3: Integer; P4: Char; P5: Integer): Integer; cdecl;
-    {class} function comPortRead(P1: Integer): JString; cdecl;
-    {class} function comPortWrite(P1: JString; P2: Integer): Boolean; cdecl;
-    {class} function init: JCommSerialAPI; cdecl;
+    ['{F6DD53E2-C077-48FC-9F0A-C4A4E2689478}']
+    {class} function comPortClose(P1: Integer): Integer; cdecl;//Deprecated
+    {class} function comPortOpen(P1: JString; P2: Integer; P3: Integer; P4: Char; P5: Integer): Integer; cdecl;//Deprecated
+    {class} function comPortRead(P1: Integer): JString; cdecl;//Deprecated
+    {class} function comPortWrite(P1: JString; P2: Integer): Boolean; cdecl;//Deprecated
+    {class} function init: JCommSerialAPI; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/xc/comportdemo/CommSerialAPI')]
   JCommSerialAPI = interface(JObject)
-    ['{1A581D32-5003-419D-B247-31C6D998CA93}']
+    ['{D5028DDE-5D1C-4D24-8115-F8CEC0720773}']
   end;
   TJCommSerialAPI = class(TJavaGenericImport<JCommSerialAPIClass, JCommSerialAPI>) end;
 
   JComportNativeClass = interface(JObjectClass)
-    ['{D8FEE37A-9791-4680-B0CB-12E40FD4C288}']
+    ['{E0382B30-5FF7-4A85-B8E5-5C5FCC0BCA85}']
   end;
 
   [JavaSignature('com/xc/comportdemo/ComportNative')]
   JComportNative = interface(JObject)
-    ['{0B641E41-E6D7-4A4B-BD1B-91310744505A}']
+    ['{FBAEF213-D737-4DEC-85F2-AA2498827D94}']
   end;
   TJComportNative = class(TJavaGenericImport<JComportNativeClass, JComportNative>) end;
 
   JIPrinterCallbackClass = interface(JIInterfaceClass)
-    ['{721338DA-C5B4-4EB4-B030-9CC58F430208}']
-    {class} procedure onComplete; cdecl;
-    {class} procedure onException(P1: Integer; P2: JString); cdecl;
-    {class} procedure onLength(P1: Int64; P2: Int64); cdecl;
+    ['{FB91C065-D585-44AA-B6BC-D74B6493DEFA}']
+    {class} procedure onComplete; cdecl;//Deprecated
+    {class} procedure onException(P1: Integer; P2: JString); cdecl;//Deprecated
+    {class} procedure onLength(P1: Int64; P2: Int64); cdecl;//Deprecated
   end;
 
   [JavaSignature('com/xcheng/printerservice/IPrinterCallback')]
   JIPrinterCallback = interface(JIInterface)
-    ['{5E7AB2EB-9386-4D24-953F-F73FEE945CE0}']
+    ['{898C966D-7C97-4D61-9621-68899281F8FA}']
   end;
   TJIPrinterCallback = class(TJavaGenericImport<JIPrinterCallbackClass, JIPrinterCallback>) end;
 
   JIPrinterCallback_Stub_ProxyClass = interface(JIPrinterCallbackClass)
-    ['{1B190C75-D8D7-4F35-82F1-536180E212E9}']
-    {class} function asBinder: JIBinder; cdecl;
-    {class} function getInterfaceDescriptor: JString; cdecl;
-    {class} procedure onComplete; cdecl;
-    {class} procedure onException(P1: Integer; P2: JString); cdecl;
-    {class} procedure onLength(P1: Int64; P2: Int64); cdecl;
+    ['{B5D77BDF-7B0F-4852-A700-FDB4BB5D790C}']
+    {class} function asBinder: JIBinder; cdecl;//Deprecated
+    {class} function getInterfaceDescriptor: JString; cdecl;//Deprecated
+    {class} procedure onComplete; cdecl;//Deprecated
+    {class} procedure onException(P1: Integer; P2: JString); cdecl;//Deprecated
+    {class} procedure onLength(P1: Int64; P2: Int64); cdecl;//Deprecated
   end;
 
   [JavaSignature('com/xcheng/printerservice/IPrinterCallback$Stub$Proxy')]
   JIPrinterCallback_Stub_Proxy = interface(JIPrinterCallback)
-    ['{BFA29B44-41AC-4E81-AC46-A699316F56E6}']
+    ['{2FA3864C-B19A-4FE8-A56B-FCF54BD16AAF}']
   end;
   TJIPrinterCallback_Stub_Proxy = class(TJavaGenericImport<JIPrinterCallback_Stub_ProxyClass, JIPrinterCallback_Stub_Proxy>) end;
 
   JIPrinterServiceClass = interface(JIInterfaceClass)
-    ['{EAC3E632-E8A0-4A07-9ADF-E4C040BE63AE}']
-    {class} function getBootloaderVersion: JString; cdecl;
-    {class} function getFirmwareVersion: JString; cdecl;
-    {class} procedure printBarCode(P1: JString; P2: Integer; P3: Integer; P4: Integer; P5: Boolean; P6: JIPrinterCallback); cdecl;
-    {class} procedure printBitmap(P1: JBitmap; P2: JIPrinterCallback); cdecl;
-    {class} procedure printBitmapWithAttributes(P1: JBitmap; P2: JMap; P3: JIPrinterCallback); cdecl;
-    {class} procedure printColumnsTextWithAttributes(P1: TJavaObjectArray<JString>; P2: JList; P3: JIPrinterCallback); cdecl;
-    {class} procedure printQRCode(P1: JString; P2: Integer; P3: Integer; P4: JIPrinterCallback); cdecl;
-    {class} procedure printText(P1: JString; P2: JIPrinterCallback); cdecl;
-    {class} procedure printTextWithAttributes(P1: JString; P2: JMap; P3: JIPrinterCallback); cdecl;
-    {class} procedure printWrapPaper(P1: Integer; P2: JIPrinterCallback); cdecl;
-    {class} procedure printerInit(P1: JIPrinterCallback); cdecl;
-    {class} function printerPaper(P1: JIPrinterCallback): Boolean; cdecl;
-    {class} procedure printerReset(P1: JIPrinterCallback); cdecl;
-    {class} function printerTemperature(P1: JIPrinterCallback): Integer; cdecl;
-    {class} procedure sendRAWData(P1: TJavaArray<Byte>; P2: JIPrinterCallback); cdecl;
-    {class} procedure setPrinterSpeed(P1: Integer; P2: JIPrinterCallback); cdecl;
-    {class} procedure upgradePrinter; cdecl;
+    ['{0445EEC3-6ABB-4632-AA9E-86AFCCE131A9}']
+    {class} function getBootloaderVersion: JString; cdecl;//Deprecated
+    {class} function getFirmwareVersion: JString; cdecl;//Deprecated
+    {class} procedure printBarCode(P1: JString; P2: Integer; P3: Integer; P4: Integer; P5: Boolean; P6: JIPrinterCallback); cdecl;//Deprecated
+    {class} procedure printBitmap(P1: JBitmap; P2: JIPrinterCallback); cdecl;//Deprecated
+    {class} procedure printBitmapWithAttributes(P1: JBitmap; P2: JMap; P3: JIPrinterCallback); cdecl;//Deprecated
+    {class} procedure printColumnsTextWithAttributes(P1: TJavaObjectArray<JString>; P2: JList; P3: JIPrinterCallback); cdecl;//Deprecated
+    {class} procedure printQRCode(P1: JString; P2: Integer; P3: Integer; P4: JIPrinterCallback); cdecl;//Deprecated
+    {class} procedure printText(P1: JString; P2: JIPrinterCallback); cdecl;//Deprecated
+    {class} procedure printTextWithAttributes(P1: JString; P2: JMap; P3: JIPrinterCallback); cdecl;//Deprecated
+    {class} procedure printWrapPaper(P1: Integer; P2: JIPrinterCallback); cdecl;//Deprecated
+    {class} procedure printerInit(P1: JIPrinterCallback); cdecl;//Deprecated
+    {class} function printerPaper(P1: JIPrinterCallback): Boolean; cdecl;//Deprecated
+    {class} procedure printerReset(P1: JIPrinterCallback); cdecl;//Deprecated
+    {class} function printerTemperature(P1: JIPrinterCallback): Integer; cdecl;//Deprecated
+    {class} procedure sendRAWData(P1: TJavaArray<Byte>; P2: JIPrinterCallback); cdecl;//Deprecated
+    {class} procedure setPrinterSpeed(P1: Integer; P2: JIPrinterCallback); cdecl;//Deprecated
+    {class} procedure upgradePrinter; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/xcheng/printerservice/IPrinterService')]
   JIPrinterService = interface(JIInterface)
-    ['{EA0657FE-BC0D-470B-B39C-578314DF6BDA}']
+    ['{C93CE08A-0108-45A7-A44B-63B5F7747528}']
   end;
   TJIPrinterService = class(TJavaGenericImport<JIPrinterServiceClass, JIPrinterService>) end;
 
   JIPrinterService_StubClass = interface(JBinderClass)
-    ['{AD34622C-9845-4F87-B33F-C7FB5BB55F8E}']
+    ['{2BDA0674-9075-49C0-9BCD-DFC39A9393D0}']
     {class} function _GetTRANSACTION_getBootloaderVersion: Integer; cdecl;
     {class} function _GetTRANSACTION_getFirmwareVersion: Integer; cdecl;
     {class} function _GetTRANSACTION_printBarCode: Integer; cdecl;
@@ -4157,38 +4189,38 @@ type
 
   [JavaSignature('com/xcheng/printerservice/IPrinterService$Stub')]
   JIPrinterService_Stub = interface(JBinder)
-    ['{05D27E6F-7DA1-4A81-B563-FE6C3D3984AA}']
+    ['{66952A97-40AF-4E3C-A37C-03F91EDFF72D}']
     function asBinder: JIBinder; cdecl;
     function onTransact(P1: Integer; P2: JParcel; P3: JParcel; P4: Integer): Boolean; cdecl;
   end;
   TJIPrinterService_Stub = class(TJavaGenericImport<JIPrinterService_StubClass, JIPrinterService_Stub>) end;
 
   JIPrinterService_Stub_ProxyClass = interface(JIPrinterServiceClass)
-    ['{B28D36E9-D2C4-4827-99D2-CA75A5B06A7E}']
-    {class} function asBinder: JIBinder; cdecl;
-    {class} function getBootloaderVersion: JString; cdecl;
-    {class} function getFirmwareVersion: JString; cdecl;
-    {class} function getInterfaceDescriptor: JString; cdecl;
-    {class} procedure printBarCode(P1: JString; P2: Integer; P3: Integer; P4: Integer; P5: Boolean; P6: JIPrinterCallback); cdecl;
-    {class} procedure printBitmap(P1: JBitmap; P2: JIPrinterCallback); cdecl;
-    {class} procedure printBitmapWithAttributes(P1: JBitmap; P2: JMap; P3: JIPrinterCallback); cdecl;
-    {class} procedure printColumnsTextWithAttributes(P1: TJavaObjectArray<JString>; P2: JList; P3: JIPrinterCallback); cdecl;
-    {class} procedure printQRCode(P1: JString; P2: Integer; P3: Integer; P4: JIPrinterCallback); cdecl;
-    {class} procedure printText(P1: JString; P2: JIPrinterCallback); cdecl;
-    {class} procedure printTextWithAttributes(P1: JString; P2: JMap; P3: JIPrinterCallback); cdecl;
-    {class} procedure printWrapPaper(P1: Integer; P2: JIPrinterCallback); cdecl;
-    {class} procedure printerInit(P1: JIPrinterCallback); cdecl;
-    {class} function printerPaper(P1: JIPrinterCallback): Boolean; cdecl;
-    {class} procedure printerReset(P1: JIPrinterCallback); cdecl;
-    {class} function printerTemperature(P1: JIPrinterCallback): Integer; cdecl;
-    {class} procedure sendRAWData(P1: TJavaArray<Byte>; P2: JIPrinterCallback); cdecl;
-    {class} procedure setPrinterSpeed(P1: Integer; P2: JIPrinterCallback); cdecl;
-    {class} procedure upgradePrinter; cdecl;
+    ['{CE7F9BEA-2786-478F-A45E-71F08A496C2A}']
+    {class} function asBinder: JIBinder; cdecl;//Deprecated
+    {class} function getBootloaderVersion: JString; cdecl;//Deprecated
+    {class} function getFirmwareVersion: JString; cdecl;//Deprecated
+    {class} function getInterfaceDescriptor: JString; cdecl;//Deprecated
+    {class} procedure printBarCode(P1: JString; P2: Integer; P3: Integer; P4: Integer; P5: Boolean; P6: JIPrinterCallback); cdecl;//Deprecated
+    {class} procedure printBitmap(P1: JBitmap; P2: JIPrinterCallback); cdecl;//Deprecated
+    {class} procedure printBitmapWithAttributes(P1: JBitmap; P2: JMap; P3: JIPrinterCallback); cdecl;//Deprecated
+    {class} procedure printColumnsTextWithAttributes(P1: TJavaObjectArray<JString>; P2: JList; P3: JIPrinterCallback); cdecl;//Deprecated
+    {class} procedure printQRCode(P1: JString; P2: Integer; P3: Integer; P4: JIPrinterCallback); cdecl;//Deprecated
+    {class} procedure printText(P1: JString; P2: JIPrinterCallback); cdecl;//Deprecated
+    {class} procedure printTextWithAttributes(P1: JString; P2: JMap; P3: JIPrinterCallback); cdecl;//Deprecated
+    {class} procedure printWrapPaper(P1: Integer; P2: JIPrinterCallback); cdecl;//Deprecated
+    {class} procedure printerInit(P1: JIPrinterCallback); cdecl;//Deprecated
+    {class} function printerPaper(P1: JIPrinterCallback): Boolean; cdecl;//Deprecated
+    {class} procedure printerReset(P1: JIPrinterCallback); cdecl;//Deprecated
+    {class} function printerTemperature(P1: JIPrinterCallback): Integer; cdecl;//Deprecated
+    {class} procedure sendRAWData(P1: TJavaArray<Byte>; P2: JIPrinterCallback); cdecl;//Deprecated
+    {class} procedure setPrinterSpeed(P1: Integer; P2: JIPrinterCallback); cdecl;//Deprecated
+    {class} procedure upgradePrinter; cdecl;//Deprecated
   end;
 
   [JavaSignature('com/xcheng/printerservice/IPrinterService$Stub$Proxy')]
   JIPrinterService_Stub_Proxy = interface(JIPrinterService)
-    ['{6A69E699-F04C-42AC-8033-72816588003F}']
+    ['{F8C0BA87-8B3C-485C-B0C5-C17A268B0275}']
   end;
   TJIPrinterService_Stub_Proxy = class(TJavaGenericImport<JIPrinterService_Stub_ProxyClass, JIPrinterService_Stub_Proxy>) end;
 
@@ -4212,25 +4244,23 @@ type
     {class} function _GetNOTATION_NODE: SmallInt; cdecl;
     {class} function _GetPROCESSING_INSTRUCTION_NODE: SmallInt; cdecl;
     {class} function _GetTEXT_NODE: SmallInt; cdecl;
-    {class} function cloneNode(deep: Boolean): JNode; cdecl;//Deprecated
-    {class} function compareDocumentPosition(other: JNode): SmallInt; cdecl;//Deprecated
-    {class} function getAttributes: JNamedNodeMap; cdecl;//Deprecated
-    {class} function getFirstChild: JNode; cdecl;//Deprecated
-    {class} function getLastChild: JNode; cdecl;//Deprecated
-    {class} function getLocalName: JString; cdecl;//Deprecated
-    {class} function getNodeType: SmallInt; cdecl;//Deprecated
-    {class} function getNodeValue: JString; cdecl;//Deprecated
+    {class} function getAttributes: JNamedNodeMap; cdecl;
+    {class} function getBaseURI: JString; cdecl;
+    {class} function getChildNodes: JNodeList; cdecl;
+    {class} function getLocalName: JString; cdecl;
+    {class} function getNamespaceURI: JString; cdecl;
+    {class} function getNextSibling: JNode; cdecl;
     {class} function getOwnerDocument: JDocument; cdecl;//Deprecated
-    {class} function getTextContent: JString; cdecl;
-    {class} function getUserData(key: JString): JObject; cdecl;
-    {class} function hasAttributes: Boolean; cdecl;
-    {class} function isDefaultNamespace(namespaceURI: JString): Boolean; cdecl;
-    {class} function isEqualNode(arg: JNode): Boolean; cdecl;
-    {class} function isSameNode(other: JNode): Boolean; cdecl;
-    {class} procedure normalize; cdecl;
-    {class} function removeChild(oldChild: JNode): JNode; cdecl;
-    {class} function replaceChild(newChild: JNode; oldChild: JNode): JNode; cdecl;
-    {class} function setUserData(key: JString; data: JObject; handler: JUserDataHandler): JObject; cdecl;
+    {class} function getParentNode: JNode; cdecl;//Deprecated
+    {class} function getPrefix: JString; cdecl;//Deprecated
+    {class} function hasAttributes: Boolean; cdecl;//Deprecated
+    {class} function hasChildNodes: Boolean; cdecl;//Deprecated
+    {class} function insertBefore(newChild: JNode; refChild: JNode): JNode; cdecl;//Deprecated
+    {class} function isSupported(feature: JString; version: JString): Boolean; cdecl;//Deprecated
+    {class} function lookupNamespaceURI(prefix: JString): JString; cdecl;//Deprecated
+    {class} function replaceChild(newChild: JNode; oldChild: JNode): JNode; cdecl;//Deprecated
+    {class} procedure setNodeValue(nodeValue: JString); cdecl;//Deprecated
+    {class} procedure setPrefix(prefix: JString); cdecl;//Deprecated
     {class} property ATTRIBUTE_NODE: SmallInt read _GetATTRIBUTE_NODE;
     {class} property CDATA_SECTION_NODE: SmallInt read _GetCDATA_SECTION_NODE;
     {class} property COMMENT_NODE: SmallInt read _GetCOMMENT_NODE;
@@ -4254,72 +4284,74 @@ type
   [JavaSignature('org/w3c/dom/Node')]
   JNode = interface(IJavaInstance)
     ['{35CFF397-04C8-489D-9C62-607EFFA8B051}']
-    function appendChild(newChild: JNode): JNode; cdecl;//Deprecated
-    function getBaseURI: JString; cdecl;//Deprecated
-    function getChildNodes: JNodeList; cdecl;//Deprecated
-    function getFeature(feature: JString; version: JString): JObject; cdecl;//Deprecated
-    function getNamespaceURI: JString; cdecl;//Deprecated
-    function getNextSibling: JNode; cdecl;//Deprecated
+    function appendChild(newChild: JNode): JNode; cdecl;
+    function cloneNode(deep: Boolean): JNode; cdecl;
+    function compareDocumentPosition(other: JNode): SmallInt; cdecl;
+    function getFeature(feature: JString; version: JString): JObject; cdecl;
+    function getFirstChild: JNode; cdecl;
+    function getLastChild: JNode; cdecl;
     function getNodeName: JString; cdecl;//Deprecated
-    function getParentNode: JNode; cdecl;
-    function getPrefix: JString; cdecl;
-    function getPreviousSibling: JNode; cdecl;
-    function hasChildNodes: Boolean; cdecl;
-    function insertBefore(newChild: JNode; refChild: JNode): JNode; cdecl;
-    function isSupported(feature: JString; version: JString): Boolean; cdecl;
-    function lookupNamespaceURI(prefix: JString): JString; cdecl;
-    function lookupPrefix(namespaceURI: JString): JString; cdecl;
-    procedure setNodeValue(nodeValue: JString); cdecl;
-    procedure setPrefix(prefix: JString); cdecl;
+    function getNodeType: SmallInt; cdecl;//Deprecated
+    function getNodeValue: JString; cdecl;//Deprecated
+    function getPreviousSibling: JNode; cdecl;//Deprecated
+    function getTextContent: JString; cdecl;//Deprecated
+    function getUserData(key: JString): JObject; cdecl;//Deprecated
+    function isDefaultNamespace(namespaceURI: JString): Boolean; cdecl;//Deprecated
+    function isEqualNode(arg: JNode): Boolean; cdecl;//Deprecated
+    function isSameNode(other: JNode): Boolean; cdecl;//Deprecated
+    function lookupPrefix(namespaceURI: JString): JString; cdecl;//Deprecated
+    procedure normalize; cdecl;//Deprecated
+    function removeChild(oldChild: JNode): JNode; cdecl;//Deprecated
     procedure setTextContent(textContent: JString); cdecl;
+    function setUserData(key: JString; data: JObject; handler: JUserDataHandler): JObject; cdecl;
   end;
   TJNode = class(TJavaGenericImport<JNodeClass, JNode>) end;
 
   JAttrClass = interface(JNodeClass)
     ['{5FB044B8-0031-4520-B87A-3CDB994277D7}']
-    {class} function getName: JString; cdecl;
-    {class} function getOwnerElement: JElement; cdecl;
-    {class} function getSchemaTypeInfo: JTypeInfo; cdecl;
+    {class} function getName: JString; cdecl;//Deprecated
+    {class} function getValue: JString; cdecl;
+    {class} function isId: Boolean; cdecl;
     {class} procedure setValue(value: JString); cdecl;
   end;
 
   [JavaSignature('org/w3c/dom/Attr')]
   JAttr = interface(JNode)
     ['{F9FC2FA5-CCAD-4D11-8B8D-3958C5F55273}']
+    function getOwnerElement: JElement; cdecl;
+    function getSchemaTypeInfo: JTypeInfo; cdecl;
     function getSpecified: Boolean; cdecl;
-    function getValue: JString; cdecl;
-    function isId: Boolean; cdecl;
   end;
   TJAttr = class(TJavaGenericImport<JAttrClass, JAttr>) end;
 
   JCharacterDataClass = interface(JNodeClass)
     ['{2C17F389-87C1-444E-957E-9F54C1531B5A}']
+    {class} procedure appendData(arg: JString); cdecl;
     {class} procedure deleteData(offset: Integer; count: Integer); cdecl;
-    {class} function getData: JString; cdecl;
-    {class} procedure setData(data: JString); cdecl;//Deprecated
-    {class} function substringData(offset: Integer; count: Integer): JString; cdecl;//Deprecated
+    {class} procedure replaceData(offset: Integer; count: Integer; arg: JString); cdecl;
+    {class} procedure setData(data: JString); cdecl;
+    {class} function substringData(offset: Integer; count: Integer): JString; cdecl;
   end;
 
   [JavaSignature('org/w3c/dom/CharacterData')]
   JCharacterData = interface(JNode)
     ['{10B18FAD-C168-4834-9BF9-996C53B31D9E}']
-    procedure appendData(arg: JString); cdecl;
-    function getLength: Integer; cdecl;//Deprecated
-    procedure insertData(offset: Integer; arg: JString); cdecl;//Deprecated
-    procedure replaceData(offset: Integer; count: Integer; arg: JString); cdecl;//Deprecated
+    function getData: JString; cdecl;
+    function getLength: Integer; cdecl;
+    procedure insertData(offset: Integer; arg: JString); cdecl;
   end;
   TJCharacterData = class(TJavaGenericImport<JCharacterDataClass, JCharacterData>) end;
 
   JTextClass = interface(JCharacterDataClass)
     ['{A1698F81-D2B1-4131-A464-3E6A6ADD1D56}']
-    {class} function getWholeText: JString; cdecl;//Deprecated
+    {class} function getWholeText: JString; cdecl;
+    {class} function isElementContentWhitespace: Boolean; cdecl;
+    {class} function replaceWholeText(content: JString): JText; cdecl;
   end;
 
   [JavaSignature('org/w3c/dom/Text')]
   JText = interface(JCharacterData)
     ['{FAE4042A-1DDA-4B7D-BCFC-3C629B2818A4}']
-    function isElementContentWhitespace: Boolean; cdecl;//Deprecated
-    function replaceWholeText(content: JString): JText; cdecl;//Deprecated
     function splitText(offset: Integer): JText; cdecl;//Deprecated
   end;
   TJText = class(TJavaGenericImport<JTextClass, JText>) end;
@@ -4346,15 +4378,15 @@ type
 
   JDOMConfigurationClass = interface(IJavaClass)
     ['{DECB79BC-0125-4589-A7F9-4515540AE6A2}']
-    {class} procedure setParameter(name: JString; value: JObject); cdecl;
+    {class} function getParameter(name: JString): JObject; cdecl;//Deprecated
+    {class} function getParameterNames: JDOMStringList; cdecl;//Deprecated
+    {class} procedure setParameter(name: JString; value: JObject); cdecl;//Deprecated
   end;
 
   [JavaSignature('org/w3c/dom/DOMConfiguration')]
   JDOMConfiguration = interface(IJavaInstance)
     ['{E8ABF7F9-F6D5-41BB-939D-8012C99B087D}']
-    function canSetParameter(name: JString; value: JObject): Boolean; cdecl;
-    function getParameter(name: JString): JObject; cdecl;
-    function getParameterNames: JDOMStringList; cdecl;
+    function canSetParameter(name: JString; value: JObject): Boolean; cdecl;//Deprecated
   end;
   TJDOMConfiguration = class(TJavaGenericImport<JDOMConfigurationClass, JDOMConfiguration>) end;
 
@@ -4362,67 +4394,67 @@ type
     ['{B1E4F8D3-F1BD-4F6C-B4ED-0310907DF7A4}']
     {class} function createDocument(namespaceURI: JString; qualifiedName: JString; doctype: JDocumentType): JDocument; cdecl;//Deprecated
     {class} function createDocumentType(qualifiedName: JString; publicId: JString; systemId: JString): JDocumentType; cdecl;//Deprecated
-    {class} function getFeature(feature: JString; version: JString): JObject; cdecl;//Deprecated
   end;
 
   [JavaSignature('org/w3c/dom/DOMImplementation')]
   JDOMImplementation = interface(IJavaInstance)
     ['{B1DCFB4D-AA66-4B31-A161-7E7D420C0BD4}']
-    function hasFeature(feature: JString; version: JString): Boolean; cdecl;
+    function getFeature(feature: JString; version: JString): JObject; cdecl;//Deprecated
+    function hasFeature(feature: JString; version: JString): Boolean; cdecl;//Deprecated
   end;
   TJDOMImplementation = class(TJavaGenericImport<JDOMImplementationClass, JDOMImplementation>) end;
 
   JDOMStringListClass = interface(IJavaClass)
     ['{07E16943-A1B1-457E-B687-6BF0DC8A0B2B}']
-    {class} function &contains(str: JString): Boolean; cdecl;//Deprecated
-    {class} function getLength: Integer; cdecl;//Deprecated
+    {class} function &contains(str: JString): Boolean; cdecl;
   end;
 
   [JavaSignature('org/w3c/dom/DOMStringList')]
   JDOMStringList = interface(IJavaInstance)
     ['{429D640E-1DB3-442F-9ABF-98965BDEF484}']
-    function item(index: Integer): JString; cdecl;//Deprecated
+    function getLength: Integer; cdecl;
+    function item(index: Integer): JString; cdecl;
   end;
   TJDOMStringList = class(TJavaGenericImport<JDOMStringListClass, JDOMStringList>) end;
 
   JDocumentClass = interface(JNodeClass)
     ['{D6F13E91-584B-40E3-98D4-A49B673E1FAA}']
-    {class} function adoptNode(source: JNode): JNode; cdecl;//Deprecated
-    {class} function createAttribute(name: JString): JAttr; cdecl;//Deprecated
+    {class} function adoptNode(source: JNode): JNode; cdecl;
+    {class} function createComment(data: JString): JComment; cdecl;//Deprecated
     {class} function createDocumentFragment: JDocumentFragment; cdecl;//Deprecated
     {class} function createElement(tagName: JString): JElement; cdecl;//Deprecated
-    {class} function createElementNS(namespaceURI: JString; qualifiedName: JString): JElement; cdecl;//Deprecated
+    {class} function createTextNode(data: JString): JText; cdecl;//Deprecated
     {class} function getDoctype: JDocumentType; cdecl;//Deprecated
-    {class} function getDocumentElement: JElement; cdecl;//Deprecated
-    {class} function getDocumentURI: JString; cdecl;//Deprecated
-    {class} function getElementsByTagNameNS(namespaceURI: JString; localName: JString): JNodeList; cdecl;
-    {class} function getImplementation: JDOMImplementation; cdecl;
-    {class} function getInputEncoding: JString; cdecl;
-    {class} function getXmlVersion: JString; cdecl;
-    {class} function importNode(importedNode: JNode; deep: Boolean): JNode; cdecl;
+    {class} function getElementById(elementId: JString): JElement; cdecl;//Deprecated
+    {class} function getElementsByTagName(tagname: JString): JNodeList; cdecl;//Deprecated
+    {class} function getElementsByTagNameNS(namespaceURI: JString; localName: JString): JNodeList; cdecl;//Deprecated
+    {class} function getXmlEncoding: JString; cdecl;//Deprecated
+    {class} function getXmlStandalone: Boolean; cdecl;//Deprecated
+    {class} function getXmlVersion: JString; cdecl;//Deprecated
+    {class} procedure setDocumentURI(documentURI: JString); cdecl;
     {class} procedure setStrictErrorChecking(strictErrorChecking: Boolean); cdecl;
     {class} procedure setXmlStandalone(xmlStandalone: Boolean); cdecl;
-    {class} procedure setXmlVersion(xmlVersion: JString); cdecl;
   end;
 
   [JavaSignature('org/w3c/dom/Document')]
   JDocument = interface(JNode)
     ['{A1A54941-AF47-44E3-9987-16699E7D7AE8}']
+    function createAttribute(name: JString): JAttr; cdecl;//Deprecated
     function createAttributeNS(namespaceURI: JString; qualifiedName: JString): JAttr; cdecl;//Deprecated
     function createCDATASection(data: JString): JCDATASection; cdecl;//Deprecated
-    function createComment(data: JString): JComment; cdecl;//Deprecated
+    function createElementNS(namespaceURI: JString; qualifiedName: JString): JElement; cdecl;//Deprecated
     function createEntityReference(name: JString): JEntityReference; cdecl;//Deprecated
     function createProcessingInstruction(target: JString; data: JString): JProcessingInstruction; cdecl;//Deprecated
-    function createTextNode(data: JString): JText; cdecl;//Deprecated
-    function getDomConfig: JDOMConfiguration; cdecl;
-    function getElementById(elementId: JString): JElement; cdecl;
-    function getElementsByTagName(tagname: JString): JNodeList; cdecl;
-    function getStrictErrorChecking: Boolean; cdecl;
-    function getXmlEncoding: JString; cdecl;
-    function getXmlStandalone: Boolean; cdecl;
+    function getDocumentElement: JElement; cdecl;//Deprecated
+    function getDocumentURI: JString; cdecl;//Deprecated
+    function getDomConfig: JDOMConfiguration; cdecl;//Deprecated
+    function getImplementation: JDOMImplementation; cdecl;//Deprecated
+    function getInputEncoding: JString; cdecl;//Deprecated
+    function getStrictErrorChecking: Boolean; cdecl;//Deprecated
+    function importNode(importedNode: JNode; deep: Boolean): JNode; cdecl;
     procedure normalizeDocument; cdecl;
     function renameNode(n: JNode; namespaceURI: JString; qualifiedName: JString): JNode; cdecl;
-    procedure setDocumentURI(documentURI: JString); cdecl;
+    procedure setXmlVersion(xmlVersion: JString); cdecl;
   end;
   TJDocument = class(TJavaGenericImport<JDocumentClass, JDocument>) end;
 
@@ -4438,9 +4470,8 @@ type
 
   JDocumentTypeClass = interface(JNodeClass)
     ['{0A107FFB-8693-4B27-9422-07B0ACCAD242}']
+    {class} function getName: JString; cdecl;
     {class} function getNotations: JNamedNodeMap; cdecl;
-    {class} function getPublicId: JString; cdecl;
-    {class} function getSystemId: JString; cdecl;
   end;
 
   [JavaSignature('org/w3c/dom/DocumentType')]
@@ -4448,37 +4479,38 @@ type
     ['{CFD608DB-450E-45EA-BEC6-B680E662E816}']
     function getEntities: JNamedNodeMap; cdecl;
     function getInternalSubset: JString; cdecl;
-    function getName: JString; cdecl;
+    function getPublicId: JString; cdecl;
+    function getSystemId: JString; cdecl;
   end;
   TJDocumentType = class(TJavaGenericImport<JDocumentTypeClass, JDocumentType>) end;
 
   JElementClass = interface(JNodeClass)
     ['{02A52262-29B4-4297-859E-FDCE017479D5}']
+    {class} function getAttribute(name: JString): JString; cdecl;
+    {class} function getAttributeNS(namespaceURI: JString; localName: JString): JString; cdecl;
     {class} function getAttributeNode(name: JString): JAttr; cdecl;
-    {class} function getAttributeNodeNS(namespaceURI: JString; localName: JString): JAttr; cdecl;
-    {class} function getElementsByTagName(name: JString): JNodeList; cdecl;
-    {class} function hasAttribute(name: JString): Boolean; cdecl;//Deprecated
-    {class} function hasAttributeNS(namespaceURI: JString; localName: JString): Boolean; cdecl;//Deprecated
-    {class} procedure setAttribute(name: JString; value: JString); cdecl;//Deprecated
-    {class} procedure setAttributeNS(namespaceURI: JString; qualifiedName: JString; value: JString); cdecl;//Deprecated
-    {class} function setAttributeNode(newAttr: JAttr): JAttr; cdecl;//Deprecated
+    {class} function getSchemaTypeInfo: JTypeInfo; cdecl;
+    {class} function getTagName: JString; cdecl;
+    {class} function hasAttribute(name: JString): Boolean; cdecl;
+    {class} function removeAttributeNode(oldAttr: JAttr): JAttr; cdecl;
+    {class} procedure setAttribute(name: JString; value: JString); cdecl;
+    {class} procedure setAttributeNS(namespaceURI: JString; qualifiedName: JString; value: JString); cdecl;
+    {class} procedure setIdAttributeNS(namespaceURI: JString; localName: JString; isId: Boolean); cdecl;//Deprecated
     {class} procedure setIdAttributeNode(idAttr: JAttr; isId: Boolean); cdecl;//Deprecated
   end;
 
   [JavaSignature('org/w3c/dom/Element')]
   JElement = interface(JNode)
     ['{953C1ADD-28E2-4725-95C9-B2E518AE79F9}']
-    function getAttribute(name: JString): JString; cdecl;
-    function getAttributeNS(namespaceURI: JString; localName: JString): JString; cdecl;
-    function getElementsByTagNameNS(namespaceURI: JString; localName: JString): JNodeList; cdecl;//Deprecated
-    function getSchemaTypeInfo: JTypeInfo; cdecl;//Deprecated
-    function getTagName: JString; cdecl;//Deprecated
-    procedure removeAttribute(name: JString); cdecl;//Deprecated
-    procedure removeAttributeNS(namespaceURI: JString; localName: JString); cdecl;//Deprecated
-    function removeAttributeNode(oldAttr: JAttr): JAttr; cdecl;//Deprecated
+    function getAttributeNodeNS(namespaceURI: JString; localName: JString): JAttr; cdecl;
+    function getElementsByTagName(name: JString): JNodeList; cdecl;
+    function getElementsByTagNameNS(namespaceURI: JString; localName: JString): JNodeList; cdecl;
+    function hasAttributeNS(namespaceURI: JString; localName: JString): Boolean; cdecl;
+    procedure removeAttribute(name: JString); cdecl;
+    procedure removeAttributeNS(namespaceURI: JString; localName: JString); cdecl;
+    function setAttributeNode(newAttr: JAttr): JAttr; cdecl;//Deprecated
     function setAttributeNodeNS(newAttr: JAttr): JAttr; cdecl;//Deprecated
     procedure setIdAttribute(name: JString; isId: Boolean); cdecl;//Deprecated
-    procedure setIdAttributeNS(namespaceURI: JString; localName: JString; isId: Boolean); cdecl;//Deprecated
   end;
   TJElement = class(TJavaGenericImport<JElementClass, JElement>) end;
 
@@ -4494,32 +4526,32 @@ type
 
   JNamedNodeMapClass = interface(IJavaClass)
     ['{FD563D08-BB75-461A-B13C-8C7DF3E00CC5}']
-    {class} function getNamedItem(name: JString): JNode; cdecl;
-    {class} function getNamedItemNS(namespaceURI: JString; localName: JString): JNode; cdecl;
-    {class} function item(index: Integer): JNode; cdecl;
-    {class} function setNamedItemNS(arg: JNode): JNode; cdecl;
+    {class} function getNamedItemNS(namespaceURI: JString; localName: JString): JNode; cdecl;//Deprecated
+    {class} function item(index: Integer): JNode; cdecl;//Deprecated
+    {class} function removeNamedItem(name: JString): JNode; cdecl;//Deprecated
   end;
 
   [JavaSignature('org/w3c/dom/NamedNodeMap')]
   JNamedNodeMap = interface(IJavaInstance)
     ['{92F9509D-82EA-4290-A970-7BB551F08679}']
-    function getLength: Integer; cdecl;
-    function removeNamedItem(name: JString): JNode; cdecl;
-    function removeNamedItemNS(namespaceURI: JString; localName: JString): JNode; cdecl;
-    function setNamedItem(arg: JNode): JNode; cdecl;
+    function getLength: Integer; cdecl;//Deprecated
+    function getNamedItem(name: JString): JNode; cdecl;//Deprecated
+    function removeNamedItemNS(namespaceURI: JString; localName: JString): JNode; cdecl;//Deprecated
+    function setNamedItem(arg: JNode): JNode; cdecl;//Deprecated
+    function setNamedItemNS(arg: JNode): JNode; cdecl;//Deprecated
   end;
   TJNamedNodeMap = class(TJavaGenericImport<JNamedNodeMapClass, JNamedNodeMap>) end;
 
   JProcessingInstructionClass = interface(JNodeClass)
     ['{9B71FB69-7682-435D-9031-529E15076309}']
-    {class} function getData: JString; cdecl;//Deprecated
+    {class} function getData: JString; cdecl;
+    {class} function getTarget: JString; cdecl;
+    {class} procedure setData(data: JString); cdecl;
   end;
 
   [JavaSignature('org/w3c/dom/ProcessingInstruction')]
   JProcessingInstruction = interface(JNode)
     ['{50F37F5A-E5A2-4190-B19F-820997AF3D4C}']
-    function getTarget: JString; cdecl;//Deprecated
-    procedure setData(data: JString); cdecl;//Deprecated
   end;
   TJProcessingInstruction = class(TJavaGenericImport<JProcessingInstructionClass, JProcessingInstruction>) end;
 
@@ -4529,7 +4561,7 @@ type
     {class} function _GetDERIVATION_LIST: Integer; cdecl;
     {class} function _GetDERIVATION_RESTRICTION: Integer; cdecl;
     {class} function _GetDERIVATION_UNION: Integer; cdecl;
-    {class} function isDerivedFrom(typeNamespaceArg: JString; typeNameArg: JString; derivationMethod: Integer): Boolean; cdecl;
+    {class} function getTypeName: JString; cdecl;//Deprecated
     {class} property DERIVATION_EXTENSION: Integer read _GetDERIVATION_EXTENSION;
     {class} property DERIVATION_LIST: Integer read _GetDERIVATION_LIST;
     {class} property DERIVATION_RESTRICTION: Integer read _GetDERIVATION_RESTRICTION;
@@ -4539,8 +4571,8 @@ type
   [JavaSignature('org/w3c/dom/TypeInfo')]
   JTypeInfo = interface(IJavaInstance)
     ['{876A11F9-8450-45FF-8F4F-F9D68333BDEF}']
-    function getTypeName: JString; cdecl;
-    function getTypeNamespace: JString; cdecl;
+    function getTypeNamespace: JString; cdecl;//Deprecated
+    function isDerivedFrom(typeNamespaceArg: JString; typeNameArg: JString; derivationMethod: Integer): Boolean; cdecl;//Deprecated
   end;
   TJTypeInfo = class(TJavaGenericImport<JTypeInfoClass, JTypeInfo>) end;
 
@@ -4551,6 +4583,7 @@ type
     {class} function _GetNODE_DELETED: SmallInt; cdecl;
     {class} function _GetNODE_IMPORTED: SmallInt; cdecl;
     {class} function _GetNODE_RENAMED: SmallInt; cdecl;
+    {class} procedure handle(operation: SmallInt; key: JString; data: JObject; src: JNode; dst: JNode); cdecl;//Deprecated
     {class} property NODE_ADOPTED: SmallInt read _GetNODE_ADOPTED;
     {class} property NODE_CLONED: SmallInt read _GetNODE_CLONED;
     {class} property NODE_DELETED: SmallInt read _GetNODE_DELETED;
@@ -4561,7 +4594,6 @@ type
   [JavaSignature('org/w3c/dom/UserDataHandler')]
   JUserDataHandler = interface(IJavaInstance)
     ['{F3E555E4-F55C-4228-B9D6-4494A3E32FDF}']
-    procedure handle(operation: SmallInt; key: JString; data: JObject; src: JNode; dst: JNode); cdecl;
   end;
   TJUserDataHandler = class(TJavaGenericImport<JUserDataHandlerClass, JUserDataHandler>) end;
 
@@ -4697,6 +4729,7 @@ begin
   TRegTypes.RegisterType('Elgin.JNI.E1.JPrinterManager_1', TypeInfo(Elgin.JNI.E1.JPrinterManager_1));
   TRegTypes.RegisterType('Elgin.JNI.E1.JIPrinterCallback_Stub', TypeInfo(Elgin.JNI.E1.JIPrinterCallback_Stub));
   TRegTypes.RegisterType('Elgin.JNI.E1.JPrinterManager_2', TypeInfo(Elgin.JNI.E1.JPrinterManager_2));
+  TRegTypes.RegisterType('Elgin.JNI.E1.Jcloudpossdk_aar_slim_BuildConfig', TypeInfo(Elgin.JNI.E1.Jcloudpossdk_aar_slim_BuildConfig));
   TRegTypes.RegisterType('Elgin.JNI.E1.JCommSerialAPI', TypeInfo(Elgin.JNI.E1.JCommSerialAPI));
   TRegTypes.RegisterType('Elgin.JNI.E1.JComportNative', TypeInfo(Elgin.JNI.E1.JComportNative));
   TRegTypes.RegisterType('Elgin.JNI.E1.JIPrinterCallback', TypeInfo(Elgin.JNI.E1.JIPrinterCallback));

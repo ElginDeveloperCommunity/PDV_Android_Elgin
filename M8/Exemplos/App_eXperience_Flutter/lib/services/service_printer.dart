@@ -98,6 +98,30 @@ class PrinterService {
       return "Status Desconhecido!";
   }
 
+  Future<String> getStatusGaveta() async {
+    Map<String, dynamic> mapParam = new Map();
+
+    mapParam['typePrinter'] = "gavetaStatus";
+
+    int codeReturn = await _sendFunctionToAndroid(mapParam);
+
+    if (codeReturn == 1)
+      return "Gaveta aberta!";
+    else if (codeReturn == 2)
+      return "Gaveta fechada!";
+    else
+      return "Status Desconhecido!";
+  }
+
+  Future<int> printerCupomTEF(String base64) async {
+    Map<String, dynamic> mapParam = new Map();
+
+    mapParam['base64'] = base64;
+    mapParam['typePrinter'] = "printerCupomTEF";
+
+    return await _sendFunctionToAndroid(mapParam);
+  }
+
   Future<int> connectExternalImp(String ip, int port) async {
     Map<String, dynamic> mapParam = new Map();
     mapParam['ip'] = ip;
@@ -109,6 +133,12 @@ class PrinterService {
   Future<int> connectInternalImp() async {
     Map<String, dynamic> mapParam = new Map();
     mapParam['typePrinter'] = "printerConnectInternal";
+    return await _sendFunctionToAndroid(mapParam);
+  }
+
+  Future<int> senOpenGaveta() async {
+    Map<String, dynamic> mapParam = new Map();
+    mapParam['typePrinter'] = "abrirGaveta";
     return await _sendFunctionToAndroid(mapParam);
   }
 

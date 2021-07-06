@@ -76,6 +76,12 @@ class _PrinterBarCodePageState extends State<PrinterBarCodePage> {
       case 'QR_CODE':
         defaultValueInput = 'ELGIN DEVELOPERS COMMUNITY';
         break;
+      case 'UPC-A':
+        defaultValueInput = '123601057072';
+        break;
+      case 'UPC-E':
+        defaultValueInput = '654321';
+        break;
       case 'CODE 39':
         defaultValueInput = '*ABC123*';
         break;
@@ -84,6 +90,12 @@ class _PrinterBarCodePageState extends State<PrinterBarCodePage> {
         break;
       case 'CODE BAR':
         defaultValueInput = 'A3419500A';
+        break;
+      case 'CODE 93':
+        defaultValueInput = 'ABC123456789';
+        break;
+      case 'CODE 128':
+        defaultValueInput = '{C1233';
         break;
       default:
         defaultValueInput = '';

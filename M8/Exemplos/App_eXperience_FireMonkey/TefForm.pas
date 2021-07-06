@@ -297,7 +297,7 @@ begin
         end
         else
         begin
-            Impressora.ImprimeImagem(BitmapFromBase64(ViaCliente),True);
+            Impressora.IImprimeCupomTEF(ViaCliente);
             memoRetornoTef.Visible := False;
             retornoImage.Visible := True;
             retornoImage.Bitmap := BitmapFromBase64(ViaCliente);

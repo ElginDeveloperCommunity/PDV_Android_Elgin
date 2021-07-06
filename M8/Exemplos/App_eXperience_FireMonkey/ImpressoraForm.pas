@@ -124,10 +124,15 @@ type
     ListBoxCODE128: TListBoxItem;
     rbImpInterna: TRadioButton;
     RadioButton1: TRadioButton;
+    menuStatusMenuGaveta: TRectangle;
+    Image5: TImage;
+    menuAbrirGaveta: TRectangle;
+    btnAbrirGaveta: TLabel;
     procedure menuImpressaoTextoClick(Sender: TObject);
     procedure menuImpressaoBarcodeClick(Sender: TObject);
     procedure menuImpressaoImagemClick(Sender: TObject);
     procedure menuStatusImpressoraClick(Sender: TObject);
+    procedure menuStatusMenuGavetaClick(Sender: TObject);
     procedure btnImprimirTextoClick(Sender: TObject);
     procedure botaoEfeitoMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Single);
@@ -143,6 +148,7 @@ type
     procedure btnImprimirSATClick(Sender: TObject);
     procedure btnImprimirNFCEClick(Sender: TObject);
     procedure rbImpInternaChange(Sender: TObject);
+    procedure btnAbrirGavetaClick(Sender: TObject);
   private
     { Private declarations }
     procedure MudarCorBotao(codigo: integer);
@@ -239,8 +245,8 @@ begin
        5 : edtCodigo.Text :=  '*ABC123*';
        6 : edtCodigo.Text :=  '05012345678900';
        7 : edtCodigo.Text :=  'A3419500A';
-       8 : edtCodigo.Text :=  'CODE_93';
-       9 : edtCodigo.Text :=  'CODE_128';
+       8 : edtCodigo.Text :=  'ABC123456789';
+       9 : edtCodigo.Text :=  '{C1233';
    end;
 
 
@@ -283,6 +289,11 @@ begin
 
 end;
 
+procedure TfrmImpressora.btnAbrirGavetaClick(Sender: TObject);
+begin
+  impressora.abrirGaveta();
+end;
+
 procedure TfrmImpressora.menuImpressaoBarcodeClick(Sender: TObject);
 begin
   tabnavegacao.ActiveTab := tabImpressaoBarcode;
@@ -299,6 +310,21 @@ procedure TfrmImpressora.menuImpressaoTextoClick(Sender: TObject);
 begin
    tabnavegacao.ActiveTab := tabImpressaoTexto;
    MudarCorBotao(0);
+end;
+
+procedure TfrmImpressora.menuStatusMenuGavetaClick(Sender: TObject);
+
+var msgStatusGaveta : string;
+
+begin
+   case Impressora.StatusGaveta of
+      1 : msgStatusGaveta := 'Gaveta Aberta';
+      2 : msgStatusGaveta := 'Gaveta Fechada';
+      else
+        msgStatusGaveta := 'Status Desconhecido!'
+   end;
+
+   ShowMessage('Status: ' + msgStatusGaveta);
 end;
 
 procedure TfrmImpressora.menuStatusImpressoraClick(Sender: TObject);
@@ -434,6 +460,7 @@ end;
 procedure TfrmImpressora.btnImprimirSATClick(Sender: TObject);
 var
 xml : string;
+
 begin
    xml := FileToString('xmlSAT.xml');
    Impressora.ImprimeXMLSAT(xml,0,cbCutPaper.IsChecked);

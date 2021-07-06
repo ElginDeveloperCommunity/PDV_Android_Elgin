@@ -22,17 +22,6 @@ import PrinterText from './PrinterOptions/PrinterText';
 
 import PrinterService from '../services/service_printer';
 
-const printerOption = [
-    {
-        label: 'IMP. INTERNA',
-        value: 'M8'
-    },
-    {
-        label: 'IMP. EXTERNA',
-        value: 'I9'
-    },
-];
-
 const Printer =()=> {
     var printerService = new PrinterService();
 
@@ -40,7 +29,7 @@ const Printer =()=> {
 
     const [checked, setChecked] = useState('M8');
 
-    const [ipConection,setIpConection]=useState('');
+    const [ipConection,setIpConection]=useState('192.168.0.31:9100');
     const [ isUsingPrinterExtern, setIsUsingPrinterExtern ] = useState(false);
     
     const buttonsPrinter = [
@@ -86,6 +75,31 @@ const Printer =()=> {
             actualEvent.remove();
         }, 2000)        
     };
+
+    function actualStatusGaveta(){
+        printerService.getStatusGaveta();
+
+        let actualEvent = DeviceEventEmitter.addListener('eventStatusGaveta', event => {
+            var actualReturn = event.statusGaveta;
+            console.log("actualReturn: ", actualReturn);
+
+            if(actualReturn === '1'){
+                Alert.alert("Retorno", "Gaveta aberta!");
+            }else if(actualReturn === '2'){
+                Alert.alert("Retorno", "Gaveta fechada!");
+            }else{
+                Alert.alert("Retorno", "Status Desconhecido");
+            }
+        });
+
+        setTimeout(() => {
+            actualEvent.remove();
+        }, 2000)        
+    };
+
+    function sendAbrirGaveta(){
+        printerService.sendOpenGaveta();
+    }
 
     function changePrinterChoose(value){
         if(value === "I9"){
@@ -152,12 +166,16 @@ const Printer =()=> {
                                 <Text style={styles.menuTextButton}>{textButton}</Text>
                         </TouchableOpacity>
                     ))}
-
-
-
-                    <TouchableOpacity style={styles.printerStatusButton} onPress={actualStatusPrinter}>
+                    <TouchableOpacity style={styles.statusButton} onPress={actualStatusPrinter}>
                         <Image style={styles.statusIcon} source={require('../icons/status.png')}/>
-                        <Text style={styles.printerStatusButtonTXT}>STATUS DA IMPRESSORA</Text>
+                        <Text style={styles.statusButtonTXT}>STATUS IMPRESSORA</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.statusButton} onPress={actualStatusGaveta}>
+                        <Image style={styles.statusIcon} source={require('../icons/status.png')}/>
+                        <Text style={styles.statusButtonTXT}>STATUS GAVETA</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.actionButton} onPress={sendAbrirGaveta}>
+                        <Text style={styles.actionButtonTXT}>ABRIR GAVETA</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.settingsPrinterView}>
@@ -224,18 +242,30 @@ const Printer =()=> {
         flexDirection:'column',
         height:'100%',
         alignItems:'center',
-        justifyContent:'center',
+        justifyContent:"space-around",
     },
     buttonMenu:{
         borderWidth:2,
         borderColor:'black',
         width:150,
-        height:100,
+        height:80,
         fontWeight:'bold',
         borderRadius:10,
         justifyContent:'center',
         alignItems:'center',
         marginBottom:8,
+    },
+    actionButton:{
+        width:'100%',
+        height:35,
+        backgroundColor:'#0069A5',
+        alignItems:'center',
+        borderRadius:5,
+        justifyContent:'center',
+    },
+    actionButtonTXT:{
+        color:'white',
+        fontWeight:'bold',
     },
     icon:{
         width:50,
@@ -254,7 +284,7 @@ const Printer =()=> {
         color:'white',
         fontWeight:'bold'
     },
-    printerStatusButton:{
+    statusButton:{
         flexDirection:'row',
         width:150,
         height:50,
@@ -262,17 +292,20 @@ const Printer =()=> {
         borderRadius:5,
         borderColor:'black',
         alignItems:'center',
-        justifyContent:'space-around'
+        marginBottom:7,
+       
     },
-    printerStatusButtonTXT:{
+    statusButtonTXT:{
         fontSize:10,
+        marginLeft:5,
     },
     statusIcon:{
         width:20,
         height:20,
+        marginLeft:5,
     },
     settingsPrinterView:{
-        width:'80%',
+        width:'78%',
         height:'100%',
         flexDirection:'column',    
     },

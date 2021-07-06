@@ -29,11 +29,12 @@ interface
       function PrinterExternalImpStart(ip: string; port: integer): integer;
       function printerInternalImpStart(): integer;
       procedure PrinterStop;
-      function  StatusSensorPapel(): integer;
-      function  StatusGaveta() : integer;
-      function  AvancaLinhas(quantLinhas : integer) : integer;
-      function  CutPaper(quantLinhas : integer) : integer;
-      function  ImprimeTexto(text, align, font: string; fontSize: integer;
+      function StatusSensorPapel(): integer;
+      function StatusGaveta() : integer;
+      function abrirGaveta() : integer;
+      function AvancaLinhas(quantLinhas : integer) : integer;
+      function CutPaper(quantLinhas : integer) : integer;
+      function ImprimeTexto(text, align, font: string; fontSize: integer;
              isCutPaper, isUnderline, isBold: boolean): integer;
       function ImprimeBarCode(barcodetype: BARCODE_TYPE; text, align: string; height,
   width: integer; isCutPaper: boolean): integer;
@@ -41,6 +42,7 @@ interface
       function ImprimeImagem(bitmap : TBitmap; isCutPaper: boolean) : integer;
       function ImprimeXMLNFCe(xmlNFCe, csc : string; indexcsc, param : integer; isCutPaper : boolean ): integer;
       function ImprimeXMLSAT(xmlSAT : string; param : integer; isCutPaper : boolean): integer;
+      function IImprimeCupomTEF(viaCliente: string): integer;
 
     end;
   var
@@ -232,17 +234,28 @@ begin
    TJTermica.JavaClass.FechaConexaoImpressora();
 end;
 
+function TPrinter.abrirGaveta: integer;
+
+begin
+  Result := TJTermica.JavaClass.AbreGavetaElgin();
+end;
+
 function TPrinter.StatusGaveta: integer;
+
 begin
   Result := TJTermica.JavaClass.StatusImpressora(1);
+end;
+
+function TPrinter.IImprimeCupomTEF(viaCliente: string): integer;
+
+begin
+    Result := TJTermica.JavaClass.ImprimeCupomTEF(StringToJString(viaCliente));
 end;
 
 function TPrinter.statusSensorPapel: integer;
 begin
    Result := TJTermica.JavaClass.StatusImpressora(3);
 end;
-
-
 
 initialization
 

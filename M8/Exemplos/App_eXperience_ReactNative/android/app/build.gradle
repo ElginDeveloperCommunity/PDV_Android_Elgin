@@ -190,12 +190,13 @@ dependencies {
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
-    implementation(name: 'e1-v1.0.4-release', ext: 'aar')
+    implementation(name: 'e1-v1.0.6-release', ext: 'aar')
     implementation(name: 'minipdvm8', ext: 'aar')
 
     implementation(name: 'libsat-release', ext: 'aar')
 
     implementation('com.journeyapps:zxing-android-embedded:3.4.0')
+    implementation 'com.google.zxing:core:3.4.0'
 
     implementation(name: 'InterfaceAutomacao-v2.0.0.8', ext: 'aar')
     implementation 'org.apache.commons:commons-lang3:3.9'

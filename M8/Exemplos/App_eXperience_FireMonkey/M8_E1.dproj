@@ -193,9 +193,6 @@
         <JavaReference Include="libs\LibSat.jar">
             <Disabled/>
         </JavaReference>
-        <JavaReference Include="libs\e1-v1.0.4-release.jar">
-            <Disabled/>
-        </JavaReference>
         <JavaReference Include="libs\minipdvm8.jar">
             <Disabled/>
         </JavaReference>
@@ -215,6 +212,9 @@
             <Disabled/>
         </JavaReference>
         <JavaReference Include="libs\common-lang3.jar">
+            <Disabled/>
+        </JavaReference>
+        <JavaReference Include="libs\e1-v1.0.6-release.jar">
             <Disabled/>
         </JavaReference>
         <BuildConfiguration Include="Release">
