@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SelectedDevice>K-touch MiniPDV M10</SelectedDevice>
+    <AndroidDesignerPreferredTheme>AppTheme</AndroidDesignerPreferredTheme>
+    <AndroidDesignerPreferredDevice>8in Foldable</AndroidDesignerPreferredDevice>
+    <ProjectView>ShowAllFiles</ProjectView>
+    <ActiveDebugProfile>K-touch MiniPDV M10</ActiveDebugProfile>
+    <DefaultDevice>pixel_2_pie_9_0_-_api_28_1</DefaultDevice>
+  </PropertyGroup>
+</Project>
