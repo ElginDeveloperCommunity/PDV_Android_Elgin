@@ -22,8 +22,7 @@ namespace M8
 
         public Printer()
         {
-            //mActivity = activity;
-            //Termica.SetContext(mActivity);
+           
         }
 
         public static void setActivity(Activity activity)
@@ -47,13 +46,10 @@ namespace M8
             {
                 int result = Termica.AbreConexaoImpressora(3, "I9", ip, port);
         
-                System.Console.WriteLine("MADARAresult EXTERNA: " + result);
                 return result;
             }
             catch (Exception e)
             {
-                //System.Console.WriteLine("exception: " + e);
-                System.Console.WriteLine("MADARAexception: " + e);
                 return printerInternalImpStart();
             }
         }
@@ -151,7 +147,7 @@ namespace M8
             int width = (int) Int32.Parse(dictionary["width"]);
             String align = (String) dictionary["align"];
 
-            System.Console.WriteLine("MADARA" + "barCodeType:" + barCodeType + " text:" + text + " height:" + height + " width:" + width + " align:" + align);
+           
             int hri = 4; // NO PRINT
             int result;
             int alignValue;
@@ -243,7 +239,6 @@ namespace M8
 
             result = Termica.ImprimeBitmap(bitmap);
 
-            System.Console.WriteLine("result IMAGEM: " + result);
             return result;
         }
 

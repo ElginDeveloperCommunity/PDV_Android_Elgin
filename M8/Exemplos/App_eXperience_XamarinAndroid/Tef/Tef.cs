@@ -335,7 +335,7 @@ namespace M8
                 {
                     if (selectedTefType.Equals("M-Sitef"))
                     {
-                        if (IsIpValid(editTextIpTEF.Text))
+                        if (IsIpTefValid(editTextIpTEF.Text))
                         {
                             return true;
                         }
@@ -540,10 +540,10 @@ namespace M8
             AlertDialog.Show();
         }
 
-        public static bool IsIpValid(string ipserver)
+        public static bool IsIpTefValid(string ipserver)
         {
             Console.WriteLine(ipserver);
-            Java.Util.Regex.Pattern p = Java.Util.Regex.Pattern.Compile(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\:\d{1,5}\b");
+            Java.Util.Regex.Pattern p = Java.Util.Regex.Pattern.Compile(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b");
 
             Matcher m = p.Matcher(ipserver);
             bool b = m.Matches();
