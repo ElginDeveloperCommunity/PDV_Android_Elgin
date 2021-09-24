@@ -86,8 +86,11 @@ class PrinterService {
 
   Future<String> getStatusPrinter() async {
     Map<String, dynamic> mapParam = new Map();
+
     mapParam['typePrinter'] = "printerStatus";
+
     int codeReturn = await _sendFunctionToAndroid(mapParam);
+
     if (codeReturn == 5)
       return "papel está presente e não está próximo do fim!";
     else if (codeReturn == 6)
@@ -136,7 +139,7 @@ class PrinterService {
     return await _sendFunctionToAndroid(mapParam);
   }
 
-  Future<int> senOpenGaveta() async {
+  Future<int> sendOpenGaveta() async {
     Map<String, dynamic> mapParam = new Map();
     mapParam['typePrinter'] = "abrirGaveta";
     return await _sendFunctionToAndroid(mapParam);

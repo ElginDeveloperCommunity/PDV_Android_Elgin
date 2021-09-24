@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_m8/Widgets/widgets.dart';
 import 'package:flutter_m8/components/components.dart';
+import 'package:flutter_m8/pages/Balanca.dart';
+import 'package:flutter_m8/pages/CarteiraDigital.dart';
 
 import 'barCodeReader.dart';
 import 'printer_pages/printer_menu.dart';
@@ -13,7 +15,6 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
-  // Recebe um Widget(Uma determinada Tela) e inicia a função de abrir-la
   selectScreen(Widget selected) {
     Components.goToScreen(context, selected);
   }
@@ -33,24 +34,56 @@ class _MenuPageState extends State<MenuPage> {
                 assetImage: "assets/images/printer.png",
                 screen: PrinterMenutPage(),
               ),
-              SizedBox(width: 5),
-              moduleButton(
-                nameButton: "CÓDIGO DE BARRAS",
-                assetImage: "assets/images/printerBarCode.png",
-                screen: BarCodePage(),
+              SizedBox(width: 10),
+              Container(
+                height: 130,
+                width: 220,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    moduleButton(
+                      nameButton: "CÓDIGO DE BARRAS",
+                      assetImage: "assets/images/printerBarCode.png",
+                      width: 105,
+                      screen: BarCodePage(),
+                    ),
+                    moduleButton(
+                      nameButton: "BALANÇA",
+                      assetImage: "assets/images/balanca.png",
+                      width: 105,
+                      screen: BalancaPage(),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
-          SizedBox(height: 5),
+          SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              moduleButton(
-                nameButton: "TEF",
-                assetImage: "assets/images/msitef.png",
-                screen: SitefPage(),
+              Container(
+                height: 130,
+                width: 220,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    moduleButton(
+                      nameButton: "TEF\n",
+                      assetImage: "assets/images/msitef.png",
+                      width: 105,
+                      screen: SitefPage(),
+                    ),         
+                    moduleButton(
+                      nameButton: "CARTEIRA\nDIGITAL",
+                      assetImage: "assets/images/msitef.png",
+                      width: 105,
+                      screen: DigitalWalletPage(),
+                    ),         
+                  ],
+                ),
               ),
-              SizedBox(width: 5),
+              SizedBox(width: 10),
               moduleButton(
                 nameButton: "SAT",
                 assetImage: "assets/images/sat.png",
@@ -71,12 +104,17 @@ class _MenuPageState extends State<MenuPage> {
     String nameButton = "",
     String assetImage = "",
     Widget? screen,
+    double height = 130,
+    double width = 220,
   }) {
     return TextButton(
       onPressed: () => selectScreen(screen!),
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,        
+      ),
       child: Container(
-        height: 130,
-        width: 220,
+        height: height,
+        width: width,
         decoration: BoxDecoration(
           border: Border.all(color: Colors.black, width: 3),
           borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -89,6 +127,7 @@ class _MenuPageState extends State<MenuPage> {
             SizedBox(height: 5,),
             Text(
               nameButton,
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.black,

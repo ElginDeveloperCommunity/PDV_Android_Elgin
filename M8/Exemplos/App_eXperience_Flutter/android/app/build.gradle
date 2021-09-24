@@ -13,7 +13,7 @@ if (flutterRoot == null) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
+    flutterVersionCode = '3'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
@@ -32,8 +32,8 @@ android {
         applicationId "com.elgin.flutter_m8"
         minSdkVersion 22
         targetSdkVersion 30
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
+        versionCode 5
+        versionName '1.0.5'
     }
 
     signingConfigs {
@@ -73,7 +73,9 @@ dependencies {
     implementation('com.journeyapps:zxing-android-embedded:3.4.0')
     implementation 'com.google.zxing:core:3.4.0'
 
-    implementation(name: 'libsat-release', ext: 'aar')
+    implementation(name: 'satelgin-7.0.1-release', ext: 'aar')
+    implementation("androidx.startup:startup-runtime:1.1.0")
+
     implementation 'com.github.felHR85:UsbSerial:4.5.2'
     implementation 'androidx.appcompat:appcompat:1.3.0'
 

@@ -186,8 +186,9 @@ class GeneralWidgets extends StatelessWidget {
       onPressed: onSelected,
       style: TextButton.styleFrom(
         padding: EdgeInsets.zero,
-      ),     
+      ),
       child: Container(
+        margin: EdgeInsets.all(0),        
         height: mHeight,
         width: mWidth,
         decoration: BoxDecoration(
@@ -267,6 +268,7 @@ class GeneralWidgets extends StatelessWidget {
     String label = "",
     double width = 100,
     double height = 50,
+    bool isEnable = true,
   }) {
     return Container(
       width: width,
@@ -276,6 +278,7 @@ class GeneralWidgets extends StatelessWidget {
           textAlign: TextAlign.center,
           controller: editingController,
           keyboardType: TextInputType.text,
+          enabled: isEnable,
           decoration: InputDecoration(
             prefixText: label,
             isDense: true,

@@ -127,8 +127,6 @@ public class Paygo {
                 mEntradaTransacao.informaTipoCartao(Cartoes.CARTAO_DESCONHECIDO);
             }
 
-
-
             if(tipoParcelamento.equals("Loja")){
                 mEntradaTransacao.informaTipoFinanciamento(Financiamentos.PARCELADO_ESTABELECIMENTO);
 
@@ -164,9 +162,6 @@ public class Paygo {
                 mEntradaTransacao = null;
                 if(mSaidaTransacao != null) {
                     mHandler.post(mostraJanelaResultado);
-                    //mostraResultadoTransacao();
-                    //seta a flag p/ mostrar os dados da ultima transacao após o proximo onresume
-                    // é feita no onResume da aplicação para evitar crashes.
                 }
             }
         }).start();
