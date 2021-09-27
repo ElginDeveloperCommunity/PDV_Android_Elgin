@@ -5,7 +5,8 @@
     <string name="text_button_barCode">CÓDIGO DE BARRAS</string>
     <string name="text_button_tef">TEF</string>
     <string name="text_button_sat">SAT</string>
-    <string name="text_footer_java_android_1_0_0">Java Android 1.0.0</string>
+    <string name="text_button_shipay">CARTEIRA DIGITAL</string>
+    <string name="text_footer_java_android_1_0_0">Java Android 1.0.5</string>
     <string name="text_title_impressora">IMPRESSORA</string>
     <string name="text_title_tef">TEF</string>
 
@@ -19,6 +20,17 @@
         <item>34</item>
         <item>51</item>
         <item>68</item>
+    </string-array>
+
+    <string-array name="protocols">
+        <item>PROTOCOL 0</item>
+        <item>PROTOCOL 1</item>
+        <item>PROTOCOL 2</item>
+        <item>PROTOCOL 3</item>
+        <item>PROTOCOL 4</item>
+        <item>PROTOCOL 5</item>
+        <item>PROTOCOL 6</item>
+        <item>PROTOCOL 7</item>
     </string-array>
 
     <string-array name="typeCodeBar">

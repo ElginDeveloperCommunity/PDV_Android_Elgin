@@ -95,7 +95,7 @@ class _PrinterMenutPageState extends State<PrinterMenutPage> {
   }
 
   sendAbrirGaveta() async {
-    int result = await printerService.senOpenGaveta();
+    int result = await printerService.sendOpenGaveta();
     print("Gaveta: " + result.toString());
   }
 
@@ -197,9 +197,9 @@ class _PrinterMenutPageState extends State<PrinterMenutPage> {
         GeneralWidgets.personSelectedButton(
           nameButton: 'IMPRESSÃO\nDE TEXTO',
           assetImage: 'assets/images/printerText.png',
-          mHeight: 80,          
-          mWidth: 140,
+          mHeight: 80,
           iconSize: 40,
+          mWidth: 140,
           fontLabelSize: 12,
           color: Color(0xFF0069A5),
           isSelectedBtn: selectedModulePrinter == "text",

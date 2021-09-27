@@ -27,15 +27,18 @@ import io.flutter.plugins.GeneratedPluginRegistrant;
 import br.com.setis.interfaceautomacao.Operacoes;
 
 public class MainActivity extends FlutterActivity {
-    private String CHANNEL = "samples.flutter.elgin/Printer";
-    Intent intentSitef = new Intent("br.com.softwareexpress.sitef.msitef.ACTIVITY_CLISITEF");
     public static MethodChannel.Result resultFlutter;
+
     Bundle bundle = new Bundle();
     Printer printer;
+    Balanca balanca;
     Paygo paygo;
-    Sat sat;
+    ServiceSat serviceSat;
     Activity activity;
     private IntentIntegrator qrScan;
+
+    Intent intentSitef = new Intent("br.com.softwareexpress.sitef.msitef.ACTIVITY_CLISITEF");
+    private String CHANNEL = "samples.flutter.elgin/Printer";
 
     @Override
     public void configureFlutterEngine(@NonNull FlutterEngine flutterEngine) {
@@ -44,7 +47,8 @@ public class MainActivity extends FlutterActivity {
         activity = this;
         printer = new Printer(activity);
         paygo = new Paygo(activity);
-        sat = new Sat();
+        balanca = new Balanca(activity);
+        serviceSat = new ServiceSat(activity);
 
         BinaryMessenger binaryMessenger = flutterEngine.getDartExecutor().getBinaryMessenger();
         new MethodChannel(binaryMessenger, CHANNEL).setMethodCallHandler((call, result) -> {
@@ -65,26 +69,49 @@ public class MainActivity extends FlutterActivity {
                 Map map = call.argument("args");
                 runPayGo(map);
             }
+            if(call.method.equals("balanca")){
+                Map map = call.argument("args");
+                formatActionBalanca(map);
+            }
         });
     }
 
-    public void formatActionSat(Map map) {
-        String resultSat = "";
-        if (Objects.equals(map.get("typeSatComand"), "satSale")) {
-            resultSat = sat.enviarVenda(map);
-        } else if (Objects.equals(map.get("typeSatComand"), "satCancel")) {
-            resultSat = sat.cancelarVenda(map);
-        } else if (Objects.equals(map.get("typeSatComand"), "satSatus")) {
-            resultSat = sat.statusOperacional(map);
-        } else if (Objects.equals(map.get("typeSatComand"), "satAtivar")) {
-            resultSat = sat.ativarSat(map);
-        } else if (Objects.equals(map.get("typeSatComand"), "satAssociar")) {
-            resultSat = sat.associarAssinatura(map);
-        } else {
+    public void formatActionSat(Map map) {    
+       String resultSat = "...";
+
+       if(Objects.equals(map.get("typeSatCommand"), "ativarSat")){
+           resultSat = serviceSat.ativarSAT(map);
+       }else if(Objects.equals(map.get("typeSatCommand"), "associarSat")){
+           resultSat = serviceSat.associarAssinatura(map);
+       }else if(Objects.equals(map.get("typeSatCommand"), "consultarSat")){
+            resultSat = serviceSat.consultarSAT(map);
+       }else if(Objects.equals(map.get("typeSatCommand"), "statusOperacionalSat")){
+            resultSat = serviceSat.statusOperacional(map);
+        }else if(Objects.equals(map.get("typeSatCommand"), "enviarVendaSat")){
+           resultSat = serviceSat.enviarVenda(map);
+       }else if(Objects.equals(map.get("typeSatCommand"), "cancelarVendaSat")){
+           resultSat = serviceSat.cancelarVenda(map);
+       }else if(Objects.equals(map.get("typeSatCommand"), "extrairLogSat")){
+           resultSat = serviceSat.extrairLog(map);
+       }else{
+           resultFlutter.notImplemented();
+           return;
+       }
+
+       resultFlutter.success(resultSat);
+    }
+
+    public void formatActionBalanca(Map map){
+        String result = "...";
+        if(Objects.equals(map.get("typeOption"), "configBalanca")){
+            result = balanca.configBalanca(map);
+        }else if(Objects.equals(map.get("typeOption"), "lerPesoBalanca")){
+            result = balanca.lerPesoBalanca();
+        }else {
             resultFlutter.notImplemented();
             return;
         }
-        resultFlutter.success(resultSat);
+        resultFlutter.success(result);
     }
 
     public void formatActionPrinter(Map map) {
@@ -181,6 +208,18 @@ public class MainActivity extends FlutterActivity {
                 resultFlutter.success(bundleToJson(data));
             } else {
                 resultFlutter.notImplemented();
+            }
+        }
+        if (requestCode == 3) {
+            if (data.getStringExtra("retorno").equals("0")) {
+                if(data.getStringExtra("erro") != null){
+                    resultFlutter.success(data.getStringExtra("erro"));
+                }else{
+                    System.out.println("RETORNO: " + data.getStringExtra("mensagem"));
+                    resultFlutter.success("ERRO");
+                }
+            } else {
+                resultFlutter.success(data.getStringExtra("mensagem"));
             }
         }
     }

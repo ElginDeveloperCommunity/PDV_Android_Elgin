@@ -15,7 +15,7 @@ class SitefFormat {
     mapMsiTef["hora"] = "130358";
     mapMsiTef["numeroCupom"] = new Random().nextInt(9999999).toString();
     mapMsiTef["valor"] = mSitefEntrys.value;
-    mapMsiTef["CNPJ_CPF"] = "03654119000176";
+    mapMsiTef["CNPJ_CPF"] = "14200166000166";
     mapMsiTef["comExterna"] = "0";
 
     if (mFunctionSitef == FunctionSitef.SALE) {
