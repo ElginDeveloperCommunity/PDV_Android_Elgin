@@ -24,8 +24,13 @@ Com dimensões reduzidas, o M8 se adapta perfeitamente a muitos locais diferente
 
 ### Exemplos
 =================  
-- [Android](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/Exemplo_E1_M8_Android)
+- [ACBrPosPrinter by Adriano Santos](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/AdrianoSantos_ACBrPosPrinter)
 - [App eXperience Delphi FireMonkey](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/App_eXperience_FireMonkey)
 - [App eXperience Flutter](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/App_eXperience_Flutter)
+- [App eXperience Ionic](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/App_eXperience_Ionic)
+- [App eXperience Java](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/App_eXperience_Java)
+- [App eXperience Kotlin](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/App_eXperience_Kotlin)
 - [App eXperience ReactNative](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/App_eXperience_ReactNative)
-- [WinDev](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/ExemploWindev_Amarildo)
+- [App eXperience XamarinAndroid](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/App_eXperience_XamarinAndroid)
+- [App eXperience XamarinForms](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/App_eXperience_XamarinForms)
+- [WinDev by Amarildo](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/ExemploWindev_Amarildo)
