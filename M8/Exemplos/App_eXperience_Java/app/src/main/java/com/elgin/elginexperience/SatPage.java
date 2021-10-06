@@ -131,7 +131,7 @@ public class SatPage extends AppCompatActivity {
 
         mapValues.put("numSessao", getNumeroSessao());
         mapValues.put("subComando", 2);
-        mapValues.put("codeAtivacao", editTextInputCodeAtivacao.getText());
+        mapValues.put("codeAtivacao", editTextInputCodeAtivacao.getText().toString());
         mapValues.put("cnpj", "14200166000166");
         mapValues.put("cUF", 15);
 
