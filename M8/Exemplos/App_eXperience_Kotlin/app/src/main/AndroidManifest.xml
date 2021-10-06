@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.e1_elgin_kotlin">
+    <uses-permission android:name="android.permission.INTERNET"/>
+
 
     <application
         android:allowBackup="true"
@@ -11,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.E1ElginKotlin"
         tools:replace="android:theme">
-        <activity android:name=".BarCodeReader"></activity>
+        <activity android:name=".ShipayMenu"/>
+        <activity android:name=".BalancaPage" />
+        <activity android:name=".SatPage" />
+        <activity android:name=".BarCodeReader" />
         <activity android:name=".Tef" />
         <activity android:name=".PrinterMenu" />
         <activity android:name=".MainActivity">

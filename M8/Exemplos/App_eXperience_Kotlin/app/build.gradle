@@ -40,10 +40,18 @@ dependencies {
     implementation(name: 'InterfaceAutomacao-v2.0.0.8', ext: 'aar')
     implementation('com.journeyapps:zxing-android-embedded:3.4.0')
     implementation 'com.google.zxing:core:3.4.0'
-    implementation(name: 'libsat-release', ext: 'aar')
+
+    implementation("com.squareup.okhttp3:okhttp:4.9.0")
+
+    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.2.1'
+
     implementation 'com.github.felHR85:UsbSerial:4.5.2'
     implementation 'org.apache.commons:commons-lang3:3.9'
     implementation 'com.google.code.gson:gson:2.8.6'
+    implementation(name: 'satelgin-7.0.1-release', ext: 'aar')
+    implementation("androidx.startup:startup-runtime:1.1.0")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.5.0'

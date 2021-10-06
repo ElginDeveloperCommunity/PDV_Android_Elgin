@@ -9,6 +9,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var buttonPrinterOption: Button
     lateinit var buttonTefOption: Button
     lateinit var buttonBarCodeReaderOption: Button
+    lateinit var buttonSAT: Button
+    lateinit var buttonBalancaOption: Button
+    lateinit var buttonShipay: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,6 +20,10 @@ class MainActivity : AppCompatActivity() {
         buttonPrinterOption = findViewById(R.id.buttonPrinterOption)
         buttonTefOption = findViewById(R.id.buttonTefOption)
         buttonBarCodeReaderOption = findViewById(R.id.buttonBarCodeReaderOption)
+        buttonSAT = findViewById(R.id.buttonSAT)
+        buttonBalancaOption = findViewById(R.id.buttonBalancaOption);
+        buttonShipay = findViewById(R.id.buttonShipay);
+
 
         buttonPrinterOption.setOnClickListener {
             val intent = Intent(this, PrinterMenu::class.java)
@@ -28,8 +35,21 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        buttonBalancaOption.setOnClickListener {
+            val intent = Intent(this, BalancaPage::class.java)
+            startActivity(intent)
+        }
+
         buttonBarCodeReaderOption.setOnClickListener {
             val intent = Intent(this, BarCodeReader::class.java)
+            startActivity(intent)
+        }
+        buttonSAT.setOnClickListener {
+            val intent = Intent(this, SatPage::class.java)
+            startActivity(intent)
+        }
+        buttonShipay.setOnClickListener {
+            val intent = Intent(this, ShipayMenu::class.java)
             startActivity(intent)
         }
     }
