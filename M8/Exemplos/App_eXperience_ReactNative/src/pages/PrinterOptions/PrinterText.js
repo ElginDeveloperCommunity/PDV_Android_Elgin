@@ -153,7 +153,6 @@ const PrinterText = () =>{
                                     </Picker>
 
                                 </View>
-                                
                             </View>
                             <View style={styles.fontStylesSelect}>
                                     {checkBoxType.map(({id,textButton,value,setValue}, index)=>(

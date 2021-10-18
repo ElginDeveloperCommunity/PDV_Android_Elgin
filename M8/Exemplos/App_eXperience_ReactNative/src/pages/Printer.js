@@ -58,7 +58,6 @@ const Printer =()=> {
 
         let actualEvent = DeviceEventEmitter.addListener('eventStatusPrinter', event => {
             var actualReturn = event.statusPrinter;
-            console.log("actualReturn: ", actualReturn);
 
             if(actualReturn === '5'){
                 Alert.alert("Retorno", "Papel está presente e não está próximo!");
@@ -81,7 +80,6 @@ const Printer =()=> {
 
         let actualEvent = DeviceEventEmitter.addListener('eventStatusGaveta', event => {
             var actualReturn = event.statusGaveta;
-            console.log("actualReturn: ", actualReturn);
 
             if(actualReturn === '1'){
                 Alert.alert("Retorno", "Gaveta aberta!");
@@ -104,11 +102,9 @@ const Printer =()=> {
     function changePrinterChoose(value){
         if(value === "I9"){
             setIsUsingPrinterExtern(true);
-            console.log(value);
             startConnectPrinterExtern();
         }else{
             setIsUsingPrinterExtern(false);
-            console.log(value);
             startConnectPrinterIntern();
         }        
     };
@@ -124,8 +120,6 @@ const Printer =()=> {
             var port = ipConection.split(":")[1];
 
             if(isIpAdressValid()){
-                console.log("IP: ", ip);
-                console.log("PORT: ", port);
                 printerService.sendStartConnectionPrinterExtern(
                     ip,
                     parseInt(port),

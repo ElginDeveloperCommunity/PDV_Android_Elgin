@@ -24,9 +24,7 @@ const PrinterImage = () =>{
           quality: 1,
         };
 
-        launchImageLibrary(options, (response) => {
-        //   console.log('Response = ', response);
-    
+        launchImageLibrary(options, (response) => {    
           if (response.didCancel) {
             alert('NÃO FOI ESCOLHIDO NENHUMA IMAGEM');
             return;
@@ -40,7 +38,6 @@ const PrinterImage = () =>{
             alert(response.errorMessage);
             return;
           }
-          console.log(response);
           setImage(response);            
           setPathImage(response.uri);
         });
@@ -49,7 +46,6 @@ const PrinterImage = () =>{
     function doPrinterImage(){
         //REALIZA A LIMPEZA DO URI PADRÃO REMOVENDO A PARTE INICIAL
         var newPathImage = pathImage.split('file://')[1];
-        console.log(newPathImage);
 
         //SE NENHUMA IMAGEM FOI SELECIONADA NO DISPOSITIVO
         //ENVIA INFORMAÇÃO PARA IMPRIMIR IMAGEM PADRÃO DO APP - elgin.jpg

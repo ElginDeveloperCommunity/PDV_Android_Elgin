@@ -65,16 +65,12 @@ const TEF =()=>{
     useEffect(() => {
         if(isFirstTime){
             startConnectPrinterIntern();
-            console.log("FIRST TIME");
             isFirstTime = false;
         }
 
         DeviceEventEmitter.addListener('eventResultPaygo', (data) => {
             var actualReturn = data.resultPaygo;
             var saleVia =  data.resultPaygoSale;
-
-            console.log('saleVia: ' + saleVia);
-            console.log('actualReturn: ' + actualReturn);                
 
             setImage64(saleVia);
             optionsReturnPaygo(actualReturn, saleVia);
@@ -97,7 +93,6 @@ const TEF =()=>{
 
     function startActionTEF(optionReceive){
         setSelectedOptionTEF(optionReceive);
-        console.log(optionReceive);
 
         if(typeTEF === "M-Sitef"){
             sendSitefParams(optionReceive);
@@ -165,7 +160,7 @@ const TEF =()=>{
 
                 let resultReceiveTemp = DeviceEventEmitter.addListener('eventResultSitef', event => {
                     var actualReturn = event.restultMsitef;
-                    console.log(actualReturn);
+
                     sitefReturn.receiveResultInJSON(actualReturn);
                     optionsReturnMsitef(sitefFunctions);                    
                 });
@@ -174,7 +169,7 @@ const TEF =()=>{
                     resultReceiveTemp.remove();
                 }, 2000)
             }catch(e){
-                console.log('ERRO');
+                //ERRO
             }
         }else{
             Alert.alert("Alerta", "Verifique seu endereço IP.");
@@ -197,7 +192,6 @@ const TEF =()=>{
         if(parseInt(sitefReturn.getcODRESP()) < 0 && sitefReturn.getcODAUTORIZACAO() == ""){
             Alert.alert("Alerta", "Ocorreu um erro durante a transação.");
         }else{            
-            console.log("optionsReturnMsitef", sitefFunctions);
             if(sitefFunctions === 'SALE'){
                 var textToPrinter = sitefReturn.vIACLIENTE();
 

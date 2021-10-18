@@ -37,16 +37,30 @@
                  <Image style={styles.icon} source={require('../icons/printer.png')}/>
                  <Text style={styles.textButton}>IMPRESSORA</Text>
                </TouchableOpacity>
-               <TouchableOpacity style={styles.buttonMenu} onPress={() => navigator.navigate('BarCodes')}>
-                 <Image style={styles.icon} source={require('../icons/barCode.png')}/>
-                 <Text style={styles.textButton}>CÓDIGO DE BARRAS</Text>
-               </TouchableOpacity>
+               <View style={styles.doubleButtonView}>
+                  <TouchableOpacity style={styles.doubleButton} onPress={() => navigator.navigate('BarCodes')}>
+                    <Image style={styles.icon} source={require('../icons/barCode.png')}/>
+                    <Text style={styles.textButton}>CÓDIGO DE BARRAS</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.doubleButton} onPress={() => navigator.navigate('Balanca')}>
+                    <Image style={styles.icon} source={require('../icons/balanca.png')}/>
+                    <Text style={styles.textButton}>BALANÇA</Text>
+                  </TouchableOpacity>
+               </View>
              </View>
              <View style={styles.firstLine}>
-               <TouchableOpacity style={styles.buttonMenu} onPress={()=>navigator.navigate('TEF')}>
-                 <Image style={styles.icon} source={require('../icons/msitef.png')}/>
-                 <Text style={styles.textButton}>TEF</Text>
-               </TouchableOpacity><TouchableOpacity style={styles.buttonMenu} onPress={()=>navigator.navigate('SAT')}>
+               <View style={styles.doubleButtonView}>
+                 <TouchableOpacity style={styles.doubleButton} onPress={()=>navigator.navigate('TEF')}>
+                   <Image style={styles.icon} source={require('../icons/msitef.png')}/>
+                   <Text style={styles.textButton}>TEF</Text>
+               </TouchableOpacity>
+               <TouchableOpacity style={styles.doubleButton} onPress={()=>navigator.navigate('CarteiraDigital')} >
+                   <Image style={styles.icon} source={require('../icons/msitef.png')}/>
+                   <Text style={styles.textButton}>CARTEIRA DIGITAL</Text>
+               </TouchableOpacity>
+               </View>
+               
+               <TouchableOpacity style={styles.buttonMenu} onPress={()=>navigator.navigate('SAT')}>
                  <Image style={styles.icon} source={require('../icons/sat.png')}/>
                  <Text style={styles.textButton}>SAT</Text>
                </TouchableOpacity>
@@ -100,7 +114,7 @@
     alignItems:'center',
     borderWidth:2,
     borderRadius:15,
-    width:200,
+    width:220,
     height:130,
     marginHorizontal:10,
     marginVertical:5
@@ -110,10 +124,26 @@
     height:50,
   },
   firstLine:{
-    flexDirection:'row'
+    flexDirection:'row',
+  },
+  doubleButtonView:{
+    flexDirection:'row',
+  },
+  doubleButton:{
+    flexDirection:'column',
+    justifyContent:'center',
+    alignItems:'center',
+    
+    borderWidth:2,
+    borderRadius:15,
+    width:100,
+    height:130,
+    marginHorizontal:10,
+    marginVertical:5
   },
   textButton: {
     fontWeight: 'bold',
+    textAlign:'center',
   }
  });
  

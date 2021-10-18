@@ -11,13 +11,19 @@ package com.elginm8;
 
  //IMPORTAÇÕES PARA FUNCIONALIDADE M-SITEF
 import org.json.JSONObject;
-import android.widget.Toast;
+
+ import android.app.Service;
+ import android.os.Build;
+ import android.widget.Toast;
 import org.json.JSONException;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import static android.app.Activity.RESULT_OK;
+
+ import androidx.annotation.RequiresApi;
+
+ import static android.app.Activity.RESULT_OK;
 import static android.app.Activity.RESULT_CANCELED;
 import com.facebook.react.bridge.ActivityEventListener;
 import com.google.zxing.integration.android.IntentResult;
@@ -34,7 +40,7 @@ import br.com.setis.interfaceautomacao.Operacoes;
 
 import com.elginm8.PayGo;
 import com.elginm8.Printer;
-
+import com.elginm8.Balanca;
 
 public class ToastModules extends ReactContextBaseJavaModule implements ActivityEventListener {
     public static ReactApplicationContext reactContext;
@@ -128,6 +134,7 @@ public class ToastModules extends ReactContextBaseJavaModule implements Activity
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @ReactMethod
     public void sendOptionsClassPrinter(ReadableMap configsReceived){
         WritableMap result = Arguments.createMap();
@@ -181,6 +188,77 @@ public class ToastModules extends ReactContextBaseJavaModule implements Activity
             reactContext
             .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
             .emit("eventStatusPrinter", result);
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @ReactMethod
+    public void runSat(ReadableMap configsReceived){
+        WritableMap result = Arguments.createMap();
+
+        if(configsReceived.getString("typeSat").equals("activateSat")){
+            result.putString("resultAtivarSat", String.valueOf(ServiceSat.ativarSAT(configsReceived)));
+
+            reactContext
+                .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                .emit("eventAtivarSat", result);
+
+        }else if(configsReceived.getString("typeSat").equals("associateSignature")){
+            result.putString("resultAssociateSignature",String.valueOf(ServiceSat.associarAssinatura(configsReceived)));
+
+            reactContext
+                .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                .emit("eventAssociateSignature", result);
+
+        }else if(configsReceived.getString("typeSat").equals("consultSat")){
+             result.putString("resultConsultSat", ServiceSat.consultarSAT(configsReceived));
+
+             reactContext
+                 .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                 .emit("eventConsultSat", result);
+
+        } else if(configsReceived.getString("typeSat").equals("statusSat")){
+            result.putString("resultStatusOperacional",ServiceSat.statusOperacional(configsReceived));
+
+            reactContext
+                .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                .emit("eventStatusOperacional", result);
+
+        }else if(configsReceived.getString("typeSat").equals("sendSell")){
+            result.putString("resultSendSell",String.valueOf( ServiceSat.enviarVenda(configsReceived)));
+
+            reactContext
+                .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                .emit("eventSendSell", result);
+
+
+        }else if(configsReceived.getString("typeSat").equals("cancelSell")){
+            result.putString("resultCancelSell",String.valueOf( ServiceSat.cancelarVenda(configsReceived)));
+
+            reactContext
+                .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                .emit("eventCancelSell", result);
+
+
+        }
+    }
+
+    @ReactMethod
+    public void runBalanca(ReadableMap configsReceived){
+        WritableMap result = Arguments.createMap();
+
+        if(configsReceived.getString("typeBalanca").equals("configBalanca")){
+           Balanca.configBalanca(configsReceived);
+
+        }else if (configsReceived.getString("typeBalanca").equals("lerPeso")){
+            String returnValue = Balanca.lerPesoBalanca();
+            System.out.println(returnValue);
+
+            result.putString("resultLerPeso", returnValue);
+           
+            reactContext
+                .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                .emit("eventLerPeso", result);
         }
     }
 }

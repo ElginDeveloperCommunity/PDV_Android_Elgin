@@ -9,7 +9,7 @@ export default class SitefFormat{
         mapMsiTef["hora"] = "130358";
         mapMsiTef["numeroCupom"] = Math.floor(Math.random() * 9999999).toString();
         mapMsiTef["valor"] = sitefEntrys.getValue().toString();
-        mapMsiTef["CNPJ_CPF"] = "03654119000176";
+        mapMsiTef["CNPJ_CPF"] = "14200166000166";
         mapMsiTef["comExterna"] = "0";
 
         if(sitefFunctions === 'SALE'){
@@ -53,8 +53,6 @@ export default class SitefFormat{
             mapMsiTef["restricoes"] = null;
             mapMsiTef["caminhoCertificadoCA"] = "ca_cert_perm";
         }
-        
-        console.log(mapMsiTef.modalidade);
         return mapMsiTef;
     };
 
