@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: :minipdvm8:@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/40ef06b1d9adb89f564542fd0bc63be4/transformed/jetified-minipdvm8/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/40ef06b1d9adb89f564542fd0bc63be4/transformed/jetified-minipdvm8/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/40ef06b1d9adb89f564542fd0bc63be4/transformed/jetified-minipdvm8/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

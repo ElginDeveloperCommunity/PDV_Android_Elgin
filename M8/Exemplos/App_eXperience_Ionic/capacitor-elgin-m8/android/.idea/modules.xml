@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android.iml" filepath="$PROJECT_DIR$/.idea/modules/android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/71492859/android.capacitor-android.iml" filepath="$PROJECT_DIR$/.idea/modules/71492859/android.capacitor-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib/android.lib.iml" filepath="$PROJECT_DIR$/.idea/modules/lib/android.lib.iml" />
+    </modules>
+  </component>
+</project>
