@@ -1,0 +1,20 @@
+<ion-content>
+  <ion-grid>
+    <h4 style="text-align: center; margin: 0px 0px 0px 0px; font-size: medium;">IMPRESSÃO DE CÓDIGO DE BARRAS</h4>
+    <h4 style="text-align: center; margin-top: 10px; font-size: large; ">PRÉ-VISUALIZAÇÃO</h4>
+    <img [src]="picToView" style="display: flexbox;  justify-content: center; text-align: end;"  (click)="changeView()" />
+    <h3 style="margin: 5px 0px 0px 10px;">ESTILIZAÇÃO:</h3>
+    <div style="margin-left: 15px;"> 
+      <ion-checkbox [(ngModel)]="cutPaper" ></ion-checkbox>
+      <ion-label style="margin-left: 5px;" >CUT PAPER</ion-label>
+    </div>
+    <div style="display: flex; margin-top: 5px; flex-direction: row;  justify-content: space-around; align-items: center;">
+      <div style="width: 40%;"> 
+        <ion-button (click)="chooseImage()" color="primary"  expand="full" mode="android" >SELECIONAR</ion-button>
+      </div>
+      <div style="width: 40%; ">
+        <ion-button (click)="printSelectedImage()" color="primary"  expand="full" mode="android" >IMPRIMIR</ion-button>
+      </div>
+    </div>
+  </ion-grid>
+</ion-content>

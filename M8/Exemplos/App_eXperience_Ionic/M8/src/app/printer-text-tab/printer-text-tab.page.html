@@ -1,0 +1,103 @@
+<ion-content >
+ 
+  <ion-grid>
+
+   
+    <div style="text-align: start; margin: 0px 0px 0px 0px;">
+      <h4 style="text-align: center; margin: 0px 0px 0px 0px; font-size: medium;">IMPRESSÃO DE TEXTO</h4>
+    
+      <ion-item style="margin: 5px 0px 0px 0px;">
+        <h2>MENSAGEM: </h2>
+        <ion-input style="align-self: flex-end;" type="text" [(ngModel)]="message" id="mensagem"></ion-input>
+      </ion-item>
+
+      <h2 style="margin: 5px 0px 1px 10px;">ALINHAMENTO</h2>
+      
+
+      <ion-radio-group style="margin: 0px 0px 0px 0px;" allow-empty-selection="false" name="radio-group" (ionChange)="alinhamentoRadioChange($event)" value = "Centralizado"> 
+        <div style="display: flex; justify-content: space-around; align-items: center;">
+          <div>
+            <ion-radio class="radio" value="Esquerda"></ion-radio>
+            <ion-label style="margin-left: 5px;">ESQUERDA</ion-label>
+          </div>
+
+          <div>
+            <ion-radio class="radio" value="Centralizado"></ion-radio>
+            <ion-label style="margin-left: 5px;" class="label-right">CENTRALIZADO</ion-label>
+          </div>
+
+          <div>
+            <ion-radio class="radio" value="Direita"></ion-radio>
+            <ion-label style="margin-left: 5px;" class="label-right">DIREITA</ion-label>
+          </div>
+        </div>
+      </ion-radio-group>
+
+      <h3 style="margin: 5px 0px 0px 10px;">ESTILIZAÇÃO:</h3>
+
+      <div style="display: flex; justify-content: space-between; margin: 0px 0px 0px 10px;">
+        <div>
+          <h3>FONT FAMILY:</h3>
+        </div>
+
+        <div>
+          <ion-list>
+            <ion-select mode="ios" value="FONT A" (ionChange)="fontListChange($event);" cancelText="Cancelar" interface="popover">
+              <ion-select-option value="FONT A">Fonte A</ion-select-option>
+              <ion-select-option value="FONT B">Fonte B</ion-select-option>
+            </ion-select>
+          </ion-list>
+        </div>
+
+        <div>
+          <h3>FONT SIZE:</h3>
+        </div>
+
+        <div>
+          <ion-list>
+            <ion-select mode="ios" value="17" (ionChange)="fontsizeListChange($event);" cancelText="Cancelar" interface="popover">
+              <ion-select-option value="17">17</ion-select-option>
+              <ion-select-option value="34">34</ion-select-option>
+              <ion-select-option value="51">51</ion-select-option>
+              <ion-select-option value="68">68</ion-select-option>
+            </ion-select>
+          </ion-list>
+        </div>
+
+      </div>
+
+      <div style="display: flex; justify-content: space-between;  margin: 0px 0px 0px 10px;">
+        
+        <div>
+          <ion-checkbox [(ngModel)]="isBold"  checked="false"></ion-checkbox>
+          <ion-label style="margin-left: 5px;" >NEGRITO</ion-label>
+        </div>
+
+        <div>
+          <ion-checkbox [(ngModel)]="isUnderline" checked="false"></ion-checkbox>
+          <ion-label style="margin-left: 5px;">SUBLINHADO</ion-label>
+        </div>
+
+        <div>
+          <ion-checkbox [(ngModel)]="cutPaper" ></ion-checkbox>
+          <ion-label style="margin-left: 5px;" >CUT PAPER</ion-label>
+        </div>
+
+      </div>
+
+      <div>
+        <ion-button (click)="printText()" color="primary"  expand="full" mode="android" >IMPRIMIR TEXTO</ion-button>
+      </div>
+      
+      <div style="display: flex; flex-direction: row;">
+        <div style="width: 50%;"> 
+          <ion-button (click)="printXmlNFCE()" color="primary"  expand="full" mode="android" >NFCE</ion-button>
+        </div>
+        <div style="width: 50%;">
+          <ion-button (click)="printXmlSAT()" color="primary"  expand="full" mode="android" >SAT</ion-button>
+        </div>
+      </div>
+
+    </div>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,52 @@
+.pageTitle{
+    margin: 10px 00px 15px 00px;
+}
+
+.mainLogo{
+    height: 50px;
+    position: fixed;
+    right: 30px;
+    top: 0px;
+}
+
+h1{
+    font-size: small;
+}
+
+ion-row{
+    height: 35px;
+}
+
+.bar{
+    height: 30px;
+    display: flex;
+    width: 30px;
+}
+
+
+
+.inputDiv{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.entriesBox{
+    border-radius: 15px;
+    border-style: solid;
+    border-color: black;
+    height: 360px;
+    width: 75%;
+}
+
+.footer{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-right: 100px;
+    font-weight: bold;
+    font-size: large;
+    color: #7F7F7F
+}
+

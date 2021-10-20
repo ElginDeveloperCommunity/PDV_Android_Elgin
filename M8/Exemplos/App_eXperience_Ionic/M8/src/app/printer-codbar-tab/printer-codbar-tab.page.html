@@ -1,0 +1,103 @@
+<ion-content>
+  <ion-grid>
+
+    <div style="text-align: start; margin: 0px 0px 0px 0px;">
+      <h4 style="text-align: center; margin: 0px 0px 0px 0px; font-size: medium;">IMPRESSÃO DE CÓDIGO DE BARRAS</h4>
+
+      <ion-item style="margin: 5px 0px 0px 0px;">
+        <h2>CÓDIGO: </h2>
+        <ion-input style="align-self: flex-end;" type="text" [(ngModel)]="code" id="mensagem"></ion-input>
+      </ion-item>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; margin: 0px 0px 0px 0px;">
+      <div style="display: flex; margin-left: 10px;">
+        <h3>TIPO DE CÓDIGO DE BARRAS:</h3>
+      </div>
+
+      <div>
+        <ion-list>
+          <ion-select mode="ios" value="EAN 8" (ionChange)="codebarTypeListChange($event);" cancelText="Cancelar" interface="popover">
+            <ion-select-option value="EAN 8">EAN 8</ion-select-option>
+            <ion-select-option value="EAN 13">EAN 13</ion-select-option>
+            <ion-select-option value="QR CODE">QR CODE</ion-select-option>
+            <ion-select-option value="UPC-A">UPC-A</ion-select-option>
+            <ion-select-option value="UPC-E">UPC-E</ion-select-option>
+            <ion-select-option value="CODE 39">CODE 39</ion-select-option>
+            <ion-select-option value="ITF">ITF</ion-select-option>
+            <ion-select-option value="CODE BAR">CODE BAR</ion-select-option>
+            <ion-select-option value="CODE 93">CODE 93</ion-select-option>
+            <ion-select-option value="CODE 128">CODE 128</ion-select-option>
+          </ion-select>
+        </ion-list>
+      </div>
+
+    </div>
+
+    <h2 style="margin: 0px 0px 1px 10px;">ALINHAMENTO</h2>
+
+    <ion-radio-group (ionChange)="alinhamentoRadioChange($event)" style="margin: 0px 0px 0px 0px;" allow-empty-selection="false" name="radio-group" (ionChange)="radioGroupChange($event)" value = "Centralizado"> 
+      <div style="display: flex; justify-content: space-around; align-items: center;">
+        <div>
+          <ion-radio class="radio" value="Esquerda"></ion-radio>
+          <ion-label style="margin-left: 5px;">Esquerda</ion-label>
+        </div>
+
+        <div>
+          <ion-radio class="radio" value="Centralizado"></ion-radio>
+          <ion-label style="margin-left: 5px;" class="label-right">Centralizado</ion-label>
+        </div>
+
+        <div>
+          <ion-radio class="radio" value="Direita"></ion-radio>
+          <ion-label style="margin-left: 5px;" class="label-right">Direita</ion-label>
+        </div>
+      </div>
+    </ion-radio-group>
+
+    <h3 style="margin: 5px 0px 0px 10px;">ESTILIZAÇÃO</h3>
+
+    <div style="display: flex; justify-content: space-between; margin: 0px 0px 0px 10px;">
+      <div>
+        <h3>WIDTH:</h3>
+      </div>
+
+      <div>
+        <ion-list>
+          <ion-select mode="ios" value="6" (ionChange)="widthListChange($event);" cancelText="Cancelar" interface="popover">
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+            <ion-select-option value="6">6</ion-select-option>
+          </ion-select>
+        </ion-list>
+      </div>
+
+      <div *ngIf="isQrCodeNotSelected">
+        <h3>HEIGHT:</h3>
+      </div>
+
+      <div *ngIf="isQrCodeNotSelected">
+        <ion-list>
+          <ion-select mode="ios" value="120" (ionChange)="heightListChange($event);" cancelText="Cancelar" interface="popover">
+            <ion-select-option value="20">20</ion-select-option>
+            <ion-select-option value="60">60</ion-select-option>
+            <ion-select-option value="120">120</ion-select-option>
+            <ion-select-option value="200">200</ion-select-option>
+          </ion-select>
+        </ion-list>
+      </div>
+
+      <div style="display: flex; align-self: center;"> 
+        <ion-checkbox [(ngModel)]="cutPaper" ></ion-checkbox>
+        <ion-label style="margin-left: 5px;" >CUT PAPER</ion-label>
+      </div>
+
+    </div>
+
+    <ion-button color="primary" (click)="printBarcode()" expand="full" mode="android" >IMPRIMIR CÓDIGO DE BARRAS</ion-button>
+    
+  </ion-grid>
+</ion-content>

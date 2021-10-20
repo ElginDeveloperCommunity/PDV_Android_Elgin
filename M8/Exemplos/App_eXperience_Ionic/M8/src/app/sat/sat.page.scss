@@ -1,0 +1,48 @@
+.pageTitle{
+    margin: 10px 00px 15px 00px;
+}
+
+.mainLogo{
+    height: 50px;
+    position: fixed;
+    right: 30px;
+    top: 0px;
+}
+
+ion-button{
+    width: 200px;
+    margin-top: 10px;
+}
+
+ion-item{
+    width: 150px;
+}
+
+.customBox{
+    display: flexbox;  
+    border-radius: 15px;
+    border-style: solid;
+    border-color: black;
+    height: 400px;
+    width: 50%;
+    text-align: center;
+    margin-right: 5px;
+}
+
+.buttonsColumn{
+    display: flex;
+   
+    flex-direction: column;
+   
+    width: 50%;
+}
+
+.footer{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-right: 100px;
+    font-weight: bold;
+    font-size: large;
+    color: #7F7F7F
+}

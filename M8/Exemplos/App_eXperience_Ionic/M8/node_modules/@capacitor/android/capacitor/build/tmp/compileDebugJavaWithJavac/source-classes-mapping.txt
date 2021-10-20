@@ -1,0 +1,116 @@
+com/getcapacitor/PluginLoadException.java
+ com.getcapacitor.PluginLoadException
+com/getcapacitor/PluginManager.java
+ com.getcapacitor.PluginManager
+com/getcapacitor/Bridge.java
+ com.getcapacitor.Bridge
+ com.getcapacitor.Bridge$1
+ com.getcapacitor.Bridge$Builder
+com/getcapacitor/cordova/CapacitorCordovaCookieManager.java
+ com.getcapacitor.cordova.CapacitorCordovaCookieManager
+com/getcapacitor/plugin/util/AssetUtil.java
+ com.getcapacitor.plugin.util.AssetUtil
+com/getcapacitor/PluginInvocationException.java
+ com.getcapacitor.PluginInvocationException
+com/getcapacitor/Logger.java
+ com.getcapacitor.Logger
+com/getcapacitor/NativePlugin.java
+ com.getcapacitor.NativePlugin
+com/getcapacitor/CapacitorWebView.java
+ com.getcapacitor.CapacitorWebView
+com/getcapacitor/JSArray.java
+ com.getcapacitor.JSArray
+com/getcapacitor/JSInjector.java
+ com.getcapacitor.JSInjector
+com/getcapacitor/JSObject.java
+ com.getcapacitor.JSObject
+com/getcapacitor/annotation/ActivityCallback.java
+ com.getcapacitor.annotation.ActivityCallback
+com/getcapacitor/UriMatcher.java
+ com.getcapacitor.UriMatcher
+com/getcapacitor/PluginHandle.java
+ com.getcapacitor.PluginHandle
+com/getcapacitor/PluginCall.java
+ com.getcapacitor.PluginCall
+ com.getcapacitor.PluginCall$PluginCallDataTypeException
+com/getcapacitor/PluginMethodHandle.java
+ com.getcapacitor.PluginMethodHandle
+com/getcapacitor/cordova/MockCordovaWebViewImpl.java
+ com.getcapacitor.cordova.MockCordovaWebViewImpl
+ com.getcapacitor.cordova.MockCordovaWebViewImpl$CapacitorEvalBridgeMode
+com/getcapacitor/BridgeFragment.java
+ com.getcapacitor.BridgeFragment
+com/getcapacitor/util/WebColor.java
+ com.getcapacitor.util.WebColor
+com/getcapacitor/util/HostMask.java
+ com.getcapacitor.util.HostMask
+ com.getcapacitor.util.HostMask$Any
+ com.getcapacitor.util.HostMask$Nothing
+ com.getcapacitor.util.HostMask$Parser
+ com.getcapacitor.util.HostMask$Simple
+ com.getcapacitor.util.HostMask$Util
+com/getcapacitor/PluginResult.java
+ com.getcapacitor.PluginResult
+com/getcapacitor/util/PermissionHelper.java
+ com.getcapacitor.util.PermissionHelper
+com/getcapacitor/android/BuildConfig.java
+ com.getcapacitor.android.BuildConfig
+com/getcapacitor/AndroidProtocolHandler.java
+ com.getcapacitor.AndroidProtocolHandler
+com/getcapacitor/BridgeWebChromeClient.java
+ com.getcapacitor.BridgeWebChromeClient
+ com.getcapacitor.BridgeWebChromeClient$ActivityResultListener
+ com.getcapacitor.BridgeWebChromeClient$PermissionListener
+com/getcapacitor/util/JSONUtils.java
+ com.getcapacitor.util.JSONUtils
+com/getcapacitor/annotation/PermissionCallback.java
+ com.getcapacitor.annotation.PermissionCallback
+com/getcapacitor/JSExportException.java
+ com.getcapacitor.JSExportException
+com/getcapacitor/BridgeActivity.java
+ com.getcapacitor.BridgeActivity
+com/getcapacitor/PluginMethod.java
+ com.getcapacitor.PluginMethod
+com/getcapacitor/WebViewLocalServer.java
+ com.getcapacitor.WebViewLocalServer
+ com.getcapacitor.WebViewLocalServer$1
+ com.getcapacitor.WebViewLocalServer$LazyInputStream
+ com.getcapacitor.WebViewLocalServer$LollipopLazyInputStream
+ com.getcapacitor.WebViewLocalServer$PathHandler
+com/getcapacitor/InvalidPluginException.java
+ com.getcapacitor.InvalidPluginException
+com/getcapacitor/App.java
+ com.getcapacitor.App
+ com.getcapacitor.App$AppRestoredListener
+ com.getcapacitor.App$AppStatusChangeListener
+com/getcapacitor/annotation/CapacitorPlugin.java
+ com.getcapacitor.annotation.CapacitorPlugin
+com/getcapacitor/InvalidPluginMethodException.java
+ com.getcapacitor.InvalidPluginMethodException
+com/getcapacitor/CapConfig.java
+ com.getcapacitor.CapConfig
+ com.getcapacitor.CapConfig$1
+ com.getcapacitor.CapConfig$Builder
+com/getcapacitor/FileUtils.java
+ com.getcapacitor.FileUtils
+ com.getcapacitor.FileUtils$Type
+com/getcapacitor/Plugin.java
+ com.getcapacitor.Plugin
+com/getcapacitor/BridgeWebViewClient.java
+ com.getcapacitor.BridgeWebViewClient
+com/getcapacitor/annotation/Permission.java
+ com.getcapacitor.annotation.Permission
+com/getcapacitor/JSExport.java
+ com.getcapacitor.JSExport
+com/getcapacitor/PermissionState.java
+ com.getcapacitor.PermissionState
+com/getcapacitor/MessageHandler.java
+ com.getcapacitor.MessageHandler
+com/getcapacitor/plugin/WebView.java
+ com.getcapacitor.plugin.WebView
+com/getcapacitor/cordova/MockCordovaInterfaceImpl.java
+ com.getcapacitor.cordova.MockCordovaInterfaceImpl
+com/getcapacitor/PluginConfig.java
+ com.getcapacitor.PluginConfig
+com/getcapacitor/WebViewListener.java
+ com.getcapacitor.WebViewListener

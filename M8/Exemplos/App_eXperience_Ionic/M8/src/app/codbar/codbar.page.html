@@ -1,0 +1,149 @@
+<ion-content color="light">
+  <ion-grid >
+    
+    <h1 class="pageTitle" style="font-size: large;">CÓDIGO DE BARRAS</h1>
+    <img class="mainLogo" src="/assets/elginlogo.png">
+
+    <div class="inputDiv" >
+      <div class="entriesBox">
+
+        <div style="display: flex; width: 100%; align-items: center;  flex-direction: row; margin-top: 10px;">
+          <img  style="margin-left: 5px; " class="bar" src="/assets/bar.png">
+          <div style="border-radius: 15px; border-style: solid; width: 250px; height: 30px;  margin-left: 15px; "> 
+              <ion-input #codbarInput1 hideKeyboard  [(ngModel)]="codbarFields[0]" debounce="100"  style="margin-left: 40px;"   (ionChange)="onCodbarInserted1()" style="align-self: flex-end; height: 30px; font-size: large;" type="text" ></ion-input>
+          </div>
+          <div *ngIf="fieldRead[0]" style="display: flex; flex-direction: row; margin-left: 30px; ">
+            Leitura realizada com sucesso.
+          </div>
+
+        </div>
+
+        <div class="inputDiv">
+          <img style="margin-left: 5px;" class="bar" src="/assets/bar.png">
+          <div style="border-radius: 15px; border-style: solid; width: 250px; height: 30px;  margin-left: 15px; "> 
+              <ion-input #codbarInput2 hideKeyboard [(ngModel)]="codbarFields[1]" debounce="100"  style="margin-left: 40px;"   (ionChange)="onCodbarInserted2()" style="align-self: flex-end; height: 30px; font-size: large;" type="text" ></ion-input>
+          </div>
+          <div *ngIf="fieldRead[1]" style="display: flex; flex-direction: row; margin-left: 30px; ">
+            Leitura realizada com sucesso.
+          </div>
+
+        </div>
+
+        <div class="inputDiv">
+          <img style="margin-left: 5px;" class="bar" src="/assets/bar.png">
+          <div style="border-radius: 15px; border-style: solid; width: 250px; height: 30px;  margin-left: 15px; "> 
+              <ion-input #codbarInput3 hideKeyboard [(ngModel)]="codbarFields[2]" debounce="100"  style="margin-left: 40px;"   (ionChange)="onCodbarInserted3()" style="align-self: flex-end; height: 30px; font-size: large;" type="text" ></ion-input>
+          </div>
+          <div *ngIf="fieldRead[2]" style="display: flex; flex-direction: row; margin-left: 30px; ">
+            Leitura realizada com sucesso.
+          </div>
+
+        </div>
+
+        <div class="inputDiv">
+          <img style="margin-left: 5px;" class="bar" src="/assets/bar.png">
+          <div style="border-radius: 15px; border-style: solid; width: 250px; height: 30px;  margin-left: 15px; "> 
+              <ion-input #codbarInput4 hideKeyboard [(ngModel)]="codbarFields[3]" debounce="100"  style="margin-left: 40px;"   (ionChange)="onCodbarInserted4()" style="align-self: flex-end; height: 30px; font-size: large;" type="text" ></ion-input>
+          </div>
+          <div *ngIf="fieldRead[3]" style="display: flex; flex-direction: row; margin-left: 30px; ">
+            Leitura realizada com sucesso.
+          </div>
+
+        </div>
+
+        <div class="inputDiv">
+          <img style="margin-left: 5px;" class="bar" src="/assets/bar.png">
+          <div style="border-radius: 15px; border-style: solid; width: 250px; height: 30px;  margin-left: 15px; "> 
+              <ion-input #codbarInput5 hideKeyboard [(ngModel)]="codbarFields[4]" debounce="100"  style="margin-left: 40px;"   (ionChange)="onCodbarInserted5()" style="align-self: flex-end; height: 30px; font-size: large;" type="text" ></ion-input>
+          </div>
+          <div *ngIf="fieldRead[4]" style="display: flex; flex-direction: row; margin-left: 30px; ">
+            Leitura realizada com sucesso.
+          </div>
+
+        </div>
+
+        <div class="inputDiv">
+          <img style="margin-left: 5px;" class="bar" src="/assets/bar.png">
+          <div style="border-radius: 15px; border-style: solid; width: 250px; height: 30px;  margin-left: 15px; "> 
+              <ion-input #codbarInput6 hideKeyboard [(ngModel)]="codbarFields[5]" debounce="100"  style="margin-left: 40px;"   (ionChange)="onCodbarInserted6()" style="align-self: flex-end; height: 30px; font-size: large;" type="text" ></ion-input>
+          </div>
+          <div *ngIf="fieldRead[5]" style="display: flex; flex-direction: row; margin-left: 30px; ">
+            Leitura realizada com sucesso.
+          </div>
+
+        </div>
+
+        <div class="inputDiv">
+          <img style="margin-left: 5px;" class="bar" src="/assets/bar.png">
+          <div style="border-radius: 15px; border-style: solid; width: 250px; height: 30px;  margin-left: 15px; "> 
+              <ion-input #codbarInput7 hideKeyboard [(ngModel)]="codbarFields[6]" debounce="100" style="margin-left: 40px;"   (ionChange)="onCodbarInserted7()" style="align-self: flex-end; height: 30px; font-size: large;" type="text" ></ion-input>
+          </div>
+          <div *ngIf="fieldRead[6]" style="display: flex; flex-direction: row; margin-left: 30px; ">
+            Leitura realizada com sucesso.
+          </div>
+
+        </div>
+
+        <div class="inputDiv">
+          <img style="margin-left: 5px;" class="bar" src="/assets/bar.png">
+          <div style="border-radius: 15px; border-style: solid; width: 250px; height: 30px;  margin-left: 15px; "> 
+              <ion-input #codbarInput8 hideKeyboard [(ngModel)]="codbarFields[7]" debounce="100"  style="margin-left: 40px;"   (ionChange)="onCodbarInserted8()" style="align-self: flex-end; height: 30px; font-size: large;" type="text" ></ion-input>
+          </div>
+          <div *ngIf="fieldRead[7]" style="display: flex; flex-direction: row; margin-left: 30px; ">
+            Leitura realizada com sucesso.
+          </div>
+
+        </div>
+
+        <div class="inputDiv">
+          <img style="margin-left: 5px;" class="bar" src="/assets/bar.png">
+          <div style="border-radius: 15px; border-style: solid; width: 250px; height: 30px;  margin-left: 15px; "> 
+              <ion-input #codbarInput9 hideKeyboard [(ngModel)]="codbarFields[8]" debounce="100"  style="margin-left: 40px;"   (ionChange)="onCodbarInserted9()" style="align-self: flex-end; height: 30px; font-size: large;" type="text" ></ion-input>
+          </div>
+          <div *ngIf="fieldRead[8]" style="display: flex; flex-direction: row; margin-left: 30px; ">
+            Leitura realizada com sucesso.
+          </div>
+
+        </div>
+
+        <div class="inputDiv">
+          <img style="margin-left: 5px;" class="bar" src="/assets/bar.png">
+          <div style="border-radius: 15px; border-style: solid; width: 250px; height: 30px;  margin-left: 15px; "> 
+              <ion-input #codbarInput10 hideKeyboard [(ngModel)]="codbarFields[9]" debounce="100"  style="margin-left: 40px;"   (ionChange)="onCodbarInserted10()" style="align-self: flex-end; height: 30px; font-size: large;" type="text" ></ion-input>
+          </div>
+          <div *ngIf="fieldRead[9]" style="display: flex; flex-direction: row; margin-left: 30px; ">
+            Leitura realizada com sucesso.
+          </div>
+
+        </div>
+       
+
+      </div>
+
+      <div style=" flex-direction: column; border-radius: 20px;  width: 25%;">
+        <h2 style="text-align: center; margin: 0px 0px 5px 0px;">QR CODE</h2>
+        <div style="display: flex; justify-content: center;">
+          <img style="width: 120px; height: 120px; text-align: center;" src="/assets/qrcode.png">
+        </div>
+
+        <h2 style="text-align: center; margin: 0px 0px 5px 0px;">EAN 13</h2>
+        <div style="display: flex; justify-content: center;">
+          <img style="width: 200px; height: 120px; text-align: center;" src="/assets/ean13.png">
+        </div>
+      </div>
+
+      
+
+    </div>
+    
+    <div style="width: 100%; flex-direction: row; display: flex;">
+      <ion-button style="width: 50%;" (click)="initiateReading()"  size="mediun" color="primary" mode="ios">INICIAR LEITURA</ion-button>
+      <ion-button style="width: 50%;" (click)="clearAllFields()"  size="medium" color="primary" mode="ios">LIMPAR CAMPOS</ion-button>
+    </div>
+   
+   
+    
+    <h1 class="footer">Ionic 1.0.0</h1>
+
+  </ion-grid>
+</ion-content>

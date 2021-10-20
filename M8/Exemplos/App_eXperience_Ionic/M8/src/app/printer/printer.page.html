@@ -1,0 +1,93 @@
+<ion-content color="light">
+  <ion-grid>
+    
+        <h1 class="pageTitle">IMPRESSORA</h1>
+        <img class="mainLogo" src="/assets/elginlogo.png">
+     
+
+    <div style="display: flex; width: min-content;">
+     
+      <div>
+        <div class="box">
+          <button (click)="goToPrinterTextTab()" class="menuButton" type="button">
+            <img style="text-align: center;" src="assets/printertext.png">
+            <h4>IMPRESSÃO DE TEXTO</h4>
+          </button>
+        </div>
+
+        <div class="box">
+          <button (click)="goToPrinterCodbarTab()" class="menuButton" type="button">
+            <img style="text-align: center;" src="assets/printerbarcode.png">
+            <h4>IMPRESSÃO DE CÓDIGO DE BARRAS</h4>
+          </button>
+        </div>
+
+        <div class="box">
+          <button (click)="goToPrinterImageTab()" class="menuButton" type="button">
+            <img style="text-align: center;" src="assets/printerimage.png">
+            <h4>IMPRESSÃO DE IMAGEM</h4>
+          </button>
+        </div>
+
+        <div class="box">
+          <button (click)="printerStatus()" class="menuButtonSide" type="button">
+            <img style="text-align: center;" src="assets/status.png">
+            <h4 style="margin-left: 2px;">STATUS IMPRESSORA</h4>
+          </button>
+        </div>
+        <div class="box">
+          <button (click)="drawerStatus()" class="menuButtonSide" type="button">
+            <img style="text-align: center;" src="assets/status.png">
+            <h4 style="margin-left: 2px;">STATUS GAVETA</h4>
+          </button>
+        </div>
+        
+        <ion-button (click)="openDrawer()" color="primary" mode="ios">ABRIR GAVETA</ion-button>
+
+      </div>
+      
+      <div style="display: flex; flex-direction: column;">
+        <div style="margin-top: 0px; margin-left: 10px;  ">
+          <ion-radio-group allow-empty-selection="false" [(ngModel)]="printerMethod"   (ionChange)="radioGroupChange($event)" value="Interna"> 
+            <div style="display: flex; justify-content: space-around; align-items: center;">
+              <div>
+                <ion-radio class="radio"  value="Interna"></ion-radio>
+                <ion-label style="margin-left: 5px;">Impressora Interna</ion-label>
+              </div>
+
+              <div>
+                <ion-radio [disabled]="isExternalSelectable" class="radio" value="Externa"></ion-radio>
+                <ion-label style="margin-left: 5px;" class="label-right">Impressora Externa</ion-label>
+              </div>
+
+              <div class="box">
+                <ion-input type="text"  (ionChange)="onIpChanged()" (ionBlur)="onIpInserted()" [(ngModel)]="Ip" ></ion-input>
+              </div>
+
+
+            </div>
+          </ion-radio-group>
+        </div>
+
+      
+        <div class="bigBox">
+        
+          <div class="smallBox">
+            <ion-content class="contentSqueeze">
+              <ion-nav [root]="rootPage">
+              
+              </ion-nav>
+            </ion-content>
+          </div>
+           
+         
+        </div>
+
+      </div>
+    </div>
+    
+
+    <h1 class="footer">Ionic 1.0.0</h1>
+
+  </ion-grid>
+</ion-content>

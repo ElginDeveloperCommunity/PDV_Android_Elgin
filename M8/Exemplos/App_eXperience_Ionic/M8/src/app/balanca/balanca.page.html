@@ -1,0 +1,92 @@
+<ion-content>
+  
+  <h1 class="pageTitle" style="font-size: large;">BALANÇA</h1>
+  <img class="mainLogo" src="/assets/elginlogo.png">
+
+  <ion-grid style="margin: 50px">
+
+
+    <ion-row>
+      <ion-col>
+        <h3 style="margin: 0px;">VALOR BALANÇA:</h3>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col> 
+        <ion-textarea disabled="true" rows="2" placeholder="00.00" [(ngModel)]="balancaReturn" style="height: min-content; text-align: center; font-size: x-large;">
+        </ion-textarea>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h3 style="margin: 0px; font-size: medium;">MODELOS:</h3>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-radio-group style="margin: 0px 0px 0px 0px;" allow-empty-selection="false" name="radio-group" (ionChange)="modelRadioChange($event)" value = "DP30CK"> 
+          <div style="display: flex; justify-content: space-evenly; align-items: center;">
+            <div>
+              <ion-radio class="radio" value="DP30CK"></ion-radio>
+              <ion-label style="margin-left: 5px;">DP30CK</ion-label>
+            </div>
+  
+            <div>
+              <ion-radio class="radio" value="SA110"></ion-radio>
+              <ion-label style="margin-left: 5px;" class="label-right">SA110</ion-label>
+            </div>
+  
+            <div>
+              <ion-radio class="radio" value="DPSC"></ion-radio>
+              <ion-label style="margin-left: 5px;" class="label-right">DPSC</ion-label>
+            </div>
+          </div>
+        </ion-radio-group>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h3 style="margin: 0px; font-size: medium;">PROTOCOLOS</h3>
+      </ion-col>
+    </ion-row>
+
+    <ion-row >
+      <ion-col offset="10">
+        
+          <ion-select style="margin: 0px; " mode="ios" value="PROTOCOL 0" (ionChange)="protocolRadioChange($event);" interface="action-sheet" >
+            <ion-select-option value="PROTOCOL 0">PROTOCOL 0</ion-select-option>
+            <ion-select-option value="PROTOCOL 1">PROTOCOL 1</ion-select-option>
+            <ion-select-option value="PROTOCOL 2">PROTOCOL 2</ion-select-option>
+            <ion-select-option value="PROTOCOL 3">PROTOCOL 3</ion-select-option>
+            <ion-select-option value="PROTOCOL 4">PROTOCOL 4</ion-select-option>
+            <ion-select-option value="PROTOCOL 5">PROTOCOL 5</ion-select-option>
+            <ion-select-option value="PROTOCOL 6">PROTOCOL 6</ion-select-option>
+            <ion-select-option value="PROTOCOL 7">PROTOCOL 7</ion-select-option>
+          </ion-select>
+       
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="sendConfigBalanca()" expand="block" size="medium" color="primary" mode="ios">CONFIGURAR MODELO BALANÇA</ion-button>
+      </ion-col>
+
+      <ion-col>
+        <ion-button (click)="sendLerPesoBalanca()" expand="block" size="medium" color="primary" mode="ios">LER PESO</ion-button>
+      </ion-col>
+    </ion-row>
+
+
+
+
+    
+
+  </ion-grid>
+
+  <h1 class="footer">Ionic 1.0.0</h1>
+</ion-content>

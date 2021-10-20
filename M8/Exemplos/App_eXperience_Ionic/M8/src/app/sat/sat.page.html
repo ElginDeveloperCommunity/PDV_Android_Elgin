@@ -1,0 +1,65 @@
+<ion-content>
+  <ion-grid>
+
+    <h1 class="pageTitle" style="font-size: large;">SAT</h1>
+    <img class="mainLogo" src="/assets/elginlogo.png">
+
+    <div style="display: flex; width: 100%; margin-top: 10px; ">
+      <div class="customBox">
+        
+        <ion-textarea disabled="true" rows="18" style=" text-align: left; max-height: 100%;" [(ngModel)]="satReturn" >
+          <ion-label >
+            Retorno:
+          </ion-label>
+        </ion-textarea>
+      </div>
+      
+      <div class="buttonsColumn" >
+        <div style="margin-top: 30px;">
+          <ion-radio-group style="margin: 0px 0px 0px 0px;" allow-empty-selection="false" name="radio-group" (ionChange)="satModelRadioChange($event)" value = "SMART SAT"> 
+            <ion-row>
+              <ion-col offset="1">
+                <ion-radio class="radio" value="SMART SAT"></ion-radio>
+                <ion-label style="margin-left: 5px;">SMART SAT</ion-label>
+              </ion-col>
+            
+              <ion-col offset="1">
+                <ion-radio class="radio" value="SATGO"></ion-radio>
+                <ion-label style="margin-left: 5px;" class="label-right">SATGO</ion-label>
+              </ion-col>
+            </ion-row>
+          </ion-radio-group>
+        </div>
+
+        <div style="background-color: transparent; display: flex; justify-content: space-around; margin-top: 20px;">
+          <h1 style="font-size: medium;">Código de Ativação:</h1>
+          <ion-item  style="margin: 5px 0px 0px 0px; --background: transparent; --border-color: black">
+            <ion-input placeholder="123456789"   style="align-self: flex-end;" type="text" [(ngModel)]="codeActivation" ></ion-input>
+          </ion-item>
+        </div>
+
+        <div style="display: flex; justify-content: space-around; margin-top: 20px;">
+          <ion-button (click)="sendConsultarSAT()"  expand="block"  size="medium" color="primary" mode="ios">CONSULTAR SAT</ion-button>
+          <ion-button (click)="sendCancelarVendaSAT()" expand="block" size="medium" color="primary" mode="ios">CANCELAMENTO</ion-button>
+        </div>
+        
+        <div style="display: flex; justify-content: space-around;">
+          <ion-button (click)="sendStatusOperacionalSAT()"  expand="block" size="medium" color="primary" mode="ios">STATUS OPERACIONAL</ion-button>
+          <ion-button (click)="sendAtivarSAT()"  expand="block" size="medium" color="primary" mode="ios">ATIVAR</ion-button>
+          
+        </div>
+
+        <div style="display: flex; justify-content: space-around;">
+          <ion-button (click)="sendEnviarVendasSAT()" expand="block" size="medium" color="primary" mode="ios">REALIZAR VENDA</ion-button>
+          <ion-button (click)="sendAssociarSAT()" expand="block" size="medium" color="primary" mode="ios">ASSOCIAR</ion-button>
+        </div>
+      </div>
+    </div>
+
+
+    <h1 class="footer">Ionic 1.0.0</h1>
+
+    
+
+  </ion-grid>
+</ion-content>

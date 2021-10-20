@@ -1,0 +1,74 @@
+<ion-content>
+  <ion-grid>
+
+    <h1 class="pageTitle" style="font-size: large;">CARTEIRA DIGITAL</h1>
+    <img class="mainLogo" src="/assets/elginlogo.png">
+
+    <div style="display: flex; width: 100%; margin-top: 10px; ">
+      <!-- Div Buttons -->
+      <div style="display: block; width: 50%;"  >
+        <div class="customBox2" [style.border-color]="shipayBorder">
+          <button style="background-color: transparent; width: 100%; height: 100%;">
+            <span>SHIPAY</span>
+          </button>
+        </div>
+
+        <div style="margin-left: 10%; margin-top: 5%; width: 80%;">
+          <ion-item style="margin: 5px 0px 0px 0px; --background: transparent; --border-color: black">
+            <span>VALOR:</span>
+            <ion-input style="margin-left: 2%; align-self: flex-end;" type="number"  [(ngModel)]="value" id="mensagem">{{ this.totalShipay }}</ion-input>
+          </ion-item>
+        </div>
+
+        <ion-row style="margin-top: 3%; margin-bottom: 3%;">
+          <ion-button (click)="sendParamsOrderShipay()" style="width:80%;  margin: 0 auto;" expand="block" size="medium" color="primary" mode="ios">ENVIAR TRANSAÇÃO</ion-button>
+        </ion-row>
+
+        <ion-row style="margin-top: 3%; margin-bottom: 3%;">
+          <ion-button (click)="deleteOrder()" style="width:80%;  margin: 0 auto;" expand="block" size="medium" color="primary" mode="ios">CANCELAR TRANSAÇÃO</ion-button>
+        </ion-row>
+
+      <!--
+        <ion-row style="margin-top: 3%; margin-bottom: 3%;">
+          <ion-button (click)="getStatusOrder()" style="width:80%;  margin: 0 auto;" expand="block" size="medium" color="primary" mode="ios">STATUS DA VENDA</ion-button>
+        </ion-row>
+      -->
+
+      </div>
+      <!-- Div Box -->
+      <div class="customBox" style="width: 50%;">
+        <ion-textarea disabled="true" rows="18" style=" text-align: left; max-height: 100%;" [(ngModel)]="satReturn" >
+          <div *ngIf="this.qrCodeShipay !== ''" style="display: flex; justify-content: center;">
+            <img style="width: 70%; height: 60%; text-align: center;" src="{{ this.qrCodeShipay }}">
+          </div>
+          <div *ngIf="this.deepLinkShipay !== ''">
+          <ion-list lines="none">
+            <ion-item class="item">
+              <ion-label>
+                <b>Dados da Venda</b>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              Valor:{{ this.totalShipay }}
+            </ion-item>
+
+            <ion-item>
+              Data: <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="date"></ion-datetime>
+            </ion-item>
+
+            <ion-item>
+              Status: {{ this.statusShipay }}
+            </ion-item>
+          </ion-list>
+          </div>
+        </ion-textarea>
+      </div>
+    </div>
+
+
+    <h1 class="footer">Ionic 1.0.0</h1>
+
+
+
+  </ion-grid>
+</ion-content>

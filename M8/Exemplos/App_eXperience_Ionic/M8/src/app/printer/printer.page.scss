@@ -1,0 +1,94 @@
+.pageTitle{
+    margin: 10px 00px 15px 00px;
+}
+
+.mainLogo{
+    height: 50px;
+    position: fixed;
+    right: 30px;
+    top: 0px;
+}
+
+h1{
+    font-size: larger;
+}
+
+ion-button{
+    width: 150px;
+    height: 40px;
+    border-radius: 15px;
+    font-size: x-small;
+}
+
+.box{
+    display: flex;  
+    border-radius: 15px;
+    border-style: solid;
+    border-color: black;
+    margin-top: 2px;
+}
+
+.bigBox{
+    display: flex;
+    width: 600px;
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+    margin-left: 10px;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: black;
+    margin-top: 5px;
+}
+.smallBox{
+    display: flex;
+    
+    width: 570px;
+    height: 345px;
+}
+
+.contentSqueeze{
+    margin: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
+}
+
+img{
+    height: 30px;
+    margin-top: 5px;
+}
+
+h4{
+    color: black;
+    font-weight: bold;
+    font-size: x-small;
+}
+
+.menuButton{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 75px;
+    width: 150px;
+    background-color: transparent;
+}
+
+.menuButtonSide{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+    width: 150px;
+    background-color: transparent;
+}
+
+.footer{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-right: 100px;
+    font-weight: bold;
+    font-size: large;
+    color: #7F7F7F
+}
+

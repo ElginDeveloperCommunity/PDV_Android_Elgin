@@ -1,0 +1,65 @@
+.pageTitle{
+  margin: 10px 00px 15px 00px;
+}
+
+.mainLogo{
+  height: 50px;
+  position: fixed;
+  right: 30px;
+  top: 0px;
+}
+
+.customBox{
+  display: flexbox;
+  border-radius: 15px;
+  border-style: solid;
+  border-color: black;
+  height: 400px;
+  width: 70%;
+  text-align: center;
+  margin-right: 5px;
+}
+
+.customBox2{
+  display: flexbox;
+  border-radius: 15px;
+  border-style: solid;
+  border-color: black;
+  margin-left: 10%;
+  height: 50px;
+  width: 120px;
+  text-align: center;
+}
+
+.buttonsColumn{
+  display: flex;
+
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 40%;
+}
+
+.footer{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-right: 100px;
+  font-weight: bold;
+  font-size: large;
+  color: #7F7F7F
+}
+
+ion-item {
+  --padding-start: 0;
+  --padding-end: 0;
+
+  --inner-padding-start: 0;
+  --inner-padding-end: 0;
+
+  --min-height: 0;
+}
+
+.my-custom-class .alert-wrapper {
+  background: #e5e5e5;
+}
+

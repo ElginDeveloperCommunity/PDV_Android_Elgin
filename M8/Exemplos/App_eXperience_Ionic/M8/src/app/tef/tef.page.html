@@ -1,0 +1,149 @@
+<ion-content color="light">
+  <ion-grid >
+    
+    <h1 class="pageTitle" style="font-size: large;">TEF</h1>
+    <img class="mainLogo" src="/assets/elginlogo.png">
+     
+    
+    <div style="display: flex; flex-direction: row;">
+      
+      <div style="width: 50%;  ">
+        <div style="display: flex; flex-direction: row; margin-bottom: 0px; margin-top: 0px; ">
+
+          <div class="customBox" [style.border-color]="mSitefBorder"  >
+            <button (click)="selectMSitef()" style="background-color: transparent; width: 100%; height: 100%;">
+              <span>M-SITEF</span>
+            </button>
+          </div>
+
+          <div class="customBox" style="margin-left: 10px;" [style.border-color]="paygoBorder">
+            <button (click)="selectPaygo()" style="background-color: transparent; width: 100%; height: 100%; ">
+              <span>PAYGO</span>
+            </button>
+          </div>
+        </div>
+        
+        <div>
+          <ion-row>
+            <ion-col>
+              <h1>VALOR</h1>
+            </ion-col>
+
+            <ion-col>
+              <ion-item style="margin: 5px 0px 0px 0px; --background: transparent; --border-color: black">
+                <ion-input style="align-self: flex-end;" type="text" [(ngModel)]="value" ></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+        </div>
+
+        <div>
+          <ion-row>
+            <ion-col>
+              <h1>N° PARCELAS</h1>
+            </ion-col>
+
+            <ion-col>
+              <ion-item style="margin: 5px 0px 0px 0px; --background: transparent; --border-color: black">
+                <ion-input style="align-self: flex-end;" type="text" [(ngModel)]="installmentsNumber" ></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </div>
+
+        <div>
+          <ion-row>
+            <ion-col>
+              <h1>IP</h1>
+            </ion-col>
+
+            <ion-col>
+              <ion-item  style="margin: 5px 0px 0px 0px; --background: transparent; --border-color: black">
+                <ion-input placeholder="192.168.0.31"  [disabled]="!isMSitefSelected" style="align-self: flex-end;" type="text" [(ngModel)]="ip" ></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </div>
+       
+        <h1 style="margin-bottom: 5px;">FORMAS DE PAGAMENTO:</h1>
+
+        <div style="display: flex;  ">
+          <div class="customBox2" [style.border-color]="creditBorder">
+            <button  (click)="selectCredit()" class="menuButton" type="button">
+              <img src="assets/card.png">
+              crédito
+            </button>
+          </div>
+
+          <div class="customBox2" [style.border-color]="debitBorder">
+            <button  (click)="selectDebit()" class="menuButton" type="button">
+              <img src="assets/card.png">
+              débito
+            </button>
+          </div>
+
+          <div class="customBox2" [style.border-color]="allBorder">
+            <button  (click)="selectAll()" class="menuButton" type="button">
+              <img src="assets/voucher.png">
+              todos
+            </button>
+          </div>
+        </div>
+
+        <h1 style="margin-top: 5px; margin-bottom: 5px; ">TIPOS DE PARCELAMENTO:</h1>
+
+        <div style="display: flex; margin-bottom: 5px; ">
+          <div class="customBox2" [style.border-color]="storeBorder">
+            <button  (click)="selectStore()" class="menuButton" type="button">
+              <img src="assets/store.png">
+              loja
+            </button>
+          </div>
+
+          <div class="customBox2" [style.border-color]="admBorder" >
+            <button  (click)="selectAdm()" class="menuButton" type="button">
+              <img src="assets/adm.png">
+              adm
+            </button>
+          </div>
+
+          <div class="customBox2" [style.border-color]="avistaBorder" *ngIf="isPaygoSelected">
+            <button  (click)="selectAVista()" class="menuButton" type="button">
+              <img src="assets/card.png">
+              a vista
+            </button>
+          </div>
+        </div>
+
+        <ion-row>
+          <ion-col>
+            <ion-button (click)="sendTransaction()" size="small" expand="full" color="primary" mode="ios">ENVIAR TRANSAÇÃO</ion-button>
+          </ion-col>
+          
+          <ion-col>
+            <ion-button (click)="cancelTransaction()" size="small" expand="full" color="primary" mode="ios">CANCELAR TRANSAÇÃO</ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-button (click)="configuration()" expand="full" size="small" color="primary" mode="ios">CONFIGURAÇÃO</ion-button>
+          </ion-col>
+        </ion-row>
+          
+       
+      </div>
+      
+      <div class="box" style="width: 50%;">
+        <img *ngIf="wasPaygoRan" [src]="picToView" style="display: flex; width: fit-content; height: fit-content;  justify-content: center; text-align: end;"  (click)="changeView()" />
+        <ion-textarea rows="20" [(ngModel)]="tefReturn" *ngIf="isMSitefSelected"> </ion-textarea>
+      </div>
+
+    </div>
+   
+    
+    <h1 class="footer">Ionic 1.0.0</h1>
+
+  </ion-grid>
+</ion-content>

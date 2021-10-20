@@ -1,0 +1,82 @@
+.pageTitle{
+    margin: 10px 00px 15px 00px;
+}
+
+.mainLogo{
+    height: 50px;
+    position: fixed;
+    right: 30px;
+    top: 0px;
+}
+
+h1{
+    font-size: small;
+}
+
+ion-row{
+    height: 35px;
+}
+
+.customBox{
+    display: flexbox;  
+    border-radius: 15px;
+    border-style: solid;
+    border-color: black;
+    margin-top: 2px;
+    height: 50px;
+    width: 120px;
+    text-align: center;
+}
+
+.customBox2{
+    display: flexbox;  
+    border-radius: 15px;
+    border-style: solid;
+    border-color: black;
+    margin-top: 2px;
+    height: 50px;
+    width: 100px;
+    text-align: center;
+}
+.box{
+    display: flexbox;  
+    border-radius: 15px;
+    border-style: solid;
+    border-color: black;
+    margin-top: 2px;
+    height: 400px;
+}
+
+.menuButton{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+}
+
+img{
+    height: 30px;
+    margin-top: 0px;
+    
+}
+
+span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    font-size: larger;
+  }
+
+.footer{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-right: 100px;
+    font-weight: bold;
+    font-size: large;
+    color: #7F7F7F
+}
+

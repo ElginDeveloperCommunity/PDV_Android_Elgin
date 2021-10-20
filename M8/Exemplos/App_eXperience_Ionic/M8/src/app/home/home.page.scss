@@ -1,0 +1,40 @@
+.MainLogo{
+  width: 490px;
+  height: 139px;
+}
+.box{
+  border-radius: 15px;
+  border-style: solid;
+  border-color: black;
+}
+button img{
+  padding-top: 10px;
+}
+h4{
+  color: black;
+  font-weight: bold;
+  font-size: small;
+}
+.menuButton{
+  height: 120px;
+  width: 200px;
+  background-color: transparent;
+  align-items: flex-end;
+}
+
+.semiMenuButton{
+  height: 120px;
+  width: 100px;
+  background-color: transparent;
+  align-content: flex-end;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-right: 100px;
+  font-weight: bold;
+  font-size: large;
+  color: #7F7F7F
+}
