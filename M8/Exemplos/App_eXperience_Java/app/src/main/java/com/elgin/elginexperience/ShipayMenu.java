@@ -1,22 +1,29 @@
 package com.elgin.elginexperience;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.elgin.elginexperience.shipay.ShipayClient;
 import com.elgin.elginexperience.shipay.models.Buyer;
@@ -32,7 +39,6 @@ import com.elgin.elginexperience.shipay.responses.GetWalletsResponse;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -46,8 +52,12 @@ import retrofit2.Response;
 
 public class ShipayMenu extends AppCompatActivity {
     Context context;
+
+    Button buttonShipayProviderOption;
+
+    LinearLayout layoutWalletOptions;
+
     static Printer printer;
-    Button buttonShipayOption;
 
     // Campo VALOR
     EditText editTextValueShipay;
@@ -72,7 +82,7 @@ public class ShipayMenu extends AppCompatActivity {
 
     String formattedDate = "";
     String valor = "";
-    String wallet = "";
+    String selectedWallet = "shipay-pagador";
     String status = "";
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -88,7 +98,9 @@ public class ShipayMenu extends AppCompatActivity {
 
         authenticate();
 
-        buttonShipayOption = findViewById(R.id.buttonShipayOption);
+        buttonShipayProviderOption = findViewById(R.id.buttonShipayOption);
+
+        layoutWalletOptions = findViewById(R.id.layoutWalletOptions);
 
         editTextValueShipay = findViewById(R.id.editTextInputValueShipay);
 
@@ -129,6 +141,7 @@ public class ShipayMenu extends AppCompatActivity {
                     Log.i("ACCESS_TOKEN", authResponse.access_token);
                     Log.i("REFRESH_TOKEN", authResponse.refresh_token);
                     ShipayMenu.this.accessToken = String.format("Bearer %s", authResponse.access_token);
+                    getWallets();
                 }
             }
         });
@@ -137,14 +150,13 @@ public class ShipayMenu extends AppCompatActivity {
     public void createOrder() {
         Map<String, Object> mapValues = new HashMap<>();
         String orderRef = "shipaypag-stg-005";
-        String wallet = "shipay-pagador";
         float total = Float.parseFloat(editTextValueShipay.getText().toString());
 
         List<OrderItem> items = new ArrayList<>();
         items.add(new OrderItem("Cerveja Heineken", total, 1));
 
         Buyer buyer = new Buyer("Shipay", "PDV", "000.000.000-00", "shipaypagador@shipay.com.br", "+55 11 99999-9999");
-        CreateOrderRequest orderRequest = new CreateOrderRequest(orderRef, wallet, total, items, buyer);
+        CreateOrderRequest orderRequest = new CreateOrderRequest(orderRef, selectedWallet, total, items, buyer);
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String formattedDate = formatter.format(new Date());
@@ -155,7 +167,7 @@ public class ShipayMenu extends AppCompatActivity {
             public void onResponse(@NotNull Call call, @NotNull Response response) {
                 CreateOrderResponse orderResponse = (CreateOrderResponse) response.body();
                 if (orderResponse != null) {
-                    Log.i("deep_link", orderResponse.deep_link);
+                    Log.i("deep_link", "" + orderResponse.deep_link);
                     Log.i("order_id", orderResponse.order_id);
                     Log.i("pix_dict_key", "" + orderResponse.pix_dict_key);
                     Log.i("pix_psp", "" + orderResponse.pix_psp);
@@ -177,7 +189,6 @@ public class ShipayMenu extends AppCompatActivity {
 
                     ShipayMenu.this.orderId = orderResponse.order_id;
                     ShipayMenu.this.valor = "R$ " + editTextValueShipay.getText().toString();
-                    ShipayMenu.this.wallet = orderResponse.wallet;
                     ShipayMenu.this.formattedDate = formattedDate;
                     ShipayMenu.this.status = getFormattedStatus(orderResponse.status);
 
@@ -194,6 +205,7 @@ public class ShipayMenu extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("RestrictedApi")
     public void getWallets() {
         shipayClient.getApiService().getWallets(accessToken).enqueue(new Callback<GetWalletsResponse>() {
             public void onFailure(@NotNull Call call, @NotNull Throwable t) {
@@ -203,9 +215,49 @@ public class ShipayMenu extends AppCompatActivity {
                 GetWalletsResponse walletsResponse = (GetWalletsResponse) response.body();
                 if (walletsResponse != null) {
                     List<Wallet> wallets = walletsResponse.wallets;
-                    for (Wallet wallet :
-                            wallets) {
+                    ArrayList<AppCompatButton> walletOptions = new ArrayList<>(wallets.size());
+
+                    for (Wallet wallet : wallets) {
+                        AppCompatButton buttonWalletOption = new AppCompatButton(context);
+
+                        //Dimensões
+                        final float scale = getResources().getDisplayMetrics().density;
+                        buttonWalletOption.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (int)(30 * scale)));
+                        buttonWalletOption.setPadding(20, 0, 20, 0);
+
+                        // Borda
+                        buttonWalletOption.setBackground(ContextCompat.getDrawable(context, R.drawable.box));
+                        buttonWalletOption.setSupportBackgroundTintList(AppCompatResources.getColorStateList(context, R.color.black));
+                        if (wallet.name.equals("shipay-pagador")) {
+                            buttonWalletOption.setSupportBackgroundTintList(AppCompatResources.getColorStateList(context, R.color.verde));
+                        }
+
+                        // Texto
+                        buttonWalletOption.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+                        buttonWalletOption.setTextColor(getResources().getColor(R.color.black));
+                        buttonWalletOption.setText(wallet.name);
+
+                        // Fonte do texto
+                        Typeface typeface = ResourcesCompat.getFont(context, R.font.robotobold);
+                        buttonWalletOption.setTypeface(typeface);
+
                         Log.i("WALLET", wallet.name);
+
+                        buttonWalletOption.setOnClickListener(view -> {
+                            // Colocar na cor verde & set wallet selecionada
+                            buttonWalletOption.setSupportBackgroundTintList(AppCompatResources.getColorStateList(context, R.color.verde));
+                            ShipayMenu.this.selectedWallet = wallet.name;
+
+                            // Colocar outros botões na cor preto
+                            for (AppCompatButton button : walletOptions) {
+                                if (!button.equals(buttonWalletOption)) {
+                                    button.setSupportBackgroundTintList(AppCompatResources.getColorStateList(context, R.color.black));
+                                }
+                            }
+                        });
+
+                        layoutWalletOptions.addView(buttonWalletOption);
+                        walletOptions.add(buttonWalletOption);
                     }
                 }
             }
@@ -219,23 +271,21 @@ public class ShipayMenu extends AppCompatActivity {
 
                 // Specifying a listener allows you to take an action before dismissing the dialog.
                 // The dialog is automatically dismissed when a dialog button is clicked.
-                .setPositiveButton(android.R.string.yes, (dialog, which) -> {
-                    shipayClient.getApiService().cancelOrder(accessToken, orderId).enqueue(new Callback<CancelOrderResponse>() {
-                        public void onFailure(@NotNull Call call, @NotNull Throwable t) {
-                        }
+                .setPositiveButton(android.R.string.yes, (dialog, which) -> shipayClient.getApiService().cancelOrder(accessToken, orderId).enqueue(new Callback<CancelOrderResponse>() {
+                    public void onFailure(@NotNull Call call, @NotNull Throwable t) {
+                    }
 
-                        public void onResponse(@NotNull Call call, @NotNull Response response) {
-                            CancelOrderResponse orderResponse = (CancelOrderResponse) response.body();
-                            Log.i("tok", response.toString());
-                            if (orderResponse != null) {
-                                Log.i("order_id", orderResponse.order_id);
-                                Log.i("status", getFormattedStatus(orderResponse.status));
+                    public void onResponse(@NotNull Call call, @NotNull Response response) {
+                        CancelOrderResponse orderResponse = (CancelOrderResponse) response.body();
+                        Log.i("tok", response.toString());
+                        if (orderResponse != null) {
+                            Log.i("order_id", orderResponse.order_id);
+                            Log.i("status", getFormattedStatus(orderResponse.status));
 
-                                textStatusVenda.setText(String.format("Status:\t\t\t\t\t\t\t\t\t%s", getFormattedStatus(orderResponse.status)));
-                            }
+                            textStatusVenda.setText(String.format("Status:\t\t\t\t\t\t\t\t\t%s", getFormattedStatus(orderResponse.status)));
                         }
-                    });
-                })
+                    }
+                }))
 
                 // A null listener allows the button to dismiss the dialog and take no further action.
                 .setNegativeButton(android.R.string.no, null)

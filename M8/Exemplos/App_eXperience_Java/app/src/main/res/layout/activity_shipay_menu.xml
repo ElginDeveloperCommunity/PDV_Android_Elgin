@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:paddingHorizontal="20dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="20dp"
                     >
                     <Button
                         android:id="@+id/buttonShipayOption"
@@ -67,6 +67,16 @@
                         android:textColor="@color/black"
                         app:backgroundTint="@color/verde"
                         />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutWalletOptions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="20dp"
+                    android:layout_marginBottom="10dp"
+                    >
                 </LinearLayout>
 
                 <LinearLayout
@@ -105,7 +115,7 @@
 
                 <Button
                     android:id="@+id/buttonEnviarTransacao"
-                    android:layout_width="350dp"
+                    android:layout_width="400dp"
                     android:layout_height="40dp"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginBottom="10dp"
@@ -116,7 +126,7 @@
 
                 <Button
                     android:id="@+id/buttonCancelarTransacao"
-                    android:layout_width="350dp"
+                    android:layout_width="400dp"
                     android:layout_height="40dp"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginBottom="10dp"
@@ -127,7 +137,7 @@
 
                 <Button
                     android:id="@+id/buttonStatusVenda"
-                    android:layout_width="350dp"
+                    android:layout_width="400dp"
                     android:layout_height="40dp"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginBottom="10dp"
