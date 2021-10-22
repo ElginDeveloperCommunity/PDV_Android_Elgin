@@ -1,8 +1,8 @@
-# MiniPDVM8
-Repositório para o Mini PDV Android M8 da Elgin.
+# MiniPDVM8 e MiniPDVM10
+Repositório para os equipamentos Android MiniPDVM8 e MiniPDVM10 da Elgin.
 
-## Sobre o M8 MiniPDV:
-Com dimensões reduzidas, o M8 se adapta perfeitamente a muitos locais diferentes. Com tela TouchScreen, e impressora com guilhotina já inclusa, ele é uma solução “clean” que simplifica a vida do varejista. O M8 MiniPDV, possui WiFi, Bluetooth, 5 portas de comunicação USB, 1 Porta de rede Ethernet, 1 porta para gaveta de dinheiro e 1 porta Serial. É muita conectivade para trazer o máximo de desempenho ao estabelecimento comercial.
+## Sobre o MiniPDV:
+Com dimensões reduzidas, os equipamentos M8 e M10 se adaptam perfeitamente a muitos locais diferentes. Com tela TouchScreen, e impressora com guilhotina já inclusa, ele é uma solução “clean” que simplifica a vida do varejista. Os MiniPDVs, possuem WiFi, Bluetooth, 5 portas de comunicação USB, 1 Porta de rede Ethernet, 1 porta para gaveta de dinheiro e 1 porta Serial. É muita conectivade para trazer o máximo de desempenho ao estabelecimento comercial.
 
 ### Por onde começar?
 =================  
@@ -14,7 +14,7 @@ Com dimensões reduzidas, o M8 se adapta perfeitamente a muitos locais diferente
 * Ative o modo desenvolvedor, tocando rapidamente sete vezes consecutivas sobre o numero da versão do Android. Será exibida a mensagem "Você agora é um desenvolvedor";  
 * Ative a depuração USB no menu Configurações > Opções do Desenvolvedor > Depuração USB;  
 * Garanta que o equipamento está com bateria suficiente e desconecte o cabo de alimentação;  
-* Conecte o cabo de debug específico primeiramente na porta de debug do M8 e em seguida no computador. Se não possui o cabo específico de debug, entre em contato com a equipe Elgin Developers Community;  
+* Conecte o cabo de debug específico primeiramente na porta de debug do M8/M10 e em seguida no computador. Se não possui o cabo específico de debug, entre em contato com a equipe Elgin Developers Community;  
 * Assim que o equipamento for reconhecido pelo computador, abra a IDE da sua preferencia e mão na massa!  
 <br><br/>
 
