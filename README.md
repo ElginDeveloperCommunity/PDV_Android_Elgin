@@ -6,8 +6,8 @@ Com dimensões reduzidas, os equipamentos M8 e M10 se adaptam perfeitamente a mu
 
 ### Por onde começar?
 =================  
-* Verifique se o equipamento está na sua última versão de firmware, seguindo o manual [aqui](https://github.com/ElginDeveloperCommunity/MiniPDVM8/blob/master/M8/Firmware/MiniPDV%20M8%20Elgin%20-%20Atualiza%C3%A7%C3%A3o%20de%20Firmware%20(OTA).pdf). Caso seja necessário, realize a atualização. 
-* Baixe o pacote de comunicação da E1 [aqui](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Bibliotecas).
+* Verifique se o equipamento está na sua última versão de firmware, seguindo o manual [aqui](https://github.com/ElginDeveloperCommunity/PDV_Android_M8_M10/blob/master/Firmware/MiniPDV%20M8%20Elgin%20-%20Atualiza%C3%A7%C3%A3o%20de%20Firmware%20(OTA).pdf). Caso seja necessário, realize a atualização. 
+* Baixe o pacote de comunicação da E1 [aqui](https://github.com/ElginDeveloperCommunity/PDV_Android_M8_M10/tree/master/Bibliotecas).
 
 ### Ativando o modo debug
 =================  
@@ -24,13 +24,13 @@ Com dimensões reduzidas, os equipamentos M8 e M10 se adaptam perfeitamente a mu
 
 ### Exemplos
 =================  
-- [ACBrPosPrinter by Adriano Santos](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/AdrianoSantos_ACBrPosPrinter)
-- [App eXperience Delphi FireMonkey](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/App_eXperience_FireMonkey)
-- [App eXperience Flutter](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/App_eXperience_Flutter)
-- [App eXperience Ionic](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/App_eXperience_Ionic)
-- [App eXperience Java](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/App_eXperience_Java)
-- [App eXperience Kotlin](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/App_eXperience_Kotlin)
-- [App eXperience ReactNative](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/App_eXperience_ReactNative)
-- [App eXperience XamarinAndroid](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/App_eXperience_XamarinAndroid)
-- [App eXperience XamarinForms](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/App_eXperience_XamarinForms)
-- [WinDev by Amarildo](https://github.com/ElginDeveloperCommunity/MiniPDVM8/tree/master/M8/Exemplos/ExemploWindev_Amarildo)
+- [ACBrPosPrinter by Adriano Santos](https://github.com/ElginDeveloperCommunity/PDV_Android_M8_M10/tree/master/Exemplos/AdrianoSantos_ACBrPosPrinter)
+- [App eXperience Delphi FireMonkey](https://github.com/ElginDeveloperCommunity/PDV_Android_M8_M10/tree/master/Exemplos/App_eXperience_FireMonkey)
+- [App eXperience Flutter](https://github.com/ElginDeveloperCommunity/PDV_Android_M8_M10/tree/master/Exemplos/App_eXperience_Flutter)
+- [App eXperience Ionic](https://github.com/ElginDeveloperCommunity/PDV_Android_M8_M10/tree/master/Exemplos/App_eXperience_Ionic)
+- [App eXperience Java](https://github.com/ElginDeveloperCommunity/PDV_Android_M8_M10/tree/master/Exemplos/App_eXperience_Java)
+- [App eXperience Kotlin](https://github.com/ElginDeveloperCommunity/PDV_Android_M8_M10/tree/master/Exemplos/App_eXperience_Kotlin)
+- [App eXperience ReactNative](https://github.com/ElginDeveloperCommunity/PDV_Android_M8_M10/tree/master/Exemplos/App_eXperience_ReactNative)
+- [App eXperience XamarinAndroid](https://github.com/ElginDeveloperCommunity/PDV_Android_M8_M10/tree/master/Exemplos/App_eXperience_XamarinAndroid)
+- [App eXperience XamarinForms](https://github.com/ElginDeveloperCommunity/PDV_Android_M8_M10/tree/master/Exemplos/App_eXperience_XamarinForms)
+- [WinDev by Amarildo](https://github.com/ElginDeveloperCommunity/PDV_Android_M8_M10/tree/master/Exemplos/ExemploWindev_Amarildo)
