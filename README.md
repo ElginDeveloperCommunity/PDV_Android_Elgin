@@ -16,6 +16,7 @@ Com dimensões reduzidas, os equipamentos M8 e M10 se adaptam perfeitamente a mu
 * Garanta que o equipamento está com bateria suficiente e desconecte o cabo de alimentação;  
 * Conecte o cabo de debug específico primeiramente na porta de debug do M8/M10 e em seguida no computador. Se não possui o cabo específico de debug, entre em contato com a equipe Elgin Developers Community;  
 * Assim que o equipamento for reconhecido pelo computador, abra a IDE da sua preferencia e mão na massa!  
+* Qualquer dúvida nesse processo, acesse esse [tutorial](https://github.com/ElginDeveloperCommunity/PDV_Android_M8_M10/blob/master/Documenta%C3%A7%C3%A3o/Manual%20-%20Conectando%20o%20cabo%20de%20Debug.pdf)
 <br><br/>
 
 ### Documentação
