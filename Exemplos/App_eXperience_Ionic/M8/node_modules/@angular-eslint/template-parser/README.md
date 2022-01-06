@@ -1,1 +1,0 @@
-# @angular-eslint/template-parser
