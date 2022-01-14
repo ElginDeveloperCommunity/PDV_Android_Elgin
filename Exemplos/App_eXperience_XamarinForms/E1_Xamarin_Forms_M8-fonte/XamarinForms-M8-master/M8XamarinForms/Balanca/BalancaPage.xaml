@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="M8XamarinForms.BalancaPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout Padding="30,0,30,0">
+            <StackLayout Style="{StaticResource bannerStack}">
+                <Image Source="bannerElginSmall.png"/>
+            </StackLayout>
+            <StackLayout Style="{StaticResource mainBalancaStack}">
+                <Label Style="{StaticResource inputLabel}" Text="VALOR BALANÇA:"/>
+                <Label Style="{StaticResource valorBalanca}" Text="10.00" x:Name="textReturnValueBalanca"/>
+                <Label Style="{StaticResource inputLabel}" Text="MODELOS:"/>
+                <StackLayout Style="{StaticResource modelosStack}">
+                    <RadioButton Value="DP30CK" CheckedChanged="OnModelChanged" Content="SA110" GroupName="modelo" Style="{StaticResource radioButtonStyle}" HorizontalOptions="FillAndExpand"/>
+                    <RadioButton Value="SA110" CheckedChanged="OnModelChanged" Content="SA110" GroupName="modelo" Style="{StaticResource radioButtonStyle}" HorizontalOptions="FillAndExpand" />
+                    <RadioButton Value="DPSC" CheckedChanged="OnModelChanged" Content="DPSC" GroupName="modelo" Style="{StaticResource radioButtonStyle}" HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+                <Label Style="{StaticResource inputLabel}" Text="PROTOCOLOS:"/>
+                <Picker x:Name="pckProtocols" HorizontalOptions="FillAndExpand" SelectedIndexChanged="PckProtocolo_SelectedIndexChanged" SelectedIndex="0">
+                    <Picker.Items>
+                        <x:String>PROTOCOL 0</x:String>
+                        <x:String>PROTOCOL 1</x:String>
+                        <x:String>PROTOCOL 2</x:String>
+                        <x:String>PROTOCOL 3</x:String>
+                        <x:String>PROTOCOL 4</x:String>
+                        <x:String>PROTOCOL 5</x:String>
+                        <x:String>PROTOCOL 6</x:String>
+                        <x:String>PROTOCOL 7</x:String>
+                    </Picker.Items>
+                </Picker>
+                <StackLayout Style="{StaticResource balancaButtonsStack}">
+                    <Button x:Name="buttonConfigurarBalanca" Text="CONSULTAR Balanca" Style="{StaticResource balancaButton}"/>
+                    <Button x:Name="buttonLerPeso" Text="LER PESO" Style="{StaticResource balancaButton}"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="StackLayout" x:Key="bannerStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="Spacing" Value="400"/>
+            </Style>
+            <Style TargetType="Label" x:Key="bannerLabel">
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="Padding" Value="0,10,0,0"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="mainBalancaStack">
+                <Setter Property="Orientation" Value="Vertical"/>
+                <Setter Property="Padding" Value="0,50,0,0"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="modelosStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style TargetType="Label" x:Key="inputLabel">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="Margin" Value="0,20,0,0"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            <Style TargetType="Entry" x:Key="valorBalanca">
+                <Setter Property="HeightRequest" Value="30"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+            </Style>
+            <Style TargetType="Frame" x:Key="balancaReturnFrame">
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="HeightRequest" Value="350"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="balancaButtonsStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="0,50,0,0"/>
+            </Style>
+            <Style TargetType="Button" x:Key="balancaButton">
+                <Setter Property="BackgroundColor" Value="#0069A5"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style TargetType="Label" x:Key="returnBalancaMainLabel">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+</ContentPage>

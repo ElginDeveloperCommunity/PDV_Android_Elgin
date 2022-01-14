@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="M8XamarinForms.PrinterImage"
+            
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout Padding="40,10">
+            <StackLayout>
+                <StackLayout Style="{StaticResource bannerStack}" >
+                    <Label Style="{StaticResource mainLabel}" Text="IMPRESSORA" />
+                    <Image Source="bannerElginSmall.png"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Style="{StaticResource mainMenuStack}">
+                <StackLayout Style="{StaticResource buttonsPrinterOptions}">
+                    <Button Text="IMPRESSÃO DE TEXTO" Clicked="openPrinterOption" ContentLayout="Top,0" ImageSource="printerText.png"  Style="{StaticResource printerOptionButton}"/>
+                    <Button Text="IMPRESSÃO DE CÓDIGO DE BARRAS" Clicked="openPrinterOption" ContentLayout="Top,0" ImageSource="printerBarCode.png"  Style="{StaticResource printerOptionButton}"/>
+                    <Button Text="IMPRESSÃO DE IMAGEM" Clicked="openPrinterOption" ContentLayout="Top,0" ImageSource="printerImage.png"  Style="{StaticResource printerOptionButton}" BorderColor="#23F600"/>
+                    <Button Text="STATUS DA GAVETA"   Clicked="doGavetaStatus" ImageSource="status.png"  Style="{StaticResource printerStatusButton}"/>
+                    <Button Text="STATUS DA IMPRESSORA"  Clicked="doPrinterStatus"  ImageSource="status.png"  Style="{StaticResource printerStatusButton}"/>
+                    <Button Text="ABRIR GAVETA"  Clicked="doOpenGaveta" Style="{StaticResource openGavetaButton}"/>
+
+                </StackLayout>
+                <StackLayout Style="{StaticResource printerSettingStack}" >
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="55">
+                        <StackLayout Style="{StaticResource radioButtonStack}">
+                            <RadioButton x:Name="internalPrinterRadio" CheckedChanged="printerConectionChanged" Content="IMP. INTERNA" Value="Interna" Style="{StaticResource radioButtonStyle}"/>
+                            <RadioButton x:Name="externalPrinterRadio" Content="IMP. EXTERNA" Value="Externa" Style="{StaticResource radioButtonStyle}"/>
+                        </StackLayout>
+                        <Frame Style="{StaticResource ipFrame}">
+                            <StackLayout Orientation="Horizontal">
+
+                                <Label Text="IP: " Style="{StaticResource ipInputLabel}" />
+                                <StackLayout Padding="-10,0,0,0">
+                                    <Entry Text="192.168.0.31:9100" x:Name="ipEntry" WidthRequest="200" HeightRequest="40"  FontSize="15" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                    <Frame BorderColor="Black" CornerRadius="5" Padding="8">
+                        <StackLayout Padding="30,0" Spacing="10" HeightRequest="350" Orientation="Vertical" >
+                            <StackLayout HeightRequest="5" >
+                                <Label Text="IMPRESSÃO DE IMAGEM" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20"/>
+                                <Label Text="PRÉ-VISUALIZAÇÃO" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20"/>
+                            </StackLayout>
+                            <StackLayout x:Name="imageStack" Style="{StaticResource imageStack}">
+                                <Image x:Name="displayImage"  Style="{StaticResource imageStyle}"/>
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Style="{StaticResource inputLabel}" Text="ESTILIZAÇÃO"/>
+                                <StackLayout Style="{StaticResource cutPaperStack }">
+                                    <Label Text="CUT PAPER" Style="{StaticResource cutPaperLabel}"/>
+                                    <CheckBox x:Name="isCutPaper"/>
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout Style="{StaticResource buttonsStack}">
+                                <Button Text="SELECIONAR" Style="{StaticResource buttonStyle}" Clicked="openSelectionImage"/>
+                                <Button Text="IMPRIMIR" Style="{StaticResource buttonStyle}" Clicked="doPrinterImage"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            
+
+            <Style TargetType="Label" x:Key="inputLabel">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="17"/>
+                <Setter Property="Padding" Value="0,10,-10,0"/>
+
+            </Style>
+            <Style TargetType="StackLayout" x:Key="imageStack">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HeightRequest" Value="130"/>
+                <Setter Property="WidthRequest" Value="400"/>
+               
+                <Setter Property="Margin" Value="0,50,0,0"/>
+
+            </Style>
+            <Style TargetType="Image" x:Key="imageStyle">
+                <Setter Property="WidthRequest" Value="100"/>
+                <Setter Property="HeightRequest" Value="100"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="cutPaperStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+            <Style TargetType="Label" x:Key="cutPaperLabel">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="Padding" Value="0,3,0,0"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="buttonsStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="Spacing" Value="50"/>
+            </Style>
+            <Style TargetType="Button" x:Key="buttonStyle">
+                <Setter Property="BackgroundColor" Value="#0069A5"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="WidthRequest" Value="200"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+</ContentPage>

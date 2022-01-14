@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="M8XamarinForms.MainPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <StackLayout>
+        <Grid HorizontalOptions="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="70*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70*"/>
+                
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Row="0" Source="ElginDeveloperCommunity.png" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+            <Grid Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" RowSpacing="15" ColumnSpacing="15" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="180"/>
+                    <RowDefinition Height="180"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="280"/>
+                    <ColumnDefinition Width="280"/>
+                </Grid.ColumnDefinitions>
+                <Button Style="{StaticResource navigationButton}" Clicked="OpenPrinterPage" Grid.Row="0" Grid.Column="0" Text="Impressora" ImageSource="printerL.png"/>
+                <Grid Grid.Row="0" Grid.Column="1" ColumnSpacing="15" >
+                    <Button Style="{StaticResource navigationButton}" Clicked="OpenBarCodePage" Grid.Row="0" Grid.Column="0" Text="Código de Barra" ImageSource="barCodeL.png"/>
+                    <Button Style="{StaticResource navigationButton}" Clicked="OpenBalancaPage" Grid.Row="0" Grid.Column="1" Text="Balança" ImageSource="balanca.png"/>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="0" ColumnSpacing="15" >
+                    <Button Style="{StaticResource navigationButton}" Clicked="OpenTefPage" Grid.Row="0" Grid.Column="0" Text="TEF" ImageSource="msitefL.png"/>
+                    <Button Style="{StaticResource navigationButton}" Clicked="OpenCarteiraDigitalPage" Grid.Row="0" Grid.Column="1" Text="Carteira Digital" ImageSource="msitefL.png"/>
+                </Grid>
+                <Button Style="{StaticResource navigationButton}" Clicked="OpenSatPage" Grid.Row="1" Grid.Column="1" Text="SAT" ImageSource="satL.png"/>
+            </Grid>
+            <Label Grid.Row="2" Text="Xamarain Forms 1.0" HorizontalOptions="End" Padding="0,30,0,0"/>
+
+
+        </Grid>
+        
+    </StackLayout>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button" x:Key="navigationButton">
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="CornerRadius" Value="25"/>
+                <Setter Property="ContentLayout" Value="Top,-50"/>
+                <Setter Property="Padding" Value="0,20,0,0"/>
+                <Setter Property="FontSize" Value="24"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+</ContentPage>
