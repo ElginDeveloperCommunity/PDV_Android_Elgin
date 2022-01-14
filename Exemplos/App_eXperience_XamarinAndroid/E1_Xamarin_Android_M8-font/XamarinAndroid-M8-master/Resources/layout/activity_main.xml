@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:minHeight="100dp"
+        android:minWidth="100dp"
+    >
+        <ImageView
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/elginlogo"
+            
+        />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginVertical="10dp"
+        >        
+
+        <Button
+            android:id="@+id/botaoImpressora"
+            android:layout_width="210dp"
+            android:layout_height="120dp"
+            
+            android:layout_weight="1"
+            android:background="@drawable/box"
+            android:drawableTop="@drawable/printer"
+            android:text="@string/impressora"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/black" 
+            android:layout_marginRight="20dp"
+            android:paddingTop="20dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/botaoCodigoBarras"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/box"
+                android:drawableTop="@drawable/barcode"
+                android:text="CÓDIGO DE BARRAS"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/black"
+            />
+
+            <Button
+                android:id="@+id/botaoBalanca"
+                android:layout_marginLeft="10dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:background="@drawable/box"
+                android:drawableTop="@drawable/balanca"
+                android:text="BALANÇA"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/black"
+            />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginVertical="10dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/botaoTEF"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/box"
+                android:drawableTop="@drawable/msitef"
+                android:text="TEF"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/black"
+            />
+
+            <Button
+                android:id="@+id/botaoCarteiraDigital"
+                android:layout_marginLeft="10dp"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/box"
+                android:drawableTop="@drawable/msitef"
+                android:text="Carteira Digital"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/black"
+            />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/botaoSat"
+            android:layout_width="210dp"
+            android:layout_height="120dp"
+            android:layout_weight="1"
+            android:background="@drawable/box"
+            android:drawableTop="@drawable/sat"
+            android:text="SAT"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/black" 
+            android:paddingTop="20dp"
+            />
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Xamarin Android 1.0.0"
+            android:textColor="#7F7F7F"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginEnd="50dp" />
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>
