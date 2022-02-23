@@ -2,7 +2,7 @@ Version 0.0.2 - Adição de Keywords, ajustes na configuração do plugin (plugi
 
 
 #Ionic sample using plugins functions 
-(https://github.com/Edzra/cordova-plugin-elgin-minipdv-IonicSample)
+(https://github.com/ElginDeveloperCommunity/PDV_Android_M8_M10/tree/master/Exemplos/PluginCordovaM10PWA/Exemplo/)
 
 cordova plugin for minipdv devices.
 

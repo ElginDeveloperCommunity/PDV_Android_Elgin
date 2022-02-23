@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-button expand="block"  (click)="inicializarImpressora()">inicializar impressora</ion-button>
+  <ion-button expand="block"  (click)="inicializarImpressoraExterna()">inicializar impressora Externa</ion-button>
+  <ion-button expand="block"  (click)="testarDesligamentoImpressora()">desligar a impressora</ion-button>
+  <ion-button expand="block" (click)="testarImpressao()">realizar teste de impressao</ion-button>
+  <ion-button expand="block"  (click)="testarImpressaoBarCode()">realizar teste de impressao BarCode</ion-button>
+  <ion-button expand="block"  (click)="testarImpressaoQRCode()">realizar teste de impressao QRCODE</ion-button>
+  <ion-button expand="block"  (click)="testarImpressaoXMLNFCe()">realizar teste de impressao XMLNFCe</ion-button>
+  <ion-button expand="block"  (click)="testarImpressaoXMLSAT()">realizar teste de impressao XMLSAT</ion-button>
+  <ion-button expand="block"  (click)="testarStatusGaveta()">status Gaveta</ion-button>
+  <ion-button expand="block"  (click)="testarAbrirGaveta()">abrir Gaveta</ion-button>
+  <ion-button expand="block"  (click)="testarStatusSensorPapel()">status Sensor Papel</ion-button>
+  <ion-button expand="block"  (click)="testarSelecionarEImprimir()">selecionar imagem e imprimir</ion-button>
+  
+</ion-content>
