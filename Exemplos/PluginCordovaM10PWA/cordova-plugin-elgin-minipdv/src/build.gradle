@@ -1,0 +1,25 @@
+repositories {    
+    google()
+    jcenter()
+    flatDir {
+        dirs 'src/main/libs'
+    }
+}
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //To remove design inconsistency error on Ionic
+    implementation 'com.android.support:design:28.0.0'
+
+    //Printer libs
+    implementation(name: 'e1-v1.0.6-release', ext: 'aar')
+    implementation(name: 'minipdvm8', ext: 'aar')
+
+    //Barcode loading libs
+  //  implementation('com.journeyapps:zxing-android-embedded:3.4.0')
+    //implementation 'com.google.zxing:core:3.4.0'
+
+    //Barcode library
+    implementation 'com.google.zxing:core:3.3.2'
+
+}

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<plugin id="cordova-plugin-elgin-minipdv"
+    version="0.0.2"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <name>cordova-plugin-elgin-minipdv</name>
+    <js-module name="main" src="www/main.js">
+        <clobbers target="cordova.plugins.elgin.minipdv" />
+    </js-module>
+
+    <!--android-->   
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="MainActivity">
+                <param name="android-package" value="plugin.MainActivity" />
+                <param name="onload" value="true" />
+
+            </feature>
+        </config-file>
+
+        <config-file parent="/*" target="AndroidManifest.xml">
+
+        </config-file>
+
+        <!-- executable source code > -->
+        <source-file src="src/android/MainActivity.java" target-dir="src/cordova-plugin-m8/cordova-plugin-m8" />
+        
+
+
+        <framework src="src/build.gradle" custom="true" type="gradleReference" />
+        
+        <!-- Lib Files -->
+        <resource-file src="src/libs/minipdvm8.aar" target="libs/minipdvm8.aar" />
+        <resource-file src="src/libs/e1-v1.0.6-release.aar" target="libs/e1-v1.0.6-release.aar" />
+
+    </platform>
+    
+    </plugin>

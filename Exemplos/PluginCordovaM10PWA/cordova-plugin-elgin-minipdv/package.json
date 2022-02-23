@@ -1,0 +1,28 @@
+{
+  "name": "cordova-plugin-elgin-minipdv",
+  "version": "0.0.2",
+  "description": "a cool cordova plugin for elgin",
+  "cordova": {
+    "id": "cordova-plugin-elgin-minipdv",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Edzra/cordova-plugin-elgin-minipdv"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "elgin",
+    "minipdv",
+    "M8"
+  ],
+  "author": "elgin_dev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Edzra/cordova-plugin-elgin-minipdv"
+  },
+  "homepage": "https://github.com/Edzra/cordova-plugin-elgin-minipdv#readme"
+}
