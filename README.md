@@ -21,7 +21,7 @@ Com dimensões reduzidas, os equipamentos M8 e M10 se adaptam perfeitamente a mu
 
 ### Documentação
 =================  
-[Documentação](http://plataforma-e1.leonwebhost.com/group__m80.html)  
+[Documentação](https://elgindevelopercommunity.github.io/group__g30.html)  
 
 ### Exemplos
 =================  
