@@ -109,6 +109,7 @@ class BarCodeReader : AppCompatActivity() {
 
         buttonInitRead.setOnClickListener {
             editTextCodeBar1.requestFocus()
+
         }
 
         buttonCleanAllInputs.setOnClickListener {

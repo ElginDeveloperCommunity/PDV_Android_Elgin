@@ -29,6 +29,7 @@ import com.example.e1_elgin_kotlin.shipay.responses.CancelOrderResponse
 import com.example.e1_elgin_kotlin.shipay.responses.CreateOrderResponse
 import com.example.e1_elgin_kotlin.shipay.responses.GetOrderStatusResponse
 import com.example.e1_elgin_kotlin.shipay.responses.GetWalletsResponse
+import com.example.e1_kotlin_r.Services.PrinterService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -72,7 +73,7 @@ class ShipayMenu : AppCompatActivity() {
         context = this
         setContentView(R.layout.activity_shipay_menu)
         shipayClient = ShipayClient()
-        printer = Printer(this)
+        printer = PrinterService(this)
         printer!!.printerInternalImpStart()
         authenticate()
         buttonShipayProviderOption = findViewById(R.id.buttonShipayOption)
@@ -452,6 +453,6 @@ class ShipayMenu : AppCompatActivity() {
     }
 
     companion object {
-        var printer: Printer? = null
+        var printer: PrinterService? = null
     }
 }

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">M8JavaAndroid</string>
+    <string name="app_name">E1_M10_KOTLIN</string>
     <string name="text_button_printer">IMPRESSORA</string>
     <string name="text_button_barCode">CÓDIGO DE BARRAS</string>
     <string name="text_button_tef">TEF</string>
     <string name="text_button_sat">SAT</string>
     <string name="text_button_shipay">CARTEIRA DIGITAL</string>
-    <string name="text_footer_java_android_1_0_0">Kotlin 1.0.5</string>
+    <string name="text_footer_kotlin">Kotlin 2.0.0</string>
     <string name="text_title_impressora">IMPRESSORA</string>
+    <string name="text_title_e1_bridge">E1-BRIDGE</string>
+    <string name="text_title_balaca">BALANÇA</string>
     <string name="text_title_tef">TEF</string>
 
     <string-array name="fontfamily">

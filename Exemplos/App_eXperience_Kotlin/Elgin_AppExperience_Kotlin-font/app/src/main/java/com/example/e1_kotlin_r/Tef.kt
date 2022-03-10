@@ -15,6 +15,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import br.com.setis.interfaceautomacao.Operacoes
+import com.example.e1_kotlin_r.Services.PrinterService
 import com.google.gson.Gson
 import org.json.JSONException
 import org.json.JSONObject
@@ -23,7 +24,7 @@ import java.util.regex.Pattern
 
 class Tef : AppCompatActivity() {
     lateinit var paygo: Paygo
-    var printer: Printer = Printer(this)
+    var printer: PrinterService = PrinterService(this)
     var intentToMsitef = Intent("br.com.softwareexpress.sitef.msitef.ACTIVITY_CLISITEF")
     var gson: Gson = Gson()
     var context: Context = this
