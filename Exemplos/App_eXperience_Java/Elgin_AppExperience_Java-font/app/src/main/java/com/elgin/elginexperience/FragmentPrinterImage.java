@@ -49,7 +49,7 @@ public class FragmentPrinterImage extends Fragment {
     String pathImage = "";
 
     //NAME OF PATH AND FILE IMAGE DEFAULT
-    public static String NAME_IMAGE = "elgin";
+    public static String NAME_IMAGE = "elgin_logo_default_print_image";
     public static String DEF_TYPE = "drawable";
 
     @Nullable
@@ -135,8 +135,8 @@ public class FragmentPrinterImage extends Fragment {
             PrinterMenu.printer.imprimeImagem(bitmap);
         }
 
-        jumpLine();
-        if (checkBoxCutPaperImage.isChecked()) cutPaper();
+        PrinterMenu.jumpLine();
+        if (checkBoxCutPaperImage.isChecked()) PrinterMenu.cutPaper();
     }
 
     public static String getPath(Context context, Uri uri ) {
@@ -156,15 +156,4 @@ public class FragmentPrinterImage extends Fragment {
         return result;
     }
 
-    public void jumpLine(){
-        Map<String, Object> mapValues = new HashMap<>();
-        mapValues.put("quant", 10);
-        PrinterMenu.printer.AvancaLinhas(mapValues);
-    }
-
-    public void cutPaper(){
-        Map<String, Object> mapValues = new HashMap<>();
-        mapValues.put("quant", 10);
-        PrinterMenu.printer.cutPaper(mapValues);
-    }
 }

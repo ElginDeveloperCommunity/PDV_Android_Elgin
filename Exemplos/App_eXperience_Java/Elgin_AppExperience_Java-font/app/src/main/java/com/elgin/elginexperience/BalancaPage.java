@@ -13,11 +13,13 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.elgin.elginexperience.Services.BalancaService;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class BalancaPage extends AppCompatActivity {
-    public Balanca balanca;
+    public BalancaService balanca;
 
     TextView textReturnValueBalanca;
 
@@ -37,7 +39,7 @@ public class BalancaPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_balanca_page);
 
-        balanca = new Balanca(this);
+        balanca = new BalancaService(this);
 
         textReturnValueBalanca = findViewById(R.id.textReturnValueBalanca);
         radioButtonDP30CK = findViewById(R.id.radioButtonDP30CK);

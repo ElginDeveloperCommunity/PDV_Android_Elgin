@@ -12,6 +12,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.elgin.elginexperience.Services.SatService;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +26,7 @@ import java.util.Random;
 
 public class SatPage extends AppCompatActivity {
     static Context context;
-    public ServiceSat serviceSat;
+    public SatService serviceSat;
 
     TextView textRetorno;
 
@@ -50,7 +52,7 @@ public class SatPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sat_page);
         context = this;
-        serviceSat = new ServiceSat(context);
+        serviceSat = new SatService(context);
 
         textRetorno = findViewById(R.id.textRetorno);
 

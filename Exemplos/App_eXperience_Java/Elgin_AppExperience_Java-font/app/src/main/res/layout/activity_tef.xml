@@ -25,11 +25,13 @@
         />
 
         <ImageView
+            android:id="@+id/imageView3"
+            android:paddingTop="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/elgin_png"
-        />
+            app:srcCompat="@drawable/elgin_logo"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -399,7 +401,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_footer_java_android_1_0_0"
+            android:text="@string/text_footer_java_android"
             android:textColor="#7F7F7F"
             android:textSize="16sp"
             android:textStyle="bold"

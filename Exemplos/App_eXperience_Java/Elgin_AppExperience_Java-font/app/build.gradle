@@ -31,7 +31,7 @@ android {
 dependencies {
 
     //LIBS ADDED TO PROJECT E1 EXPERIENCE
-    implementation(name: 'e1-v1.0.10-release', ext: 'aar')
+    implementation(name: 'e1-v1.0.17-release', ext: 'aar')
     implementation(name: 'minipdvm8', ext: 'aar')
 
     // Network
@@ -48,7 +48,7 @@ dependencies {
     implementation("androidx.startup:startup-runtime:1.1.0")
 
     implementation 'com.github.felHR85:UsbSerial:4.5.2'
-    implementation(name: 'InterfaceAutomacao-v2.0.0.8', ext: 'aar')
+    implementation(name: 'InterfaceAutomacao-v2.0.0.9', ext: 'aar')
     implementation 'org.apache.commons:commons-lang3:3.9'
     implementation 'com.google.code.gson:gson:2.8.6'
 

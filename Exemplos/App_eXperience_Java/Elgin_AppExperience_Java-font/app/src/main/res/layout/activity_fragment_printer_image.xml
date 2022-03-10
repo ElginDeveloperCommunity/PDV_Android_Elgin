@@ -38,7 +38,7 @@
         android:layout_marginLeft="100dip"
         android:layout_marginRight="100dip"
         android:contentDescription="TODO"
-        android:src="@drawable/elgin"
+        android:src="@drawable/elgin_logo"
     />
 
     <TextView

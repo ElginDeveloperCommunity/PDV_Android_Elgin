@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.elgin.elginexperience.Services.PrinterService;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -34,7 +35,7 @@ import br.com.setis.interfaceautomacao.Operacoes;
 
 public class Tef extends AppCompatActivity {
     Paygo paygo;
-    static Printer printer;
+    static PrinterService printer;
     Intent intentToMsitef = new Intent("br.com.softwareexpress.sitef.msitef.ACTIVITY_CLISITEF");
     Gson gson = new Gson();
     static Context context;
@@ -47,7 +48,6 @@ public class Tef extends AppCompatActivity {
     EditText editTextValueTEF;
     EditText editTextInstallmentsTEF;
     EditText editTextIpTEF;
-
     //BUTTONS TYPE OF PAYMENTS
     Button buttonCreditOption;
     Button buttonDebitOption;
@@ -66,7 +66,6 @@ public class Tef extends AppCompatActivity {
     //IMAGE VIEW VIA PAYGO
     static ImageView imageViewViaPaygo;
 
-
     static TextView textViewViaMsitef;
     String viaClienteMsitef;
 
@@ -83,7 +82,7 @@ public class Tef extends AppCompatActivity {
         setContentView(R.layout.activity_tef);
         context = this;
         paygo = new Paygo(this);
-        printer = new Printer(this);
+        printer = new PrinterService(this);
         printer.printerInternalImpStart();
 
         //INIT BUTTONS TYPE TEF

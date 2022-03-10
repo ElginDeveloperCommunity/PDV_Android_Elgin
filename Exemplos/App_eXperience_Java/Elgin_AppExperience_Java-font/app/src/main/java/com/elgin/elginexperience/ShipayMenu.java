@@ -30,6 +30,8 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
+import com.elgin.elginexperience.Services.PrinterService;
+
 import com.elgin.elginexperience.shipay.ShipayClient;
 import com.elgin.elginexperience.shipay.models.Buyer;
 import com.elgin.elginexperience.shipay.models.OrderItem;
@@ -62,7 +64,7 @@ public class ShipayMenu extends AppCompatActivity {
 
     LinearLayout layoutWalletOptions;
 
-    static Printer printer;
+    static PrinterService printer;
 
     // Campo VALOR
     EditText editTextValueShipay;
@@ -101,7 +103,7 @@ public class ShipayMenu extends AppCompatActivity {
         setContentView(R.layout.activity_shipay_menu);
 
         this.shipayClient = new ShipayClient();
-        printer = new Printer(this);
+        printer = new PrinterService(this);
         printer.printerInternalImpStart();
 
         authenticate();

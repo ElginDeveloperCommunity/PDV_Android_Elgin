@@ -7,18 +7,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.google.zxing.oned.CodaBarReader;
 
 public class MainActivity extends AppCompatActivity {
     static Context context;
 
-    Button buttonPrinterOption;
-    Button buttonTefOption;
-    Button buttonBarCodeReaderOption;
-    Button buttonSAT;
-    Button buttonShipay;
-    Button buttonBalancaOption;
+    //LinearLayout foram escolhidos em vez de button para simplificar a decoração.
+    LinearLayout buttonE1Bridge;
+    LinearLayout buttonPrinterOption;
+    LinearLayout buttonTefOption;
+    LinearLayout buttonBarCodeReaderOption;
+    LinearLayout buttonSAT;
+    LinearLayout buttonShipay;
+    LinearLayout buttonBalancaOption;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +29,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         context = this;
 
+        buttonE1Bridge = findViewById(R.id.buttonE1Bridge);
         buttonPrinterOption = findViewById(R.id.buttonPrinterOption);
-        buttonTefOption = findViewById(R.id.buttonTefOption);
-        buttonBarCodeReaderOption = findViewById(R.id.buttonBarCodeReaderOption);
-        buttonSAT = findViewById(R.id.buttonSAT);
-        buttonShipay = findViewById(R.id.buttonShipay);
         buttonBalancaOption = findViewById(R.id.buttonBalancaOption);
+        buttonTefOption = findViewById(R.id.buttonTefOption);
+        buttonShipay = findViewById(R.id.buttonShipay);
+        buttonSAT = findViewById(R.id.buttonSAT);
+        buttonBarCodeReaderOption = findViewById(R.id.buttonBarCodeReaderOption);
+
+        buttonE1Bridge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { openE1BridgeScreen(); }
+        });
 
         buttonPrinterOption.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) { openBalancaScreen(); }
         });
+    }
+
+    public void openE1BridgeScreen(){
+        Intent intent = new Intent(this, E1BridgePage.class);
+        startActivity(intent);
     }
 
     public void openPrinterScreen() {

@@ -197,8 +197,8 @@ public class FragmentPrinterBarCode extends Fragment {
 
             int result = PrinterMenu.printer.imprimeBarCode(mapValues);
             System.out.println("RESULT BAR CODE: " + result);
-            jumpLine();
-            if (checkBoxIsCutPaperBarCode.isChecked()) cutPaper();
+            PrinterMenu.jumpLine();
+            if (checkBoxIsCutPaperBarCode.isChecked()) PrinterMenu.cutPaper();
         }
     }
 
@@ -213,22 +213,11 @@ public class FragmentPrinterBarCode extends Fragment {
             mapValues.put("align", typAlignOfBarCode);
 
             PrinterMenu.printer.imprimeQR_CODE(mapValues);
-            jumpLine();
-            if (checkBoxIsCutPaperBarCode.isChecked()) cutPaper();
+            PrinterMenu.jumpLine();
+            if (checkBoxIsCutPaperBarCode.isChecked()) PrinterMenu.cutPaper();
         }
     }
 
-    public void jumpLine(){
-        Map<String, Object> mapValues = new HashMap<>();
-        mapValues.put("quant", 10);
-        PrinterMenu.printer.AvancaLinhas(mapValues);
-    }
-
-    public void cutPaper(){
-        Map<String, Object> mapValues = new HashMap<>();
-        mapValues.put("quant", 10);
-        PrinterMenu.printer.cutPaper(mapValues);
-    }
 
     public void alertMessage(){
         AlertDialog alertDialog = new AlertDialog.Builder(PrinterMenu.printer.mActivity).create();

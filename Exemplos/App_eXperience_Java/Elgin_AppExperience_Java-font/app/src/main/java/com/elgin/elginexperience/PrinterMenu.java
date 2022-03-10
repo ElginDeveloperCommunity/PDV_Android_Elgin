@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -17,13 +18,15 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.elgin.elginexperience.Services.PrinterService;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PrinterMenu extends AppCompatActivity {
-    Context context;
+    public Context mContext;
 
     Button buttonPrinterTextSelected;
     Button buttonPrinterBarCodeSelected;
@@ -37,22 +40,29 @@ public class PrinterMenu extends AppCompatActivity {
 
     EditText editTextInputIP;
 
-    static Printer printer;
+    static PrinterService printer;
+    public String selectedPrinterModel;
+
+    private final String EXTERNAL_PRINTER_MODEL_I9 = "i9";
+    private final String EXTERNAL_PRINTER_MODEL_I8 = "i8";
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = this;
+        mContext = this;
         setContentView(R.layout.activity_printer_menu);
 
-        printer = new Printer(this);
+        //Inicializa a impressora interna selecionada inicialmente e ajusta a variavel de controle booleana que verifica se a impressora interna esta em uso
+        printer = new PrinterService(this);
         printer.printerInternalImpStart();
+
 
         showPrinterTextScreen();
 
+
         editTextInputIP = findViewById(R.id.editTextInputIP);
-        editTextInputIP.setText("192.168.0.31:9100");
+        editTextInputIP.setText("192.168.0.103:9100");
 
         buttonPrinterTextSelected = findViewById(R.id.buttonPrinterTextSelect);
         buttonPrinterImageSelected = findViewById(R.id.buttonPrinterImageSelect);
@@ -68,31 +78,41 @@ public class PrinterMenu extends AppCompatActivity {
         radioGroupConnectPrinterIE.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @SuppressLint("NonConstantResourceId")
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                final String EXTERNAL_CONNECTION_METHOD_USB = "USB";
+                final String EXTERNAL_CONNECTION_METHOD_IP = "IP";
                 switch (checkedId) {
+
                     case R.id.radioButtonConnectPrinterIntern:
                         printer.printerInternalImpStart();
                         break;
 
-                    case R.id.radioButtonConnectPrinterExtern:
+                    case R.id.radioButtonConnectPrinterExternByIP:
                         if(isIpValid(editTextInputIP.getText().toString())){
-                            connectExternPrinter(editTextInputIP.getText().toString());
+                            //Invoca o alertDialog que permite a escolha do modelo de impressora antes da tentativa de iniciar a conexão por IP
+                            alertDialogSetSelectedPrinterModelThenConnect(EXTERNAL_CONNECTION_METHOD_IP);
                         }else{
+                            //Se não foi possível validar o ip antes da chama da função, retorne para a conexão com impressora interna
                             alertMessageStatus("Digite um IP válido.");
                             radioButtonConnectPrinterIntern.setChecked(true);
                         }
+                        break;
+
+                    case R.id.radioButtonConnectPrinterExternByUSB:
+                        //Invoca o alertDialog que permite a escolha do modelo de impressora antes da tentativa de iniciar a conexão por IP
+                        alertDialogSetSelectedPrinterModelThenConnect(EXTERNAL_CONNECTION_METHOD_USB);
                         break;
                 }
             }
         });
 
-        buttonPrinterTextSelected.setBackgroundTintList(AppCompatResources.getColorStateList(context, R.color.azul));
+        buttonPrinterTextSelected.setBackgroundTintList(AppCompatResources.getColorStateList(mContext, R.color.azul));
 
         buttonPrinterTextSelected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonPrinterTextSelected.setBackgroundTintList(AppCompatResources.getColorStateList(context, R.color.azul));
-                buttonPrinterBarCodeSelected.setBackgroundTintList(AppCompatResources.getColorStateList(context, R.color.black));
-                buttonPrinterImageSelected.setBackgroundTintList(AppCompatResources.getColorStateList(context, R.color.black));
+                buttonPrinterTextSelected.setBackgroundTintList(AppCompatResources.getColorStateList(mContext, R.color.azul));
+                buttonPrinterBarCodeSelected.setBackgroundTintList(AppCompatResources.getColorStateList(mContext, R.color.black));
+                buttonPrinterImageSelected.setBackgroundTintList(AppCompatResources.getColorStateList(mContext, R.color.black));
                 showPrinterTextScreen();
             }
         });
@@ -100,9 +120,9 @@ public class PrinterMenu extends AppCompatActivity {
         buttonPrinterBarCodeSelected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonPrinterTextSelected.setBackgroundTintList(AppCompatResources.getColorStateList(context, R.color.black));
-                buttonPrinterBarCodeSelected.setBackgroundTintList(AppCompatResources.getColorStateList(context, R.color.azul));
-                buttonPrinterImageSelected.setBackgroundTintList(AppCompatResources.getColorStateList(context, R.color.black));
+                buttonPrinterTextSelected.setBackgroundTintList(AppCompatResources.getColorStateList(mContext, R.color.black));
+                buttonPrinterBarCodeSelected.setBackgroundTintList(AppCompatResources.getColorStateList(mContext, R.color.azul));
+                buttonPrinterImageSelected.setBackgroundTintList(AppCompatResources.getColorStateList(mContext, R.color.black));
                 showPrinterBarCodeScreen();
             }
         });
@@ -110,9 +130,9 @@ public class PrinterMenu extends AppCompatActivity {
         buttonPrinterImageSelected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonPrinterTextSelected.setBackgroundTintList(AppCompatResources.getColorStateList(context, R.color.black));
-                buttonPrinterBarCodeSelected.setBackgroundTintList(AppCompatResources.getColorStateList(context, R.color.black));
-                buttonPrinterImageSelected.setBackgroundTintList(AppCompatResources.getColorStateList(context, R.color.azul));
+                buttonPrinterTextSelected.setBackgroundTintList(AppCompatResources.getColorStateList(mContext, R.color.black));
+                buttonPrinterBarCodeSelected.setBackgroundTintList(AppCompatResources.getColorStateList(mContext, R.color.black));
+                buttonPrinterImageSelected.setBackgroundTintList(AppCompatResources.getColorStateList(mContext, R.color.azul));
                 showPrinterImageScreen();
             }
         });
@@ -135,11 +155,72 @@ public class PrinterMenu extends AppCompatActivity {
         });
     }
 
-    public void connectExternPrinter(String ip){
+    public void connectExternPrinterByIP(String ip){
         String[] ipAndPort = ip.split(":");
-        int result = printer.printerExternalImpStart(ipAndPort[0], Integer.parseInt(ipAndPort[1]));
-        System.out.println("RESULT EXTERN: " + result);
+        int result = printer.printerExternalImpStartByIP(selectedPrinterModel, ipAndPort[0], Integer.parseInt(ipAndPort[1]));
+        System.out.println("RESULT EXTERN - IP: " + result);
+
+        if(result != 0){
+            alertMessageStatus("A tentativa de conexão por IP não foi bem sucedida!");
+            printer.printerInternalImpStart();
+            radioButtonConnectPrinterIntern.setChecked(true);
+        }
+
     }
+
+    public void connectExternPrinterByUSB(String model){
+        int result = printer.printerExternalImpStartByUSB(model);
+        System.out.println("RESULT EXTERN - USB: " + result);
+
+        if(result != 0){
+            alertMessageStatus("A tentativa de conexão por USB não foi bem sucedida!");
+            printer.printerInternalImpStart();
+            radioButtonConnectPrinterIntern.setChecked(true);
+        }
+
+    }
+
+    //Dialogo usado para escolher definir o modelo de impressora externa que sera estabelecida a conexao
+    public void alertDialogSetSelectedPrinterModelThenConnect(String externalConnectionMethod){
+        String[] operations = {EXTERNAL_PRINTER_MODEL_I9, EXTERNAL_PRINTER_MODEL_I8};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle("Selecione o modelo de impressora a ser conectado");
+
+        //Tornando o dialógo não-cancelável
+        builder.setCancelable(false);
+
+        builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Se a opção de cancelamento tiver sido escolhida, retorne sempre à opção de impressão por impressora interna
+                printer.printerInternalImpStart();
+                radioButtonConnectPrinterIntern.setChecked(true);
+                dialog.dismiss();
+            }
+        });
+
+        builder.setItems(operations, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Envia o parâmetro escolhido para a função que atualiza o modelo de impressora selecionado
+                setSelectedPrinterModel(which);
+
+                //inicializa depois da seleção do modelo a conexão de impressora, levando em contra o parâmetro que define se a conexão deve ser via IP ou USB
+                if(externalConnectionMethod.equals("USB")){
+                    connectExternPrinterByUSB(selectedPrinterModel);
+                }
+                else connectExternPrinterByIP(editTextInputIP.getText().toString());
+            }
+        });
+        builder.show();
+    }
+
+    public void setSelectedPrinterModel(int whichSelected){
+        if(whichSelected == 0) this.selectedPrinterModel = EXTERNAL_PRINTER_MODEL_I9;
+        else this.selectedPrinterModel = EXTERNAL_PRINTER_MODEL_I8;
+    }
+
 
     public void showPrinterTextScreen(){
         FragmentPrinterText firstFragment = new FragmentPrinterText();
@@ -197,8 +278,7 @@ public class PrinterMenu extends AppCompatActivity {
     }
 
     private int abrirGaveta(){
-        int resultStatusGaveta = printer.abrirGaveta();
-        return resultStatusGaveta;
+        return printer.abrirGaveta();
     }
 
     public void alertMessageStatus(String messageAlert){
@@ -222,4 +302,28 @@ public class PrinterMenu extends AppCompatActivity {
         return matcher.matches();
     }
 
+    /**
+     * Funções da impressora, que serão chamadas pelos fragments que invocaram as impressões
+     */
+
+    //Esta função aplica um AvancaPapel na impressão de acordo com o tipo de impressora em uso
+    public static void jumpLine(){
+        Map<String, Object> mapValues = new HashMap<>();
+
+        //Se a impressão for por impressora externa, 5 é o suficiente; 10 caso contrário
+
+        if(!printer.isPrinterInternSelected) { mapValues.put("quant", 5); }
+        else mapValues.put("quant", 10);
+
+        printer.AvancaLinhas(mapValues);
+    }
+
+    //O valor enviado ao corte de papél corresponde também a um avancaLinhas, como utilizamos jumpLine(), enviaremos o valor mínimo
+    public static void cutPaper(){
+        Map<String, Object> mapValues = new HashMap<>();
+
+        mapValues.put("quant", 1);
+
+        PrinterMenu.printer.cutPaper(mapValues);
+    }
 }

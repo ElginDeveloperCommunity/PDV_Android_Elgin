@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.elgin.elginexperience">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -14,8 +14,11 @@
         android:testOnly="false"
         android:theme="@style/Theme.ElginEXperience"
         tools:replace="android:theme">
+        <activity
+            android:name=".E1BridgePage"
+            android:exported="false" />
         <activity android:name=".ShipayMenu" />
-        <activity android:name=".BalancaPage"/>
+        <activity android:name=".BalancaPage" />
         <activity android:name=".SatPage" />
         <activity android:name=".BarCodeReader" />
         <activity android:name=".Tef" />
@@ -23,6 +26,7 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

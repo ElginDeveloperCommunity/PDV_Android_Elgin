@@ -170,8 +170,8 @@ public class FragmentPrinterText extends Fragment {
             mapValues.put("isUnderline", checkBoxIsUnderLine.isChecked());
 
             PrinterMenu.printer.imprimeTexto(mapValues);
-            jumpLine();
-            if (checkBoxIsCutPaper.isChecked()) cutPaper();
+            PrinterMenu.jumpLine();
+            if (checkBoxIsCutPaper.isChecked()) PrinterMenu.cutPaper();
         }
     }
 
@@ -213,8 +213,8 @@ public class FragmentPrinterText extends Fragment {
         PrinterMenu.printer.imprimeXMLNFCe(mapValues);
 
         System.out.println("XML NFCE: " + stringXMLNFCe);
-        jumpLine();
-        if (checkBoxIsCutPaper.isChecked()) cutPaper();
+        PrinterMenu.jumpLine();
+        if (checkBoxIsCutPaper.isChecked()) PrinterMenu.cutPaper();
     }
 
     public void printXmlSAT() throws IOException {
@@ -252,21 +252,10 @@ public class FragmentPrinterText extends Fragment {
 
         PrinterMenu.printer.imprimeXMLSAT(mapValues);
 
-        jumpLine();
-        if (checkBoxIsCutPaper.isChecked()) cutPaper();
+        PrinterMenu.jumpLine();
+        if (checkBoxIsCutPaper.isChecked()) PrinterMenu.cutPaper();
     }
 
-    public void jumpLine(){
-        Map<String, Object> mapValues = new HashMap<>();
-        mapValues.put("quant", 10);
-        PrinterMenu.printer.AvancaLinhas(mapValues);
-    }
-
-    public void cutPaper(){
-        Map<String, Object> mapValues = new HashMap<>();
-        mapValues.put("quant", 10);
-        PrinterMenu.printer.cutPaper(mapValues);
-    }
 
     public void alertMessage(){
         AlertDialog alertDialog = new AlertDialog.Builder(PrinterMenu.printer.mActivity).create();
