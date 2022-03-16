@@ -50,8 +50,8 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="E1_v1.0.10">
-      <HintPath>..\dll\E1_v1.0.10.dll</HintPath>
+    <Reference Include="e1_v1.0.17_release">
+      <HintPath>..\dll\e1_v1.0.17_release.dll</HintPath>
     </Reference>
     <Reference Include="InterfaceAutomacao-v2.0.0.8">
       <HintPath>..\dll\InterfaceAutomacao-v2.0.0.8.dll</HintPath>
@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BarCodesEntryRenderer.cs" />
+    <Compile Include="IE1BridgeImplementation.cs" />
     <Compile Include="IPrinterImplementation.cs" />
     <Compile Include="IBalancaImplementation.cs" />
     <Compile Include="ITefImplementation.cs" />
@@ -136,9 +137,6 @@
     <AndroidResource Include="Resources\drawable\barCodeL.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\bannerElginSmall.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\voucher.png" />
   </ItemGroup>
   <ItemGroup>
@@ -158,9 +156,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\raw\xmlnfce.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\elgin.jpg" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\printerText.jpg" />
@@ -197,6 +192,15 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\raw\cancelamentosatgo.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\elgin_logo_default_print_image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bannerElginSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\elginpay_logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

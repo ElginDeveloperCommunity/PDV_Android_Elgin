@@ -4,9 +4,10 @@
              x:Class="M8XamarinForms.BalancaPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout Padding="30,0,30,0">
+        <StackLayout Padding="30,10,30,0">
             <StackLayout Style="{StaticResource bannerStack}">
-                <Image Source="bannerElginSmall.png"/>
+                <Label Style="{StaticResource bannerLabel}" Text="BALANÇA" />
+                <Image HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Source="bannerElginSmall.png"/>
             </StackLayout>
             <StackLayout Style="{StaticResource mainBalancaStack}">
                 <Label Style="{StaticResource inputLabel}" Text="VALOR BALANÇA:"/>
@@ -41,7 +42,7 @@
         <ResourceDictionary>
             <Style TargetType="StackLayout" x:Key="bannerStack">
                 <Setter Property="Orientation" Value="Horizontal"/>
-                <Setter Property="Spacing" Value="400"/>
+                <Setter Property="HeightRequest" Value="50"/>
             </Style>
             <Style TargetType="Label" x:Key="bannerLabel">
                 <Setter Property="FontSize" Value="30"/>

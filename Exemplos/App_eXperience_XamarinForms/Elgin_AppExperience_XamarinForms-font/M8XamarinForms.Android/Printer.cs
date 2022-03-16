@@ -1,17 +1,12 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Graphics;
-using Android.OS;
-using Android.Runtime;
 using Android.Util;
-using Android.Views;
-using Android.Widget;
 using Com.Elgin.E1.Impressora;
 using Java.IO;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.IO;
 
 
 namespace M8XamarinForms
@@ -25,18 +20,16 @@ namespace M8XamarinForms
         public string xmlSat;
         public string xmlNFCE;
 
-
-
         public Printer()
         {
             //mActivity = activity;
             //Termica.SetContext(mActivity);
         }
 
-        public void setActivity(Activity activity,Context context)
+        public void SetActivity(Activity activity,Context context)
         {
-            this.mActivity = activity;
-            this.mContext = context;
+            mActivity = activity;
+            mContext = context;
 
             xmlSat = CarregarArquivo(nomeXmlSat);
             xmlNFCE = CarregarArquivo(nomeXmlNFCE);
@@ -53,8 +46,8 @@ namespace M8XamarinForms
         public int PrinterExternalImpStart(Dictionary<string,string> dictionary)
         {
             PrinterStop();
-            String ip = (String)dictionary["ip"];
-            int port = Int32.Parse(dictionary["port"]);
+            string ip = dictionary["ip"];
+            int port = int.Parse(dictionary["port"]);
             try
             {
                 int result = Termica.AbreConexaoImpressora(3, "I9", ip, port);
@@ -81,7 +74,6 @@ namespace M8XamarinForms
         {
             return Termica.Corte(cut);
         }
-
 
         private int CodeOfBarCode(String barCodeName)
         {
@@ -168,49 +160,6 @@ namespace M8XamarinForms
             return result;
         }
 
-        public int ImprimeImagem(Dictionary<string, string> dictionary)
-        {
-            String pathImage = (String)dictionary["pathImage"];
-            Boolean isBase64 = (Boolean)Convert.ToBoolean(dictionary["isBase64"]);
-
-            int result;
-
-            File mSaveBit = new File(pathImage); // Your image file
-
-            Bitmap bitmap;
-
-            if (pathImage.Equals("elgin"))
-            {
-                int id = 0;
-
-               // id = mContext.Resources.GetIdentifier(pathImage, "drawable", mContext.PackageName);
-                id = mActivity.ApplicationContext.Resources.GetIdentifier(pathImage, "drawable", mActivity.ApplicationContext.PackageName);
-                System.Console.WriteLine("id: " + id);
-
-                bitmap = BitmapFactory.DecodeResource(mActivity.ApplicationContext.Resources, id);
-                bitmap = BitmapFactory.DecodeResource(mActivity.ApplicationContext.Resources, id);
-            }
-            else
-            {
-                if (isBase64)
-                {
-                    byte[] decodedString = Base64.Decode(pathImage, Base64Flags.Default);
-                    bitmap = BitmapFactory.DecodeByteArray(decodedString, 0, decodedString.Length);
-
-                }
-                else
-                {
-                    String filePath = mSaveBit.Path;
-                    bitmap = BitmapFactory.DecodeFile(filePath);
-                }
-            }
-
-            result = Termica.ImprimeBitmap(bitmap);
-
-            System.Console.WriteLine("result IMAGEM: " + result);
-            return result;
-        }
-
         public int ImprimeXMLNFCe(Dictionary<string, string> dictionary)
         {
             //String xmlNFCe = (String)dictionary["xmlNFCe"];
@@ -262,11 +211,11 @@ namespace M8XamarinForms
           
 
             int result;
-
-            int alignValue = 0;
             int styleValue = 0;
 
+
             // ALINHAMENTO VALUE
+            int alignValue;
             if (align.Equals("Esquerda"))
             {
                 alignValue = 0;
@@ -279,7 +228,8 @@ namespace M8XamarinForms
             {
                 alignValue = 2;
             }
-            //STILO VALUE
+
+            // ESTILO VALUE
             if (font.Equals("FONT B"))
             {
                 styleValue += 1;
@@ -300,26 +250,26 @@ namespace M8XamarinForms
         public int ImprimeImagemPadrao()
         {
             Bitmap bitmap;
-            int id = 0;
-
-            id = mActivity.ApplicationContext.Resources.GetIdentifier("elgin", "drawable", mActivity.ApplicationContext.PackageName);
-
-            bitmap = BitmapFactory.DecodeResource(mActivity.ApplicationContext.Resources, id);
-            bitmap = BitmapFactory.DecodeResource(mActivity.ApplicationContext.Resources, id);
+            int id = mContext.ApplicationContext.Resources.GetIdentifier("elgin_logo_default_print_image", "drawable", mContext.ApplicationContext.PackageName);
+            bitmap = BitmapFactory.DecodeResource(mContext.ApplicationContext.Resources, id);
 
             return Termica.ImprimeBitmap(bitmap);
         }
 
-        public int ImprimeImagem(Bitmap bitmap)
+        public int ImprimeImagem(Stream stream)
         {
-            return Termica.ImprimeBitmap(bitmap);
+            int result;
+
+            Bitmap bitmap = BitmapFactory.DecodeStream(stream);
+            result = Termica.ImprimeBitmap(bitmap);
+            return result;
         }
 
         protected string CarregarArquivo(string nomeArquivo)
         {
-            var stream = this.mContext.Resources.OpenRawResource(this.mContext.Resources.GetIdentifier(nomeArquivo, "raw", this.mContext.PackageName));
+            var stream = mContext.Resources.OpenRawResource(this.mContext.Resources.GetIdentifier(nomeArquivo, "raw", mContext.PackageName));
             string conteudoArquivo = "";
-            using (var reader = new System.IO.StreamReader(stream))
+            using (var reader = new StreamReader(stream))
             {
                 conteudoArquivo = reader.ReadToEnd();
             }

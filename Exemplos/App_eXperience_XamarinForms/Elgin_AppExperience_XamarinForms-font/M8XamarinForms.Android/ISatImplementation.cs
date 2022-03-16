@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Android.Content;
 using Android.Widget;
@@ -80,6 +81,17 @@ namespace M8XamarinForms.Droid
         public void MostrarRetorno(string retorno)
         {
             Toast.MakeText(Android.App.Application.Context, string.Format("Retorno: {0}", retorno), ToastLength.Long).Show();
+        }
+
+        public string CarregarArquivo(string nomeArquivo)
+        {
+            var stream = Android.App.Application.Context.Resources.OpenRawResource(Android.App.Application.Context.Resources.GetIdentifier(nomeArquivo, "raw", Android.App.Application.Context.PackageName));
+            string conteudoArquivo = "";
+            using (var reader = new StreamReader(stream))
+            {
+                conteudoArquivo = reader.ReadToEnd();
+            }
+            return conteudoArquivo;
         }
     }
 }

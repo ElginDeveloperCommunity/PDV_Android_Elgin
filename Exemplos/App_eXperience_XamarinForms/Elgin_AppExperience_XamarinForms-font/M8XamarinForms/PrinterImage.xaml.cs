@@ -1,8 +1,6 @@
-﻿using Android.Graphics;
-using Java.Util.Regex;
-using System;
+﻿using System;
+using System.IO;
 using System.Collections.Generic;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,28 +10,23 @@ namespace M8XamarinForms
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PrinterImage : ContentPage
     {
-        Bitmap selectedImageBitmap;
-        FileResult photo;
-        bool isImageselected;
-        Dictionary<string, string> parametros;
+        Stream selectedImage;
+
         public PrinterImage()
         {
             InitializeComponent();
            
-            isImageselected = false;
             //Iniciando impressora interna
-            int internalPrinterStartResult = DependencyService.Get<IPrinter>().PrinterInternalImpStart();
+            DependencyService.Get<IPrinter>().PrinterInternalImpStart();
             internalPrinterRadio.IsChecked = true;
             isCutPaper.IsChecked = false;
             
-            displayImage.Source = "elgin.jpg";
-            
+            displayImage.Source = "elgin_logo_default_print_image.jpg";
         }
 
-
-        async void openPrinterOption(object sender, EventArgs e)
+        async void OpenPrinterOption(object sender, EventArgs e)
         {
-            var btn = (Button)sender;
+            Button btn = (Button)sender;
 
             switch (btn.Text)
             {
@@ -49,51 +42,48 @@ namespace M8XamarinForms
                     await Navigation.PushAsync(new PrinterImage());
                     Navigation.RemovePage(this);
                     break;
-
-
-            }
-
-        }
-
-        private async void openSelectionImage(object sender, EventArgs e)
-        {
-            try
-            {
-                isImageselected = true;
-                photo = await MediaPicker.PickPhotoAsync();
-                selectedImageBitmap = BitmapFactory.DecodeFile(photo.FullPath);
-                displayImage.Source = photo.FullPath;
-            }
-            catch (Exception)
-            {
-                await DisplayAlert("Erro na seleção", "Nenhuma Imagem foi selecionada", "OK");
             }
         }
 
-        private void doPrinterImage(object sender, EventArgs e)
+        private async void OpenSelectionImage(object sender, EventArgs e)
         {
-
-
-            if (isImageselected)
+            Stream imageStream = await DependencyService.Get<IPrinter>().GetImageStreamAsync();
+            if (imageStream != null)
             {
-                int imprimirImagem = DependencyService.Get<IPrinter>().ImprimeImagem(selectedImageBitmap);
+                selectedImage = new MemoryStream();
+                imageStream.CopyTo(selectedImage);
+
+                // RESETAR STREAMS
+                selectedImage.Position = 0;
+                imageStream.Position = 0;
+
+                displayImage.Source = ImageSource.FromStream(() => imageStream);
+            }
+        }
+
+        private void DoPrinterImage(object sender, EventArgs e)
+        {
+            if (selectedImage != null)
+            {
+                //printerInstance.imprimeImagem(bitmap);
+                selectedImage.Position = 0;
+                Console.WriteLine("ImprimeImagem: FIM {0}", DependencyService.Get<IPrinter>().ImprimeImagem(selectedImage).ToString());
             }
             else
             {
-                int imprimirImagem = DependencyService.Get<IPrinter>().ImprimeImagemPadrao();
+                //printerInstance.imprimeImagem(bitmap);
+                Console.WriteLine("ImprimeImagemPadrao: FIM {0}", DependencyService.Get<IPrinter>().ImprimeImagemPadrao().ToString());
             }
           
-            int avancaLinhas = DependencyService.Get<IPrinter>().AvancaLinhas(10);
+            DependencyService.Get<IPrinter>().AvancaLinhas(10);
+
             if (isCutPaper.IsChecked)
             {
-                int cutPaperResult = DependencyService.Get<IPrinter>().CutPaper(10);
+                DependencyService.Get<IPrinter>().CutPaper(10);
             }
-           
-
-
         }
 
-        private void doPrinterStatus(object sender, EventArgs e)
+        private void DoPrinterStatus(object sender, EventArgs e)
         {
             int statusImpressora = DependencyService.Get<IPrinter>().StatusSensorPapel();
             switch (statusImpressora)
@@ -112,7 +102,7 @@ namespace M8XamarinForms
                     break;
             }
         }
-        private void doGavetaStatus(object sender, EventArgs e)
+        private void DoGavetaStatus(object sender, EventArgs e)
         {
             int statusGaveta = DependencyService.Get<IPrinter>().StatusGaveta();
             switch (statusGaveta)
@@ -129,30 +119,24 @@ namespace M8XamarinForms
             }
         }
 
-        
-        private void doOpenGaveta(object sender, EventArgs e)
+        private void DoOpenGaveta(object sender, EventArgs e)
         {
-            int openGaveta = DependencyService.Get<IPrinter>().AbrirGaveta();
+            DependencyService.Get<IPrinter>().AbrirGaveta();
         }
 
         public static bool IsIpValid(string ipserver)
         {
-            Console.WriteLine(ipserver);
-            Java.Util.Regex.Pattern p = Java.Util.Regex.Pattern.Compile(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\:\d{1,5}\b");
-
-            Matcher m = p.Matcher(ipserver);
-            bool b = m.Matches();
-
-            return b;
+            return DependencyService.Get<IPrinter>().IsIpValid(ipserver);
         }
-        private void printerConectionChanged(object sender, CheckedChangedEventArgs e)
-        {
-            parametros = new Dictionary<string, string>();
 
-            var conection = ipEntry.Text;
+        private void PrinterConectionChanged(object sender, CheckedChangedEventArgs e)
+        {
+            Dictionary<string, string>  parametros = new Dictionary<string, string>();
+
+            string conection = ipEntry.Text;
             string[] entrada = conection.Split(':');
-            var ip = entrada[0];
-            var porta = entrada[1];
+            string ip = entrada[0];
+            string porta = entrada[1];
 
             parametros.Add("ip", ip);
             parametros.Add("port", porta);
@@ -160,26 +144,20 @@ namespace M8XamarinForms
 
             if (internalPrinterRadio.IsChecked)
             {
-                int internalPrinterStartResult = DependencyService.Get<IPrinter>().PrinterInternalImpStart();
-
+                DependencyService.Get<IPrinter>().PrinterInternalImpStart();
             }
             else
             {
                 if (IsIpValid(conection))
                 {
-                    var externalPrinterConection = DependencyService.Get<IPrinter>().PrinterExternalImpStart(parametros);
+                    DependencyService.Get<IPrinter>().PrinterExternalImpStart(parametros);
                 }
                 else
                 {
                     DisplayAlert("Entrada Inválida", "Por favor, insira uma entrada válida", "OK");
                     internalPrinterRadio.IsChecked = true;
                 }
-
-
             }
-
         }
-
-
     }
 }

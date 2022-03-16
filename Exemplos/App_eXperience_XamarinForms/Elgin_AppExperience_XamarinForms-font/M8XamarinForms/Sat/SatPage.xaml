@@ -4,10 +4,10 @@
              x:Class="M8XamarinForms.SatPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout Padding="30,0,30,0">
+        <StackLayout Padding="30,10,30,0">
             <StackLayout Style="{StaticResource bannerStack}">
                 <Label Style="{StaticResource bannerLabel}" Text="SAT" />
-                <Image Source="bannerElginSmall.png"/>
+                <Image HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Source="bannerElginSmall.png"/>
             </StackLayout>
             <StackLayout Style="{StaticResource mainSatStack}">
                 <Frame Style="{StaticResource satReturnFrame}">
@@ -50,7 +50,7 @@
         <ResourceDictionary>
             <Style TargetType="StackLayout" x:Key="bannerStack">
                 <Setter Property="Orientation" Value="Horizontal"/>
-                <Setter Property="Spacing" Value="465"/>
+                <Setter Property="HeightRequest" Value="50"/>
             </Style>
             <Style TargetType="Label" x:Key="bannerLabel">
                 <Setter Property="FontSize" Value="30"/>

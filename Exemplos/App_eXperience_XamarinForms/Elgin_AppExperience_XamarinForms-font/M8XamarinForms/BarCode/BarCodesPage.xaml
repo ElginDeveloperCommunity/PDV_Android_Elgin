@@ -5,10 +5,10 @@
              x:Class="M8XamarinForms.BarCodesPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout Padding="30,0,30,0" >
+        <StackLayout Padding="30,10,30,0" >
             <StackLayout Style="{StaticResource bannerStack}">
                 <Label Style="{StaticResource bannerLabel}" Text="CÓDIGO DE BARRAS" />
-                <Image Source="bannerElginSmall.png"/>
+                <Image HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Source="bannerElginSmall.png"/>
             </StackLayout>
             <StackLayout Style="{StaticResource mainBarCodeStack }">
                 <StackLayout Style="{StaticResource barCodesEntryStakc}">
@@ -110,12 +110,12 @@
         <ResourceDictionary>
             <Style TargetType="StackLayout" x:Key="bannerStack">
                 <Setter Property="Orientation" Value="Horizontal"/>
-                <Setter Property="Spacing" Value="230"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="Margin" Value="0,0,0,15"/>
             </Style>
             <Style TargetType="Label" x:Key="bannerLabel">
                 <Setter Property="FontSize" Value="30"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="Padding" Value="0,10,0,0"/>
                 <Setter Property="TextColor" Value="Black"/>
             </Style>
             <Style TargetType="StackLayout" x:Key="mainBarCodeStack">

@@ -1,10 +1,5 @@
-﻿using Android.Graphics;
-using Java.Util.Regex;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -183,13 +178,7 @@ namespace M8XamarinForms
 
         public static bool IsIpValid(string ipserver)
         {
-            Console.WriteLine(ipserver);
-            Java.Util.Regex.Pattern p = Java.Util.Regex.Pattern.Compile(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\:\d{1,5}\b");
-
-            Matcher m = p.Matcher(ipserver);
-            bool b = m.Matches();
-
-            return b;
+            return DependencyService.Get<IPrinter>().IsIpValid(ipserver);
         }
         private void PrinterConectionChanged(object sender, CheckedChangedEventArgs e)
         {

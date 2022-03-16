@@ -3,13 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="M8XamarinForms.TefPage"
              NavigationPage.HasNavigationBar="False">
-    
+
     <ContentPage.Content>
-        
-        <StackLayout  Padding="30,0,30,0">
+        <StackLayout  Padding="30,10,30,0">
             <StackLayout Style="{StaticResource bannerStack}">
                 <Label Style="{StaticResource bannerLabel}" Text="TEF" />
-                <Image Source="bannerElginSmall.png"/>
+                <Image HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Source="bannerElginSmall.png"/>
             </StackLayout>
             <StackLayout Style="{StaticResource mainMenuStack}">
                 <StackLayout Style="{StaticResource inputStack}">
@@ -68,18 +67,16 @@
 
             </StackLayout>
             <StackLayout>
-                <Label Text="Xamarin.Forms 1.0" TextColor="Gray" HorizontalOptions="End"/>
+                <Label Text="Xamarin.Forms 2.0.0" TextColor="Gray" HorizontalOptions="End"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 
     <ContentPage.Resources>
         <ResourceDictionary>
-           
             <Style TargetType="StackLayout" x:Key="bannerStack">
                 <Setter Property="Orientation" Value="Horizontal"/>
-                <Setter Property="Spacing" Value="470"/>
-               
+                <Setter Property="HeightRequest" Value="50"/>
             </Style>
             <Style TargetType="Label" x:Key="bannerLabel">
                 <Setter Property="FontSize" Value="30"/>
@@ -94,13 +91,10 @@
                 <Setter Property="Spacing" Value="10"/>
             </Style>
             <Style TargetType="StackLayout" x:Key="inputStack">
-
                 <Setter Property="WidthRequest" Value="380"/>
-
             </Style>
             <Style TargetType="StackLayout" x:Key="returnStack">
                 <Setter Property="Orientation" Value="Vertical"/>
-              
                 <Setter Property="WidthRequest" Value="450"/>
             </Style>
             <Style TargetType="StackLayout" x:Key="tefSelectionStack">
@@ -115,8 +109,6 @@
                 <Setter Property="HeightRequest" Value="30"/>
                 <Setter Property="FontSize" Value="11"/>
                 <Setter Property="Padding" Value="0,-3,0,0"/>
-
-
             </Style>
             <Style TargetType="Label" x:Key="selectionPaymentLabel">
                 <Setter Property="TextColor" Value="Black"/>
@@ -125,16 +117,12 @@
             </Style>
             <Style TargetType="StackLayout" x:Key="entryStack">
                 <Setter Property="Orientation" Value="Horizontal"/>
-               
-               
-
             </Style>
             <Style TargetType="Label" x:Key="inputLabel">
                 <Setter Property="TextColor" Value="Black"/>
                 <Setter Property="Padding" Value="0,5,0,0"/>
                 <Setter Property="FontSize" Value="15"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
-             
             </Style>
             <Style TargetType="StackLayout" x:Key="inputStackGroup">
                 <Setter Property="Spacing" Value="-5"/>
@@ -142,10 +130,6 @@
             <Style TargetType="Entry" x:Key="inputEntry">
                 <Setter Property="HeightRequest" Value="40"/>
                 <Setter Property="WidthRequest" Value="150"/>
-           
-               
-
-
             </Style>
             <Style TargetType="StackLayout" x:Key="optionStack">
                 
@@ -180,20 +164,16 @@
             <Style TargetType="StackLayout" x:Key="transactionButtonsStack">
                 <Setter Property="Orientation" Value="Horizontal"/>
                 <Setter Property="HorizontalOptions" Value="Start"/>
-                
             </Style>
             <Style TargetType="StackLayout" x:Key="configStack">
                 <Setter Property="HorizontalOptions" Value="Start"/>
-
             </Style>
             <Style TargetType="Frame" x:Key="returnFrame">
                 <Setter Property="BorderColor" Value="Black"/>
                 <Setter Property="CornerRadius" Value="15"/>
                 <Setter Property="HeightRequest" Value="450"/>
-                <Setter Property="BackgroundColor" Value="White"/> 
+                <Setter Property="BackgroundColor" Value="White"/>
             </Style>
-
-
         </ResourceDictionary>
     </ContentPage.Resources>
 </ContentPage>

@@ -1,7 +1,4 @@
-﻿using Android.Content;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace M8XamarinForms
 {
@@ -19,6 +16,7 @@ namespace M8XamarinForms
 
         string CancelarVenda(Dictionary<string, object> map);
 
+        string CarregarArquivo(string nomeArquivo);
         void MostrarRetorno(string retorno);
     }
 }

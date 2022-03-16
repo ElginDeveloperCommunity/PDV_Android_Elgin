@@ -1,7 +1,6 @@
-﻿using Android.Graphics;
-using System;
+﻿using System.IO;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace M8XamarinForms
 {
@@ -22,7 +21,9 @@ namespace M8XamarinForms
 
         int ImprimeQR_CODE(Dictionary<string,string> parametros);
 
-        int ImprimeImagem(Bitmap bitmap);
+        int ImprimeImagem(Stream bitmap);
+
+        int ImprimeImagemPadrao();
 
         int ImprimeXMLNFCe(Dictionary<string,string> parametros);
 
@@ -44,6 +45,8 @@ namespace M8XamarinForms
 
         void TestAndroidAlert(string alert);
 
-        int ImprimeImagemPadrao();
+        bool IsIpValid(string ip);
+
+        Task<Stream> GetImageStreamAsync();
     }
 }

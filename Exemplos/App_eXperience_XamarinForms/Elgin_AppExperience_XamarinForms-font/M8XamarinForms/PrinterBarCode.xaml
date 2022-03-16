@@ -6,27 +6,25 @@
              >
     <ContentPage.Content>
         <StackLayout Padding="40,10">
-            <StackLayout>
-                <StackLayout Style="{StaticResource bannerStack}" >
-                    <Label Style="{StaticResource mainLabel}" Text="IMPRESSORA" />
-                    <Image Source="bannerElginSmall.png"/>
-                </StackLayout>
+            <StackLayout Style="{StaticResource bannerStack}" >
+                <Label Style="{StaticResource mainLabel}" Text="IMPRESSORA" />
+                <Image HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Source="bannerElginSmall.png"/>
             </StackLayout>
             <StackLayout Style="{StaticResource mainMenuStack}">
                 <StackLayout Style="{StaticResource buttonsPrinterOptions}">
-                    <Button Text="IMPRESSÃO DE TEXTO" Clicked="openPrinterOption" ContentLayout="Top,0" ImageSource="printerText.png"  Style="{StaticResource printerOptionButton}"/>
-                    <Button Text="IMPRESSÃO DE CÓDIGO DE BARRAS" Clicked="openPrinterOption" ContentLayout="Top,0" ImageSource="printerBarCode.png"  Style="{StaticResource printerOptionButton}" BorderColor="#23F600"/>
-                    <Button Text="IMPRESSÃO DE IMAGEM" Clicked="openPrinterOption" ContentLayout="Top,0" ImageSource="printerImage.png"  Style="{StaticResource printerOptionButton}"/>
-                    <Button Text="STATUS DA GAVETA"   Clicked="doGavetaStatus" ImageSource="status.png"  Style="{StaticResource printerStatusButton}"/>
-                    <Button Text="STATUS DA IMPRESSORA"  Clicked="doPrinterStatus"  ImageSource="status.png"  Style="{StaticResource printerStatusButton}"/>
-                    <Button Text="ABRIR GAVETA"  Clicked="doOpenGaveta" Style="{StaticResource openGavetaButton}"/>
+                    <Button Text="IMPRESSÃO DE TEXTO" Clicked="OpenPrinterOption" ContentLayout="Top,0" ImageSource="printerText.png"  Style="{StaticResource printerOptionButton}"/>
+                    <Button Text="IMPRESSÃO DE CÓDIGO DE BARRAS" Clicked="OpenPrinterOption" ContentLayout="Top,0" ImageSource="printerBarCode.png"  Style="{StaticResource printerOptionButton}" BorderColor="#23F600"/>
+                    <Button Text="IMPRESSÃO DE IMAGEM" Clicked="OpenPrinterOption" ContentLayout="Top,0" ImageSource="printerImage.png"  Style="{StaticResource printerOptionButton}"/>
+                    <Button Text="STATUS DA GAVETA"   Clicked="DoGavetaStatus" ImageSource="status.png"  Style="{StaticResource printerStatusButton}"/>
+                    <Button Text="STATUS DA IMPRESSORA"  Clicked="DoPrinterStatus"  ImageSource="status.png"  Style="{StaticResource printerStatusButton}"/>
+                    <Button Text="ABRIR GAVETA"  Clicked="DoOpenGaveta" Style="{StaticResource openGavetaButton}"/>
 
                 </StackLayout>
                 <StackLayout Style="{StaticResource printerSettingStack}" >
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="55">
                         <StackLayout Style="{StaticResource radioButtonStack}">
-                            <RadioButton x:Name="internalPrinterRadio" CheckedChanged="printerConectionChanged" Content="IMP. INTERNA" Value="Interna" Style="{StaticResource radioButtonStyle}"/>
-                            <RadioButton x:Name="externalPrinterRadio" Content="IMP. EXTERNA" Value="Externa" Style="{StaticResource radioButtonStyle}"/>
+                            <RadioButton x:Name="internalPrinterRadio" CheckedChanged="PrinterConectionChanged" Content="IMP. INTERNA" Value="Interna" Style="{StaticResource radioButtonStyle}"/>
+                            <RadioButton x:Name="externalPrinterRadio" CheckedChanged="PrinterConectionChanged" Content="IMP. EXTERNA" Value="Externa" Style="{StaticResource radioButtonStyle}"/>
                         </StackLayout>
                         <Frame Style="{StaticResource ipFrame}">
                             <StackLayout Orientation="Horizontal">
@@ -49,7 +47,7 @@
                             </StackLayout>
                             <StackLayout Style="{StaticResource barCodeTypeStack}">
                                 <Label Text="TIPO DE CÓDIGO DE BARRAS: " Style="{StaticResource inputLabel}"/>
-                                <Picker x:Name="barCodeType" SelectedIndexChanged="setTypeCodeMessage"  WidthRequest="150"/>
+                                <Picker x:Name="barCodeType" SelectedIndexChanged="SetTypeCodeMessage"  WidthRequest="150"/>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Spacing="15">
                                 <Label Text="ALINHAMENTO:" Style="{StaticResource inputLabel}"/>
@@ -79,7 +77,7 @@
                                 </StackLayout>
                             </StackLayout>
                             <StackLayout>
-                                <Button Text="IMPRIMIR CÓDIGO DE BARRAS" Style="{StaticResource printerButton}" Clicked="doPrinterBarCode"/>
+                                <Button Text="IMPRIMIR CÓDIGO DE BARRAS" Style="{StaticResource printerButton}" Clicked="DoPrinterBarCode"/>
                             </StackLayout>
                         </StackLayout>
                     </Frame>
@@ -90,12 +88,15 @@
     </ContentPage.Content>
     <ContentPage.Resources>
         <ResourceDictionary>
+            <Style TargetType="StackLayout" x:Key="bannerStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HeightRequest" Value="50"/>
+            </Style>
             <Style TargetType="Label" x:Key="inputLabel">
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="TextColor" Value="Black"/>
                 <Setter Property="FontSize" Value="17"/>
                 <Setter Property="Padding" Value="0,10,-10,0"/>
-
             </Style>
 
             <Style TargetType="StackLayout" x:Key="barCodeTypeStack">

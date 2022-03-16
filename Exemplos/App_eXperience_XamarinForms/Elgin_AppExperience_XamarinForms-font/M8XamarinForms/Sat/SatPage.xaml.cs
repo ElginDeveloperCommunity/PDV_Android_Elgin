@@ -1,14 +1,9 @@
-﻿using Java.IO;
-using Java.Lang;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using StringBuilder = Java.Lang.StringBuilder;
-using IOException = Java.IO.IOException;
 using System.Text.RegularExpressions;
 
 namespace M8XamarinForms
@@ -58,45 +53,7 @@ namespace M8XamarinForms
             string stringXMLSat;
 
             cfeCancelamento = "";
-
-            if (TypeModelSat.Equals("smartSAT"))
-            {
-                xmlEnviaDadosVenda = "xmlenviadadosvendasat";
-            }
-            else
-            {
-                xmlEnviaDadosVenda = "satgo3";
-            }
-
-            Stream ins = Android.App.Application.Context.Resources.OpenRawResource(
-                    Android.App.Application.Context.Resources.GetIdentifier(
-                            xmlEnviaDadosVenda,
-                            "raw",
-                            Android.App.Application.Context.PackageName
-
-                    )
-            );
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(ins));
-            StringBuilder sb = new StringBuilder();
-            string line = null;
-
-            try
-            {
-                line = br.ReadLine();
-            }
-            catch (IOException ex)
-            {
-                ex.PrintStackTrace();
-            }
-
-            while (line != null)
-            {
-                sb.Append(line);
-                sb.Append(JavaSystem.LineSeparator());
-                line = br.ReadLine();
-            }
-            stringXMLSat = sb.ToString();
+            stringXMLSat = DependencyService.Get<ISat>().CarregarArquivo(xmlEnviaDadosVenda);
 
             Dictionary<string, object> mapValues = new Dictionary<string, object>
             {
@@ -120,34 +77,7 @@ namespace M8XamarinForms
         {
             string stringXMLSat;
 
-            Stream ins = Android.App.Application.Context.Resources.OpenRawResource(
-                        Android.App.Application.Context.Resources.GetIdentifier(
-                                xmlCancelamento,
-                                "raw",
-                                Android.App.Application.Context.PackageName
-                        )
-                );
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(ins));
-            StringBuilder sb = new StringBuilder();
-            string line = null;
-
-            try
-            {
-                line = br.ReadLine();
-            }
-            catch (IOException ex)
-            {
-                ex.PrintStackTrace();
-            }
-
-            while (line != null)
-            {
-                sb.Append(line);
-                sb.Append(JavaSystem.LineSeparator());
-                line = br.ReadLine();
-            }
-            stringXMLSat = sb.ToString();
+            stringXMLSat = DependencyService.Get<ISat>().CarregarArquivo(xmlCancelamento);
             stringXMLSat = stringXMLSat.Replace("novoCFe", cfeCancelamento);
 
             Dictionary<string, object> mapValues = new Dictionary<string, object>

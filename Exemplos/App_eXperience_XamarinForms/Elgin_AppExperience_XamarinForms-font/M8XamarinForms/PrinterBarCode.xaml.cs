@@ -1,13 +1,8 @@
-﻿using Java.Util.Regex;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Android.App;
 
 namespace M8XamarinForms
 {
@@ -20,12 +15,9 @@ namespace M8XamarinForms
         {
             InitializeComponent();
             //Iniciando impressora interna
-            int internalPrinterStartResult = DependencyService.Get<IPrinter>().PrinterInternalImpStart();
+            DependencyService.Get<IPrinter>().PrinterInternalImpStart();
             internalPrinterRadio.IsChecked = true;
             
-
-            
-
             barCodeType.Items.Add("EAN 8");
             barCodeType.Items.Add("EAN 13");
             barCodeType.Items.Add("QR CODE");
@@ -59,8 +51,7 @@ namespace M8XamarinForms
 
         }
 
-
-        async void openPrinterOption(object sender, EventArgs e)
+        private async void OpenPrinterOption(object sender, EventArgs e)
         {
             var btn = (Button)sender;
 
@@ -84,7 +75,7 @@ namespace M8XamarinForms
 
         }
 
-        private void doPrinterBarCode(object sender, EventArgs e)
+        private void DoPrinterBarCode(object sender, EventArgs e)
         {
 
             if (codeEntry.Text == "") 
@@ -94,27 +85,27 @@ namespace M8XamarinForms
             else{
                 if(barCodeType.Items[barCodeType.SelectedIndex]=="QR CODE")
                 {
-                    doPrinterQrCode();
+                    DoPrinterQrCode();
                 }
                 else
                 {
-                    doPrinterBarcodeDefault();
+                    DoPrinterBarcodeDefault();
                 }
             }
 
 
         }
 
-        private void doPrinterBarcodeDefault()
+        private void DoPrinterBarcodeDefault()
         {
             parametros = new Dictionary<string, string>();
 
-            var codeString = codeEntry.Text;
-            var selectedBarCodeType = barCodeType.Items[barCodeType.SelectedIndex];
-            var align = " ";
-            var selectedHeigth = heigthPicker.Items[heigthPicker.SelectedIndex];
-            var selectedWidth = widthPicker.Items[widthPicker.SelectedIndex];
-            var isCutPaperCheck = isCutPaper.IsChecked;
+            string codeString = codeEntry.Text;
+            string selectedBarCodeType = barCodeType.Items[barCodeType.SelectedIndex];
+            string align = " ";
+            string selectedHeigth = heigthPicker.Items[heigthPicker.SelectedIndex];
+            string selectedWidth = widthPicker.Items[widthPicker.SelectedIndex];
+            bool isCutPaperCheck = isCutPaper.IsChecked;
 
             if (alignEsq.IsChecked)
             {
@@ -135,24 +126,22 @@ namespace M8XamarinForms
             parametros.Add("width", selectedWidth);
             parametros.Add("align", align);
 
-            int printCodeResult = DependencyService.Get<IPrinter>().ImprimeBarCode(parametros);
-            int avancaLinhas = DependencyService.Get<IPrinter>().AvancaLinhas(10);
+            DependencyService.Get<IPrinter>().ImprimeBarCode(parametros);
+            DependencyService.Get<IPrinter>().AvancaLinhas(10);
 
-            if(isCutPaper.IsChecked)
+            if(isCutPaperCheck)
             {
-                int cutPaperResult = DependencyService.Get<IPrinter>().CutPaper(10);
+                DependencyService.Get<IPrinter>().CutPaper(10);
             }
-
-           
 
         }
 
-        private void doPrinterQrCode()
+        private void DoPrinterQrCode()
         {
             parametros = new Dictionary<string, string>();
-            var selectedWidth = widthPicker.Items[widthPicker.SelectedIndex];
-            var codeString = codeEntry.Text;
-            var align = " ";
+            string selectedWidth = widthPicker.Items[widthPicker.SelectedIndex];
+            string codeString = codeEntry.Text;
+            string align = " ";
 
             if (alignEsq.IsChecked)
             {
@@ -171,25 +160,19 @@ namespace M8XamarinForms
             parametros.Add("text", codeString);
             parametros.Add("align", align);
 
-            int printCodeResult = DependencyService.Get<IPrinter>().ImprimeQR_CODE(parametros);
-            int avancaLinhas = DependencyService.Get<IPrinter>().AvancaLinhas(10);
+            DependencyService.Get<IPrinter>().ImprimeQR_CODE(parametros);
+            DependencyService.Get<IPrinter>().AvancaLinhas(10);
 
             if (isCutPaper.IsChecked)
             {
-                int cutPaperResult = DependencyService.Get<IPrinter>().CutPaper(10);
+                DependencyService.Get<IPrinter>().CutPaper(10);
             }
         }
 
-        private void setTypeCodeMessage(object sender, EventArgs e)
+        private void SetTypeCodeMessage(object sender, EventArgs e)
         {
-            if(barCodeType.Items[barCodeType.SelectedIndex]=="QR CODE")
-            {
-                heigthStack.IsVisible = false;
-            }
-            else
-            {
-                heigthStack.IsVisible = true;
-            }
+            heigthStack.IsVisible = barCodeType.Items[barCodeType.SelectedIndex]!="QR CODE";
+
             switch (barCodeType.Items[barCodeType.SelectedIndex])
             {
                 case "EAN 8":
@@ -223,11 +206,10 @@ namespace M8XamarinForms
                     codeEntry.Text = "{C1233";
                     break;
 
-
             }
         }
 
-        private void doPrinterStatus(object sender, EventArgs e)
+        private void DoPrinterStatus(object sender, EventArgs e)
         {
             int statusImpressora = DependencyService.Get<IPrinter>().StatusSensorPapel();
             switch (statusImpressora)
@@ -246,7 +228,8 @@ namespace M8XamarinForms
                     break;
             }
         }
-        private void doGavetaStatus(object sender, EventArgs e)
+        
+        private void DoGavetaStatus(object sender, EventArgs e)
         {
             int statusGaveta = DependencyService.Get<IPrinter>().StatusGaveta();
             switch (statusGaveta)
@@ -263,29 +246,25 @@ namespace M8XamarinForms
             }
         }
 
-        private void doOpenGaveta(object sender, EventArgs e)
+        private void DoOpenGaveta(object sender, EventArgs e)
         {
-            int openGaveta = DependencyService.Get<IPrinter>().AbrirGaveta();
+            DependencyService.Get<IPrinter>().AbrirGaveta();
         }
 
-        public static bool IsIpValid(string ipserver)
+
+        public static bool IsIpValid(string ip)
         {
-            Console.WriteLine(ipserver);
-            Java.Util.Regex.Pattern p = Java.Util.Regex.Pattern.Compile(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\:\d{1,5}\b");
-
-            Matcher m = p.Matcher(ipserver);
-            bool b = m.Matches();
-
-            return b;
+            return DependencyService.Get<IPrinter>().IsIpValid(ip);
         }
-        private void printerConectionChanged(object sender, CheckedChangedEventArgs e)
+
+        private void PrinterConectionChanged(object sender, CheckedChangedEventArgs e)
         {
             parametros = new Dictionary<string, string>();
 
-            var conection = ipEntry.Text;
+            string conection = ipEntry.Text;
             string[] entrada = conection.Split(':');
-            var ip = entrada[0];
-            var porta = entrada[1];
+            string ip = entrada[0];
+            string porta = entrada[1];
 
             parametros.Add("ip", ip);
             parametros.Add("port", porta);
@@ -293,24 +272,20 @@ namespace M8XamarinForms
 
             if (internalPrinterRadio.IsChecked)
             {
-                int internalPrinterStartResult = DependencyService.Get<IPrinter>().PrinterInternalImpStart();
-
+                DependencyService.Get<IPrinter>().PrinterInternalImpStart();
             }
             else
             {
                 if (IsIpValid(conection))
                 {
-                    var externalPrinterConection = DependencyService.Get<IPrinter>().PrinterExternalImpStart(parametros);
+                    DependencyService.Get<IPrinter>().PrinterExternalImpStart(parametros);
                 }
                 else
                 {
                     DisplayAlert("Entrada Inválida", "Por favor, insira uma entrada válida", "OK");
                     internalPrinterRadio.IsChecked = true;
                 }
-
-
             }
-
         }
     }
 }

@@ -14,6 +14,10 @@ namespace M8XamarinForms
         {
             InitializeComponent();
         }
+        async void OpenE1BridgePage(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new E1BridgePage());
+        }
 
         async void OpenPrinterPage(object sender, EventArgs e)
         {

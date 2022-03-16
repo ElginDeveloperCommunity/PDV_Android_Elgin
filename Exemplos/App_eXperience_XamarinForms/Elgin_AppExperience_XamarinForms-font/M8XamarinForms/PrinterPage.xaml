@@ -9,9 +9,9 @@
     <ContentPage.Content>
         <StackLayout Padding="40,10">
             <StackLayout>
-                <StackLayout Style="{StaticResource bannerStack}" >
+                <StackLayout Style="{StaticResource bannerStack}">
                     <Label Style="{StaticResource mainLabel}" Text="IMPRESSORA" />
-                    <Image Source="bannerElginSmall.png"/>
+                    <Image HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Source="bannerElginSmall.png"/>
                 </StackLayout>
             </StackLayout>
             <StackLayout Style="{StaticResource mainMenuStack}">
@@ -102,6 +102,10 @@
     </ContentPage.Content>
     <ContentPage.Resources>
         <ResourceDictionary>
+            <Style TargetType="StackLayout" x:Key="bannerStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HeightRequest" Value="50"/>
+            </Style>
             <Style TargetType="Label" x:Key="inputLabel">
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="TextColor" Value="Black"/>
@@ -162,10 +166,7 @@
                 <Setter Property="FontSize" Value="18"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="WidthRequest" Value="238"/>
-
             </Style>
-
-
         </ResourceDictionary>
     </ContentPage.Resources>
 </ContentPage>

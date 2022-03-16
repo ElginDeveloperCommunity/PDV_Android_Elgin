@@ -23,7 +23,7 @@ namespace M8XamarinForms
         string selectedTefMeth = V2;
 
         string viaClienteMSitef;
-        private Android.Graphics.Bitmap viaClientePaygo;
+        private ImageSource viaClientePaygo;
 
         public TefPage()
         {
@@ -50,10 +50,10 @@ namespace M8XamarinForms
                 viaClienteMSitef = resposta;
             });
 
-            //A via retorn do paygo é um bitmap
-            MessagingCenter.Subscribe<Application, Android.Graphics.Bitmap>(Application.Current, "Paygo_viaCliente", (n_sender, resposta) =>
+            //A via retorn do paygo é uma imagem/bitmap recebida como Stream
+            MessagingCenter.Subscribe<Application, MemoryStream>(Application.Current, "Paygo_viaCliente", (n_sender, resposta) =>
             {
-                viaClientePaygo = resposta;
+                viaClientePaygo = ImageSource.FromStream(() => resposta);
             });
         }
 

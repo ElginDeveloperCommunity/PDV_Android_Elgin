@@ -1,19 +1,14 @@
 ﻿using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.IO;
 
 using BR.Com.Setis.Interfaceautomacao;
 using Android.Content.PM;
 
 using System.Threading;
-using M8XamarinForms.Droid;
 using Android.Util;
 using Android.Graphics;
 
@@ -85,10 +80,8 @@ namespace M8XamarinForms.Droid
                 string imageViaBase64 = dictionary["via_cliente"];
 
                 byte[] decodedString = Base64.Decode(imageViaBase64, Base64Flags.Default);
-                Bitmap decodedByte = BitmapFactory.DecodeByteArray(decodedString, 0, decodedString.Length);
-                //imageViewViaPaygo.SetImageBitmap(decodedByte);
 
-                Xamarin.Forms.MessagingCenter.Send(Xamarin.Forms.Application.Current, "Paygo_viaCliente", decodedByte);
+                Xamarin.Forms.MessagingCenter.Send(Xamarin.Forms.Application.Current, "Paygo_viaCliente", new MemoryStream(decodedString));
 
                 dictionaryValues.Add("quant", "10");
                 dictionaryValues.Add("base64", imageViaBase64);
