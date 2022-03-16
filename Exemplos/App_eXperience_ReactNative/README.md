@@ -1,5 +1,10 @@
 # Exemplo ReactNative M10
 
+## Versão
+Para rodar e testar o nosso exemplo, por favor verifique se as versões instaladas na sua máquina são:<br>
+**• react-version 0.64.0**
+**• minSDK 22, API lvl 30**
+
 ## Vídeos Tutoriais
 Se você tiver dúvidas sobre como testar o nosso exemplo, assista aos seguintes vídeos.
 <br>

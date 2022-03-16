@@ -1,5 +1,10 @@
 # Exemplo XamarinForms M10
 
+## Versão
+Para rodar e testar o nosso exemplo, por favor verifique se as versões instaladas na sua máquina são:<br>
+**• Xamarin.Forms 5.0.0.2125**
+**• minSDK 19**
+
 ## Vídeos Tutoriais
 Se você tiver dúvidas sobre como testar o nosso exemplo, assista aos seguintes vídeos.
 <br>

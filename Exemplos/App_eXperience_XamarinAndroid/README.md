@@ -1,5 +1,10 @@
 # Exemplo XamarinAndroid M10
 
+## Versão
+Para rodar e testar o nosso exemplo, por favor verifique se as versões instaladas na sua máquina são:<br>
+**• Mono.Android v11.0**
+**• minSDK 21**
+
 ## Vídeos Tutoriais
 Se você tiver dúvidas sobre como testar o nosso exemplo, assista aos seguintes vídeos.
 <br>

@@ -1,5 +1,9 @@
 # Exemplo Kotlin M10
 
+## Versão
+Para rodar e testar o nosso exemplo, por favor verifique se a versão do SDK instalado na sua máquina é:<br>
+**• Plataforma SDK 11.0 API level 30**
+
 ## Vídeos Tutoriais
 Se você tiver dúvidas sobre como testar o nosso exemplo, assista aos seguintes vídeos.
 <br>
