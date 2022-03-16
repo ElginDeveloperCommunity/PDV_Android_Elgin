@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 
 class BalancaService {
-  final _platform = const MethodChannel('samples.flutter.elgin/Printer');
+  final _platform = const MethodChannel('samples.flutter.elgin/ElginServices');
 
   Future<String> _sendFunctionToAndroid(Map<String, dynamic> args) async {
     return await _platform.invokeMethod("balanca", {"args": args});

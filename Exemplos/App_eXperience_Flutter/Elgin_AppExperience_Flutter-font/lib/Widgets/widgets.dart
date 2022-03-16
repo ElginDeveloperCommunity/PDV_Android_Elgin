@@ -1,9 +1,129 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class GeneralWidgets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container();
+  }
+
+  static Future<void> showAlertDialog(
+    {
+      required dynamic mainWidgetContext,
+      required String dialogTitle,
+      required dialogText
+    }
+    ) async {
+    return showDialog<void>(
+      context: mainWidgetContext,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(dialogTitle),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children:  <Widget>[
+                Text(dialogText)
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  static Future<Widget?> showAlertDialogWithSelectableOptions(
+    {
+      required dynamic mainWidgetContext,
+      required String alertTitle,
+      required List<String> listOfOptions,
+      required void Function()? onTap(int index),
+      //Váriavel que determina se a seleção de uma opção é forçada
+      bool isDismissible = false
+    }
+    ) 
+    async {
+      return showDialog<Widget>(
+        context: mainWidgetContext,
+        barrierDismissible: isDismissible,
+        builder: (BuildContext context) {
+          return AlertDialog(
+          title: Text(alertTitle),
+          actions: <Widget>[
+          TextButton(
+            child: const Text('CANCELAR'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+          content: SizedBox(
+            width: 300,
+            child: Scrollbar(
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: (listOfOptions.length),
+                  itemBuilder: (BuildContext context, int index) {
+                    return ListTile(
+                      onTap: () => onTap(index),
+                      title: Text(listOfOptions[index]),
+                    );
+                  },
+                ),
+            ),
+          ),
+          );
+        }
+      );
+  }
+
+  static Future<Widget?> showAlertDialogWithInputField(
+    {
+      required dynamic mainWidgetContext,
+      required String dialogTitle,
+      required void Function()? onTextInput(String textEntered),
+      required void Function()? onPressedAction(int action),
+      TextInputType textInputType = TextInputType.text,
+      FilteringTextInputFormatter? filteringTextInputFormatter,
+    }
+  ) 
+  async{
+     return showDialog(
+            context: mainWidgetContext,
+            barrierDismissible: false,
+            builder: (context) {
+              return AlertDialog(
+                title: Text(dialogTitle),
+                content: TextField(
+                  autofocus: true,
+                  enableSuggestions: false,
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  onChanged: (value) => {
+                    onTextInput(value)
+                  },
+                  keyboardType: textInputType,
+                  inputFormatters: [],
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text('CANCELAR'),
+                    onPressed: () => onPressedAction(0),
+                  ),
+                  TextButton(
+                    child: Text('OK'),
+                    onPressed: () => onPressedAction(1)
+                  ),
+                ],
+              );
+            });
   }
 
   static Widget headerScreen(String textHeader) {
@@ -23,7 +143,7 @@ class GeneralWidgets extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 40),
           child: Image.asset(
-            "assets/images/ElginDeveloperCommunity.png",
+            "assets/images/elgin_logo.png",
             width: 200,
           ),
         ),
@@ -37,7 +157,7 @@ class GeneralWidgets extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(right: 40),
         child: Text(
-          "Flutter - 1.0.5",
+          "Flutter - 2.0.0",
           style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
         ),
       ),
@@ -57,6 +177,7 @@ class GeneralWidgets extends StatelessWidget {
       child: TextFormField(
         enabled: isEnable,
         keyboardType: textInputType,
+        textAlign: TextAlign.center,
         decoration: InputDecoration(
           prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
           isDense: true,

@@ -19,7 +19,7 @@ class SitefEntrys {
 // FORMATA AS ENTRADAS [SitefEntrys] PARA SEREM ENVIADAS PARA O SITEF
 // AO RETORNAR VALORES DO SITEF VERIFICA SE HOUVE ERRO NA TRANSACAO
 class SitefController {
-  final _platform = const MethodChannel('samples.flutter.elgin/Printer');
+  final _platform = const MethodChannel('samples.flutter.elgin/ElginServices');
   SitefEntrys entrys = new SitefEntrys();
   SitefFormat _sitefFormat = new SitefFormat();
 

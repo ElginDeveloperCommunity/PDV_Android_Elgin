@@ -42,12 +42,12 @@ class _PrinteImagePageState extends State<PrinteImagePage> {
   Future<File> getImageDefault() async {
     Directory tempPath = await getTemporaryDirectory();
 
-    File file = File('${tempPath.path}/ElginDeveloperCommunity.jpg');
+    File file = File('${tempPath.path}/elgin_logo_default_print_image.png');
 
     if (file.existsSync()) {
       return file;
     } else {
-      final byteData = await rootBundle.load('assets/images/ElginDeveloperCommunity.jpg');
+      final byteData = await rootBundle.load('assets/images/elgin_logo_default_print_image.png');
       await file.writeAsBytes(byteData.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
       return file;
     }
@@ -61,7 +61,8 @@ class _PrinteImagePageState extends State<PrinteImagePage> {
     } else {
       fileImage = await getImageDefault();
     }
-    int result = await printerService.sendPrinterImage(fileImage.path, false);
+    
+    int result = await printerService.sendPrinterImage(pathImage: fileImage.path);
     printerService.jumpLine(10);
     if (cutPaper) printerService.cutPaper(10);
     print(result);
@@ -123,16 +124,19 @@ class _PrinteImagePageState extends State<PrinteImagePage> {
     return Column(
       children: [
         Text("PRÉ - VISUALIZAÇÃO", style: TextStyle(fontSize: 15)),
-        imagePath == null
-            ? Image.asset(
-                "assets/images/ElginDeveloperCommunity.png",
-                height: 100,
-                fit: BoxFit.contain,
-              )
-            : Image.file(
-                imagePath,
-                height: 100,
-              )
+        Padding(
+          padding: EdgeInsets.all(10),
+          child: imagePath == null
+              ? Image.asset(
+                  "assets/images/elgin_logo.png",
+                  height: 100,
+                  fit: BoxFit.contain,
+                )
+              : Image.file(
+                  imagePath,
+                  height: 100,
+                ),
+        )
       ],
     );
   }

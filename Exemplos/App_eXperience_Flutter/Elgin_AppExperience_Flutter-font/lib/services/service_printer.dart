@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 
 class PrinterService {
-  final _platform = const MethodChannel('samples.flutter.elgin/Printer');
+  final _platform = const MethodChannel('samples.flutter.elgin/ElginServices');
 
   Future<int> _sendFunctionToAndroid(Map<String, dynamic> args) async {
     return await _platform.invokeMethod("printer", {"args": args});
@@ -56,12 +56,15 @@ class PrinterService {
     return await _sendFunctionToAndroid(mapParam);
   }
 
-  Future<int> sendPrinterImage(String pathImage, bool isBase64) async {
+  Future<int> sendPrinterImage(
+    {
+      required String pathImage
+    }
+  ) async {
     Map<String, dynamic> mapParam = new Map();
 
     mapParam['typePrinter'] = "printerImage";
     mapParam['pathImage'] = pathImage;
-    mapParam['isBase64'] = isBase64;
 
     return await _sendFunctionToAndroid(mapParam);
   }
@@ -125,11 +128,37 @@ class PrinterService {
     return await _sendFunctionToAndroid(mapParam);
   }
 
-  Future<int> connectExternalImp(String ip, int port) async {
+  Future<int> connectExternalImpByIP(
+    {
+      required String model,
+      required String ip,
+      required int port
+    }
+  )
+   async {
     Map<String, dynamic> mapParam = new Map();
+    
+    mapParam['model'] = model;
     mapParam['ip'] = ip;
     mapParam['port'] = port;
-    mapParam['typePrinter'] = "printerConnectExternal";
+
+    mapParam['typePrinter'] = "printerConnectExternalByIP";
+
+    return await _sendFunctionToAndroid(mapParam);
+  }
+
+  Future<int> connectExternalImpByUSB(
+    {
+      required String model
+    }
+  )
+   async {
+    Map<String, dynamic> mapParam = new Map();
+    
+    mapParam['model'] = model;
+
+    mapParam['typePrinter'] = "printerConnectExternalByUSB";
+    
     return await _sendFunctionToAndroid(mapParam);
   }
 
