@@ -251,6 +251,18 @@
                         />
                     </LinearLayout>
                 </LinearLayout>
+                <Button
+                    android:id="@+id/buttonExtrairLogSat"
+                    android:layout_width="170dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/round_button"
+                    android:fontFamily="@font/robotobold"
+                    android:text="EXTRAIR LOG"
+                    android:textColor="@color/white"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginHorizontal="20dp"
+                    />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
