@@ -177,11 +177,10 @@
                         android:id="@+id/radioButtonConnectPrinterExternByUSB"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="IMP. EXTERNA - USB"
-                        android:fontFamily="@font/robotobold"
-                        android:textSize="12sp"
                         android:layout_marginLeft="10dp"
-                        />
+                        android:fontFamily="@font/robotobold"
+                        android:text="IMP. EXTERNA - USB"
+                        android:textSize="12sp" />
 
                     <RadioButton
                         android:id="@+id/radioButtonConnectPrinterExternByIP"

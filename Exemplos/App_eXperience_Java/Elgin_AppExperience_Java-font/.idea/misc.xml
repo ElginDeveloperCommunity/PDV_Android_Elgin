@@ -4,12 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Development/E1_Java/app/src/main/res/layout/activity_balanca_page.xml" value="0.275" />
-        <entry key="..\:/Development/E1_Java/app/src/main/res/layout/activity_bar_code_reader.xml" value="0.275" />
+        <entry key="..\:/Development/E1_Java/app/src/main/res/layout/activity_bar_code_reader.xml" value="0.14" />
         <entry key="..\:/Development/E1_Java/app/src/main/res/layout/activity_e1_bridge_page.xml" value="0.33" />
         <entry key="..\:/Development/E1_Java/app/src/main/res/layout/activity_fragment_printer_image.xml" value="0.153515625" />
-        <entry key="..\:/Development/E1_Java/app/src/main/res/layout/activity_main.xml" value="0.4726190476190476" />
+        <entry key="..\:/Development/E1_Java/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Development/E1_Java/app/src/main/res/layout/activity_printer_menu.xml" value="0.33" />
-        <entry key="..\:/Development/E1_Java/app/src/main/res/layout/activity_sat_page.xml" value="0.275" />
+        <entry key="..\:/Development/E1_Java/app/src/main/res/layout/activity_sat_page.xml" value="0.33" />
         <entry key="..\:/Development/E1_Java/app/src/main/res/layout/activity_shipay_menu.xml" value="0.275" />
         <entry key="..\:/Development/E1_Java/app/src/main/res/layout/activity_tef.xml" value="0.1683760683760684" />
         <entry key="..\:/Users/victo/StudioProjects/E1_Java/app/src/main/res/layout/activity_bar_code_reader.xml" value="0.25416666666666665" />

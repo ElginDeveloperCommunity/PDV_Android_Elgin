@@ -31,7 +31,7 @@ android {
 dependencies {
 
     //LIBS ADDED TO PROJECT E1 EXPERIENCE
-    implementation(name: 'e1-v1.0.17-release', ext: 'aar')
+    implementation(name: 'e1-v2.0.4-release', ext: 'aar')
     implementation(name: 'minipdvm8', ext: 'aar')
 
     // Network
