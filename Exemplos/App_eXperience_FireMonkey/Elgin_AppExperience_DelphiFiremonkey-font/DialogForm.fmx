@@ -1,0 +1,145 @@
+object FrmDialog: TFrmDialog
+  Left = 0
+  Top = 0
+  Caption = 'FrmDialog'
+  ClientHeight = 538
+  ClientWidth = 684
+  Fill.Color = xFFEAEAEA
+  Fill.Kind = Solid
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object LayDialog: TLayout
+    HitTest = True
+    Position.X = 152.000000000000000000
+    Position.Y = 40.000000000000000000
+    Size.Width = 361.000000000000000000
+    Size.Height = 441.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    OnClick = LayDialogClick
+    object Rectangle4: TRectangle
+      Align = Contents
+      Fill.Color = claWhite
+      HitTest = False
+      Opacity = 0.500000000000000000
+      Size.Width = 361.000000000000000000
+      Size.Height = 441.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+    end
+    object Rectangle5: TRectangle
+      Align = Center
+      Fill.Color = claWhite
+      Size.Width = 209.000000000000000000
+      Size.Height = 249.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      XRadius = 20.000000000000000000
+      YRadius = 20.000000000000000000
+      object Layout1: TLayout
+        Align = Bottom
+        Position.Y = 199.000000000000000000
+        Size.Width = 209.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object Rectangle2: TRectangle
+          Align = Left
+          Fill.Color = xFF5769DF
+          Margins.Left = 20.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 10.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 20.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 76.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          XRadius = 15.000000000000000000
+          YRadius = 15.000000000000000000
+          OnClick = Rectangle2Click
+          OnMouseDown = botaoEfeitoMouseDown
+          OnMouseUp = botaoEfeitoMouseUp
+          object lblOk: TLabel
+            Align = Client
+            Size.Width = 76.000000000000000000
+            Size.Height = 40.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.HorzAlign = Center
+            Text = 'OK'
+            TabOrder = 0
+          end
+        end
+        object Rectangle3: TRectangle
+          Align = Right
+          Fill.Color = xFF5769DF
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 20.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 113.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 76.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          XRadius = 15.000000000000000000
+          YRadius = 15.000000000000000000
+          OnClick = Rectangle3Click
+          OnMouseDown = botaoEfeitoMouseDown
+          OnMouseUp = botaoEfeitoMouseUp
+          object lblCancel: TLabel
+            Align = Client
+            Size.Width = 76.000000000000000000
+            Size.Height = 40.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.HorzAlign = Center
+            Text = 'Cancel'
+            TabOrder = 0
+          end
+        end
+      end
+      object lblTexto: TLabel
+        Align = Client
+        StyledSettings = [Family, Style, FontColor]
+        Size.Width = 209.000000000000000000
+        Size.Height = 150.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.HorzAlign = Center
+        Text = 'Qualquer mensagem de valida'#231#227'o que possa passar para o texto?'
+        TabOrder = 2
+      end
+      object Rectangle1: TRectangle
+        Align = Top
+        Fill.Color = claWhite
+        Size.Width = 209.000000000000000000
+        Size.Height = 49.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        XRadius = 20.000000000000000000
+        YRadius = 20.000000000000000000
+        object lblTitulo: TLabel
+          Align = Client
+          StyledSettings = [Family, FontColor]
+          Size.Width = 209.000000000000000000
+          Size.Height = 49.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.HorzAlign = Center
+          Text = 'T'#237'tulo'
+          TabOrder = 0
+        end
+      end
+      object ShadowEffect1: TShadowEffect
+        Distance = 3.000000000000000000
+        Direction = 45.000000000000000000
+        Softness = 0.899999976158142100
+        Opacity = 0.600000023841857900
+        ShadowColor = claBlack
+      end
+    end
+  end
+end

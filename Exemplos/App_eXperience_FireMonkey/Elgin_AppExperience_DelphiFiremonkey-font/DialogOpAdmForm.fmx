@@ -1,0 +1,205 @@
+object frmDialogOpAdm: TfrmDialogOpAdm
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 480
+  ClientWidth = 640
+  Fill.Kind = Solid
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object layoutMain: TLayout
+    HitTest = True
+    Position.X = 40.000000000000000000
+    Position.Y = 56.000000000000000000
+    Size.Width = 521.000000000000000000
+    Size.Height = 401.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    OnClick = layoutMainClick
+    object recOpacity: TRectangle
+      Align = Contents
+      Fill.Color = claWhite
+      HitTest = False
+      Opacity = 0.500000000000000000
+      Size.Width = 521.000000000000000000
+      Size.Height = 401.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+    end
+    object recLayout: TRectangle
+      Align = Center
+      Fill.Color = claWhite
+      Size.Width = 289.000000000000000000
+      Size.Height = 293.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      XRadius = 10.000000000000000000
+      YRadius = 10.000000000000000000
+      object ShadowEffect1: TShadowEffect
+        Distance = 3.000000000000000000
+        Direction = 45.000000000000000000
+        Softness = 0.300000011920929000
+        Opacity = 0.600000023841857900
+        ShadowColor = claBlack
+      end
+      object lblTitulo: TLabel
+        Align = Top
+        AutoSize = True
+        StyledSettings = [Family, FontColor]
+        Margins.Left = 16.000000000000000000
+        Margins.Top = 24.000000000000000000
+        Margins.Right = 16.000000000000000000
+        Position.X = 16.000000000000000000
+        Position.Y = 24.000000000000000000
+        Size.Width = 257.000000000000000000
+        Size.Height = 38.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.HorzAlign = Center
+        Text = 'ESCOLHA A OPERA'#199#195'O ADMINISTRATIVA'
+        TabOrder = 0
+      end
+      object layoutPrincipal: TLayout
+        Align = Client
+        Margins.Left = 16.000000000000000000
+        Margins.Right = 16.000000000000000000
+        Size.Width = 257.000000000000000000
+        Size.Height = 231.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object GridPanelLayout1: TGridPanelLayout
+          Align = Client
+          Margins.Top = 15.000000000000000000
+          Margins.Bottom = 15.000000000000000000
+          Size.Width = 257.000000000000000000
+          Size.Height = 201.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          ColumnCollection = <
+            item
+              Value = 100.000000000000000000
+            end>
+          ControlCollection = <
+            item
+              Column = 0
+              Control = lblOpAdministrativa
+              Row = 0
+            end
+            item
+              Column = 0
+              Control = lblOpInstalacao
+              Row = 1
+            end
+            item
+              Column = 0
+              Control = lblOpConfiguracao
+              Row = 2
+            end
+            item
+              Column = 0
+              Control = lblOpManutencao
+              Row = 3
+            end
+            item
+              Column = 0
+              Control = lblTesteComunicacao
+              Row = 4
+            end
+            item
+              Column = 0
+              Control = lblReimpressao
+              Row = 5
+            end>
+          RowCollection = <
+            item
+              Value = 16.666666666666650000
+            end
+            item
+              Value = 16.666666666666660000
+            end
+            item
+              Value = 16.666666666666660000
+            end
+            item
+              Value = 16.666666666666680000
+            end
+            item
+              Value = 16.666666666666680000
+            end
+            item
+              Value = 16.666666666666690000
+            end>
+          object lblOpAdministrativa: TLabel
+            Align = Client
+            HitTest = True
+            Size.Width = 257.000000000000000000
+            Size.Height = 33.500000000000000000
+            Size.PlatformDefault = False
+            TextSettings.HorzAlign = Center
+            Text = 'Opera'#231#227'o Administrativa'
+            TabOrder = 0
+            OnClick = lblOpAdministrativaClick
+          end
+          object lblOpInstalacao: TLabel
+            Align = Client
+            HitTest = True
+            Size.Width = 257.000000000000000000
+            Size.Height = 33.500000000000000000
+            Size.PlatformDefault = False
+            TextSettings.HorzAlign = Center
+            Text = 'Opera'#231#227'ode Instala'#231#227'o'
+            TabOrder = 1
+            OnClick = lblOpInstalacaoClick
+          end
+          object lblOpConfiguracao: TLabel
+            Align = Client
+            HitTest = True
+            Size.Width = 257.000000000000000000
+            Size.Height = 33.500000000000000000
+            Size.PlatformDefault = False
+            TextSettings.HorzAlign = Center
+            Text = 'Opera'#231#227'o de Configura'#231#227'o'
+            TabOrder = 2
+            OnClick = lblOpConfiguracaoClick
+          end
+          object lblOpManutencao: TLabel
+            Align = Client
+            HitTest = True
+            Size.Width = 257.000000000000000000
+            Size.Height = 33.500000000000000000
+            Size.PlatformDefault = False
+            TextSettings.HorzAlign = Center
+            Text = 'Opera'#231#227'o de Manuten'#231#227'o'
+            TabOrder = 3
+            OnClick = lblOpManutencaoClick
+          end
+          object lblTesteComunicacao: TLabel
+            Align = Client
+            HitTest = True
+            Size.Width = 257.000000000000000000
+            Size.Height = 33.500000000000000000
+            Size.PlatformDefault = False
+            TextSettings.HorzAlign = Center
+            Text = 'Teste de Comunica'#231#227'o'
+            TabOrder = 4
+            OnClick = lblTesteComunicacaoClick
+          end
+          object lblReimpressao: TLabel
+            Align = Client
+            HitTest = True
+            Size.Width = 257.000000000000000000
+            Size.Height = 33.500000000000000000
+            Size.PlatformDefault = False
+            TextSettings.HorzAlign = Center
+            Text = 'Reimpressao de Comprovante'
+            TabOrder = 5
+            OnClick = lblReimpressaoClick
+          end
+        end
+      end
+    end
+  end
+end

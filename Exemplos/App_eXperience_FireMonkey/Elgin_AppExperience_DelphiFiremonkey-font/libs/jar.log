@@ -1,0 +1,13 @@
+Command: 
+jar tf "C:\Users\luizf\Desktop\Elgin\E1_Delphi_M8-M10_SAT_E16\libs\satelgin-7.0.1-release.jar"
+
+Output:
+br/com/elgin/DeviceInfo.class
+br/com/elgin/InternalPointerMarker.class
+br/com/elgin/JNIReachabilityFence.class
+br/com/elgin/Sat.class
+br/com/elgin/SatInitializer$1.class
+br/com/elgin/SatInitializer$2.class
+br/com/elgin/SatInitializer$Tuple.class
+br/com/elgin/SatInitializer.class
+br/com/elgin/sat/BuildConfig.class

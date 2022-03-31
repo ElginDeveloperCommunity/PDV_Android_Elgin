@@ -1,0 +1,256 @@
+object frmDialogConfigSenha: TfrmDialogConfigSenha
+  Left = 0
+  Top = 0
+  ActiveControl = tabItens
+  Caption = 'Form1'
+  ClientHeight = 480
+  ClientWidth = 640
+  Fill.Kind = Solid
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object layoutMain: TLayout
+    HitTest = True
+    Position.X = 144.000000000000000000
+    Position.Y = 72.000000000000000000
+    Size.Width = 345.000000000000000000
+    Size.Height = 353.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    OnClick = layoutMainClick
+    object recOpacity: TRectangle
+      Align = Client
+      Fill.Color = claWhite
+      HitTest = False
+      Opacity = 0.500000000000000000
+      Size.Width = 345.000000000000000000
+      Size.Height = 353.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object recLayout: TRectangle
+      Align = Center
+      Fill.Color = claWhite
+      Locked = True
+      Size.Width = 273.000000000000000000
+      Size.Height = 199.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      XRadius = 10.000000000000000000
+      YRadius = 10.000000000000000000
+      object ShadowEffect1: TShadowEffect
+        Distance = 3.000000000000000000
+        Direction = 45.000000000000000000
+        Softness = 0.300000011920929000
+        Opacity = 0.600000023841857900
+        ShadowColor = claBlack
+      end
+      object lblTitulo: TLabel
+        Align = Top
+        StyledSettings = [Family, FontColor]
+        Margins.Left = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Position.X = 5.000000000000000000
+        Size.Width = 263.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.HorzAlign = Center
+        Text = 'CONFIGURA'#199#195'O DE SENHA'
+        TabOrder = 0
+      end
+      object NavConfigSenha: TTabControl
+        Align = Client
+        Size.Width = 273.000000000000000000
+        Size.Height = 158.000000000000000000
+        Size.PlatformDefault = False
+        TabIndex = 0
+        TabOrder = 1
+        TabPosition = None
+        Sizes = (
+          273s
+          158s
+          273s
+          158s)
+        object tabItens: TTabItem
+          CustomIcon = <
+            item
+            end>
+          IsSelected = True
+          Size.Width = 8.000000000000000000
+          Size.Height = 8.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = ''
+          TabOrder = 0
+          Text = 'tabItens'
+          ExplicitSize.cx = 69.000000000000000000
+          ExplicitSize.cy = 26.000000000000000000
+          object Layout1: TLayout
+            Align = Center
+            Size.Width = 273.000000000000000000
+            Size.Height = 106.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object recHabilitar: TRectangle
+              Align = Top
+              Fill.Color = claWhite
+              Size.Width = 273.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              Stroke.Kind = None
+              OnClick = recHabilitarClick
+              OnMouseDown = botaoEfeitoMouseDown
+              OnMouseUp = botaoEfeitoMouseUp
+              object Label1: TLabel
+                Align = Client
+                Locked = True
+                Size.Width = 273.000000000000000000
+                Size.Height = 50.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.HorzAlign = Center
+                Text = 'Habilitar Senha no Terminal'
+                TabOrder = 0
+              end
+            end
+            object recDesabilitar: TRectangle
+              Align = Bottom
+              Fill.Color = claWhite
+              Position.Y = 56.000000000000000000
+              Size.Width = 273.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              Stroke.Color = claWhite
+              OnClick = recDesabilitarClick
+              OnMouseDown = botaoEfeitoMouseDown
+              OnMouseUp = botaoEfeitoMouseUp
+              object Label2: TLabel
+                Align = Client
+                Locked = True
+                Size.Width = 273.000000000000000000
+                Size.Height = 50.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.HorzAlign = Center
+                Text = 'Desabilitar Senha no Terminal'
+                TabOrder = 0
+              end
+            end
+          end
+        end
+        object tabSenha: TTabItem
+          CustomIcon = <
+            item
+            end>
+          IsSelected = False
+          Size.Width = 8.000000000000000000
+          Size.Height = 8.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = ''
+          TabOrder = 0
+          Text = 'tabSenha'
+          ExplicitSize.cx = 69.000000000000000000
+          ExplicitSize.cy = 26.000000000000000000
+          object Layout2: TLayout
+            Align = Center
+            Size.Width = 251.000000000000000000
+            Size.Height = 105.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object GridPanelLayout1: TGridPanelLayout
+              Align = Client
+              Size.Width = 251.000000000000000000
+              Size.Height = 105.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              ColumnCollection = <
+                item
+                  Value = 100.000000000000000000
+                end>
+              ControlCollection = <
+                item
+                  Column = 0
+                  Control = edtSenha
+                  Row = 0
+                end
+                item
+                  Column = 0
+                  Control = recOk
+                  Row = 1
+                end>
+              RowCollection = <
+                item
+                  Value = 50.000000000000000000
+                end
+                item
+                  Value = 50.000000000000000000
+                end>
+              object edtSenha: TEdit
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Client
+                TabOrder = 0
+                Password = True
+                Margins.Left = 15.000000000000000000
+                Margins.Top = 20.000000000000000000
+                Margins.Right = 15.000000000000000000
+                Size.Width = 221.000000000000000000
+                Size.Height = 32.500000000000000000
+                Size.PlatformDefault = False
+              end
+              object recOk: TRectangle
+                Align = Bottom
+                Anchors = []
+                Fill.Kind = Gradient
+                Fill.Gradient.Points = <
+                  item
+                    Color = xFFD9D9D9
+                    Offset = 0.000000000000000000
+                  end
+                  item
+                    Color = claWhite
+                    Offset = 1.000000000000000000
+                  end>
+                Fill.Gradient.Style = Radial
+                Margins.Left = 150.000000000000000000
+                Margins.Right = 15.000000000000000000
+                Margins.Bottom = 5.000000000000000000
+                Position.X = 150.000000000000000000
+                Position.Y = 69.000000000000000000
+                Size.Width = 86.000000000000000000
+                Size.Height = 31.000000000000000000
+                Size.PlatformDefault = False
+                Stroke.Kind = None
+                XRadius = 5.000000000000000000
+                YRadius = 5.000000000000000000
+                OnClick = recOkClick
+                OnMouseDown = botaoEfeitoMouseDown
+                OnMouseUp = botaoEfeitoMouseUp
+                object lblOk: TLabel
+                  Align = Client
+                  Locked = True
+                  Size.Width = 86.000000000000000000
+                  Size.Height = 31.000000000000000000
+                  Size.PlatformDefault = False
+                  TextSettings.HorzAlign = Center
+                  Text = 'Ok'
+                  TabOrder = 0
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+  object ActionList1: TActionList
+    Left = 80
+    Top = 112
+    object actItens: TChangeTabAction
+      Category = 'Tab'
+      Tab = tabItens
+    end
+    object actSenha: TChangeTabAction
+      Category = 'Tab'
+      Tab = tabSenha
+    end
+  end
+end

@@ -1,0 +1,122 @@
+object frmDialogTimeout: TfrmDialogTimeout
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 480
+  ClientWidth = 640
+  Fill.Kind = Solid
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object layoutMain: TLayout
+    Position.X = 144.000000000000000000
+    Position.Y = 72.000000000000000000
+    Size.Width = 345.000000000000000000
+    Size.Height = 353.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    OnClick = layoutMainClick
+    object recOpacity: TRectangle
+      Align = Client
+      Fill.Color = claWhite
+      Opacity = 0.500000000000000000
+      Size.Width = 345.000000000000000000
+      Size.Height = 353.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object recLayout: TRectangle
+      Align = Center
+      Fill.Color = claWhite
+      Locked = True
+      Size.Width = 232.000000000000000000
+      Size.Height = 152.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      XRadius = 10.000000000000000000
+      YRadius = 10.000000000000000000
+      object ShadowEffect1: TShadowEffect
+        Distance = 3.000000000000000000
+        Direction = 45.000000000000000000
+        Softness = 0.300000011920929000
+        Opacity = 0.600000023841857900
+        ShadowColor = claBlack
+      end
+      object layoutPrincipal: TLayout
+        Align = Client
+        Size.Width = 232.000000000000000000
+        Size.Height = 111.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object recOk: TRectangle
+          Align = Bottom
+          Fill.Kind = Gradient
+          Fill.Gradient.Points = <
+            item
+              Color = xFFD9D9D9
+              Offset = 0.000000000000000000
+            end
+            item
+              Color = claWhite
+              Offset = 1.000000000000000000
+            end>
+          Fill.Gradient.Style = Radial
+          Margins.Left = 150.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 150.000000000000000000
+          Position.Y = 75.000000000000000000
+          Size.Width = 77.000000000000000000
+          Size.Height = 31.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+          XRadius = 5.000000000000000000
+          YRadius = 5.000000000000000000
+          OnClick = recOkClick
+          object lblOk: TLabel
+            Align = Client
+            Locked = True
+            Size.Width = 77.000000000000000000
+            Size.Height = 31.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.HorzAlign = Center
+            Text = 'Ok'
+            TabOrder = 0
+          end
+        end
+        object Layout2: TLayout
+          Align = Client
+          Size.Width = 232.000000000000000000
+          Size.Height = 75.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          object edtValor: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Center
+            TabOrder = 0
+            KeyboardType = NumberPad
+            TextSettings.HorzAlign = Center
+            Size.Width = 129.000000000000000000
+            Size.Height = 22.000000000000000000
+            Size.PlatformDefault = False
+          end
+        end
+      end
+      object lblTitulo: TLabel
+        Align = Top
+        StyledSettings = [Family, FontColor]
+        Margins.Left = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Position.X = 5.000000000000000000
+        Size.Width = 222.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.HorzAlign = Center
+        Text = 'DEFINIR UM NOVO TIMEOUT (EM SEGUNDOS)'
+        TabOrder = 1
+      end
+    end
+  end
+end
