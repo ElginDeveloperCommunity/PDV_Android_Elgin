@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="M8XamarinForms.PrinterPage"
+            
+             NavigationPage.HasNavigationBar="False"
+             >
+
+    <ContentPage.Content>
+        <StackLayout Padding="40,10">
+            <StackLayout>
+                <StackLayout Style="{StaticResource bannerStack}">
+                    <Label Style="{StaticResource mainLabel}" Text="IMPRESSORA" />
+                    <Image HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Source="bannerElginSmall.png"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Style="{StaticResource mainMenuStack}">
+                <StackLayout Style="{StaticResource buttonsPrinterOptions}">
+                    <Button Text="IMPRESSÃO DE TEXTO" Clicked="OpenPrinterOption" ContentLayout="Top,0" ImageSource="printerText.png"  Style="{StaticResource printerOptionButton}" BorderColor="#23F600"/>
+                    <Button Text="IMPRESSÃO DE CÓDIGO DE BARRAS" Clicked="OpenPrinterOption" ContentLayout="Top,0" ImageSource="printerBarCode.png"  Style="{StaticResource printerOptionButton}"/>
+                    <Button Text="IMPRESSÃO DE IMAGEM" Clicked="OpenPrinterOption" ContentLayout="Top,0" ImageSource="printerImage.png"  Style="{StaticResource printerOptionButton}"/>
+                    <Button Text="STATUS DA GAVETA"   Clicked="DoGavetaStatus" ImageSource="status.png"  Style="{StaticResource printerStatusButton}"/>
+                    <Button Text="STATUS DA IMPRESSORA"  Clicked="DoPrinterStatus"  ImageSource="status.png"  Style="{StaticResource printerStatusButton}"/>
+                    <Button Text="ABRIR GAVETA"  Clicked="DoOpenGaveta" Style="{StaticResource openGavetaButton}"/>
+
+                </StackLayout>
+                <StackLayout Style="{StaticResource printerSettingStack}" >
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                        <StackLayout Style="{StaticResource radioButtonStack}">
+                            <RadioButton x:Name="internalPrinterRadio" CheckedChanged="PrinterConectionChanged" Content="IMP. INTERNA" Value="Interna" Margin="0,0,-15,0" Style="{StaticResource radioButtonStyle}"/>
+                            <RadioButton x:Name="externalPrinterUsbRadio" CheckedChanged="PrinterConectionChanged" Content="IMP. EXTERNA - USB" Value="ExternaUsb" Margin="0,0,-15,0" Style="{StaticResource radioButtonStyle}"/>
+                            <RadioButton x:Name="externalPrinterIpRadio" CheckedChanged="PrinterConectionChanged" Content="IMP. EXTERNA - IP" Value="ExternaIp" Style="{StaticResource radioButtonStyle}"/>
+                        </StackLayout>
+                        <Frame Style="{StaticResource ipFrame}" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal">
+                                <Entry Placeholder="IP" Text="192.168.0.31:9100" x:Name="ipEntry" HorizontalOptions="FillAndExpand" HeightRequest="40" FontSize="15" />
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                    <Frame BorderColor="Black" CornerRadius="5" Padding="8">
+                        <StackLayout Padding="30,0" Spacing="6.5">
+                            <StackLayout HeightRequest="5" >
+                                <Label Text="IMPRESSÃO DE TEXTO" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal"  >
+                                <Label Text="MENSAGEM: " Style="{StaticResource inputLabel}"/>
+                                <Entry WidthRequest="380" x:Name="textEntry" />
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Spacing="15">
+                                <Label Text="ALINHAMENTO:" Style="{StaticResource inputLabel}"/>
+                                <StackLayout RadioButtonGroup.GroupName="alignRadioButtons"  RadioButtonGroup.SelectedValue="{Binding Aligment}" Orientation="Horizontal" HorizontalOptions="Start" Spacing="10" Padding="0,-10,0,0" >
+                                    <RadioButton  x:Name="alignEsq"  Content="ESQUERDA" Value="Esquerda" Style="{StaticResource radioButtonAlignStyle}"/>
+                                    <RadioButton  x:Name="alignCent"  Content="CENTRALIZADO" Value="Centralizado" Style="{StaticResource radioButtonAlignStyle}"/>
+                                    <RadioButton  x:Name="alignDir" Content="DIREITA" Value="Direita" Style="{StaticResource radioButtonAlignStyle}"/>
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout>
+                                <StackLayout Padding="0,0,0,-20">
+                                    <Label Text="ESTILIZAÇÃO:" Style="{StaticResource inputLabel}" />
+                                </StackLayout>
+                                <StackLayout Style="{StaticResource fontStylizationStack}">
+                                    <StackLayout Style="{StaticResource fontStyleStack}">
+                                        <Label Text="FONT FAMILY: " Style="{StaticResource paramFontStyle}" />
+                                        <Picker x:Name="fontFamilyPicker" Style="{StaticResource pickerStyle}"/>
+                                    </StackLayout>
+                                    <StackLayout Style="{StaticResource fontStyleStack}">
+                                        <Label Text="FONT SIZE: " Style="{StaticResource paramFontStyle}"/>
+                                        <Picker x:Name="fontSizePicker" Style="{StaticResource pickerStyle}"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout Style="{StaticResource checkboxStack}">
+                                <StackLayout Style="{StaticResource checkboxStyle}">
+                                    <CheckBox IsChecked="False" x:Name="isBold" />
+                                    <Label Text="NEGRITO" Style="{StaticResource checkboxFontStyle}"/>
+                                </StackLayout>
+                                <StackLayout Style="{StaticResource checkboxStyle}">
+                                    <CheckBox IsChecked="False" x:Name="isSub" />
+                                    <Label Text="SUBLINHADO" Style="{StaticResource checkboxFontStyle}"/>
+                                </StackLayout>
+                                <StackLayout Style="{StaticResource checkboxStyle}">
+                                    <CheckBox IsChecked="False" x:Name="isCutPaper"/>
+                                    <Label Text="CUT PAPER" Style="{StaticResource checkboxFontStyle}"/>
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout>
+                                <Button Text="IMPRIMIR TEXTO" Style="{StaticResource printerButton}" Clicked="DoPrinterText"/>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                    <Button Text="NFCE" Style="{StaticResource buttonOptionStyle}" Clicked="DoPrinterNfce"/>
+                                    <Button Text="SAT"  Style="{StaticResource buttonOptionStyle}" Clicked="DoPrinterSat"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Xamarin Forms 2.0.0" TextColor="Gray" HorizontalOptions="End"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="StackLayout" x:Key="bannerStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HeightRequest" Value="50"/>
+            </Style>
+            <Style TargetType="Label" x:Key="inputLabel">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="17"/>
+                <Setter Property="Padding" Value="0,10,-10,0"/>
+            </Style>
+            <Style TargetType="RadioButton" x:Key="radioButtonStyle">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+            <Style TargetType="RadioButton" x:Key="radioButtonAlignStyle">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="WidthRequest" Value="150"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="fontStylizationStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="Spacing" Value="70"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="fontStyleStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+            <Style TargetType="Label" x:Key="paramFontStyle">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="Padding" Value="0,15,0,0"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+            <Style TargetType="Picker" x:Key="pickerStyle">
+                <Setter Property="WidthRequest" Value="100"/>
+            </Style>
+
+            <Style TargetType="StackLayout" x:Key="checkboxStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="Spacing" Value="50"/>
+
+            </Style>
+            <Style TargetType="StackLayout" x:Key="checkboxStyle">
+                <Setter Property="Orientation" Value="Horizontal"/>
+            </Style>
+            <Style TargetType="Label" x:Key="checkboxFontStyle">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="Padding" Value="0,5,0,0"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+            <Style TargetType="Button" x:Key="printerButton">
+                <Setter Property="BackgroundColor" Value="#0069A5"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            <Style TargetType="Button" x:Key="buttonOptionStyle">
+                <Setter Property="BackgroundColor" Value="#0069A5"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="WidthRequest" Value="238"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+</ContentPage>

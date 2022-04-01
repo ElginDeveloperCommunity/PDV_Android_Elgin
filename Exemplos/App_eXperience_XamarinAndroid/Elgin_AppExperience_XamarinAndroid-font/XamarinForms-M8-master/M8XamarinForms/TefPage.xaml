@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="M8XamarinForms.TefPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Content>
+        <StackLayout  Padding="30,10,30,0">
+            <StackLayout Style="{StaticResource bannerStack}">
+                <Label Style="{StaticResource bannerLabel}" Text="TEF" />
+                <Image HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Source="bannerElginSmall.png"/>
+            </StackLayout>
+            <StackLayout Style="{StaticResource mainMenuStack}">
+                <StackLayout Style="{StaticResource inputStack}">
+                    <Label Text="SOLUÇÃO DE PAGAMENTO:" Style="{StaticResource selectionPaymentLabel}"/>
+                    <StackLayout Style="{StaticResource inputStackGroup}">
+                        <StackLayout Style="{StaticResource tefSelectionStack}">
+                            <Button x:Name="msitefButton" Style="{StaticResource tefSelectionButton}" Text="M-SITEF" Clicked="SetTefMeth"/>
+                            <Button x:Name="paygoButton" Style="{StaticResource tefSelectionButton}" Text="PayGo" Clicked="SetTefMeth"/>
+                        </StackLayout>
+                        <StackLayout  Spacing="170" Style="{StaticResource entryStack}">
+                            <Label Style="{StaticResource inputLabel}" Text="VALOR:"/>
+                            <Entry Style="{StaticResource inputEntry}" x:Name="valorEntry"/>
+                        </StackLayout>
+                        <StackLayout Spacing="123" Style="{StaticResource entryStack}">
+                            <Label Style="{StaticResource inputLabel}" Text="Nº PARCELAS:"/>
+                            <Entry  Style="{StaticResource inputEntry}" x:Name="parcelasEntry"/>
+                        </StackLayout>
+                        <StackLayout Spacing="203" Style="{StaticResource entryStack}">
+                            <Label Style="{StaticResource inputLabel}" Text="IP:"/>
+                            <Entry Style="{StaticResource inputEntry}" x:Name="ipEntry"/>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout Style="{StaticResource optionStack}">
+                        <Label Text="FORMAS DE PAGAMENTO:" Style="{StaticResource selectionPaymentLabel}"/>
+                        <StackLayout Style="{StaticResource optionButtonsStack}">
+                            <Button x:Name="CREDITO" Style="{StaticResource optionButton}"  Text="CRÉDITO" ImageSource="card.png" Clicked="SetPaymentMeth"/>
+                            <Button x:Name="DEBITO" Style="{StaticResource optionButton}" Text="DÉBITO" ImageSource="card.png" Clicked="SetPaymentMeth"/>
+                            <Button x:Name="ALL" Style="{StaticResource optionButton}" Text="TODOS" ImageSource="voucher.png" Clicked="SetPaymentMeth"/>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource optionStack}">
+                        <Label Text="TIPO DE PARCELAMENTO:" Style="{StaticResource selectionPaymentLabel}"/>
+                        <StackLayout Style="{StaticResource optionButtonsStack}">
+                            <Button x:Name="inCashInstall" Style="{StaticResource optionButton}" Text="A VISTA" ImageSource="card.png" Clicked="SetInstallmentMeth"/>
+                            <Button x:Name="storeInstall" Style="{StaticResource optionButton}" Text="LOJA" ImageSource="store.png"  Clicked="SetInstallmentMeth"/>
+                            <Button x:Name="admInstall" Style="{StaticResource optionButton}" Text="ADM" ImageSource="adm.png"  Clicked="SetInstallmentMeth"/>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource transactionButtonsStack}">
+                        <Button Style="{StaticResource actionButton}" Text="ENVIAR TRANSAÇÃO" Clicked="SendTransactionTEF" />
+                        <Button Style="{StaticResource actionButton}" Text="CANCELAR TRANSAÇÃO" Clicked="CancelTransactionTEF" />
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource configStack}">
+                        <Button Style="{StaticResource actionButton}" Text="CONFIGURAÇÃO" Clicked="ConfigTEF"/>
+                    </StackLayout>
+
+
+                </StackLayout>
+                <StackLayout Style="{StaticResource returnStack}">
+                    <Frame Style="{StaticResource returnFrame}" >
+                        <Image x:Name="returnImage"/>
+
+                    </Frame>
+                </StackLayout>
+
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Xamarin.Forms 2.0.0" TextColor="Gray" HorizontalOptions="End"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="StackLayout" x:Key="bannerStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HeightRequest" Value="50"/>
+            </Style>
+            <Style TargetType="Label" x:Key="bannerLabel">
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="Padding" Value="0,10,0,0"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="mainMenuStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HeightRequest" Value="490"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="Spacing" Value="10"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="inputStack">
+                <Setter Property="WidthRequest" Value="380"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="returnStack">
+                <Setter Property="Orientation" Value="Vertical"/>
+                <Setter Property="WidthRequest" Value="450"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="tefSelectionStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+            </Style>
+            <Style TargetType="Button" x:Key="tefSelectionButton">
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="BorderWidth" Value="1.5"/>
+                <Setter Property="WidthRequest" Value="80"/>
+                <Setter Property="HeightRequest" Value="30"/>
+                <Setter Property="FontSize" Value="11"/>
+                <Setter Property="Padding" Value="0,-3,0,0"/>
+            </Style>
+            <Style TargetType="Label" x:Key="selectionPaymentLabel">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="entryStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+            </Style>
+            <Style TargetType="Label" x:Key="inputLabel">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="Padding" Value="0,5,0,0"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="inputStackGroup">
+                <Setter Property="Spacing" Value="-5"/>
+            </Style>
+            <Style TargetType="Entry" x:Key="inputEntry">
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="WidthRequest" Value="150"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="optionStack">
+                
+            </Style>
+            <Style TargetType="StackLayout" x:Key="optionButtonsStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="Spacing" Value="20"/>
+            </Style>
+            <Style TargetType="Button" x:Key="optionButton">
+                <Setter Property="ContentLayout" Value="0,Top"/>
+                <Setter Property="Padding" Value="0,5,0,0"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="FontSize" Value="10"/>
+                <Setter Property="WidthRequest" Value="50"/>
+                <Setter Property="HeightRequest" Value="50"/>
+
+            </Style>
+            <Style TargetType="Button" x:Key="actionButton">
+                <Setter Property="WidthRequest" Value="150"/>
+                <Setter Property="HeightRequest" Value="30"/>
+                <Setter Property="BackgroundColor" Value="#0069A5"/>
+               
+                <Setter Property="CornerRadius" Value="6"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Padding" Value="0,-3,0,0"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="transactionButtonsStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="configStack">
+                <Setter Property="HorizontalOptions" Value="Start"/>
+            </Style>
+            <Style TargetType="Frame" x:Key="returnFrame">
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="HeightRequest" Value="450"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+</ContentPage>

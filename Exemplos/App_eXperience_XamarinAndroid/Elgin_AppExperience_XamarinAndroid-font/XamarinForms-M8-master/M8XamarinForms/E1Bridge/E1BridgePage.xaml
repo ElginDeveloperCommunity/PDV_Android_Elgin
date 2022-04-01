@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="M8XamarinForms.E1BridgePage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout  Padding="30,10,30,0">
+            <StackLayout Style="{StaticResource bannerStack}">
+                <Label Style="{StaticResource bannerLabel}" Text="E1 BRIDGE" />
+                <Image HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Source="bannerElginSmall.png"/>
+            </StackLayout>
+            <StackLayout Style="{StaticResource mainMenuStack}">
+                <StackLayout Style="{StaticResource columnStack}">
+                    <StackLayout Style="{StaticResource inputStackGroup}">
+                        <StackLayout Spacing="153" Style="{StaticResource entryStack}">
+                            <Label Style="{StaticResource inputLabel}" Text="IP:"/>
+                            <Entry Style="{StaticResource inputEntry}" x:Name="ipEntry"/>
+                        </StackLayout>
+                        <StackLayout  Spacing="120" Style="{StaticResource entryStack}">
+                            <Label Style="{StaticResource inputLabel}" Text="VALOR:"/>
+                            <Entry Style="{StaticResource inputEntry}" x:Name="valueEntry"/>
+                        </StackLayout>
+                        <StackLayout x:Name="stackParcelas"  Spacing="73" Style="{StaticResource entryStack}">
+                            <Label Style="{StaticResource inputLabel}" Text="Nº PARCELAS:"/>
+                            <Entry  Style="{StaticResource inputEntry}" x:Name="numberOfInstallmentsEntry"/>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label Text="FORMAS DE PAGAMENTO:" Style="{StaticResource selectionPaymentLabel}"/>
+                        <StackLayout Style="{StaticResource optionButtonsStack}">
+                            <Button x:Name="btnCreditOptionBridge" Style="{StaticResource optionButton}"  Text="CRÉDITO" ImageSource="card.png"/>
+                            <Button x:Name="btnDebitOptionBridge" Style="{StaticResource optionButton}" Text="DÉBITO" ImageSource="card.png"/>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout x:Name="stackTypeInstallments">
+                        <Label Text="TIPO DE PARCELAMENTO:" Style="{StaticResource selectionPaymentLabel}"/>
+                        <StackLayout Style="{StaticResource optionButtonsStack}">
+                            <Button x:Name="btnStoreOptionBridge" Style="{StaticResource optionButton}" Text="LOJA" ImageSource="store.png"/>
+                            <Button x:Name="btnAdmOptionBridge" Style="{StaticResource optionButton}" Text="ADM" ImageSource="adm.png"/>
+                            <Button x:Name="btnAvistaOptionBridge" Style="{StaticResource optionButton}" Text="A VISTA" ImageSource="card.png"/>
+                        </StackLayout>
+                    </StackLayout>
+                    
+                    <StackLayout Style="{StaticResource transactionButtonsStack}">
+                        <Button x:Name="btnSendTransaction" Style="{StaticResource actionButton}" Text="ENVIAR TRANSAÇÃO" />
+                        <Button x:Name="btnCancelTransaction" Style="{StaticResource actionButton}" Text="CANCELAR TRANSAÇÃO" />
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource transactionButtonsStack}">
+                        <Button x:Name="btnAdministrativeOperation" Style="{StaticResource actionButton}" Text="OPERAÇÂO ADM" />
+                        <Button x:Name="btnPrintTestCoupon" Style="{StaticResource actionButton}" Text="IMPRIMIR CUPOM TESTE" />
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Style="{StaticResource columnStack}">
+                    <StackLayout Style="{StaticResource entryStack}">
+                        <Label Style="{StaticResource inputLabel}" WidthRequest="210" Text="PORTAS TRANSAÇÕES/SLIDE:"/>
+                        <Entry Style="{StaticResource inputEntry}" x:Name="transactionPortEntry"/>
+                        <Entry Style="{StaticResource inputEntry}" x:Name="statusPortEntry"/>
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource checkboxStyle}">
+                        <CheckBox IsChecked="False" x:Name="checkboxSendPassword"/>
+                        <Label Text="ENVIAR SENHA NAS TRANSAÇÕES" Style="{StaticResource checkboxFontStyle}"/>
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource entryStack}">
+                        <Label Style="{StaticResource inputLabel}" Text="SENHA:"/>
+                        <Entry Style="{StaticResource inputEntry}" x:Name="passwordEntry"/>
+                    </StackLayout>
+                    <Label Text="FUNÇÔES E1-BRIDGE:" Style="{StaticResource selectionPaymentLabel}"/>
+                    <Button x:Name="btnGetTerminalStatus" Style="{StaticResource actionButton}" Text="CONSULTAR STATUS DO TERMINAL"/>
+                    <Button x:Name="btnGetConfiguredTimeout" Style="{StaticResource actionButton}" Text="CONSULTAR TIMEOUT CONFIGURADO" />
+                    <Button x:Name="btnGetLastTransaction" Style="{StaticResource actionButton}" Text="CONSULTAR ÚLTIMA TRANSAÇÃO" />
+                    <Button x:Name="btnSetTerminalPassword" Style="{StaticResource actionButton}" Text="CONFIGURAR SENHA DO TERMINAL" />
+                    <Button x:Name="btnSetTransactionTimeout" Style="{StaticResource actionButton}" Text="CONFIGURAR TIMEOUT PARA TRANSAÇÕES" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Xamarin Forms 2.0.0" TextColor="Gray" HorizontalOptions="End"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="StackLayout" x:Key="bannerStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HeightRequest" Value="50"/>
+            </Style>
+            <Style TargetType="Label" x:Key="bannerLabel">
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="Padding" Value="0,10,0,0"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="mainMenuStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HeightRequest" Value="490"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="Spacing" Value="10"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="columnStack">
+                <Setter Property="WidthRequest" Value="400"/>
+            </Style>
+            <Style TargetType="Label" x:Key="selectionPaymentLabel">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="entryStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+            </Style>
+            <Style TargetType="Label" x:Key="inputLabel">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="Padding" Value="0,5,0,0"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="inputStackGroup">
+                <Setter Property="Spacing" Value="-5"/>
+            </Style>
+            <Style TargetType="Entry" x:Key="inputEntry">
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="optionButtonsStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="Spacing" Value="20"/>
+            </Style>
+            <Style TargetType="Button" x:Key="optionButton">
+                <Setter Property="ContentLayout" Value="0,Top"/>
+                <Setter Property="Padding" Value="0,5,0,0"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="FontSize" Value="10"/>
+                <Setter Property="WidthRequest" Value="50"/>
+                <Setter Property="HeightRequest" Value="50"/>
+
+            </Style>
+            <Style TargetType="Button" x:Key="actionButton">
+                <Setter Property="WidthRequest" Value="150"/>
+                <Setter Property="HeightRequest" Value="30"/>
+                <Setter Property="BackgroundColor" Value="#0069A5"/>
+
+                <Setter Property="CornerRadius" Value="6"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Padding" Value="0,-3,0,0"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="transactionButtonsStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="configStack">
+                <Setter Property="HorizontalOptions" Value="Start"/>
+            </Style>
+            <Style TargetType="Frame" x:Key="returnFrame">
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="HeightRequest" Value="450"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="checkboxStyle">
+                <Setter Property="Orientation" Value="Horizontal"/>
+            </Style>
+            <Style TargetType="Label" x:Key="checkboxFontStyle">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="Padding" Value="0,5,0,0"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+</ContentPage>
