@@ -1,0 +1,228 @@
+ @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                GeneralWidgets.headerScreen("IMPRESSORA"),
+                Container(
+                  child: Column(
+                    children: [
+                      Text("IMPRESSÃO DE TEXTO",
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold)),
+                      GeneralWidgets.inputField(
+                        inputMessage,
+                        'MENSAGEM: ',
+                        iWidht: widget.mWidth - 20,
+                        textSize: 16,
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "ALINHAMENTO: ",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      alignRadios(),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "ESTILIZAÇÃO: ",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      dropDownsEstilo(),
+                      estiloChecks(),
+                      buttonsActionWidget(),
+                    ],
+                  ),
+                ),
+                GeneralWidgets.baseboard(),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+   GeneralWidgets.dropDown(
+              'FONT FAMILY: ', fontFamily, ['FONT B', 'FONT A'],
+              (String value) {
+            setState(() {
+              fontFamily = value;
+            });
+          }),
+
+          
+  Widget dropDownEstilo() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        GeneralWidgets.dropDown(
+            'FONT FAMILY: ', fontFamily, ['FONT B', 'FONT A'], (String value) {
+          setState(() {
+            fontFamily = value;
+          });
+        }),
+        SizedBox(width: 20),
+        GeneralWidgets.dropDown(
+            "FONT SIZE: ", fontSize, ["17", "34", "51", "68"], (String value) {
+          setState(() {
+            fontSize = value;
+          });
+        }),
+      ],
+    );
+  }
+
+  Checkbox(
+          value: value,
+          onChanged: (bool? value) => onChanged(value),
+        ),
+
+
+        
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GeneralWidgets.headerScreen("IMPRESSORA"),
+              Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    children: [
+                      Text(
+                        "IMPRESSÃO DE CÓDIGO DE BARRAS",
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
+                      ),
+                      GeneralWidgets.inputField(
+                        inputCode,
+                        'CÓDIGO: ',
+                        iWidht: 250,
+                        textSize: 16,
+                      ),
+                      SizedBox(height: 5),
+                      //  GeneralWidgets.dropDown(
+                      //      'TIPO DE CÓDIGO DE BARRAS: ', barCodeType, [
+                            'EAN 8',
+                           'EAN 13',
+                          'QR_CODE',
+                         'UPC-A',
+                            'UPC-E',
+                            'CODE 39',
+                              'ITF',
+                             'CODE BAR',
+                            'CODE 93',
+                           'CODE 128',
+                            ], (String value) {
+                           barCodeType = value;
+                            onChangeBarCodeType(value);
+                            }),
+                      SizedBox(height: 5),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "ALINHAMENTO",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      alignRadios(),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "ESTILIZAÇÃO",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      // estiloChecks(),
+                      SizedBox(height: 5),
+                      GeneralWidgets.personButton(
+                        textButton: 'IMPRIMIR CÓDIGO DE BARRAS',
+                        width: 250,
+                        callback: () {
+                          if (barCodeType == "QR_CODE") {
+                            sendPrinterQrCode();
+                          } else {
+                            sendPrinterBarCode();
+                          }
+                        },
+                      )
+                    ],
+                  )),
+              GeneralWidgets.baseboard(),
+            ],
+
+@override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Container(
+          height: widget.mHeight,
+          width: widget.mWidth - 20,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "IMPRESSÃO DE IMAGEM",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold
+                )
+              ),
+              preVisuImage(_imageSelected),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "ESTILIZAÇÃO: ",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              estiloChecks(),
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  GeneralWidgets.personButton(
+                    textButton: 'SELECIONAR',
+                    width: widget.mWidth / 2 - 50,
+                    callback: () => getImage(),
+                  ),
+                  GeneralWidgets.personButton(
+                    textButton: 'IMPRIMIR',
+                    width: widget.mWidth / 2 - 50,
+                    callback: () => sendPrinterImage(),
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+
