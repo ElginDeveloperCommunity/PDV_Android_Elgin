@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="M8XamarinForms.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Style TargetType="StackLayout" x:Key="bannerStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="Spacing" Value="350"/>
+                <Setter Property="HeightRequest" Value="50"/>
+
+            </Style>
+            <Style TargetType="Label" x:Key="mainLabel">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="31"/>
+                <Setter Property="WidthRequest" Value="300"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+            <Style TargetType="StackLayout" x:Key="mainMenuStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="Spacing" Value="17"/>
+
+                <Setter Property="WidthRequest" Value="50"/>
+
+            </Style>
+
+            <Style TargetType="StackLayout" x:Key="buttonsPrinterOptions">
+
+                <Setter Property="WidthRequest" Value="150"/>
+                <Setter Property="Spacing" Value="5"/>
+            </Style>
+            <Style TargetType="Button" x:Key="printerOptionButton">
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="HeightRequest" Value="94"/>
+                <Setter Property="WidthRequest" Value="170"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="Padding" Value="10,5"/>
+
+            </Style>
+            <Style TargetType="Button" x:Key="printerStatusButton">
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="FontSize" Value="9"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="HeightRequest" Value="40"/>
+            </Style>
+
+            <Style TargetType="StackLayout" x:Key="printerSettingStack">
+                <Setter Property="HeightRequest" Value="430"/>
+                <Setter Property="WidthRequest" Value="760"/>
+                
+            </Style>
+            <Style TargetType="StackLayout" x:Key="radioButtonStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="Spacing" Value="25"/>
+            </Style>
+            <Style TargetType="RadioButton" x:Key="radioButtonStyle">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+
+            </Style>
+            <Style TargetType="Frame" x:Key="ipFrame">
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="Padding" Value="2"/>
+                <Setter Property="CornerRadius" Value="7"/>
+                <Setter Property="WidthRequest" Value="262"/>
+            </Style>
+            <Style TargetType="Label" x:Key="ipInputLabel">
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="Padding" Value="2,5,0,0"/>
+            </Style>
+            <Style TargetType="Button" x:Key="openGavetaButton">
+                <Setter Property="BackgroundColor" Value="#0069A5"/>
+                <Setter Property="CornerRadius" Value="5"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HeightRequest" Value="30"/>
+                <Setter Property="Padding" Value="0,-5,0,0"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

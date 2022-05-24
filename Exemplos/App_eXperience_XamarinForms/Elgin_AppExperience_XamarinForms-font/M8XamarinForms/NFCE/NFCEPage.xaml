@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="M8XamarinForms.NFCEPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout Padding="30,10,30,0">
+            <StackLayout Style="{StaticResource bannerStack}">
+                <Image Source="bannerElginSmall.png" WidthRequest="600" HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+            <StackLayout Style="{StaticResource mainNfceStack}">
+                <Frame Style="{StaticResource nfceFrame}">
+                    <StackLayout>
+                        <StackLayout  Style="{StaticResource entryStack}">
+                            <Label Style="{StaticResource inputLabel}" Text="NOME DO PRODUTO:"/>
+                            <Entry Style="{StaticResource inputEntry}" Keyboard="Text" x:Name="productNameEntry"/>
+                        </StackLayout>
+                        <StackLayout  Style="{StaticResource entryStack}" Margin="0,0,0,20">
+                            <Label Style="{StaticResource inputLabel}" Text="PREÇO DO PRODUTO:"/>
+                            <Entry Style="{StaticResource inputEntry}" Keyboard="Numeric" x:Name="productPriceEntry"/>
+                        </StackLayout>
+                        <StackLayout  Style="{StaticResource btnGroup}">
+                            <Button x:Name="btnConfigurateNfce" Text="CONFIGURAR NFCE" Style="{StaticResource nfceButton}"/>
+                            <Button x:Name="btnSendNfceSale" BackgroundColor="LightGray" IsEnabled="False" Text="ENVIAR VENDA NFCE" Style="{StaticResource nfceButton}"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                <StackLayout Style="{StaticResource nfceButtonsStack}">
+                    <Frame Style="{StaticResource nfceFrame}">
+                        <StackLayout  Style="{StaticResource entryStack}">
+                            <Label Style="{StaticResource resultLabel}" Text="TEMPO DE EMISSÃO:"/>
+                            <Label Style="{StaticResource resultValue}" x:Name="lblCronometerValue"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame Style="{StaticResource nfceFrame}">
+                        <StackLayout Style="{StaticResource nfceButtonsStack}">
+                            <StackLayout  Style="{StaticResource entryStack}">
+                                <Label Style="{StaticResource resultLabel}" Text="NOTA N°:"/>
+                                <Label Style="{StaticResource resultValue}" x:Name="lblLastNfceNumber"/>
+                            </StackLayout>
+                            <StackLayout  Style="{StaticResource entryStack}">
+                                <Label Style="{StaticResource resultLabel}" Text="SERIE N°:"/>
+                                <Label Style="{StaticResource resultValue}" x:Name="lblLastNfceSerie"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+            <Label Text="Xamarin Forms 2.1.0" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,0,10"/>
+        </StackLayout>
+    </ContentPage.Content>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="StackLayout" x:Key="bannerStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="mainNfceStack">
+                <Setter Property="WidthRequest" Value="600"/>
+                <Setter Property="Orientation" Value="Vertical"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="0,10,0,10"/>
+            </Style>
+            <Style TargetType="Frame" x:Key="nfceFrame">
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="nfceButtonsStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="entryStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style TargetType="Label" x:Key="inputLabel">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="WidthRequest" Value="150"/>
+            </Style>
+            <Style TargetType="Entry" x:Key="inputEntry">
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="Label" x:Key="resultLabel">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style TargetType="Label" x:Key="resultValue">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+            </Style>
+            <Style TargetType="Button" x:Key="nfceButton">
+                <Setter Property="BackgroundColor" Value="#0069A5"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="btnGroup">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+</ContentPage>
