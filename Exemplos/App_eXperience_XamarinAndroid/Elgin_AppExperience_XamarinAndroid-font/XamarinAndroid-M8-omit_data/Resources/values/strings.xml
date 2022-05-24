@@ -1,0 +1,111 @@
+<resources>
+    <string name="app_name">M8XamarinAndroid</string>
+    <string name="action_settings">Settings</string>
+	
+	<string name="text_button_e1_bridge">E1 - BRIDGE</string>
+	<string name="text_button_nfce">NFC-e</string>
+	<string name="text_button_printer">IMPRESSORA</string>
+	<string name="text_button_balance">BALANÇA</string>
+	<string name="text_button_barCode">CÓDIGO DE BARRAS</string>
+	<string name="text_button_tef">TEF</string>
+	<string name="text_button_sat">SAT</string>
+	<string name="text_button_shipay">CARTEIRA DIGITAL</string>
+	<string name="text_footer_xamarin_android">Xamarin Android 2.1.0</string>
+	<string name="text_title_impressora">IMPRESSORA</string>
+	<string name="text_title_tef">TEF</string>
+	<string name="text_title_e1_bridge">E1 - BRIDGE</string>
+
+	<!-- activityMain  -->
+	<string name="impressora">IMPRESSORA</string>
+	<string name="todo">TODO</string>
+	<string name="impress_o_de_c_digo_de_barras">IMPRESSÃO DE CÓDIGO DE BARRAS</string>
+	<string name="status_de_impressora">STATUS DE IMPRESSORA</string>
+	<string name="elgin_logo">TODO</string>
+	<string name="imp_externa">IMP. EXTERNA</string>
+	<string name="ip">IP:</string>
+	<string name="conectar">CONECTAR</string>
+	
+	<!-- TODO: Remove or change this placeholder text -->
+	<string name="hello_blank_fragment">Hello blank fragment</string>
+	<string name="impress_o_de_texto">IMPRESSÃO DE TEXTO</string>
+	<string name="mensagem">MENSAGEM:</string>
+	<string name="alinhamento">ALINHAMENTO:</string>
+	<string name="esquerda">ESQUERDA</string>
+	<string name="direita">DIREITA</string>
+	<string name="centralizado">CENTRALIZADO</string>
+	<string name="estiliza_o">ESTILIZAÇÃO:</string>
+	<string name="font_family">FONT FAMILY:</string>
+	<string name="font_size">FONT SIZE:</string>
+	<string name="negrito">NEGRITO</string>
+	<string name="it_lico">ITÁLICO</string>
+	<string name="sublinhado">SUBLINHADO</string>
+	<string name="nfce">NFCE</string>
+	<string name="texto_de_teste_2">TEXTO DE TESTE 2</string>
+	<string name="cut_paper">CUT PAPER</string>
+	<string name="tipo_de_c_digo_de_barras">TIPO DE CÓDIGO DE BARRAS:</string>
+	<string name="c_digo">CÓDIGO:</string>
+	<string name="imprimir_c_digo_de_barras">IMPRIMIR CÓDIGO DE BARRAS</string>
+	<string name="height">HEIGHT:</string>
+	<string name="width">WIDTH:</string>
+	<string name="impress_o_de_imagem">IMPRESSÃO DE IMAGEM</string>
+	<string name="pr_visualiza_o">PRÉ-VISUALIZAÇÃO</string>
+	<string name="impressora_ok">IMPRESSORA OK!</string>
+	<string name="sat">SAT</string>
+	<string name="fechar">FECHAR</string>
+	<string name="imprimir_texto">IMPRIMIR TEXTO</string>
+
+	<string-array name="fontfamily">
+		<item>Fonte A</item>
+		<item>Fonte B</item>
+		
+	</string-array>
+
+	<string-array name="fontSize">
+		<item>17</item>
+		<item>34</item>
+		<item>51</item>
+		<item>68</item>
+	</string-array>
+
+	<string-array name="typeCodebar">
+		<item>EAN 8</item>
+		<item>EAN 13</item>
+		<item>QR Code</item>
+		<item>UPC-A</item>
+		<item>UPC-E</item>
+		<item>CODE 39</item>
+		<item>ITF</item>
+		<item>CODE BAR</item>
+		<item>CODE 93</item>
+		<item>CODE 128</item>
+	</string-array>
+
+	<string-array name="Height">
+		<item>20</item>
+		<item>60</item>
+		<item>120</item>
+		<item>200</item>
+	</string-array>
+	
+	<string-array name="Width">
+		<item>1</item>
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+		<item>5</item>
+		<item>6</item>
+	</string-array>
+
+	<string-array name="protocols">
+		<item>PROTOCOL 0</item>
+		<item>PROTOCOL 1</item>
+		<item>PROTOCOL 2</item>
+		<item>PROTOCOL 3</item>
+		<item>PROTOCOL 4</item>
+		<item>PROTOCOL 5</item>
+		<item>PROTOCOL 6</item>
+		<item>PROTOCOL 7</item>
+	</string-array>
+	
+	<string name="really_long_string">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.  The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</string>
+</resources>
