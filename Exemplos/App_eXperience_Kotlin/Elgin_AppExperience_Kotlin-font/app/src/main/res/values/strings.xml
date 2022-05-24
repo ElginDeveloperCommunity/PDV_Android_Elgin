@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">E1_M10_KOTLIN</string>
+    <string name="text_button_printer">IMPRESSORA</string>
+    <string name="text_button_barCode">CÓDIGO DE BARRAS</string>
+    <string name="text_button_tef">TEF</string>
+    <string name="text_button_sat">SAT</string>
+    <string name="text_button_shipay">CARTEIRA DIGITAL</string>
+    <string name="text_footer_kotlin">Kotlin 2.1.0</string>
+    <string name="text_title_impressora">IMPRESSORA</string>
+    <string name="text_title_e1_bridge">E1-BRIDGE</string>
+    <string name="text_button_balance">BALANÇA</string>
+    <string name="text_title_tef">TEF</string>
+    <string name="text_button_nfce">NFC-e</string>
+    <string name="text_button_e1_bridge">E1 - BRIDGE</string>
+    <string-array name="fontfamily">
+        <item>FONT A</item>
+        <item>FONT B</item>
+    </string-array>
+
+    <string-array name="fontSize">
+        <item>17</item>
+        <item>34</item>
+        <item>51</item>
+        <item>68</item>
+    </string-array>
+
+    <string-array name="protocols">
+        <item>PROTOCOL 0</item>
+        <item>PROTOCOL 1</item>
+        <item>PROTOCOL 2</item>
+        <item>PROTOCOL 3</item>
+        <item>PROTOCOL 4</item>
+        <item>PROTOCOL 5</item>
+        <item>PROTOCOL 6</item>
+        <item>PROTOCOL 7</item>
+    </string-array>
+
+    <string-array name="typeCodeBar">
+        <item>EAN 8</item>
+        <item>EAN 13</item>
+        <item>QR CODE</item>
+        <item>UPC-A</item>
+        <item>CODE 39</item>
+        <item>ITF</item>
+        <item>CODE BAR</item>
+        <item>CODE 93</item>
+        <item>CODE 128</item>
+    </string-array>
+
+    <string-array name="heightBarCode">
+        <item>20</item>
+        <item>60</item>
+        <item>120</item>
+        <item>200</item>
+    </string-array>
+
+    <string-array name="widthBarCode">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+</resources>
