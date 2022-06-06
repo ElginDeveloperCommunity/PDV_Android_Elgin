@@ -28,13 +28,12 @@
         android:orientation="vertical"
     >
         <LinearLayout
-            android:layout_width="440dp"
+            android:layout_width="480dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginVertical="10dp"
+            android:gravity=""
         >
            <LinearLayout
-               android:layout_width="220dp"
+               android:layout_width="110dp"
                android:layout_height="120dp"
                android:background="@drawable/box"
                android:clickable="true"
@@ -44,11 +43,11 @@
 
                <ImageView
                    android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
+                   android:layout_height="70dp"
                    android:src="@drawable/elginpay_logo"
                    android:layout_marginTop="10dp"
                    android:layout_gravity="center"
-                   android:paddingHorizontal="20dp"
+                   android:paddingHorizontal="3dp"
                    />
 
                <View
@@ -78,7 +77,49 @@
                 android:background="@drawable/box"
                 android:clickable="true"
                 android:orientation="vertical"
+                android:id="@+id/buttonNfce"
+                android:layout_marginLeft="10dp"
+                >
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:src="@drawable/nfce"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    >
+                </View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_button_nfce"
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="10dp"
+                    >
+                </TextView>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="110dp"
+                android:layout_height="120dp"
+                android:background="@drawable/box"
+                android:clickable="true"
+                android:orientation="vertical"
                 android:id="@+id/buttonPrinterOption"
+                android:layout_marginLeft="10dp"
                 >
 
                 <ImageView
@@ -120,6 +161,7 @@
                 android:clickable="true"
                 android:orientation="vertical"
                 android:id="@+id/buttonBalancaOption"
+                android:layout_marginLeft="10dp"
                 >
 
                 <ImageView
@@ -157,9 +199,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="440dp"
+            android:layout_width="480dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginVertical="10dp"
         >
 
@@ -211,6 +252,7 @@
                 android:clickable="true"
                 android:orientation="vertical"
                 android:id="@+id/buttonShipay"
+                android:layout_marginLeft="10dp"
                 >
 
                 <ImageView
@@ -252,6 +294,7 @@
                 android:clickable="true"
                 android:orientation="vertical"
                 android:id="@+id/buttonSAT"
+                android:layout_marginLeft="10dp"
                 >
 
                 <ImageView
@@ -293,6 +336,7 @@
                 android:clickable="true"
                 android:orientation="vertical"
                 android:id="@+id/buttonBarCodeReaderOption"
+                android:layout_marginLeft="10dp"
                 >
 
                 <ImageView
@@ -336,12 +380,13 @@
         android:layout_weight="1"
         android:gravity="center_vertical"
         >
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:gravity="bottom"
             android:layout_marginEnd="50dp"
+            android:gravity="bottom"
             android:text="@string/text_footer_java_android"
             android:textColor="#7F7F7F"
             android:textSize="16sp"

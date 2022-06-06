@@ -132,6 +132,7 @@ public class SatService {
         //O texto a ser salvo está na 6° posição ao separar a String por '|'
         String extractedLogInArray[] = extractedLog.split("[|]");
 
+        Log.d("DEBUG", extractedLogInArray[0]);
 
         //O texto a ser salvo está em base64 e deve ser decodificado antes de ser salvo no arquivo .txt
         byte[] byteArrayWithStringConverted = android.util.Base64.decode(extractedLogInArray[5], android.util.Base64.DEFAULT);
@@ -140,7 +141,7 @@ public class SatService {
 
         //Tenta criar o dir ROOT onde a aplicação irá conseguir salvar o arquivo do logsat
         createRootDirectory(contextSat);
-        writeFileOnStorage(SATLOG_ARCHIVE_NAME, logtoBeSavedInStorage);
+        writeFileOnStorage( SATLOG_ARCHIVE_NAME, logtoBeSavedInStorage);
 
         return true;
     }
@@ -166,18 +167,22 @@ public class SatService {
     private boolean createRootDirectory(Context ctx) {
         // Constant, copied here: private static final String BASE_DIR = "/Android/data/";
         final String dataDir = storagePathToAbsolutePath(BASE_ROOT_DIR);
-
+        Log.d("MADARA", dataDir);
+        Log.d("MADARA", storagePathToAbsolutePath(BASE_ROOT_DIR));
         final File f = new File(dataDir);
         return f.mkdirs();
     }
 
     private void writeFileOnStorage(String fileNameWithExtension, String textToWrite){
+        Log.d("MADARA", "oi2");
         File file = new File(storagePathToAbsolutePath(BASE_ROOT_DIR), "files");
         if(!file.exists()){
+            Log.d("MADARA", "oi3");
             file.mkdir();
         }
 
         try{
+            Log.d("MADARA", "oi4");
             File gpxfile = new File(file, fileNameWithExtension);
             FileWriter writer = new FileWriter(gpxfile);
             writer.append(textToWrite);
@@ -186,6 +191,7 @@ public class SatService {
 
             Toast.makeText(contextSat, "Saved your text in " + gpxfile.getPath(), Toast.LENGTH_LONG).show();
         }catch (Exception e){
+            Log.d("MADARA", e.toString());
             e.printStackTrace();
         }
     }

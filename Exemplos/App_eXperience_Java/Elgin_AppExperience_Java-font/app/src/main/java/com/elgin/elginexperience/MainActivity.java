@@ -1,21 +1,20 @@
 package com.elgin.elginexperience;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.google.zxing.oned.CodaBarReader;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.elgin.elginexperience.NFCE.NfcePage;
 
 public class MainActivity extends AppCompatActivity {
     static Context context;
 
     //LinearLayout foram escolhidos em vez de button para simplificar a decoração.
     LinearLayout buttonE1Bridge;
+    LinearLayout buttonNfce;
     LinearLayout buttonPrinterOption;
     LinearLayout buttonTefOption;
     LinearLayout buttonBarCodeReaderOption;
@@ -30,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         context = this;
 
         buttonE1Bridge = findViewById(R.id.buttonE1Bridge);
+        buttonNfce = findViewById(R.id.buttonNfce);
         buttonPrinterOption = findViewById(R.id.buttonPrinterOption);
         buttonBalancaOption = findViewById(R.id.buttonBalancaOption);
         buttonTefOption = findViewById(R.id.buttonTefOption);
@@ -37,44 +37,30 @@ public class MainActivity extends AppCompatActivity {
         buttonSAT = findViewById(R.id.buttonSAT);
         buttonBarCodeReaderOption = findViewById(R.id.buttonBarCodeReaderOption);
 
-        buttonE1Bridge.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { openE1BridgeScreen(); }
-        });
+        buttonE1Bridge.setOnClickListener(view -> openE1BridgeScreen());
 
-        buttonPrinterOption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { openPrinterScreen(); }
-        });
+        buttonNfce.setOnClickListener(view -> openNfceScreen());
 
-        buttonTefOption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { openTefScreen(); }
-        });
+        buttonPrinterOption.setOnClickListener(v -> openPrinterScreen());
 
-        buttonBarCodeReaderOption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { openBarCodeReaderScreen(); }
-        });
+        buttonTefOption.setOnClickListener(v -> openTefScreen());
 
-        buttonSAT.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { openSATScreen(); }
-        });
+        buttonBarCodeReaderOption.setOnClickListener(v -> openBarCodeReaderScreen());
 
-        buttonShipay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { openShipayScreen(); }
-        });
+        buttonSAT.setOnClickListener(v -> openSATScreen());
 
-        buttonBalancaOption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { openBalancaScreen(); }
-        });
+        buttonShipay.setOnClickListener(v -> openShipayScreen());
+
+        buttonBalancaOption.setOnClickListener(v -> openBalancaScreen());
     }
 
-    public void openE1BridgeScreen(){
+    public void openE1BridgeScreen() {
         Intent intent = new Intent(this, E1BridgePage.class);
+        startActivity(intent);
+    }
+
+    public void openNfceScreen() {
+        Intent intent = new Intent(this, NfcePage.class);
         startActivity(intent);
     }
 
@@ -88,22 +74,22 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openBarCodeReaderScreen(){
+    public void openBarCodeReaderScreen() {
         Intent intent = new Intent(this, BarCodeReader.class);
         startActivity(intent);
     }
 
-    public void openSATScreen(){
+    public void openSATScreen() {
         Intent intent = new Intent(this, SatPage.class);
         startActivity(intent);
     }
 
     public void openShipayScreen() {
         Intent intent = new Intent(this, ShipayMenu.class);
-            startActivity(intent);
+        startActivity(intent);
     }
 
-    public void openBalancaScreen(){
+    public void openBalancaScreen() {
         Intent intent = new Intent(this, BalancaPage.class);
         startActivity(intent);
     }
