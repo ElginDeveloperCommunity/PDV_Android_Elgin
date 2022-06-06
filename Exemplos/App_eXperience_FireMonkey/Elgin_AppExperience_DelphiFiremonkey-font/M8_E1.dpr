@@ -27,13 +27,17 @@ uses
   DialogTimeoutForm in 'DialogTimeoutForm.pas' {frmDialogTimeout},
   DialogConfigSenhaForm in 'DialogConfigSenhaForm.pas' {frmDialogConfigSenha},
   Elgin.JNI.E1 in 'libs\Elgin.JNI.E1.pas',
-  Elgin.JNI.Sat in 'libs\Elgin.JNI.Sat.pas';
+  Elgin.JNI.Sat in 'libs\Elgin.JNI.Sat.pas',
+  Elgin.JNI.Daruma in 'libs\libs_daruma\Elgin.JNI.Daruma.pas',
+  NFCeForm in 'NFCeForm.pas' {FrmNFCe},
+  It4r in 'It4r.pas';
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TFrmNFCe, FrmNFCe);
   Application.CreateForm(TFrmDialog, FrmDialog);
   Application.CreateForm(TfrmTEF, frmTEF);
   Application.CreateForm(TfrmImpressora, frmImpressora);

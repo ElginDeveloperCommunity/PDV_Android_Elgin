@@ -63,7 +63,7 @@ implementation
 function TPrinter.AvancaLinhas(rbImpInterna:boolean): integer;
 begin
    if rbImpInterna=True then TJTermica.JavaClass.AvancaPapel(100)
-   else TJTermica.JavaClass.AvancaPapel(20);
+   else TJTermica.JavaClass.AvancaPapel(40);
 end;
 
 function TPrinter.codeOfBarCode(barCodeName: BARCODE_TYPE): integer;
@@ -148,7 +148,7 @@ var
 begin
   if rbImpInterna=True then
   begin
-    if bitmap.Width > 800 then
+    if bitmap.Width > 600 then
     begin
       scale:= (bitmap.Width-600)/bitmap.Width;
       bitmap.Width:= Round(bitmap.Width * (1.0 - scale));

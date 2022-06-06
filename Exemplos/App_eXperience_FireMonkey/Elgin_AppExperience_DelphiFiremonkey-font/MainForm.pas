@@ -44,6 +44,10 @@ type
     Image7: TImage;
     BRIDGE: TLabel;
     GridPanelLayout4: TGridPanelLayout;
+    GridPanelLayout3: TGridPanelLayout;
+    recNFCe: TRectangle;
+    Image8: TImage;
+    Label7: TLabel;
     procedure rectMenuTEFClick(Sender: TObject);
     procedure rectMenuSATClick(Sender: TObject);
     procedure rectMenuShipayClick(Sender: TObject);
@@ -68,7 +72,7 @@ implementation
 
 {$R *.fmx}
 
-uses BridgeForm;
+uses BridgeForm, NFCeForm;
 {$R *.LgXhdpiTb.fmx ANDROID}
 {$R *.XLgXhdpiTb.fmx ANDROID}
 
@@ -81,7 +85,7 @@ end;
 
 procedure TfrmMain.recBridgeClick(Sender: TObject);
 begin
-  FrmBridge.Show;
+  frmNFCe.Show;
 end;
 
 procedure TfrmMain.rectMenuBarCodeClick(Sender: TObject);

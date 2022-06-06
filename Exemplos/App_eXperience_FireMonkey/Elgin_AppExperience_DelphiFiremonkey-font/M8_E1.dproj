@@ -269,6 +269,12 @@
         </DCCReference>
         <DCCReference Include="libs\Elgin.JNI.E1.pas"/>
         <DCCReference Include="libs\Elgin.JNI.Sat.pas"/>
+        <DCCReference Include="libs\libs_daruma\Elgin.JNI.Daruma.pas"/>
+        <DCCReference Include="NFCeForm.pas">
+            <Form>FrmNFCe</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="It4r.pas"/>
         <None Include="assets\xmlNFCe.xml"/>
         <None Include="assets\xmlSAT.xml"/>
         <RcItem Include="images\barcode_icon.png">
@@ -318,6 +324,18 @@
         </JavaReference>
         <None Include="assets\cancelamentosatgo.xml"/>
         <None Include="assets\satgo3.xml"/>
+        <JavaReference Include="libs\libs_daruma\darumamobile.jar">
+            <Disabled/>
+        </JavaReference>
+        <JavaReference Include="libs\libs_daruma\jdom-2.0.6.jar">
+            <Disabled/>
+        </JavaReference>
+        <JavaReference Include="libs\libs_daruma\ksoap2-android-assembly-3.3.0-jar-with-dependencies.jar">
+            <Disabled/>
+        </JavaReference>
+        <JavaReference Include="libs\gson-2.8.5.jar">
+            <Disabled/>
+        </JavaReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -648,9 +666,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_SplashImage_426x320.png" Configuration="Release" Class="Android_SplashImage426">
-                    <Platform Name="Android64">
-                        <RemoteName>splash_image.png</RemoteName>
+                <DeployFile LocalName="Android\Debug\styles-v21.xml" Configuration="Debug" Class="AndroidSplashStylesV21">
+                    <Platform Name="Android">
+                        <RemoteName>styles.xml</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -660,15 +678,15 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Android\Debug\styles-v21.xml" Configuration="Debug" Class="AndroidSplashStylesV21">
-                    <Platform Name="Android">
-                        <RemoteName>styles.xml</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile LocalName="$(BDS)\lib\android\debug\armeabi-v7a\libnative-activity.so" Configuration="Release" Class="AndroidLibnativeArmeabiv7aFile">
                     <Platform Name="Android64">
                         <RemoteName>libM8_E1.so</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_SplashImage_426x320.png" Configuration="Release" Class="Android_SplashImage426">
+                    <Platform Name="Android64">
+                        <RemoteName>splash_image.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
