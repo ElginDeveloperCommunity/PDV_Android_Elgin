@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="20sp"
+    android:layout_marginEnd="20sp"
+    android:orientation="vertical"
+    tools:context=".Printer.Fragments.PrinterTextFragment"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/robotobold"
+        android:text="IMPRESSÃO DE TEXTO"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_horizontal"
+        >
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/robotobold"
+            android:text="MENSAGEM"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            />
+
+        <EditText
+            android:id="@+id/editTextInputMessage"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:autofillHints=""
+            android:backgroundTint="@android:color/black"
+            android:ems="10"
+            android:inputType="textPersonName"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/robotobold"
+            android:text="ALINHAMENTO"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:orientation="horizontal"
+            >
+            <RadioGroup
+                android:id="@+id/radioGroupAlign"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <RadioButton
+                    android:id="@+id/radioButtonLeft"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/robotobold"
+                    android:text="ESQUERDA"
+                    android:textSize="16sp"
+                    />
+
+                <RadioButton
+                    android:id="@+id/radioButtonCenter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/robotobold"
+                    android:text="CENTRALIZADO"
+                    android:textAlignment="textStart"
+                    android:textSize="16sp"
+                    />
+
+                <RadioButton
+                    android:id="@+id/radioButtonRight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/robotobold"
+                    android:text="DIREITA"
+                    android:textSize="16sp"
+                    />
+            </RadioGroup>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/robotobold"
+            android:text="ESTILIZAÇÃO"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textfont"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/robotobold"
+                android:text="FONT FAMILY"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/spinnerFontFamily"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:dropDownWidth="match_parent"
+                android:entries="@array/fontfamily"
+                android:textAlignment="textEnd" />
+
+            <TextView
+                android:id="@+id/textFontSize"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/robotobold"
+                android:text="FONT SIZE"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/spinnerFontSize"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:dropDownWidth="match_parent"
+                android:entries="@array/fontSize"
+                android:textAlignment="textEnd"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/checkBoxBold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/robotobold"
+                android:text="NEGRITO"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxUnderline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="SUBLINHADO"
+                android:fontFamily="@font/robotobold"
+                android:textSize="16sp"
+                />
+
+            <CheckBox
+                android:id="@+id/checkBoxCutPaper"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/robotobold"
+                android:text="CUT PAPER"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonPrinterText"
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:background="@drawable/round_button"
+            android:fontFamily="@font/robotobold"
+            android:text="IMPRIMIR TEXTO"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonPrinterNFCe"
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_marginEnd="15sp"
+                android:layout_weight="1"
+                android:background="@drawable/round_button"
+                android:text="NFCE"
+                android:textColor="@color/white"
+                />
+
+            <Button
+                android:id="@+id/buttonPrinterSAT"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_button"
+                android:text="SAT"
+                android:textColor="@color/design_default_color_on_primary"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

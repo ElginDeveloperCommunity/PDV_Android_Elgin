@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    tools:context="Printer.PrinterActivity"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:id="@+id/title"
+        >
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/text_title_impressora"
+            android:fontFamily="@font/robotobold"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            />
+        <ImageView
+            android:id="@+id/imageView3"
+            android:paddingTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/elgin_logo"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_centerInParent="true"
+        >
+        <LinearLayout
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <Button
+                android:id="@+id/buttonPrinterTextSelect"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:background="@drawable/box"
+                android:drawableTop="@drawable/printer_text"
+                android:fontFamily="@font/robotobold"
+                android:text="IMPRESSÃO\nDE TEXTO"
+                android:textSize="10sp"
+                android:textColor="@color/black"
+                app:backgroundTint="@color/black"
+                android:paddingTop="8dp"
+                android:gravity="center_horizontal"
+                tools:ignore="SmallSp"
+                />
+            <Button
+                android:id="@+id/buttonPrinterBarCodeSelect"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:layout_marginTop="5sp"
+                android:background="@drawable/box"
+                android:drawableTop="@drawable/printer_bar_code"
+                android:fontFamily="@font/robotobold"
+                android:text="IMPRESSÃO DE\nCÓDIGO DE BARRAS"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                app:backgroundTint="@color/black"
+                android:paddingTop="4dp"
+                android:gravity="center_horizontal"
+                tools:ignore="SmallSp"
+                />
+            <Button
+                android:id="@+id/buttonPrinterImageSelect"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:layout_marginTop="5sp"
+                android:background="@drawable/box"
+                android:drawableTop="@drawable/printer_image"
+                android:duplicateParentState="false"
+                android:fontFamily="@font/robotobold"
+                android:text="IMPRESSÃO\nDE IMAGEM"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                app:backgroundTint="@color/black"
+                android:paddingTop="12dp"
+                android:gravity="center_horizontal"
+                tools:ignore="SmallSp"
+                />
+
+            <Button
+                android:id="@+id/buttonStatus"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="5sp"
+                android:layout_weight="1"
+                android:background="@drawable/box"
+                android:drawableLeft="@drawable/status_printer"
+                android:fontFamily="@font/robotobold"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:text=" STATUS IMPRESSORA"
+                android:textColor="@color/black"
+                android:textSize="8sp"
+                app:backgroundTint="@color/black"
+                tools:ignore="SmallSp"
+                />
+
+            <Button
+                android:id="@+id/buttonStatusGaveta"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="5sp"
+                android:layout_weight="1"
+                android:background="@drawable/box"
+                android:drawableLeft="@drawable/status_printer"
+                android:fontFamily="@font/robotobold"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:text=" STATUS GAVETA"
+                android:textColor="@color/black"
+                android:textSize="8sp"
+                app:backgroundTint="@color/black"
+                tools:ignore="SmallSp"
+                />
+
+            <Button
+                android:id="@+id/buttonAbrirGaveta"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="5sp"
+                android:layout_weight="1"
+                android:background="@drawable/round_button"
+                android:text="ABRIR GAVETA"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                tools:ignore="SmallSp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="10dp"
+            android:orientation="vertical"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                >
+                <RadioGroup
+                    android:id="@+id/radioGroupConnectPrinterIE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
+                    <RadioButton
+                        android:id="@+id/radioButtonConnectPrinterIntern"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="IMP. INTERNA"
+                        android:fontFamily="@font/robotobold"
+                        android:textSize="12sp"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonConnectPrinterExternByUSB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/robotobold"
+                        android:text="IMP. EXTERNA - USB"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonConnectPrinterExternByIP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="IMP. EXTERNA - IP"
+                        android:fontFamily="@font/robotobold"
+                        android:textSize="12sp"
+                        android:layout_marginLeft="10dp"
+                        />
+                </RadioGroup>
+
+                <EditText
+                    android:id="@+id/editTextInputIP"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="20dp"
+                    />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/containerFragments"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/box"
+                android:backgroundTint="@color/black"
+                android:orientation="horizontal"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_footer_java_android"
+            android:textColor="#7F7F7F"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="50dp"
+            android:layout_alignParentEnd="true"
+            />
+    </RelativeLayout>
+</RelativeLayout>

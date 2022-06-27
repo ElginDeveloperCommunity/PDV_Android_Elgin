@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    tools:context=".Bridge.BridgeActivity"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:id="@+id/title"
+        >
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/bridge_module"
+            android:fontFamily="@font/robotobold"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:paddingTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/elgin_logo"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:id="@+id/layoutRowIp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/robotobold"
+                android:gravity="center_vertical"
+                android:text="IP:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                >
+            </View>
+
+            <EditText
+                android:id="@+id/editTextIpBridge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/black"
+                android:ems="15"
+                android:inputType="number"
+                android:digits="0123456789."
+                android:textSize="14sp"
+                android:textAlignment="center"
+                android:hint="192.168.0.1"
+                android:layout_marginEnd="15dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/robotobold"
+                android:gravity="center_vertical"
+                android:text="PORTAS TRANSAÇÕES/STATUS:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                />
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                >
+            </View>
+
+
+            <EditText
+                android:id="@+id/editTextTransactionPort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/black"
+                android:ems="5"
+                android:inputType="number"
+                android:textAlignment="center"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                >
+            </View>
+
+            <EditText
+                android:id="@+id/editTextStatusPort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/black"
+                android:ems="5"
+                android:inputType="number"
+                android:textSize="14sp"
+                android:textAlignment="center">
+            </EditText>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutRowIp"
+        android:id="@+id/layoutRowValue"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/robotobold"
+                android:gravity="center_vertical"
+                android:text="VALOR:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                >
+            </View>
+
+            <EditText
+                android:id="@+id/editTextValueBridge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/black"
+                android:ems="15"
+                android:inputType="number"
+                android:textSize="14sp"
+                android:textAlignment="center"
+                android:layout_marginEnd="15dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+
+            <CheckBox
+                android:id="@+id/checkboxSendPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/robotobold"
+                android:text="ENVIAR SENHA NAS TRANSAÇÕES"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutRowValue"
+        android:id="@+id/layoutRowInstallments"
+        android:orientation="horizontal"
+        >
+
+        <LinearLayout
+            android:id="@+id/linearLayoutNumberOfInstallments"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/robotobold"
+                android:gravity="center_vertical"
+                android:text="Nº PARCELAS:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                >
+            </View>
+
+            <EditText
+                android:id="@+id/editTextNumberOfInstallmentsBridge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/black"
+                android:ems="15"
+                android:inputType="number"
+                android:textSize="14sp"
+                android:textAlignment="center"
+                android:layout_marginEnd="15dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/robotobold"
+                android:gravity="center_vertical"
+                android:text="SENHA:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                >
+            </View>
+
+            <EditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/black"
+                android:ems="15"
+                android:inputType="textPassword"
+                android:textSize="14sp"
+                android:textAlignment="center"
+                android:layout_marginEnd="15dp"
+                android:enabled="false"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                >
+            </View>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutRowInstallments"
+        android:id="@+id/layoutRowTextfields"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/robotobold"
+                android:gravity="center_vertical"
+                android:text="FORMAS DE PAGAMENTO:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/robotobold"
+                android:gravity="center_vertical"
+                android:text="FUNÇÕES E1-BRIDGE:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutRowPaymentMethods"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutRowTextfields"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+
+            <LinearLayout
+                android:id="@+id/buttonCreditOptionBridge"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/box"
+                android:clickable="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:src="@drawable/card_icon"
+                    android:layout_marginTop="2dp"
+
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                </View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="CRÉDITO"
+                    android:textColor="@color/black"
+                    android:textSize="10sp">
+
+                </TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/buttonDebitOptionBridge"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="25dp"
+                android:background="@drawable/box"
+                android:clickable="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:src="@drawable/card_icon"
+                    android:layout_marginTop="2dp"
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                </View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="DÉBITO"
+                    android:textColor="@color/black"
+                    android:textSize="10sp">
+
+                </TextView>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            >
+
+            <Button
+                android:id="@+id/buttonConsultTerminalStatus"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_button"
+                android:text="CONSULTAR STATUS DO TERMINAL"
+                android:textColor="@color/design_default_color_on_primary"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutRowTimeoutButton"
+        android:layout_below="@+id/layoutRowPaymentMethods"
+        android:orientation="horizontal"
+
+        >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/robotobold"
+                android:gravity="center_vertical"
+                android:text="TIPOS DE PARCELAMENTO:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+
+
+            <Button
+                android:id="@+id/buttonConsultConfiguredTimeout"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_button"
+                android:text="CONSULTAR TIMEOUT CONFIGURADO"
+                android:textColor="@color/design_default_color_on_primary"
+                android:layout_gravity="center"
+                />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutRowPaymentTypes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutRowTimeoutButton"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/linearLayoutTypeInstallments"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/buttonStoreOptionBridge"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/box"
+                android:clickable="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:src="@drawable/store_icon"
+                    android:layout_marginTop="2dp"
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                </View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="LOJA"
+                    android:textColor="@color/black"
+                    android:textSize="10sp">
+
+                </TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/buttonAdmOptionBridge"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="25dp"
+                android:background="@drawable/box"
+                android:clickable="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:src="@drawable/adm_icon"
+                    android:layout_marginTop="2dp"
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                </View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="ADM"
+                    android:textColor="@color/black"
+                    android:textSize="10sp">
+
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/buttonInCashOptionBridge"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="25dp"
+                android:background="@drawable/box"
+                android:clickable="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="2dp"
+                    android:src="@drawable/card_icon" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                </View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="A VISTA"
+                    android:textColor="@color/black"
+                    android:textSize="10sp">
+
+                </TextView>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            >
+
+            <Button
+                android:id="@+id/buttonConsultLastTransaction"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/round_button"
+                android:text="CONSULTAR ULTIMA TRANSAÇÃO"
+                android:textColor="@color/design_default_color_on_primary" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutRowSendAndCancelButtons"
+        android:layout_below="@+id/layoutRowPaymentTypes"
+        android:layout_marginTop="10dp"
+        >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/buttonSendTransactionBridge"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/round_button"
+                android:text="ENVIAR TRANSAÇÃO"
+                android:textColor="@color/design_default_color_on_primary" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="0dp">
+
+            </View>
+
+            <Button
+                android:id="@+id/buttonCancelTransactionBridge"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_button"
+                android:text="CANCELAR TRANSAÇÃO"
+                android:textColor="@color/design_default_color_on_primary" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/buttonSetTerminalPassword"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/round_button"
+                android:text="CONFIGURAR SENHA DO TERMINAL"
+                android:textColor="@color/design_default_color_on_primary"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutRowSendAndCancelButtons"
+        android:id="@+id/layoutAdmOperation"
+        android:layout_marginTop="5dp"
+        >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+
+            <Button
+                android:id="@+id/buttonAdministrativeOperation"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_button"
+                android:text="OPERAÇÃO ADM"
+                android:textColor="@color/design_default_color_on_primary"
+                android:layout_gravity="center"
+                />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="0dp"
+                >
+            </View>
+
+            <Button
+                android:id="@+id/buttonPrintTestCoupon"
+                android:layout_marginEnd="15dp"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_button"
+                android:text="IMPRIMIR CUPOM TESTE"
+                android:textColor="@color/design_default_color_on_primary"
+                android:layout_gravity="center"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/buttonSetTransactionTimeout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/round_button"
+                android:text="CONFIGURAR TIMEOUT PARA TRANSAÇÕES"
+                android:textColor="@color/design_default_color_on_primary"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/layoutAdmOperation"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_footer_java_android"
+            android:textColor="#7F7F7F"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="50dp"
+            android:layout_alignParentEnd="true"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>
