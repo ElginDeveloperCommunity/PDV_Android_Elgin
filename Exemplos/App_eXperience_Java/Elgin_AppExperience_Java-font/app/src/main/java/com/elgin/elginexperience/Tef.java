@@ -6,25 +6,25 @@ import androidx.appcompat.content.res.AppCompatResources;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.elgin.elginexperience.InputMasks.InputMaskMoney;
 import com.elgin.elginexperience.Services.PrinterService;
-import com.google.gson.Gson;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -36,13 +36,24 @@ import br.com.setis.interfaceautomacao.Operacoes;
 public class Tef extends AppCompatActivity {
     Paygo paygo;
     static PrinterService printer;
-    Intent intentToMsitef = new Intent("br.com.softwareexpress.sitef.msitef.ACTIVITY_CLISITEF");
-    Gson gson = new Gson();
+
+    //Intent para o TEF M-SITEF.
+    final Intent intentToMsitef = new Intent("br.com.softwareexpress.sitef.msitef.ACTIVITY_CLISITEF");
+    final int REQUEST_CODE_MSITEF = 4321;
+
+    //Intent para o TEF ELGIN.
+    final Intent intentToElginTef = new Intent("com.elgin.e1.digitalhub.TEF");
+    final int REQUEST_CODE_ELGINTEF = 1234;
+
+    //Ultima referência de venda, necessária para o cancelamento de venda no TEF ELGIN.
+    String lastElginTefNSU = "";
+
     static Context context;
 
     //BUTTONS TYPE TEF
-    Button buttonMsitefOption;
     Button buttonPaygoOption;
+    Button buttonMsitefOption;
+    Button buttonElginTefOption;
 
     //EDIT TEXTs
     EditText editTextValueTEF;
@@ -56,7 +67,7 @@ public class Tef extends AppCompatActivity {
     //BUTTONS TYPE OF INSTALLMENTS
     Button buttonStoreOption;
     Button buttonAdmOption;
-    Button buttonAvistaOption;
+    Button buttonCashOption;
 
     //BUTTONS ACTIONS TEF
     Button buttonSendTransaction;
@@ -66,14 +77,40 @@ public class Tef extends AppCompatActivity {
     //IMAGE VIEW VIA PAYGO
     static ImageView imageViewViaPaygo;
 
-    static TextView textViewViaMsitef;
+    //TextView Via TEFs
+    static TextView textViewViaTef;
     String viaClienteMsitef;
 
-    //INIT DEFAULT OPTIONS
-    String selectedPaymentMethod = "Crédito";
-    String selectedInstallmentsMethod = "Avista";
-    String selectedTefType = "PayGo";
-    String selectedAction = "SALE";
+    //Captura o layout referente aos botoões de financiamento, para aplicar a lógica de sumir estas opções caso o pagamento por débito seja selecionado.
+    private LinearLayout linearLayoutInstallmentsMethodsTEF;
+
+    //Captura o layout referente ao campo de "número de parcelas", para aplicar a loǵica de sumir este campo caso o pagamento por débito seja selecionado.
+    private LinearLayout linearLayoutNumberOfInstallmentsTEF;
+
+    //TEFs de pagamento disponíveis.
+    public enum TEF {
+        PAY_GO, M_SITEF, ELGIN_TEF;
+    }
+
+    //Formas de pagamento disponíveis.
+    public enum FormaPagamento {
+        CREDITO, DEBITO, TODOS
+    }
+
+    //Formas de financiamento disponíveis.
+    public enum FormaFinanciamento {
+        LOJA, ADM, A_VISTA
+    }
+
+    //Ações disponíveis, correspondente aos botões na tela.
+    public enum Acao {
+        VENDA, CANCELAMENTO, CONFIGURACAO;
+    }
+
+    //Opções selecionadas ao abrir da tela.
+    private TEF opcaoTefSelecionada;
+    private FormaPagamento formaPagamentoSelecionada;
+    private FormaFinanciamento formaFinanciamentoSelecionada;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -86,8 +123,9 @@ public class Tef extends AppCompatActivity {
         printer.printerInternalImpStart();
 
         //INIT BUTTONS TYPE TEF
-        buttonMsitefOption = findViewById(R.id.buttonMsitefOption);
         buttonPaygoOption = findViewById(R.id.buttonPaygoOption);
+        buttonMsitefOption = findViewById(R.id.buttonMsitefOption);
+        buttonElginTefOption = findViewById(R.id.buttonElginTefOption);
 
         //INIT EDIT TEXTs
         editTextValueTEF = findViewById(R.id.editTextInputValueTEF);
@@ -102,213 +140,302 @@ public class Tef extends AppCompatActivity {
         //INIT BUTTONS TYPE INSTALLMENTS
         buttonStoreOption = findViewById(R.id.buttonStoreOption);
         buttonAdmOption = findViewById(R.id.buttonAdmOption);
-        buttonAvistaOption = findViewById(R.id.buttonAvistaOption);
+        buttonCashOption = findViewById(R.id.buttonCashOption);
 
         //INIT BUTTONS ACTIONS TEF
         buttonSendTransaction = findViewById(R.id.buttonSendTransactionTEF);
         buttonCancelTransaction = findViewById(R.id.buttonCancelTransactionTEF);
         buttonConfigsTransaction = findViewById(R.id.buttonConfigsTEF);
 
-        //INIT IMAGE VIEW VIA PAYGO
         imageViewViaPaygo = findViewById(R.id.imageViewViaPaygo);
 
-        //INIT IMAGE VIEW VIA PAYGO
-        textViewViaMsitef = findViewById(R.id.textViewViaMsitef);
+        textViewViaTef = findViewById(R.id.textViewViaTef);
 
-        //SELECT INITIALS OPTIONS
-        buttonPaygoOption.setBackgroundTintList( AppCompatResources.getColorStateList(context, R.color.verde));
-        buttonCreditOption.setBackgroundTintList( AppCompatResources.getColorStateList(context, R.color.verde));
-        buttonAvistaOption.setBackgroundTintList( AppCompatResources.getColorStateList(context, R.color.verde));
+        linearLayoutNumberOfInstallmentsTEF = findViewById(R.id.linearLayoutNumberOfInstallmentsTEF);
+        linearLayoutInstallmentsMethodsTEF = findViewById(R.id.linearLayoutInstallmentsMethodsTEF);
 
         //INIT DEFAULT INPUTS
+        //Aplica a máscara de moeda ao campo de valor, para melhor formatação do valor entrado.
+        editTextValueTEF.addTextChangedListener(new InputMaskMoney(editTextValueTEF));
+        //Valor inicial de 20 reais.
         editTextValueTEF.setText("2000");
-        editTextInstallmentsTEF.setText("1");
+
         editTextIpTEF.setText("192.168.0.31");
 
-        editTextIpTEF.setEnabled(false);
-        editTextIpTEF.setFocusableInTouchMode(false);
-        textViewViaMsitef.setVisibility(View.GONE);
-
-        //SELECT OPTION M-SITEF
-        buttonMsitefOption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedTefType = "M-Sitef";
-
-                buttonMsitefOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.verde));
-                buttonPaygoOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.black));
-
-                editTextIpTEF.setEnabled(true);
-                editTextIpTEF.setFocusableInTouchMode(true);
-                buttonAvistaOption.setEnabled(false);
-
-                if(selectedInstallmentsMethod.equals("Avista")){
-                    selectedInstallmentsMethod = "Crédito";
-                    buttonAvistaOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.black));
-                    buttonStoreOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.verde));
-                }
-                textViewViaMsitef.setVisibility(View.VISIBLE);
-
-                buttonAvistaOption.setVisibility(View.GONE);
-                imageViewViaPaygo.setVisibility(View.GONE);
-            }
-        });
+        //Aplica regras iniciais da tela.
+        initialBusinessRule();
 
         //SELECT OPTION PAYGO
-        buttonPaygoOption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedTefType = "PayGo";
+        buttonPaygoOption.setOnClickListener(v -> updateTEFMethodBusinessRule(TEF.PAY_GO));
 
-                buttonMsitefOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.black));
-                buttonPaygoOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.verde));
+        //SELECT OPTION M-SITEF
+        buttonMsitefOption.setOnClickListener(v -> updateTEFMethodBusinessRule(TEF.M_SITEF));
 
-                editTextIpTEF.setEnabled(false);
-                editTextIpTEF.setFocusableInTouchMode(false);
-                buttonAvistaOption.setEnabled(true);
-
-                buttonAvistaOption.setVisibility(View.VISIBLE);
-                textViewViaMsitef.setVisibility(View.GONE);
-                imageViewViaPaygo.setVisibility(View.VISIBLE);
-            }
-        });
+        buttonElginTefOption.setOnClickListener(v -> updateTEFMethodBusinessRule(TEF.ELGIN_TEF));
 
         //SELECT OPTION CREDIT PAYMENT
-        buttonCreditOption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedPaymentMethod = "Crédito";
-
-                buttonCreditOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.verde));
-                buttonDebitOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.black));
-                buttonVoucherOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.black));
-            }
-        });
+        buttonCreditOption.setOnClickListener(v -> updatePaymentMethodBusinessRule(FormaPagamento.CREDITO));
 
         //SELECT OPTION DEBIT PAYMENT
-        buttonDebitOption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedPaymentMethod = "Débito";
-
-                buttonCreditOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.black));
-                buttonDebitOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.verde));
-                buttonVoucherOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.black));
-            }
-        });
+        buttonDebitOption.setOnClickListener(v -> updatePaymentMethodBusinessRule(FormaPagamento.DEBITO));
 
         //SELECT OPTION VOUCHER PAYMENT
-        buttonVoucherOption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedPaymentMethod = "Todos";
-
-                buttonCreditOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.black));
-                buttonDebitOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.black));
-                buttonVoucherOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.verde));
-            }
-        });
+        buttonVoucherOption.setOnClickListener(v -> updatePaymentMethodBusinessRule(FormaPagamento.TODOS));
 
         //SELECT OPTION STORE INSTALLMENT
-        buttonStoreOption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedInstallmentsMethod = "Loja";
-
-                buttonStoreOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.verde));
-                buttonAdmOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.black));
-                buttonAvistaOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.black));
-            }
-        });
+        buttonStoreOption.setOnClickListener(v -> updateInstallmentMethodBusinessRule(FormaFinanciamento.LOJA));
 
         //SELECT OPTION ADM INSTALLMENT
-        buttonAdmOption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedInstallmentsMethod = "Adm";
-
-                buttonStoreOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.black));
-                buttonAdmOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.verde));
-                buttonAvistaOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.black));
-            }
-        });
+        buttonAdmOption.setOnClickListener(v -> updateInstallmentMethodBusinessRule(FormaFinanciamento.ADM));
 
         //SELECT OPTION AVISTA INSTALLMENT
-        buttonAvistaOption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedInstallmentsMethod = "Avista";
-
-                buttonStoreOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.black));
-                buttonAdmOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.black));
-                buttonAvistaOption.setBackgroundTintList( AppCompatResources.getColorStateList(context,R.color.verde));
-            }
-        });
+        buttonCashOption.setOnClickListener(v -> updateInstallmentMethodBusinessRule(FormaFinanciamento.A_VISTA));
 
         //SELECT BUTTON SEND TRANSACTION
-        buttonSendTransaction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(isEntriesValid()){
-                    startActionTEF("SALE");
-                }
+        buttonSendTransaction.setOnClickListener(v -> {
+            if (isEntriesValid()) {
+                startActionTEF(Acao.VENDA);
             }
         });
 
         //SELECT BUTTON CANCEL TRANSACTION
-        buttonCancelTransaction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(isEntriesValid()) {
-                    startActionTEF("CANCEL");
-                }
+        buttonCancelTransaction.setOnClickListener(v -> {
+            if (isEntriesValid()) {
+                startActionTEF(Acao.CANCELAMENTO);
             }
         });
 
         //SELECT BUTTON CONFIGS TRANSACTION
-        buttonConfigsTransaction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(isEntriesValid()) {
-                    startActionTEF("CONFIGS");
-                }
+        buttonConfigsTransaction.setOnClickListener(v -> {
+            if (isEntriesValid()) {
+                startActionTEF(Acao.CONFIGURACAO);
             }
         });
     }
 
-    public void startActionTEF(String action){
-        selectedAction = action;
-        if(selectedTefType.equals("M-Sitef")){
-            sendSitefParams(action);
-        }else{
-            sendPaygoParams(action);
+    //Aplica as escolhas iniciais ao abrir da tela.
+    private void initialBusinessRule() {
+        //TEF escolhido é o PayGo.
+        updateTEFMethodBusinessRule(TEF.PAY_GO);
+    }
+
+    //Atualiza as regras e decoração de tela, de acordo com o TEF selecionado
+    private void updateTEFMethodBusinessRule(TEF opcaoTefSelecionada) {
+        //Atualiza a váriavel de controle.
+        this.opcaoTefSelecionada = opcaoTefSelecionada;
+
+        //1.Apenas o TEF M-Sitef possuí configuração de IP.
+        editTextIpTEF.setEnabled(opcaoTefSelecionada == TEF.M_SITEF);
+        editTextIpTEF.setFocusableInTouchMode(opcaoTefSelecionada == TEF.M_SITEF);
+
+        //2.M-Sitef não possuí pagamento a vista via crédito.
+        buttonCashOption.setVisibility(opcaoTefSelecionada == TEF.M_SITEF ? View.INVISIBLE : View.VISIBLE);
+
+        //3.A opção "todos" não está disponível para o TEF ELGIN.
+        buttonVoucherOption.setVisibility(opcaoTefSelecionada == TEF.ELGIN_TEF ? View.INVISIBLE : View.VISIBLE);
+
+        //4.Os TEFS M-Sitef e TEF ELGIN possuem retorno textual(TextView), enquanto o PayGo retorna uma Imagem(ImageView).
+        textViewViaTef.setVisibility((opcaoTefSelecionada == TEF.M_SITEF || opcaoTefSelecionada == TEF.ELGIN_TEF) ? View.VISIBLE : View.GONE);
+        imageViewViaPaygo.setVisibility(opcaoTefSelecionada == TEF.PAY_GO ? View.VISIBLE : View.GONE);
+
+        //5.O TEF ELGIN ainda não possuí a opçaõ "configuração".
+        buttonConfigsTransaction.setVisibility(opcaoTefSelecionada == TEF.ELGIN_TEF ? View.INVISIBLE : View.VISIBLE);
+
+        //6.Atualiza a decoração da opção TEF selecionada.
+        buttonPaygoOption.setBackgroundTintList(AppCompatResources.getColorStateList(this, opcaoTefSelecionada == TEF.PAY_GO ? R.color.verde : R.color.black));
+        buttonMsitefOption.setBackgroundTintList(AppCompatResources.getColorStateList(this, opcaoTefSelecionada == TEF.M_SITEF ? R.color.verde : R.color.black));
+        buttonElginTefOption.setBackgroundTintList(AppCompatResources.getColorStateList(this, opcaoTefSelecionada == TEF.ELGIN_TEF ? R.color.verde : R.color.black));
+
+        //7.Sempre que um novo TEF for selecionado, a configuração de pagamento será atualizada para pagamento via crédito e parcelamento via loja.
+        updatePaymentMethodBusinessRule(FormaPagamento.CREDITO);
+        updateInstallmentMethodBusinessRule(FormaFinanciamento.LOJA);
+    }
+
+    //Atualiza as regras e decoração de tela, de acordo com a forma de pagamento selecionada.
+    private void updatePaymentMethodBusinessRule(FormaPagamento formaPagamentoSelecionada) {
+        //Atualiza a váriavel de controle.
+        this.formaPagamentoSelecionada = formaPagamentoSelecionada;
+
+        //1. Caso a opção de débito seja seleciona, o campo "número de parcelas" devem sumir, caso a opção selecionada seja a de crédito, o campo deve reaparecer.
+        linearLayoutNumberOfInstallmentsTEF.setVisibility(formaPagamentoSelecionada == FormaPagamento.DEBITO ? View.INVISIBLE : View.VISIBLE);
+
+        //2. Caso a opção de débito seja selecionada, os botões "tipos de parcelamento" devem sumir, caso a opção de crédito seja selecionada, devem reaparecer.
+        linearLayoutInstallmentsMethodsTEF.setVisibility(formaPagamentoSelecionada == FormaPagamento.DEBITO ? View.INVISIBLE : View.VISIBLE);
+
+        //3. Muda a coloração da borda dos botões de formas de pagamento, conforme o método seleciondo.
+        buttonCreditOption.setBackgroundTintList(AppCompatResources.getColorStateList(this, formaPagamentoSelecionada == FormaPagamento.CREDITO ? R.color.verde : R.color.black));
+        buttonDebitOption.setBackgroundTintList(AppCompatResources.getColorStateList(this, formaPagamentoSelecionada == FormaPagamento.DEBITO ? R.color.verde : R.color.black));
+        buttonVoucherOption.setBackgroundTintList(AppCompatResources.getColorStateList(this, formaPagamentoSelecionada == FormaPagamento.TODOS ? R.color.verde : R.color.black));
+    }
+
+    //Atualiza as regras e decoração de tela, de acordo com a forma de parcelamento selecionada.
+    private void updateInstallmentMethodBusinessRule(FormaFinanciamento formaFinanciamentoSelecionada) {
+        //Atualiza a variável de controle.
+        this.formaFinanciamentoSelecionada = formaFinanciamentoSelecionada;
+
+        //1. Caso a forma de parcelamento selecionada seja a vista, o campo "número de parcelas" deve ser "travado" em "1", caso contrário o campo deve ser destravado e inserido "2", pois é o minimo de parcelas para as outras modalidades.
+        editTextInstallmentsTEF.setEnabled(formaFinanciamentoSelecionada != FormaFinanciamento.A_VISTA);
+        editTextInstallmentsTEF.setText(formaFinanciamentoSelecionada == FormaFinanciamento.A_VISTA ? "1" : "2");
+
+        //2. Muda a coloração da borda dos botões de formas de parcelamento, conforme o método seleciondo.
+        buttonStoreOption.setBackgroundTintList(AppCompatResources.getColorStateList(this, formaFinanciamentoSelecionada == FormaFinanciamento.LOJA ? R.color.verde : R.color.black));
+        buttonAdmOption.setBackgroundTintList(AppCompatResources.getColorStateList(this, formaFinanciamentoSelecionada == FormaFinanciamento.ADM ? R.color.verde : R.color.black));
+        buttonCashOption.setBackgroundTintList(AppCompatResources.getColorStateList(this, formaFinanciamentoSelecionada == FormaFinanciamento.A_VISTA ? R.color.verde : R.color.black));
+    }
+
+    public void startActionTEF(Acao acao) {
+        switch (opcaoTefSelecionada) {
+            case PAY_GO:
+                sendPaygoParams(acao);
+                break;
+            case M_SITEF:
+                sendMSitefParams(acao);
+                break;
+            case ELGIN_TEF:
+                sendElginTefParams(acao);
+                break;
         }
     }
 
-    public void sendPaygoParams(String action){
+    //Retorna o valor monetário inserido, de maneira limpa. (Os TEFs devem receber o valor em centavos, 2000 para 20 reais, por exemplo).
+    private String getTextValueTEFClean() {
+        //As vírgulas e pontos inseridas pelas máscaras são retiradas.
+        return editTextValueTEF.getText().toString().replaceAll(",", "").replaceAll("\\.", "");
+    }
+
+    public void sendPaygoParams(Acao acao) {
         Map<String, Object> mapValues = new HashMap<>();
 
-        if(action.equals("SALE") || action.equals("CANCEL")){
-            mapValues.put("valor", editTextValueTEF.getText().toString());
+        //Se for uma venda ou cancelamento, deve ser feito a configuração a seguir para a classe que lidará com o pagamento via paygo.
+        if (acao != Acao.CONFIGURACAO) {
+            mapValues.put("valor", getTextValueTEFClean());
             mapValues.put("parcelas", Integer.parseInt(editTextInstallmentsTEF.getText().toString()));
-            mapValues.put("formaPagamento", selectedPaymentMethod);
-            mapValues.put("tipoParcelamento", selectedInstallmentsMethod);
+            mapValues.put("formaPagamento", formaPagamentoSelecionada);
+            mapValues.put("tipoParcelamento", formaFinanciamentoSelecionada);
 
-            if(action.equals("SALE")){
-                paygo.efetuaTransacao(Operacoes.VENDA, mapValues);
-            }else if(action.equals("CANCEL")){
-                paygo.efetuaTransacao(Operacoes.CANCELAMENTO, mapValues);
+            switch (acao) {
+                case VENDA:
+                    paygo.efetuaTransacao(Operacoes.VENDA, mapValues);
+                    break;
+                case CANCELAMENTO:
+                    paygo.efetuaTransacao(Operacoes.CANCELAMENTO, mapValues);
+                    break;
             }
-
-        }else{
+        } else {
             paygo.efetuaTransacao(Operacoes.ADMINISTRATIVA, mapValues);
         }
     }
 
-    public static void optionsReturnPaygo(Map map){
+    public void sendMSitefParams(Acao acao) {
+        //Parâmetros de configuração do M-Sitef.
+        intentToMsitef.putExtra("empresaSitef", "00000000");
+        intentToMsitef.putExtra("enderecoSitef", editTextIpTEF.getText().toString());
+        intentToMsitef.putExtra("operador", "0001");
+        intentToMsitef.putExtra("data", "20200324");
+        intentToMsitef.putExtra("hora", "130358");
+        intentToMsitef.putExtra("numeroCupom", String.valueOf(new Random().nextInt(99999)));
+        intentToMsitef.putExtra("valor", getTextValueTEFClean());
+        intentToMsitef.putExtra("CNPJ_CPF", "03654119000176");
+        intentToMsitef.putExtra("comExterna", "0");
+
+        switch (acao) {
+            case VENDA:
+                intentToMsitef.putExtra("modalidade", getSelectedPaymentCode());
+                switch (formaPagamentoSelecionada) {
+                    case CREDITO:
+                        intentToMsitef.putExtra("numParcelas", editTextInstallmentsTEF.getText().toString());
+                        switch (formaFinanciamentoSelecionada) {
+                            case A_VISTA:
+                                intentToMsitef.putExtra("transacoesHabilitadas", "26");
+                                break;
+                            case LOJA:
+                                intentToMsitef.putExtra("transacoesHabilitadas", "27");
+                                break;
+                            case ADM:
+                                intentToMsitef.putExtra("transacoesHabilitadas", "28");
+                                break;
+                        }
+                        break;
+                    case DEBITO:
+                        intentToMsitef.putExtra("transacoesHabilitadas", "16");
+                        intentToMsitef.putExtra("numParcelas", "");
+                        break;
+                }
+                break;
+            case CANCELAMENTO:
+                intentToMsitef.putExtra("modalidade", "200");
+                intentToMsitef.putExtra("transacoesHabilitadas", "");
+                intentToMsitef.putExtra("isDoubleValidation", "0");
+                intentToMsitef.putExtra("restricoes", "");
+                intentToMsitef.putExtra("caminhoCertificadoCA", "ca_cert_perm");
+                break;
+            case CONFIGURACAO:
+                intentToMsitef.putExtra("modalidade", "110");
+                intentToMsitef.putExtra("isDoubleValidation", "0");
+                intentToMsitef.putExtra("restricoes", "");
+                intentToMsitef.putExtra("transacoesHabilitadas", "");
+                intentToMsitef.putExtra("caminhoCertificadoCA", "ca_cert_perm");
+                intentToMsitef.putExtra("restricoes", "transacoesHabilitadas=16;26;27");
+                break;
+        }
+        startActivityForResult(intentToMsitef, REQUEST_CODE_MSITEF);
+    }
+
+    private void sendElginTefParams(Acao acao) {
+        //Configura o valor da transação.
+        intentToElginTef.putExtra("valor", getTextValueTEFClean());
+
+        switch (acao) {
+            case VENDA:
+                intentToElginTef.putExtra("modalidade", getSelectedPaymentCode());
+                switch (formaPagamentoSelecionada) {
+                    case CREDITO:
+                        intentToElginTef.putExtra("numParcelas", editTextInstallmentsTEF.getText().toString());
+                        switch (formaFinanciamentoSelecionada) {
+                            case A_VISTA:
+                                intentToElginTef.putExtra("transacoesHabilitadas", "26");
+                                break;
+                            case LOJA:
+                                intentToElginTef.putExtra("transacoesHabilitadas", "27");
+                                break;
+                            case ADM:
+                                intentToElginTef.putExtra("transacoesHabilitadas", "28");
+                                break;
+                        }
+                        break;
+                    case DEBITO:
+                        intentToElginTef.putExtra("transacoesHabilitadas", "16");
+                        intentToElginTef.putExtra("numParcelas", "");
+                        break;
+                }
+                break;
+            case CANCELAMENTO:
+                if (lastElginTefNSU.isEmpty()) {
+                    alertMessageStatus("Alert", "É necessário realizar uma transação antes para realizar o cancelamento no TEF ELGIN!");
+                    return;
+                }
+
+                intentToElginTef.putExtra("modalidade", "200");
+
+                //Data do dia de hoje, usada como um dos parâmetros necessário para o cancelamento de transação no TEF Elgin.
+                Date todayDate = new Date();
+
+                //Objeto capaz de formatar a date para o formato aceito pelo Elgin TEF ("aaaaMMdd") (20220923).
+                SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyyMMdd");
+
+                final String todayDateAsString = dateFormatter.format(todayDate);
+
+                intentToElginTef.putExtra("data", todayDateAsString);
+                intentToElginTef.putExtra("NSU_SITEF", lastElginTefNSU);
+                break;
+        }
+        startActivityForResult(intentToElginTef, REQUEST_CODE_ELGINTEF);
+    }
+
+    public static void optionsReturnPaygo(Map map) {
         Map<String, Object> mapValues = new HashMap<>();
 
-        if(map.get("retorno").equals("Transacao autorizada")){
+        if (map.get("retorno").equals("Transacao autorizada")) {
             String imageViaBase64 = (String) map.get("via_cliente");
 
             byte[] decodedString = Base64.decode(imageViaBase64, Base64.DEFAULT);
@@ -322,106 +449,42 @@ public class Tef extends AppCompatActivity {
             printer.AvancaLinhas(mapValues);
             printer.cutPaper(mapValues);
 
-            alertMessageStatus("Alert", map.get("retorno").toString());
-        }else{
-            alertMessageStatus("Alert", map.get("retorno").toString());
         }
+        alertMessageStatus("Alert", map.get("retorno").toString());
     }
 
-    public boolean isEntriesValid(){
-        if(isValueNotEmpty(editTextValueTEF.getText().toString())){
-            if(isInstallmentEmptyOrLessThanZero(editTextInstallmentsTEF.getText().toString())){
-                if(selectedTefType.equals("M-Sitef")){
-                    if(isIpValid(editTextIpTEF.getText().toString())){
+    //Validação das entradas.
+    public boolean isEntriesValid() {
+        if (isValueNotEmpty(editTextValueTEF.getText().toString())) {
+            if (isInstallmentEmptyOrLessThanZero(editTextInstallmentsTEF.getText().toString())) {
+                if (opcaoTefSelecionada == TEF.M_SITEF) { //Somente se o TEF escolhido for MSitef é necessário validar o IP.
+                    if (isIpValid(editTextIpTEF.getText().toString())) {
                         return true;
-                    }else {
+                    } else {
                         alertMessageStatus("Alerta", "Verifique seu endereço IP.");
                         return false;
                     }
-                }else {
+                } else {
                     return true;
                 }
-            }else {
+            } else {
                 alertMessageStatus("Alerta", "Digite um número de parcelas válido maior que 0.");
                 return false;
             }
-        }else {
+        } else {
             alertMessageStatus("Alerta", "Verifique a entrada de valor de pagamento!");
             return false;
         }
     }
 
-    public void sendSitefParams(String action){
-        //PARAMS DEFAULT TO ALL ACTION M-SITEF
-        intentToMsitef.putExtra("empresaSitef", "00000000");
-        intentToMsitef.putExtra("enderecoSitef", editTextIpTEF.getText().toString());
-        intentToMsitef.putExtra("operador", "0001");
-        intentToMsitef.putExtra("data", "20200324");
-        intentToMsitef.putExtra("hora", "130358");
-        intentToMsitef.putExtra("numeroCupom", String.valueOf(new Random().nextInt(99999)));
-        intentToMsitef.putExtra("valor", editTextValueTEF.getText().toString());
-        intentToMsitef.putExtra("CNPJ_CPF", "03654119000176");
-        intentToMsitef.putExtra("comExterna", "0");
-
-        if(action.equals("SALE")){
-            intentToMsitef.putExtra("modalidade", paymentToYourCode(selectedPaymentMethod));
-
-            if(selectedPaymentMethod.equals("Crédito")){
-                if(editTextInstallmentsTEF.getText().toString().equals("0") || editTextInstallmentsTEF.getText().toString().equals("1")){
-                    intentToMsitef.putExtra("transacoesHabilitadas", "26");
-                    intentToMsitef.putExtra("numParcelas", "");
-
-                }else if(selectedPaymentMethod.equals("Loja")){
-                    intentToMsitef.putExtra("transacoesHabilitadas", "27");
-
-                }else if(selectedPaymentMethod.equals("Adm")){
-                    intentToMsitef.putExtra("transacoesHabilitadas", "28");
-                }
-
-                intentToMsitef.putExtra("numParcelas", editTextInstallmentsTEF.getText().toString());
-            }
-
-            if(selectedPaymentMethod.equals("Débito")){
-                intentToMsitef.putExtra("transacoesHabilitadas", "16");
-                intentToMsitef.putExtra("numParcelas", "");
-            }
-
-            if(selectedPaymentMethod.equals("Todos")){
-                intentToMsitef.putExtra("restricoes", "transacoesHabilitadas=16");
-                intentToMsitef.putExtra("transacoesHabilitadas", "");
-                intentToMsitef.putExtra("numParcelas", "");
-            }
-        }
-
-        if(action.equals("CANCEL")){
-            intentToMsitef.putExtra("modalidade", "200");
-            intentToMsitef.putExtra("transacoesHabilitadas", "");
-            intentToMsitef.putExtra("isDoubleValidation", "0");
-            intentToMsitef.putExtra("restricoes", "");
-            intentToMsitef.putExtra("caminhoCertificadoCA", "ca_cert_perm");
-        }
-
-        if(action.equals("CONFIGS")){
-            intentToMsitef.putExtra("modalidade", "110");
-            intentToMsitef.putExtra("isDoubleValidation", "0");
-            intentToMsitef.putExtra("restricoes", "");
-            intentToMsitef.putExtra("transacoesHabilitadas", "");
-            intentToMsitef.putExtra("caminhoCertificadoCA", "ca_cert_perm");
-            intentToMsitef.putExtra("restricoes", "transacoesHabilitadas=16;26;27");
-        }
-
-        startActivityForResult(intentToMsitef, 4321);
-    }
-
-    public String paymentToYourCode(String payment) {
-        switch (payment) {
-            case "Crédito":
+    //Còdigo para a forma de pagamento selecionada.
+    public String getSelectedPaymentCode() {
+        switch (formaPagamentoSelecionada) {
+            case CREDITO:
                 return "3";
-            case "Débito":
+            case DEBITO:
                 return "2";
-            case "Todos":
-                return "0";
-            default:
+            default: //case "Todos"
                 return "0";
         }
     }
@@ -429,26 +492,47 @@ public class Tef extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 4321) {
-            SitefReturn sitefReturn = null;
-            try {
-                sitefReturn = gson.fromJson(convertResultFromJSON(data), SitefReturn.class);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
 
-            if (resultCode == RESULT_OK || resultCode == RESULT_CANCELED && data != null) {
-                if (Integer.parseInt(sitefReturn.cODRESP()) < 0 && sitefReturn.cODAUTORIZACAO().equals("")) {
+        //Os TEFs MSitef e TEF Elgin possuem o mesmo retorno.
+        if (requestCode == REQUEST_CODE_MSITEF || requestCode == REQUEST_CODE_ELGINTEF) {
+
+            //Se resultCode da intent for OK então a transação obteve sucesso.
+            //Caso o resultCode da intent for de atividade cancelada e a data estiver diferente de nulo, é possível obter um retorno também.
+            if (resultCode == RESULT_OK || (resultCode == RESULT_CANCELED && data != null)) {
+
+                //O campos são os mesmos para ambos os TEFs.
+                final String COD_AUTORIZACAO = data.getStringExtra("COD_AUTORIZACAO");
+                final String VIA_ESTABELECIMENTO = data.getStringExtra("VIA_ESTABELECIMENTO");
+                final String COMP_DADOS_CONF = data.getStringExtra("COMP_DADOS_CONF");
+                final String BANDEIRA = data.getStringExtra("BANDEIRA");
+                final String NUM_PARC = data.getStringExtra("NUM_PARC");
+                final String RELATORIO_TRANS = data.getStringExtra("RELATORIO_TRANS");
+                final String REDE_AUT = data.getStringExtra("REDE_AUT");
+                final String NSU_SITEF = data.getStringExtra("NSU_SITEF");
+                final String VIA_CLIENTE = data.getStringExtra("VIA_CLIENTE");
+                final String TIPO_PARC = data.getStringExtra("TIPO_PARC");
+                final String CODRESP = data.getStringExtra("CODRESP");
+                final String NSU_HOST = data.getStringExtra("NSU_HOST");
+
+                //Se o código de resposta estiver nulo ou tiver valor inteiro inferior a 0, a transação não ocorreu como esperado.
+                if (CODRESP == null || Integer.parseInt(CODRESP) < 0) {
                     alertMessageStatus("Alerta", "Ocorreu um erro durante a transação.");
                 } else {
-                    viaClienteMsitef = sitefReturn.vIACLIENTE();
+                    //Atualiza a via cliente com a via atual recebida.
+                    this.viaClienteMsitef = VIA_CLIENTE;
 
-                    textViewViaMsitef.setText(viaClienteMsitef);
+                    //Atualiza a caixa de visualização na tela com a via do cliente.
+                    textViewViaTef.setText(viaClienteMsitef);
 
-                    if(!selectedAction.equals("CONFIGS")){
-                        printerViaVlienteMsitef(sitefReturn.vIACLIENTE());
+                    //Atualiza o NSU de cancelamento de acordo, necessário para o cancelamento, caso requisitado, desta ultima venda.
+                    this.lastElginTefNSU = NSU_SITEF;
+
+                    //Se a via não estiver nula, significando uma operação com completo sucesso, é feita a impressão da via.
+                    if (viaClienteMsitef != null) {
+                        printerViaClienteMsitef(viaClienteMsitef);
                     }
 
+                    //Alerta na tela o sucesso da operação.
                     alertMessageStatus("Alerta", "Ação realizada com sucesso.");
                 }
             } else {
@@ -457,27 +541,7 @@ public class Tef extends AppCompatActivity {
         }
     }
 
-    public String convertResultFromJSON(Intent receiveResult) throws JSONException {
-        JSONObject convertJSON = new JSONObject();
-
-        convertJSON.put("cODAUTORIZACAO", receiveResult.getStringExtra("COD_AUTORIZACAO"));
-        convertJSON.put("vIAESTABELECIMENTO", receiveResult.getStringExtra("VIA_ESTABELECIMENTO"));
-        convertJSON.put("cOMPDADOSCONF", receiveResult.getStringExtra("COMP_DADOS_CONF"));
-        convertJSON.put("bANDEIRA", receiveResult.getStringExtra("BANDEIRA"));
-        convertJSON.put("nUMPARC", receiveResult.getStringExtra("NUM_PARC"));
-        convertJSON.put("cODTRANS", receiveResult.getStringExtra("CODTRANS"));
-        convertJSON.put("rEDEAUT", receiveResult.getStringExtra("REDE_AUT"));
-        convertJSON.put("nSUSITEF", receiveResult.getStringExtra("NSU_SITEF"));
-        convertJSON.put("vIACLIENTE", receiveResult.getStringExtra("VIA_CLIENTE"));
-        convertJSON.put("vLTROCO", receiveResult.getStringExtra("VLTROCO"));
-        convertJSON.put("tIPOPARC", receiveResult.getStringExtra("TIPO_PARC"));
-        convertJSON.put("cODRESP", receiveResult.getStringExtra("CODRESP"));
-        convertJSON.put("nSUHOST", receiveResult.getStringExtra("NSU_HOST"));
-
-        return convertJSON.toString();
-    }
-
-    public void printerViaVlienteMsitef(String viaCliente){
+    public void printerViaClienteMsitef(String viaCliente) {
         Map<String, Object> mapValues = new HashMap<>();
 
         mapValues.put("text", viaCliente);
@@ -493,17 +557,12 @@ public class Tef extends AppCompatActivity {
         printer.cutPaper(mapValues);
     }
 
-
-    public static void alertMessageStatus(String titleAlert, String messageAlert){
+    public static void alertMessageStatus(String titleAlert, String messageAlert) {
         AlertDialog alertDialog = new AlertDialog.Builder(context).create();
         alertDialog.setTitle(titleAlert);
         alertDialog.setMessage(messageAlert);
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-            new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
+                (dialog, which) -> dialog.dismiss());
         alertDialog.show();
     }
 
@@ -518,9 +577,9 @@ public class Tef extends AppCompatActivity {
     }
 
     public static boolean isInstallmentEmptyOrLessThanZero(String inputTextInstallment) {
-        if(inputTextInstallment.equals("")){
+        if (inputTextInstallment.equals("")) {
             return false;
-        }else {
+        } else {
             return Integer.parseInt(inputTextInstallment) > 0;
         }
     }
