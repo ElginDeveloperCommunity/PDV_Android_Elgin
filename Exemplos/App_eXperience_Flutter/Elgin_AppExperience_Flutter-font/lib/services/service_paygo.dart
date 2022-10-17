@@ -1,50 +1,56 @@
 import 'package:flutter/services.dart';
+import 'package:flutter_m8/pages/tef/TefPage.dart';
 
 class PayGoService {
-  final _platform = const MethodChannel('samples.flutter.elgin/ElginServices');
+  static const _platform =
+      const MethodChannel('samples.flutter.elgin/ElginServices');
 
-  Future<String> _sendFunctionToAndroid(Map<String, dynamic> args) async {
-    return await _platform.invokeMethod("paygo", {"args": args});
+  static Future<String> _sendFunctionToAndroid(
+      Map<String, dynamic> args) async {
+    return await _platform.invokeMethod("TEF", {"args": args});
   }
 
-  Future<String> sendOptionSale({
+  static Future<String> sendOptionSale({
     String valor = "10",
     int parcelas = 1,
-    String formaPagamento = "Crédito",
-    String tipoParcelamento = "Avista",
+    required FormaPagamento formaPagamento,
+    required FormaFinanciamento tipoParcelamento,
   }) async {
     Map<String, dynamic> mapParam = new Map();
 
-    mapParam['typeOption'] = "VENDA";
+    mapParam['opcaoTef'] = TEF.PAY_GO.toString();
+    mapParam['acaoTef'] = Acao.VENDA.toString();
     mapParam['valor'] = valor;
     mapParam['parcelas'] = parcelas;
-    mapParam['formaPagamento'] = formaPagamento;
-    mapParam['tipoParcelamento'] = tipoParcelamento;
+    mapParam['formaPagamento'] = formaPagamento.toString();
+    mapParam['formaFinanciamento'] = tipoParcelamento.toString();
 
     return await _sendFunctionToAndroid(mapParam);
   }
 
-  Future<String> sendOptionCancel({
-    String valor = "10",
-    int parcelas = 1,
-    String formaPagamento = "Crédito",
-    String tipoParcelamento = "Avista",
+  static Future<String> sendOptionCancel({
+    required String valor,
+    required int parcelas,
+    required FormaPagamento formaPagamento,
+    required FormaFinanciamento tipoParcelamento,
   }) async {
     Map<String, dynamic> mapParam = new Map();
 
-    mapParam['typeOption'] = "CANCELAMENTO";
+    mapParam['opcaoTef'] = TEF.PAY_GO.toString();
+    mapParam['acaoTef'] = Acao.CANCELAMENTO.toString();
     mapParam['valor'] = valor;
     mapParam['parcelas'] = parcelas;
-    mapParam['formaPagamento'] = formaPagamento;
-    mapParam['tipoParcelamento'] = tipoParcelamento;
+    mapParam['formaPagamento'] = formaPagamento.toString();
+    mapParam['formaFinanciamento'] = tipoParcelamento.toString();
 
     return await _sendFunctionToAndroid(mapParam);
   }
 
-  Future<String> sendOptionConfigs() async {
+  static Future<String> sendOptionConfigs() async {
     Map<String, dynamic> mapParam = new Map();
 
-    mapParam['typeOption'] = "ADMINISTRATIVA";
+    mapParam['opcaoTef'] = TEF.PAY_GO.toString();
+    mapParam['acaoTef'] = Acao.CONFIGURACAO.toString();
 
     return await _sendFunctionToAndroid(mapParam);
   }

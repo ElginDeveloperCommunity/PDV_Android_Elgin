@@ -9,7 +9,7 @@ import 'package:flutter_m8/pages/NFCe.dart';
 import 'barCodeReader.dart';
 import 'printer_pages/printer_menu.dart';
 import 'sat.dart';
-import 'TEF.dart';
+import 'tef/TefPage.dart';
 
 class MenuPage extends StatefulWidget {
   @override

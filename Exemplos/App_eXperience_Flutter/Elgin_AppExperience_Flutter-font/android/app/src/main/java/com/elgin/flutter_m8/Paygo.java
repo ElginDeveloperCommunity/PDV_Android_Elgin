@@ -6,6 +6,9 @@ import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.widget.Toast;
 
+import com.elgin.flutter_m8.TefEnums.FormaFinanciamento;
+import com.elgin.flutter_m8.TefEnums.FormaPagamento;
+
 import java.io.File;
 import java.util.Map;
 
@@ -38,7 +41,7 @@ public class Paygo {
     private Versoes versoes;
     private Handler mHandler;
 
-    public Paygo(Activity activity){
+    public Paygo(Activity activity) {
         mainActivity = activity;
         IniciaClassesInterface(false, false, false, false);
         mHandler = new Handler();
@@ -52,7 +55,7 @@ public class Paygo {
             String via_cliente = "";
 
 
-            if(mSaidaTransacao.obtemInformacaoConfirmacao()) {
+            if (mSaidaTransacao.obtemInformacaoConfirmacao()) {
                 mConfirmacao.informaStatusTransacao(StatusTransacao.CONFIRMADO_AUTOMATICO);
                 mTransacoes.confirmaTransacao(mConfirmacao);
 
@@ -60,8 +63,8 @@ public class Paygo {
                 System.out.println("VIAS: " + vias.equals("VIA_NENHUMA"));
 
                 //Imprime a via do cliente
-                if ( vias == ViasImpressao.VIA_CLIENTE || vias == ViasImpressao.VIA_CLIENTE_E_ESTABELECIMENTO) {
-                    via_cliente = mSaidaTransacao.obtemComprovanteGraficoPortador();                    
+                if (vias == ViasImpressao.VIA_CLIENTE || vias == ViasImpressao.VIA_CLIENTE_E_ESTABELECIMENTO) {
+                    via_cliente = mSaidaTransacao.obtemComprovanteGraficoPortador();
                 }
 
                 try {
@@ -96,16 +99,15 @@ public class Paygo {
 //        }
 //    }
 
-    
 
-    public void efetuaTransacao(Operacoes operacao, Map map){
+    public void efetuaTransacao(Operacoes operacao, Map<String, Object> params) {
         mEntradaTransacao = new EntradaTransacao(operacao, "1");
 
-        if(!operacao.equals(Operacoes.ADMINISTRATIVA)){
-            String valor = (String) map.get("valor");
-            int parcelas = (Integer) map.get("parcelas");
-            String formaPagamento = (String) map.get("formaPagamento");
-            String tipoParcelamento = (String) map.get("tipoParcelamento");
+        if (!operacao.equals(Operacoes.ADMINISTRATIVA)) {
+            final String valor = (String) params.get("valor");
+            final int parcelas = (Integer) params.get("parcelas");
+            final FormaPagamento formaPagamentoSelecionada = FormaPagamento.fromRotulo((String) params.get("formaPagamento"));
+            final FormaFinanciamento formaFinanciamentoSelecionada = FormaFinanciamento.fromRotulo((String) params.get("formaFinanciamento"));
 
             mEntradaTransacao.informaValorTotal(valor);
 
@@ -115,26 +117,30 @@ public class Paygo {
 
             mEntradaTransacao.informaModalidadePagamento(ModalidadesPagamento.PAGAMENTO_CARTAO);
 
-            if(formaPagamento.equals("Crédito")){
-                mEntradaTransacao.informaTipoCartao(Cartoes.CARTAO_CREDITO);
-                mEntradaTransacao.informaNumeroParcelas(parcelas);
-
-            }else if(formaPagamento.equals("Débito")){
-                mEntradaTransacao.informaTipoCartao(Cartoes.CARTAO_DEBITO);
-                mEntradaTransacao.informaNumeroParcelas(parcelas);
-
-            }else{
-                mEntradaTransacao.informaTipoCartao(Cartoes.CARTAO_DESCONHECIDO);
+            switch (formaPagamentoSelecionada) {
+                case CREDITO:
+                    mEntradaTransacao.informaTipoCartao(Cartoes.CARTAO_CREDITO);
+                    mEntradaTransacao.informaNumeroParcelas(parcelas);
+                    break;
+                case DEBITO:
+                    mEntradaTransacao.informaTipoCartao(Cartoes.CARTAO_DEBITO);
+                    mEntradaTransacao.informaNumeroParcelas(parcelas);
+                    break;
+                case TODOS:
+                    mEntradaTransacao.informaTipoCartao(Cartoes.CARTAO_DESCONHECIDO);
+                    break;
             }
 
-            if(tipoParcelamento.equals("Loja")){
-                mEntradaTransacao.informaTipoFinanciamento(Financiamentos.PARCELADO_ESTABELECIMENTO);
-
-            }else if(tipoParcelamento.equals("Adm")){
-                mEntradaTransacao.informaTipoFinanciamento(Financiamentos.PARCELADO_EMISSOR);
-
-            }else{
-                mEntradaTransacao.informaTipoFinanciamento(Financiamentos.A_VISTA);
+            switch (formaFinanciamentoSelecionada) {
+                case LOJA:
+                    mEntradaTransacao.informaTipoFinanciamento(Financiamentos.PARCELADO_ESTABELECIMENTO);
+                    break;
+                case ADM:
+                    mEntradaTransacao.informaTipoFinanciamento(Financiamentos.PARCELADO_EMISSOR);
+                    break;
+                case A_VISTA:
+                    mEntradaTransacao.informaTipoFinanciamento(Financiamentos.A_VISTA);
+                    break;
             }
 
             mEntradaTransacao.informaNomeProvedor("DEMO");
@@ -148,7 +154,7 @@ public class Paygo {
                 mDadosAutomacao.obtemPersonalizacaoCliente();
                 mSaidaTransacao = mTransacoes.realizaTransacao(mEntradaTransacao);
 
-                if(mSaidaTransacao == null)
+                if (mSaidaTransacao == null)
                     return;
 
                 mConfirmacao.informaIdentificadorConfirmacaoTransacao(
@@ -158,16 +164,16 @@ public class Paygo {
                 mEntradaTransacao = null;
             } catch (Exception e) {
                 System.out.println("Exception" + e);
-            }finally {
+            } finally {
                 mEntradaTransacao = null;
-                if(mSaidaTransacao != null) {
+                if (mSaidaTransacao != null) {
                     mHandler.post(mostraJanelaResultado);
                 }
             }
         }).start();
     }
 
-    private void IniciaClassesInterface( boolean suportaViasDiferenciadas, boolean suportaViasReduzidas, boolean troco, boolean desconto ) {
+    private void IniciaClassesInterface(boolean suportaViasDiferenciadas, boolean suportaViasReduzidas, boolean troco, boolean desconto) {
         String versaoAutomacao;
         try {
             versaoAutomacao = mainActivity.getPackageManager().getPackageInfo(
@@ -178,7 +184,7 @@ public class Paygo {
 
         mPersonalizacao = setPersonalizacao(false);
 
-        mDadosAutomacao = new DadosAutomacao("Automacao Demo", versaoAutomacao,"SETIS",
+        mDadosAutomacao = new DadosAutomacao("Automacao Demo", versaoAutomacao, "SETIS",
                 troco, desconto, suportaViasDiferenciadas, suportaViasReduzidas, true, mPersonalizacao);
 
         mTransacoes = Transacoes.obtemInstancia(mDadosAutomacao, mainActivity);
@@ -189,8 +195,8 @@ public class Paygo {
         Personalizacao.Builder pb = new Personalizacao.Builder();
 
         try {
-            if (isInverse) {            
-                pb.informaCorFonte( "#000000" );
+            if (isInverse) {
+                pb.informaCorFonte("#000000");
                 pb.informaCorFonteTeclado("#000000");
                 pb.informaCorFundoCaixaEdicao("#FFFFFF");
                 pb.informaCorFundoTela("#F4F4F4");
