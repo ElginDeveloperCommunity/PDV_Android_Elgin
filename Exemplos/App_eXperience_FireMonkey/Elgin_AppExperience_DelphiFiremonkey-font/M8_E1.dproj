@@ -275,6 +275,7 @@
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="It4r.pas"/>
+        <DCCReference Include="TefElgin.pas"/>
         <None Include="assets\xmlNFCe.xml"/>
         <None Include="assets\xmlSAT.xml"/>
         <RcItem Include="images\barcode_icon.png">

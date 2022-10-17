@@ -58,6 +58,7 @@ type
       Shift: TShiftState; X, Y: Single);
     procedure rectMenuBarCodeClick(Sender: TObject);
     procedure recBalancaClick(Sender: TObject);
+    procedure recNFCeClick(Sender: TObject);
     procedure recBridgeClick(Sender: TObject);
   private
     { Private declarations }
@@ -85,7 +86,12 @@ end;
 
 procedure TfrmMain.recBridgeClick(Sender: TObject);
 begin
-  frmNFCe.Show;
+  frmBridge.Show;
+end;
+
+procedure TfrmMain.recNFCeClick(Sender: TObject);
+begin
+   frmNFCe.Show;
 end;
 
 procedure TfrmMain.rectMenuBarCodeClick(Sender: TObject);

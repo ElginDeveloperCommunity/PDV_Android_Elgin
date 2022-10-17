@@ -30,7 +30,8 @@ uses
   Elgin.JNI.Sat in 'libs\Elgin.JNI.Sat.pas',
   Elgin.JNI.Daruma in 'libs\libs_daruma\Elgin.JNI.Daruma.pas',
   NFCeForm in 'NFCeForm.pas' {FrmNFCe},
-  It4r in 'It4r.pas';
+  It4r in 'It4r.pas',
+  TefElgin in 'TefElgin.pas';
 
 {$R *.res}
 

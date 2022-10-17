@@ -15,6 +15,7 @@ uses
   Tef.Types,
   PayGo,
   MsiTef,
+  TefElgin,
   Soap.EncdDecd,
   System.RegularExpressions, FMX.Memo.Types;
 
@@ -73,6 +74,8 @@ type
     Image6: TImage;
     Label17: TLabel;
     retornoImage: TImage;
+    opTefElgin: TRectangle;
+    Label18: TLabel;
     procedure btnConfigurarClick(Sender: TObject);
     procedure botaoEfeitoMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Single);
@@ -94,6 +97,7 @@ type
     procedure opMsitefClick(Sender: TObject);
     procedure Retorno(pagadora : SOLUCAO_PAGAMENTO_TYPE; Retorno: string; ViaCliente: string = '');
     procedure opAVistaClick(Sender: TObject);
+    procedure opTefElginClick(Sender: TObject);
   private
     { Private declarations }
     function BitmapFromBase64(const base64: string): TBitmap;
@@ -108,6 +112,7 @@ var
   TIPO_TRANSACAO : TRANSACAO_TYPE;
   SolucaoPagamento: SOLUCAO_PAGAMENTO_TYPE;
   FMessageSubscriptionID : integer;
+  NSU: string = '';
 
 implementation
 
@@ -137,10 +142,12 @@ begin
 
 
    if SolucaoPagamento = Tef.Types.PAYGO then
-
-   begin
-      PayGo_instancia.Cancelamento(valor,FormaDePagamento,Retorno);
-   end
+      PayGo_instancia.Cancelamento(valor,FormaDePagamento,Retorno)
+   else if SolucaoPagamento = Tef.Types.TEFELGIN then
+      if NSU <> '' then
+          tefelgin_instance.Action(valor,'', NSU, TIPO_TRANSACAO, FormaDePagamento, TipoDeParcelamento, Retorno)
+      else
+          ShowMessage('É necessário realizar uma transação antes para realizar o cancelamento no TEF ELGIN!')
    else
    begin
      if not TRegEx.IsMatch(edtIP.Text,'^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$') then
@@ -195,11 +202,14 @@ begin
    begin
       SelecionarTipoDeParcelamento(NENHUM);
    end;
+
+
    if SolucaoPagamento = Tef.Types.PAYGO then
    begin
       PayGo_instancia.Venda(valor,strtoint(numero_parcelas),FormaDePagamento,TipoDeParcelamento,Retorno);
    end
-   else
+
+   else if SolucaoPagamento = Tef.Types.MSITEF then
    begin
 
      if not TRegEx.IsMatch(edtIP.Text,'^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$') then
@@ -209,6 +219,11 @@ begin
      end;
 
      MsiTef_instancia.Venda(valor,edtIP.Text,numero_parcelas,FormaDePagamento,TipoDeParcelamento,Retorno);
+   end
+
+   else
+   begin
+      tefelgin_instance.Action(valor,numero_parcelas, NSU, TIPO_TRANSACAO, FormaDePagamento, TipoDeParcelamento, Retorno);
    end;
 end;
 
@@ -217,9 +232,10 @@ procedure TfrmTEF.FormActivate(Sender: TObject);
 begin
     SelecionarTipoDeParcelamento(LOJA);
     SelecionarFormaDePagamento(CREDITO);
-    SelecionarSolucaoPagamento(Tef.Types.MSITEF);
-    edtValor.Text := '100,00';
-    edtParcelas.Text := '1';
+    SelecionarSolucaoPagamento(Tef.Types.PAYGO);
+    edtValor.Text := '20,00';
+    edtParcelas.Text := '2';
+    edtIP.Enabled:= False;
 
     Impressora.printerInternalImpStart;
     TIPO_TRANSACAO := NONE;
@@ -261,16 +277,35 @@ procedure TfrmTEF.opMsitefClick(Sender: TObject);
 begin
    SelecionarSolucaoPagamento(Tef.Types.MSITEF);
    SelecionarTipoDeParcelamento(LOJA);
+   SelecionarFormaDePagamento(CREDITO);
+   opTodos.Visible := True;
    edtIP.Enabled := True;
+   btnConfigurar.Visible:= True;
    opAVista.Visible := False;
+   edtParcelas.Text := '2';
 end;
 
 procedure TfrmTEF.opPaygoClick(Sender: TObject);
 begin
    SelecionarSolucaoPagamento(Tef.Types.PAYGO);
+   SelecionarTipoDeParcelamento(NENHUM);
+   SelecionarFormaDePagamento(CREDITO);
+   opTodos.Visible := True;
    edtIP.Enabled := False;
    opAVista.Visible := True;
+   btnConfigurar.Visible:= True;
+end;
+
+procedure TfrmTEF.opTefElginClick(Sender: TObject);
+begin
+   SelecionarSolucaoPagamento(Tef.Types.TEFELGIN);
    SelecionarTipoDeParcelamento(NENHUM);
+   SelecionarFormaDePagamento(CREDITO);
+   edtIP.Enabled := False;
+   edtParcelas.Enabled := False;
+   opTodos.Visible := False;
+   opAVista.Visible := True;
+   btnConfigurar.Visible:= False;
 end;
 
 procedure TfrmTEF.opTodosClick(Sender: TObject);
@@ -295,14 +330,36 @@ begin
             memoRetornoTef.Text := ViaCliente;
             Impressora.ImprimeTexto(ViaCliente,'Centralizado','FONT B',0,True,False,False, False);
         end
+
+        else if pagadora = Tef.Types.TEFELGIN then
+        begin
+            memoRetornoTef.Visible := True;
+            retornoImage.Visible := False;
+
+            memoRetornoTef.Text := ViaCliente;
+            NSU:= Retorno;
+            Impressora.ImprimeTexto(ViaCliente,'Centralizado','FONT B',0,True,False,False, False);
+        end
+
         else
         begin
             Impressora.IImprimeCupomTEF(ViaCliente);
             memoRetornoTef.Visible := False;
             retornoImage.Visible := True;
             retornoImage.Bitmap := BitmapFromBase64(ViaCliente);
-         end;
+         end
+       end
 
+     else if (TIPO_TRANSACAO = Tef.Types.CANCELAMENTO) then
+       begin
+          if pagadora = Tef.Types.TEFELGIN then
+          begin
+              memoRetornoTef.Visible := True;
+              retornoImage.Visible := False;
+
+              memoRetornoTef.Text := ViaCliente;
+              Impressora.ImprimeTexto(ViaCliente,'Centralizado','FONT B',0,True,False,False, False);
+          end;
        end;
 
 
@@ -313,16 +370,17 @@ begin
 
   opMsitef.Stroke.Color := TAlphaColors.Black;
   opPayGo.Stroke.Color := TAlphaColors.Black;
+  opTefElgin.Stroke.Color := TAlphaColors.Black;
 
   SolucaoPagamento := solucao;
 
   case solucao of
     Tef.Types.MSITEF: opMsitef.Stroke.Color := TAlphaColors.Greenyellow;
     Tef.Types.PAYGO: opPayGo.Stroke.Color := TAlphaColors.Greenyellow;
+    Tef.Types.TEFELGIN: opTefElgin.Stroke.Color := TAlphaColors.Greenyellow;
   end;
 
 end;
-
 
 
 procedure TfrmTEF.SelecionarFormaDePagamento(forma: FORMA_PAGAMENTO_TYPE);
@@ -335,9 +393,41 @@ begin
   FormaDePagamento := forma;
 
   case forma of
-    CREDITO: opCredito.Stroke.Color := TAlphaColors.Greenyellow;
-    DEBITO: opDebito.Stroke.Color := TAlphaColors.Greenyellow;
-    TODOS: opTodos.Stroke.Color := TAlphaColors.Greenyellow;
+    CREDITO:
+    begin
+      opCredito.Stroke.Color := TAlphaColors.Greenyellow;
+
+      edtParcelas.Enabled := True;
+
+      label8.Visible:= True;
+      opAVista.Visible:= True;
+      opADM.Visible:= True;
+      opLoja.Visible:= True;
+    end;
+
+    DEBITO:
+    begin
+      opDebito.Stroke.Color := TAlphaColors.Greenyellow;
+
+      edtParcelas.Enabled := False;
+
+      label8.Visible:= False;
+      opAVista.Visible:= False;
+      opADM.Visible:= False;
+      opLoja.Visible:= False;
+    end;
+
+    TODOS:
+    begin
+      opTodos.Stroke.Color := TAlphaColors.Greenyellow;
+
+      edtParcelas.Enabled := True;
+
+      label8.Visible:= True;
+      opAVista.Visible:= True;
+      opADM.Visible:= True;
+      opLoja.Visible:= True;
+    end;
   end;
 
 end;
@@ -352,9 +442,29 @@ begin
   TipoDeParcelamento := forma;
 
   case forma of
-    NENHUM : opAVista.Stroke.Color := TAlphaColors.Greenyellow;
-    LOJA: opLoja.Stroke.Color := TAlphaColors.Greenyellow;
-    ADM: opAdm.Stroke.Color := TAlphaColors.Greenyellow;
+    NENHUM :
+    begin
+      opAVista.Stroke.Color := TAlphaColors.Greenyellow;
+
+      edtParcelas.Text := '1';
+      edtParcelas.Enabled:= False;
+    end;
+
+    LOJA:
+    begin
+      opLoja.Stroke.Color := TAlphaColors.Greenyellow;
+
+      edtParcelas.Text := '2';
+      edtParcelas.Enabled:= True;
+    end;
+
+    ADM:
+    begin
+      opAdm.Stroke.Color := TAlphaColors.Greenyellow;
+
+      edtParcelas.Text := '2';
+      edtParcelas.Enabled:= True;
+    end;
   end;
 
 end;

@@ -176,7 +176,6 @@ begin
        via_cliente :=  JStringToString(dados.getStringExtra(StringToJString('VIA_CLIENTE')));
        retono := 'Ação realizada com sucesso!';
 
-
    end else
    begin
       retono := 'Alerta! ' + sLineBreak + sLineBreak +  'Ocorreu um erro de transação';
