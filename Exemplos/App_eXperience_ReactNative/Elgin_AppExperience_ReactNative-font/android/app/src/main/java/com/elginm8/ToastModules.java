@@ -73,12 +73,14 @@ public class ToastModules extends ReactContextBaseJavaModule implements Activity
     @Override
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
 
-        if (requestCode == 4321) {
+        if (requestCode == 4321 || requestCode == 4322) {
             if (resultCode == RESULT_OK || resultCode == RESULT_CANCELED && data != null) {
                 try {
                     WritableMap result = Arguments.createMap();
-
-                    result.putString("restultMsitef", convertResultFromJSON(data));
+                    
+                    String jsonString = convertResultFromJSON(data);
+                    Log.d("onActivityResult_TEF", "oxe " + jsonString);
+                    result.putString("restultMsitef", jsonString);
                     reactContext
                             .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
                             .emit("eventResultSitef", result);
@@ -95,19 +97,20 @@ public class ToastModules extends ReactContextBaseJavaModule implements Activity
     public String convertResultFromJSON(Intent receiveResult) throws JSONException {
         JSONObject convertJSON = new JSONObject();
 
-        convertJSON.put("CODRESP", receiveResult.getStringExtra("CODRESP"));
-        convertJSON.put("COMP_DADOS_CONF", receiveResult.getStringExtra("COMP_DADOS_CONF"));
-        convertJSON.put("CODTRANS", receiveResult.getStringExtra("CODTRANS"));
-        convertJSON.put("VLTROCO", receiveResult.getStringExtra("VLTROCO"));
-        convertJSON.put("REDE_AUT", receiveResult.getStringExtra("REDE_AUT"));
-        convertJSON.put("BANDEIRA", receiveResult.getStringExtra("BANDEIRA"));
-        convertJSON.put("NSU_SITEF", receiveResult.getStringExtra("NSU_SITEF"));
-        convertJSON.put("NSU_HOST", receiveResult.getStringExtra("NSU_HOST"));
         convertJSON.put("COD_AUTORIZACAO", receiveResult.getStringExtra("COD_AUTORIZACAO"));
-        convertJSON.put("NUM_PARC", receiveResult.getStringExtra("NUM_PARC"));
-        convertJSON.put("TIPO_PARC", receiveResult.getStringExtra("TIPO_PARC"));
         convertJSON.put("VIA_ESTABELECIMENTO", receiveResult.getStringExtra("VIA_ESTABELECIMENTO"));
+        convertJSON.put("COMP_DADOS_CONF", receiveResult.getStringExtra("COMP_DADOS_CONF"));
+        convertJSON.put("BANDEIRA", receiveResult.getStringExtra("BANDEIRA"));
+        convertJSON.put("RELATORIO_TRANS", receiveResult.getStringExtra("RELATORIO_TRANS"));
+        convertJSON.put("NUM_PARC", receiveResult.getStringExtra("NUM_PARC"));
+        convertJSON.put("REDE_AUT", receiveResult.getStringExtra("REDE_AUT"));
+        convertJSON.put("NSU_SITEF", receiveResult.getStringExtra("NSU_SITEF"));
         convertJSON.put("VIA_CLIENTE", receiveResult.getStringExtra("VIA_CLIENTE"));
+        convertJSON.put("TIPO_PARC", receiveResult.getStringExtra("TIPO_PARC"));
+        convertJSON.put("CODRESP", receiveResult.getStringExtra("CODRESP"));
+        convertJSON.put("CODTRANS", receiveResult.getStringExtra("CODTRANS"));
+        convertJSON.put("NSU_HOST", receiveResult.getStringExtra("NSU_HOST"));
+        convertJSON.put("VLTROCO", receiveResult.getStringExtra("VLTROCO"));
 
         return convertJSON.toString();
     }
@@ -141,6 +144,31 @@ public class ToastModules extends ReactContextBaseJavaModule implements Activity
         } else {
             PayGo.efetuaTransacao(Operacoes.ADMINISTRATIVA, configsReceived);
         }
+    }
+
+    @ReactMethod
+    public void runTefElgin(ReadableMap configsReceived) {
+        Intent intentToTefElgin = new Intent("com.elgin.e1.digitalhub.TEF");
+        Activity thisActivity = getCurrentActivity();
+
+        instanceBundle = new Bundle();
+
+        ReadableMapKeySetIterator iterator = configsReceived.keySetIterator();
+        while (iterator.hasNextKey()) {
+            String key = iterator.nextKey();
+            instanceBundle.putString(key, configsReceived.getString(key));
+        }
+
+        intentToTefElgin.putExtras(instanceBundle);
+
+        Bundle bundle = intentToTefElgin.getExtras();
+        if (bundle != null) {
+            for (String key : bundle.keySet()) {
+                Log.e("MADARA", key + " : " + (bundle.get(key) != null ? bundle.get(key) : "NULL"));
+            }
+        }
+
+        thisActivity.startActivityForResult(intentToTefElgin, 4322);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
