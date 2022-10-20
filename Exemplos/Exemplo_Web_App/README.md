@@ -29,12 +29,14 @@ No resultado da operação virá um Json, em string, com três parâmetros:
 
 	1. `callResult`: string['success', 'failed'] = Indica o sucesso ou falha da operação, é importante notar que este parâmetro indica se a operação foi realizada ou não, e não necessariamente que a função chamada obteve sucesso. Um callResult com o valor 'failed' indica, com toda certeza, que um parâmetro incorreto foi enviado para a função, seja a falta de um parâmetro, ou tipagem incorreta.
 	2. `callResultCode`: int[0, 1000, 1001, 1002] = Indica o código-resultado da operação, existe para facilitar um possível tratamento de erro.
-	| callResultCode | Significado |
-	| :---: | :---- |
-	| 0 | Sucesso total da operação |
-	| 1000 | Parâmetro enviado não corresponde a uma string em formato Json |
-	| 1001 | Parâmetro obrigatório para a função ausente no Json enviado |
-	| 1002 | Parâmetro obrigatório com formato inválido. Ex: Um valor que deveria ser inteiro ser enviado como '2a', o que seria impossível de converter para inteiro e resultaria em uma NumberFormatException. |
+	
+| callResultCode | Significado |
+| :---: | :---- |
+| 0 | Sucesso total da operação |
+| 1000 | Parâmetro enviado não corresponde a uma string em formato Json |
+| 1001 | Parâmetro obrigatório para a função ausente no Json enviado |
+| 1002 | Parâmetro obrigatório com formato inválido. Ex: Um valor que deveria ser inteiro ser enviado como '2a', o que seria impossível de converter para inteiro e resultaria em uma NumberFormatException. |
+	
 	3. callReturn: string - Caso a função tenha obtido sucesso (callResult == 'success') este campo retornará o retorno da função requisitada, como string. (Para a função AbreConexaoImpressora por exemplo, o retorno será um inteiro, como a documentação especifica.)
 	Caso a função não tenha obtido sucesso, (callResult == 'failed') este campo conterá uma descrição mínima do erro. (Conterá os parâmtros envolvidos no erro da operação em um array, juntamente com uma descrição do erro).
 	
@@ -47,12 +49,14 @@ Operação enviada com nome correto, e todos os parâmetros corretamente:
 
 Operação enviada com parâmetro jsonString esperada em formato fora dos padrões Json:
 ```json
-{"callResult":"failed","callResultCode":1000,"callReturn":"invalid_json_string"}
+{"callResult":"failed","callResultCode":1000,"callReturn":"invalid_json_string"}
+
 ```
 
 Operação AbreConexaoImpressora enviada com parâmetro 'tipo' ausente:
 ```json
-{"callResult":"failed","callResultCode":1001,"callReturn":"missing_required_parameters : [tipo]"}
+{"callResult":"failed","callResultCode":1001,"callReturn":"missing_required_parameters : [tipo]"}
+
 ```
 
 Operação AbreConexaoImpressora enviada com parâmetro 'modelo' ausente:
