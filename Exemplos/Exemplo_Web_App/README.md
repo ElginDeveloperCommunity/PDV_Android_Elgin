@@ -10,6 +10,7 @@ Caso se queira mudar o endereço web a ser acessado pela aplicação, deverá mu
 ## Padrão de Envio/Retorno das chamdas
 As chamadas Javascript devem ser feitas por cima das interfaces disponíveis na aplicação e com parâmetros Json como string.
 A interfaces implementadas e disponíveis até o presente momento são:
+
 	* Termica
 	* Sat
 
@@ -17,7 +18,7 @@ As chamadas devem ser feitas como função da interface, com o nome da função 
 
 Exemplo:
 
-```json 
+```javascript 
 let args = JSON.stringify({ tipo: 5, modelo: '', conexao: '', parametro: 0 })
 let resultado = Termica.AbreConexaoImpressora(args)
 ```
@@ -25,6 +26,7 @@ let resultado = Termica.AbreConexaoImpressora(args)
 Obs: Lembre-se de consultar a documentação para ver os parâmetros corretos para cada função.
 <br>
 No resultado da operação virá um Json, em string, com três parâmetros:
+
 	1. `callResult`: string['success', 'failed'] = Indica o sucesso ou falha da operação, é importante notar que este parâmetro indica se a operação foi realizada ou não, e não necessariamente que a função chamada obteve sucesso. Um callResult com o valor 'failed' indica, com toda certeza, que um parâmetro incorreto foi enviado para a função, seja a falta de um parâmetro, ou tipagem incorreta.
 	2. `callResultCode`: int[0, 1000, 1001, 1002] = Indica o código-resultado da operação, existe para facilitar um possível tratamento de erro.
 	| callResultCode | Significado |
