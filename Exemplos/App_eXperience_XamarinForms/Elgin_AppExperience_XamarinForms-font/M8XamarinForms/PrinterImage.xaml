@@ -58,33 +58,23 @@
                 </StackLayout>
             </StackLayout>
             <StackLayout>
-                <Label Text="Xamarin Forms 2.1.0" TextColor="Gray" HorizontalOptions="End"/>
+                <Label Text="Xamarin.Forms 2.2.0" TextColor="Gray" HorizontalOptions="End"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style TargetType="StackLayout" x:Key="bannerStack">
-                <Setter Property="Orientation" Value="Horizontal"/>
-                <Setter Property="HeightRequest" Value="50"/>
-            </Style>
             <Style TargetType="Label" x:Key="inputLabel">
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="TextColor" Value="Black"/>
                 <Setter Property="FontSize" Value="17"/>
                 <Setter Property="Padding" Value="0,10,-10,0"/>
             </Style>
-            <Style TargetType="RadioButton" x:Key="radioButtonStyle">
-                <Setter Property="FontSize" Value="12"/>
-                <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="BackgroundColor" Value="White"/>
-            </Style>
             <Style TargetType="StackLayout" x:Key="imageStack">
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="HeightRequest" Value="130"/>
                 <Setter Property="WidthRequest" Value="400"/>
-
                 <Setter Property="Margin" Value="0,50,0,0"/>
             </Style>
             <Style TargetType="Image" x:Key="imageStyle">

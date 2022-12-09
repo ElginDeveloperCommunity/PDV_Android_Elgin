@@ -2,9 +2,12 @@
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
 using BR.Com.Setis.Interfaceautomacao;
+using Java.Text;
+using Java.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +23,9 @@ namespace M8XamarinForms.Droid
         string viaClienteMsitef;
         ///  Defines mSitef
         private static readonly int REQ_CODE_MSITEF = 4321;
-        /// Fim Defines mSitef 
-    
+        private static readonly int REQUEST_CODE_ELGINTEF = 1234;
+        /// Fim Defines mSitef
+
         public void SetPrintTrue()
         {
             print = true;
@@ -34,8 +38,6 @@ namespace M8XamarinForms.Droid
 
         public void SendSitefParams(Dictionary<string,string> parametros)
         {
-         
-
             Intent intentToMsitef;
             intentToMsitef = new Intent("br.com.softwareexpress.sitef.msitef.ACTIVITY_CLISITEF");
 
@@ -53,7 +55,7 @@ namespace M8XamarinForms.Droid
             intentToMsitef.PutExtra("operador", "0001");
             intentToMsitef.PutExtra("data", "20200324");
             intentToMsitef.PutExtra("hora", "130358");
-            intentToMsitef.PutExtra("numeroCupom", (new Random().Next(99999).ToString()));
+            intentToMsitef.PutExtra("numeroCupom", new System.Random().Next(99999).ToString());
             intentToMsitef.PutExtra("valor", valor);
             intentToMsitef.PutExtra("CNPJ_CPF", "03654119000176");
             intentToMsitef.PutExtra("comExterna", "0");
@@ -130,23 +132,37 @@ namespace M8XamarinForms.Droid
 
         public void OnTefActivityResult(int requestCode, Result resultCode, Intent data)
         {
-            if(requestCode == REQ_CODE_MSITEF)
+            if(requestCode == REQ_CODE_MSITEF || requestCode == REQUEST_CODE_ELGINTEF)
             {
                 if ((resultCode == Result.Ok || resultCode == Result.Canceled) && data != null)
                 {
-                    int CODRESP = Int32.Parse(data.GetStringExtra("CODRESP"));
+                    string CODRESP = data.GetStringExtra("CODRESP");
                     string CODAUTORIZACAO = data.GetStringExtra("COD_AUTORIZACAO");
 
-                    if ((CODRESP < 0) && (CODAUTORIZACAO.Equals("")))
+                    string VIA_ESTABELECIMENTO = data.GetStringExtra("VIA_ESTABELECIMENTO");
+                    string COMP_DADOS_CONF = data.GetStringExtra("COMP_DADOS_CONF");
+                    string BANDEIRA = data.GetStringExtra("BANDEIRA");
+                    string NUM_PARC = data.GetStringExtra("NUM_PARC");
+                    string RELATORIO_TRANS = data.GetStringExtra("RELATORIO_TRANS");
+                    string REDE_AUT = data.GetStringExtra("REDE_AUT");
+                    string NSU_SITEF = data.GetStringExtra("NSU_SITEF");
+                    string VIA_CLIENTE = data.GetStringExtra("VIA_CLIENTE");
+                    string TIPO_PARC = data.GetStringExtra("TIPO_PARC");
+                    string NSU_HOT = data.GetStringExtra("NSU_HOST");
+
+                    if (CODRESP == null || int.Parse(CODRESP) < 0)
                     {
                         MainActivity.Alert("Alerta", "Ocorreu um erro durante a transação.");
                     }
                     else
                     {
+                        Log.Debug("RESULT TEF", " " + VIA_CLIENTE);
+                        Log.Debug("RESULT TEF", " " + NSU_SITEF);
+                        Log.Debug("RESULT TEF", "==============");
+                        viaClienteMsitef = VIA_CLIENTE;
 
-                        viaClienteMsitef = data.GetStringExtra("VIA_CLIENTE");
-
-                        Xamarin.Forms.MessagingCenter.Send(Xamarin.Forms.Application.Current, "MSitef_viaCliente", this.viaClienteMsitef);
+                        Tuple<string, string> intentData = new Tuple<string, string>(VIA_CLIENTE, NSU_SITEF);
+                        Xamarin.Forms.MessagingCenter.Send(Xamarin.Forms.Application.Current, "MSitef_viaCliente", intentData);
                         if (print)
                         {
                             PrintViaClienteMsitef(viaClienteMsitef);
@@ -189,6 +205,68 @@ namespace M8XamarinForms.Droid
             else PayGo.efetuaTransacao(Operacoes.Administrativa, parametros);
         }
 
+        //TEF ELGIN IMPLEMENTATION
+        public void SendTefElginParams(Dictionary<string, string> parametros)
+        {
+            Intent intentToElginTef;
+            intentToElginTef = new Intent("com.elgin.e1.digitalhub.TEF");
 
+            string acao = parametros["acao"];
+
+            string valor = parametros["valor"];
+            intentToElginTef.PutExtra("valor", valor);
+
+            if (acao.Equals("SALE"))
+            {
+                string metodoPagamento = parametros["metodoPagamento"];
+                string formaFinanciamentoSelecionada = parametros["metodoParcelamento"];
+
+                intentToElginTef.PutExtra("modalidade", PaymentToYourCode(metodoPagamento));
+
+                switch (metodoPagamento)
+                {
+                    case "Crédito":
+                        string parcelas = parametros["parcelas"];
+                        intentToElginTef.PutExtra("numParcelas", parcelas);
+                        switch (formaFinanciamentoSelecionada)
+                        {
+                            case "A vista":
+                                intentToElginTef.PutExtra("transacoesHabilitadas", "26");
+                                break;
+                            case "Loja":
+                                intentToElginTef.PutExtra("transacoesHabilitadas", "27");
+                                break;
+                            case "Adm":
+                                intentToElginTef.PutExtra("transacoesHabilitadas", "28");
+                                break;
+                        }
+                        break;
+                    case "Débito":
+                        intentToElginTef.PutExtra("transacoesHabilitadas", "16");
+                        intentToElginTef.PutExtra("numParcelas", "");
+                        break;
+                }
+            }
+
+            if (acao.Equals("CANCEL"))
+            {
+                string lastElginTefNSU = parametros["lastElginTefNSU"];
+
+                intentToElginTef.PutExtra("modalidade", "200");
+
+                //Data do dia de hoje, usada como um dos parâmetros necessário para o cancelamento de transação no TEF Elgin.
+                Date todayDate = new Date();
+
+                //Objeto capaz de formatar a date para o formato aceito pelo Elgin TEF ("aaaaMMdd") (20220923).
+                SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyyMMdd");
+
+                string todayDateAsString = dateFormatter.Format(todayDate);
+
+                intentToElginTef.PutExtra("data", todayDateAsString);
+                intentToElginTef.PutExtra("NSU_SITEF", lastElginTefNSU);
+            }
+
+            MainActivity.mContext.StartActivityForResult(intentToElginTef, REQUEST_CODE_ELGINTEF);
+        }
     }
 }

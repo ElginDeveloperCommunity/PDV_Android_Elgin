@@ -47,7 +47,7 @@
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Spacing="15">
                                 <Label Text="ALINHAMENTO:" Style="{StaticResource inputLabel}"/>
-                                <StackLayout RadioButtonGroup.GroupName="alignRadioButtons"  RadioButtonGroup.SelectedValue="{Binding Aligment}" Orientation="Horizontal" HorizontalOptions="Start" Spacing="10" Padding="0,-10,0,0" >
+                                <StackLayout RadioButtonGroup.GroupName="alignRadioButtons"  Orientation="Horizontal" HorizontalOptions="Start" Spacing="10" Padding="0,-10,0,0" >
                                     <RadioButton  x:Name="alignEsq"  Content="ESQUERDA" Value="Esquerda" Style="{StaticResource radioButtonAlignStyle}"/>
                                     <RadioButton  x:Name="alignCent"  Content="CENTRALIZADO" Value="Centralizado" Style="{StaticResource radioButtonAlignStyle}"/>
                                     <RadioButton  x:Name="alignDir" Content="DIREITA" Value="Direita" Style="{StaticResource radioButtonAlignStyle}"/>
@@ -94,7 +94,7 @@
                 </StackLayout>
             </StackLayout>
             <StackLayout>
-                <Label Text="Xamarin Forms 2.1.0" TextColor="Gray" HorizontalOptions="End"/>
+                <Label Text="Xamarin.Forms 2.2.0" TextColor="Gray" HorizontalOptions="End"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

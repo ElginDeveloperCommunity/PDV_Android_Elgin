@@ -14,46 +14,44 @@ namespace M8XamarinForms
 
     public partial class TefPage : ContentPage
     {
-        private const string V = " ";
-        private const string V1 = " ";
-        private const string V2 = " ";
-        private string ip;
-        private string selectedPayment = V;
-        private string selectedInstallment = V1;
-        string selectedTefMeth = V2;
-
-        string viaClienteMSitef;
-        private ImageSource viaClientePaygo;
+        private string selectedTefMeth = "PAYGO";
+        private string selectedPayment = "Crédito";
+        private string selectedInstallment = "Loja";
+        private string lastElginTefNSU = "";
 
         public TefPage()
         {
             InitializeComponent();
             returnImage.Source = " ";
             ipEntry.IsEnabled = true;
-            selectedTefMeth = "M-SITEF";
+            selectedTefMeth = "PAYGO";
             valorEntry.Text = "100";
             parcelasEntry.Text = "1";
             ipEntry.Text = "192.168.0.31";
             selectedPayment = "Crédito";
             selectedInstallment = "Loja";
 
-            msitefButton.BorderColor = Color.FromHex("23F600");
+            paygoButton.BorderColor = Color.FromHex("23F600");
             CREDITO.BorderColor = Color.FromHex("23F600");
             inCashInstall.BorderColor = Color.FromHex("23F600");
 
             //Sempre que uma atividade de venda chegar ao final a via do cliente será atualizada!
 
-
-            //A via retorno do msitef é uma string 
-            MessagingCenter.Subscribe<Application, string>(Application.Current, "MSitef_viaCliente", (n_sender, resposta) =>
+            //A via retorno do msitef e tefElgin é uma string 
+            MessagingCenter.Subscribe<Application, Tuple<string, string>> (Application.Current, "MSitef_viaCliente", (n_sender, resposta) =>
             {
-                viaClienteMSitef = resposta;
+                Console.WriteLine("MSitef_viaCliente");
+                Console.WriteLine("VIA CLIENTE " + resposta.Item1);
+                Console.WriteLine("NSU_SITEF " + resposta.Item2);
+                Console.WriteLine("=============");
+                textViewViaTef.Text = resposta.Item1;
+                lastElginTefNSU = resposta.Item2;
             });
 
             //A via retorn do paygo é uma imagem/bitmap recebida como Stream
             MessagingCenter.Subscribe<Application, MemoryStream>(Application.Current, "Paygo_viaCliente", (n_sender, resposta) =>
             {
-                viaClientePaygo = ImageSource.FromStream(() => resposta);
+                returnImage.Source = ImageSource.FromStream(() => resposta);
             });
         }
 
@@ -78,7 +76,7 @@ namespace M8XamarinForms
                 DependencyService.Get<ITef>().SendSitefParams(parametros);
 
             }
-            else
+            else if (selectedTefMeth == "PAYGO")
             {
                 parametros.Add("action", "SALE");
 
@@ -89,6 +87,18 @@ namespace M8XamarinForms
 
                 DependencyService.Get<ITef>().SetPrintTrue();
                 DependencyService.Get<ITef>().SendPaygoParams(parametros);
+            }
+            else
+            {
+                parametros.Add("acao", "SALE");
+
+                parametros.Add("valor", valor);
+                parametros.Add("parcelas", parcelas);
+                parametros.Add("metodoPagamento", selectedPayment);
+                parametros.Add("metodoParcelamento", selectedInstallment);
+
+                DependencyService.Get<ITef>().SetPrintTrue();
+                DependencyService.Get<ITef>().SendTefElginParams(parametros);
             }
         }
 
@@ -113,7 +123,7 @@ namespace M8XamarinForms
                 DependencyService.Get<ITef>().SendSitefParams(parametros);
 
             }
-            else
+            else if (selectedTefMeth == "PAYGO")
             {
                 parametros.Add("action", "CANCEL");
 
@@ -124,6 +134,21 @@ namespace M8XamarinForms
 
                 DependencyService.Get<ITef>().SetPrintFalse();
                 DependencyService.Get<ITef>().SendPaygoParams(parametros);
+            }
+            else
+            {
+                if (lastElginTefNSU == null)
+                {
+                    DisplayAlert("Alert", "É necessário realizar uma transação antres para realizar o cancelamento no TEF ELGIN!", "OK");
+                    return;
+                }
+                parametros.Add("acao", "CANCEL");
+
+                parametros.Add("valor", valor);
+                parametros.Add("lastElginTefNSU", lastElginTefNSU);
+
+                DependencyService.Get<ITef>().SetPrintFalse();
+                DependencyService.Get<ITef>().SendTefElginParams(parametros);
             }
         }
 
@@ -162,13 +187,6 @@ namespace M8XamarinForms
             }
         }
 
-        private void ClearAll(object sender, EventArgs e)
-        {
-            returnImage.IsVisible = false;
-            valorEntry.Text = " ";
-
-        }
-
         private void SetPaymentMeth(object sender, EventArgs e)
         {
             //Deixando em CamelCase
@@ -181,16 +199,22 @@ namespace M8XamarinForms
                     CREDITO.BorderColor = Color.FromHex("23F600");
                     DEBITO.BorderColor = Color.Black;
                     ALL.BorderColor = Color.Black;
+                    containerParcelas.IsVisible = true;
+                    containerInstallments.IsVisible = true;
                     break;
                 case "Débito":
                     DEBITO.BorderColor = Color.FromHex("23F600");
                     ALL.BorderColor = Color.Black;
                     CREDITO.BorderColor = Color.Black;
+                    containerParcelas.IsVisible = false;
+                    containerInstallments.IsVisible = false;
                     break;
                 case "Todos":
                     ALL.BorderColor = Color.FromHex("23F600");
                     CREDITO.BorderColor = Color.Black;
                     DEBITO.BorderColor = Color.Black;
+                    containerParcelas.IsVisible = true;
+                    containerInstallments.IsVisible = true;
                     break;
             }
         }
@@ -207,16 +231,22 @@ namespace M8XamarinForms
                     storeInstall.BorderColor = Color.FromHex("23F600");
                     inCashInstall.BorderColor = Color.Black;
                     admInstall.BorderColor = Color.Black;
+                    parcelasEntry.Text = "2";
+                    parcelasEntry.IsEnabled = true;
                     break;
                 case "Adm":
                     admInstall.BorderColor = Color.FromHex("23F600");
                     inCashInstall.BorderColor = Color.Black;
                     storeInstall.BorderColor = Color.Black;
+                    parcelasEntry.Text = "2";
+                    parcelasEntry.IsEnabled = true;
                     break;
                 case "A vista":
                     inCashInstall.BorderColor = Color.FromHex("23F600");
                     storeInstall.BorderColor = Color.Black;
                     admInstall.BorderColor = Color.Black;
+                    parcelasEntry.Text = "1";
+                    parcelasEntry.IsEnabled = false;
                     break;
             }
         }
@@ -226,17 +256,32 @@ namespace M8XamarinForms
             selectedTefMeth = (sender as Button).Text;
             switch (selectedTefMeth)
             {
+                case "PAYGO":
+                    paygoButton.BorderColor = Color.FromHex("23F600");
+                    msitefButton.BorderColor = Color.Black;
+                    tefelginButton.BorderColor = Color.Black;
+                    ipEntry.IsEnabled = false;
+                    inCashInstall.IsVisible = true;
+                    ALL.IsVisible = true;
+                    configButton.IsVisible = true;
+                    break;
                 case "M-SITEF":
                     msitefButton.BorderColor = Color.FromHex("23F600");
                     paygoButton.BorderColor = Color.Black;
+                    tefelginButton.BorderColor = Color.Black;
                     ipEntry.IsEnabled = true;
-                    ip = ipEntry.Text;
+                    inCashInstall.IsVisible = false;
+                    ALL.IsVisible = true;
+                    configButton.IsVisible = true;
                     break;
-                case "PayGo":
-                    paygoButton.BorderColor = Color.FromHex("23F600");
+                case "TEF ELGIN":
+                    tefelginButton.BorderColor = Color.FromHex("23F600");
+                    paygoButton.BorderColor = Color.Black;
                     msitefButton.BorderColor = Color.Black;
                     ipEntry.IsEnabled = false;
-                    ip = " ";
+                    inCashInstall.IsVisible = true;
+                    ALL.IsVisible = false;
+                    configButton.IsVisible = false;
                     break;
             }
         }

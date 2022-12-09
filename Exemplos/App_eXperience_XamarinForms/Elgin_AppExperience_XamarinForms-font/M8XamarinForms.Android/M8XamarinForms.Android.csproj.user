@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <SelectedDevice>Pixel_C_API_30</SelectedDevice>
-    <ActiveDebugProfile>Pixel_C_API_30</ActiveDebugProfile>
+    <SelectedDevice>Pixel_3_API_30</SelectedDevice>
+    <ActiveDebugProfile>Pixel_3_API_30</ActiveDebugProfile>
     <ProjectView>ProjectFiles</ProjectView>
     <AndroidDesignerPreferredTheme>MainTheme</AndroidDesignerPreferredTheme>
-    <DefaultDevice>Pixel_C_API_30</DefaultDevice>
+    <DefaultDevice>Pixel_3_API_30</DefaultDevice>
   </PropertyGroup>
 </Project>

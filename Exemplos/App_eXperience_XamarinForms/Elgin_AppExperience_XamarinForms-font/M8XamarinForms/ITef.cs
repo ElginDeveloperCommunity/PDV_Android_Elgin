@@ -13,5 +13,7 @@ namespace M8XamarinForms
         void SetPrintFalse();
 
         void SendPaygoParams(Dictionary<string, string> parametros);
+
+        void SendTefElginParams(Dictionary<string, string> parametros);
     }
 }

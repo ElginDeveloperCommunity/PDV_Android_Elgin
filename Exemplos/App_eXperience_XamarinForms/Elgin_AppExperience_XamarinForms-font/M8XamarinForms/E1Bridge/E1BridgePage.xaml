@@ -75,7 +75,7 @@
                 </StackLayout>
             </StackLayout>
             <StackLayout>
-                <Label Text="Xamarin Forms 2.1.0" TextColor="Gray" HorizontalOptions="End"/>
+                <Label Text="Xamarin.Forms 2.2.0" TextColor="Gray" HorizontalOptions="End"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -48,7 +48,7 @@
                     </Frame>
                 </StackLayout>
             </StackLayout>
-            <Label Text="Xamarin Forms 2.1.0" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,0,10"/>
+            <Label Text="Xamarin.Forms 2.2.0" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,0,10"/>
         </StackLayout>
     </ContentPage.Content>
     <ContentPage.Resources>

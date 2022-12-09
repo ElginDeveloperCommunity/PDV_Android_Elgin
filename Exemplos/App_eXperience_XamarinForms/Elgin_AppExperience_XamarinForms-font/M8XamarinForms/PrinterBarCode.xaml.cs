@@ -43,28 +43,14 @@ namespace M8XamarinForms
             externalPrinterIpRadio.CheckedChanged += PrinterConectionChanged;
             externalPrinterUsbRadio.CheckedChanged += PrinterConectionChanged;
 
-            barCodeType.Items.Add("EAN 8");
-            barCodeType.Items.Add("EAN 13");
-            barCodeType.Items.Add("QR CODE");
-            barCodeType.Items.Add("UPC-A");
-            barCodeType.Items.Add("UPC-E");
-            barCodeType.Items.Add("CODE 39");
-            barCodeType.Items.Add("ITF");
-            barCodeType.Items.Add("CODE BAR");
-            barCodeType.Items.Add("CODE 93");
-            barCodeType.Items.Add("CODE 128");
+            string[] barCodeOptions = new string[] { "EAN 8", "EAN 13", "QR CODE", "UPC-A", "CODE 39", "ITF", "CODE BAR", "CODE 93", "CODE 128" };
+            barCodeType.ItemsSource = barCodeOptions;
 
-            heigthPicker.Items.Add("20");
-            heigthPicker.Items.Add("60");
-            heigthPicker.Items.Add("120");
-            heigthPicker.Items.Add("200");
+            string[] heigthOptions = new string[] { "20", "60", "120", "200" };
+            heigthPicker.ItemsSource = heigthOptions;
 
-            widthPicker.Items.Add("1");
-            widthPicker.Items.Add("2");
-            widthPicker.Items.Add("3");
-            widthPicker.Items.Add("4");
-            widthPicker.Items.Add("5");
-            widthPicker.Items.Add("6");
+            string[] widthOptions = new string[] { "1", "2", "3", "4", "5", "6" };
+            widthPicker.ItemsSource = widthOptions;
 
             codeEntry.Text = "40170725";
             barCodeType.SelectedIndex = 0;
@@ -98,7 +84,6 @@ namespace M8XamarinForms
 
         private void DoPrinterBarCode(object sender, EventArgs e)
         {
-
             if (codeEntry.Text == "") 
             {
                 DisplayAlert("Campo Vazio", "A entrada do Código de Barras está vazio, insira um valor", "OK");
@@ -113,8 +98,6 @@ namespace M8XamarinForms
                     DoPrinterBarcodeDefault();
                 }
             }
-
-
         }
 
         private void DoPrinterBarcodeDefault()

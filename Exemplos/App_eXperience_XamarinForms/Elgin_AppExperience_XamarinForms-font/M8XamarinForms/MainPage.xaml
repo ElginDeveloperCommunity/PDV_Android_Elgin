@@ -58,7 +58,7 @@
                     <Button Style="{StaticResource navigationButton}" Clicked="OpenBarCodePage" Grid.Row="0" Grid.Column="0" Text="Código de Barras" ImageSource="barCodeL.png"/>
                 </Grid>
             </Grid>
-            <Label Grid.Row="2" Text="Xamarin Forms 2.1.0" VerticalOptions="End" HorizontalOptions="End" Padding="0,0,10,10"/>
+            <Label Grid.Row="2" Text="Xamarin.Forms 2.2.0" VerticalOptions="End" HorizontalOptions="End" Padding="0,0,10,10"/>
         </Grid>
     </StackLayout>
 
