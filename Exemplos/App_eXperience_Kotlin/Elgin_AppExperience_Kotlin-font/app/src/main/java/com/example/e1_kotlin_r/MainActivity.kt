@@ -3,12 +3,10 @@ package com.example.e1_kotlin_r
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import br.com.daruma.framework.mobile.gne.nfce.xml.auxiliar.Aux_XmlNfce
 import com.example.e1_kotlin_r.NFCE.NfcePage
+
 
 
 class MainActivity : AppCompatActivity() {
