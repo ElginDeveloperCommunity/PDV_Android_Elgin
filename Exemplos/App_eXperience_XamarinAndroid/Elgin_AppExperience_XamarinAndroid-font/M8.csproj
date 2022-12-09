@@ -42,7 +42,7 @@
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <BundleAssemblies>false</BundleAssemblies>
     <AndroidSupportedAbis>armeabi-v7a;x86;x86_64</AndroidSupportedAbis>
-    <AndroidKeyStore>true</AndroidKeyStore>
+    <AndroidKeyStore>false</AndroidKeyStore>
     <AndroidSigningKeyStore>C:\Users\victo\AppData\Local\Xamarin\Mono for Android\Keystore\E1_Xamarin_Android\E1_Xamarin_Android.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>E1_Xamarin_Android</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>E1_Xamarin_Android</AndroidSigningKeyAlias>
@@ -361,6 +361,20 @@
     <AndroidResource Include="Resources\drawable\round_button.xml" />
     <AndroidResource Include="Resources\drawable\round_button_greyed_out.xml" />
     <AndroidResource Include="Resources\drawable\round_button_selector.xml" />
+    <AndroidResource Include="Resources\drawable\adm_icon.xml" />
+    <AndroidResource Include="Resources\drawable\bar_code.png" />
+    <AndroidResource Include="Resources\drawable\box.xml" />
+    <AndroidResource Include="Resources\drawable\boxpressed.xml" />
+    <AndroidResource Include="Resources\drawable\card_icon.xml" />
+    <AndroidResource Include="Resources\drawable\original.jpg" />
+    <AndroidResource Include="Resources\drawable\printer_bar_code.png" />
+    <AndroidResource Include="Resources\drawable\printer_image.png" />
+    <AndroidResource Include="Resources\drawable\printer_text.png" />
+    <AndroidResource Include="Resources\drawable\qrcode_github.png" />
+    <AndroidResource Include="Resources\drawable\status_printer.png" />
+    <AndroidResource Include="Resources\drawable\store_icon.xml" />
+    <AndroidResource Include="Resources\drawable\tef.png" />
+    <AndroidResource Include="Resources\drawable\voucher_icon.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

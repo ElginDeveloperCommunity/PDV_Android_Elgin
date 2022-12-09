@@ -5,13 +5,14 @@ using Android.OS;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
-
 using BR.Com.Setis.Interfaceautomacao;
-
+using Java.Util;
 using Java.Util.Regex;
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using Random = System.Random;
 
 namespace M8
 {
@@ -20,11 +21,20 @@ namespace M8
     {
         private static Context context;
         //Intent MSiTef
-        Intent intentToMsitef; 
+        Intent intentToMsitef;
+
+        //Intent para o TEF ELGIN.
+        Intent intentToElginTef;
+
+        int REQUEST_CODE_ELGINTEF = 1234;
+
+        //Ultima referência de venda, necessária para o cancelamento de venda no TEF ELGIN.
+        String lastElginTefNSU = "";
 
         //BUTTONS TYPE TEF
         Button buttonMsitefOption;
         Button buttonPaygoOption;
+        Button buttonElginTefOption;
 
         //EDIT TEXTs
         EditText editTextValueTEF;
@@ -46,10 +56,17 @@ namespace M8
         Button buttonCancelTransaction;
         Button buttonConfigsTransaction;
 
+        //Captura o layout referente aos botoões de financiamento, para aplicar a lógica de sumir estas opções caso o pagamento por débito seja selecionado.
+        private LinearLayout linearLayoutInstallmentsMethodsTEF;
+
+        //Captura o layout referente ao campo de "número de parcelas", para aplicar a loǵica de sumir este campo caso o pagamento por débito seja selecionado.
+        private LinearLayout linearLayoutNumberOfInstallmentsTEF;
+
         //IMAGE VIEW VIA PAYGO
         static ImageView imageViewViaPaygo;
 
-        static TextView textViewViaMsitef;
+        //TextView Via TEFs
+        static TextView textViewViaTef;
         string viaClienteMsitef;
 
         //INIT DEFAULT OPTIONS
@@ -73,10 +90,13 @@ namespace M8
             imageViewViaPaygo = FindViewById<ImageView>(Resource.Id.imageViewViaPaygo);
 
             //INIT TEXT VIEW VIA MSITEF
-            textViewViaMsitef = FindViewById<TextView>(Resource.Id.textViewViaMsitef);
+            textViewViaTef = FindViewById<TextView>(Resource.Id.textViewViaTef);
 
             //MSitef
             intentToMsitef = new Intent("br.com.softwareexpress.sitef.msitef.ACTIVITY_CLISITEF");
+
+            //TEF
+            intentToElginTef = new Intent("com.elgin.e1.digitalhub.TEF");
 
             //Inicializando Impressora Interna
             Impressora.printerService = new Printer(this);
@@ -88,7 +108,7 @@ namespace M8
             //INIT BUTTONS TYPE TEF
             buttonMsitefOption = FindViewById<Button>(Resource.Id.buttonMsitefOption);
             buttonPaygoOption = FindViewById<Button>(Resource.Id.buttonPaygoOption);
-
+            buttonElginTefOption = FindViewById<Button>(Resource.Id.buttonElginTefOption);
             //INIT EDIT TEXTs
             editTextValueTEF = FindViewById<EditText>(Resource.Id.editTextInputValueTEF);
             editTextInstallmentsTEF = FindViewById<EditText>(Resource.Id.editTextInputInstallmentsTEF);
@@ -102,12 +122,15 @@ namespace M8
             //INIT BUTTONS TYPE INSTALLMENTS
             buttonStoreOption = FindViewById<Button>(Resource.Id.buttonStoreOption);
             buttonAdmOption = FindViewById<Button>(Resource.Id.buttonAdmOption);
-            buttonAvistaOption = FindViewById<Button>(Resource.Id.buttonAvistaOption);
+            buttonAvistaOption = FindViewById<Button>(Resource.Id.buttonCashOption);
 
             //INIT BUTTONS ACTIONS TEF
             buttonSendTransaction = FindViewById<Button>(Resource.Id.buttonSendTransactionTEF);
             buttonCancelTransaction = FindViewById<Button>(Resource.Id.buttonCancelTransactionTEF);
             buttonConfigsTransaction = FindViewById<Button>(Resource.Id.buttonConfigsTEF);
+
+            linearLayoutNumberOfInstallmentsTEF = FindViewById<LinearLayout>(Resource.Id.linearLayoutNumberOfInstallmentsTEF);
+            linearLayoutInstallmentsMethodsTEF = FindViewById<LinearLayout>(Resource.Id.linearLayoutInstallmentsMethodsTEF);
 
             //SELECT INITIALS OPTIONS
             buttonPaygoOption.BackgroundTintList = GetColorStateList(Resource.Color.verde);
@@ -115,13 +138,14 @@ namespace M8
             buttonAvistaOption.BackgroundTintList = GetColorStateList(Resource.Color.verde);
 
             //INIT DEFAULT INPUTS
+            editTextValueTEF.AddTextChangedListener(new InputMaskMoney(editTextValueTEF));
             editTextValueTEF.Text = "2000";
             editTextInstallmentsTEF.Text = "1";
             editTextIpTEF.Text = "192.168.0.31";
 
             editTextIpTEF.Enabled = false;
             editTextIpTEF.FocusableInTouchMode = false;
-            textViewViaMsitef.Visibility = ViewStates.Invisible;
+            textViewViaTef.Visibility = ViewStates.Invisible;
 
             //SELECT OPTION M-SITEF
             buttonMsitefOption.Click += delegate
@@ -130,10 +154,17 @@ namespace M8
 
                 buttonMsitefOption.BackgroundTintList = GetColorStateList(Resource.Color.verde);
                 buttonPaygoOption.BackgroundTintList = GetColorStateList(Resource.Color.black);
+                buttonElginTefOption.BackgroundTintList = GetColorStateList(Resource.Color.black);
 
                 editTextIpTEF.Enabled = true;
                 editTextIpTEF.FocusableInTouchMode = true;
                 buttonAvistaOption.Enabled = false;
+
+                buttonVoucherOption.Enabled = true;
+                buttonVoucherOption.Visibility = ViewStates.Visible;
+
+                buttonConfigsTransaction.Enabled = true;
+                buttonConfigsTransaction.Visibility = ViewStates.Visible;
 
                 if (selectedInstallmentsMethod.Equals("Avista"))
                 {
@@ -141,9 +172,31 @@ namespace M8
                     buttonAvistaOption.BackgroundTintList = GetColorStateList(Resource.Color.black);
                     buttonStoreOption.BackgroundTintList = GetColorStateList(Resource.Color.verde);
                 }
-                textViewViaMsitef.Visibility = ViewStates.Visible;
+                textViewViaTef.Visibility = ViewStates.Visible;
 
                 buttonAvistaOption.Visibility = ViewStates.Invisible;
+                imageViewViaPaygo.Visibility = ViewStates.Invisible;
+            };
+
+            //SELECT OPTION TEF
+            buttonElginTefOption.Click += delegate
+            {
+                selectedTefType = "Tef";
+
+                buttonMsitefOption.BackgroundTintList = GetColorStateList(Resource.Color.black);
+                buttonElginTefOption.BackgroundTintList = GetColorStateList(Resource.Color.verde);
+                buttonPaygoOption.BackgroundTintList = GetColorStateList(Resource.Color.black);
+
+                editTextIpTEF.Enabled = false;
+                editTextIpTEF.FocusableInTouchMode = false;
+                buttonAvistaOption.Enabled = true;
+                textViewViaTef.Visibility = ViewStates.Visible;
+                buttonConfigsTransaction.Enabled = false;
+                buttonConfigsTransaction.Visibility = ViewStates.Invisible;
+                buttonVoucherOption.Enabled = false;
+                buttonVoucherOption.Visibility = ViewStates.Invisible;
+
+                buttonAvistaOption.Visibility = ViewStates.Visible;
                 imageViewViaPaygo.Visibility = ViewStates.Invisible;
             };
 
@@ -154,14 +207,21 @@ namespace M8
 
                 buttonMsitefOption.BackgroundTintList = GetColorStateList(Resource.Color.black);
                 buttonPaygoOption.BackgroundTintList = GetColorStateList(Resource.Color.verde);
+                buttonElginTefOption.BackgroundTintList = GetColorStateList(Resource.Color.black);
 
                 editTextIpTEF.Enabled = false;
                 editTextIpTEF.FocusableInTouchMode = false;
                 buttonAvistaOption.Enabled = true;
 
+                buttonConfigsTransaction.Enabled = true;
+                buttonConfigsTransaction.Visibility = ViewStates.Visible;
+
                 buttonAvistaOption.Visibility = ViewStates.Visible;
-                textViewViaMsitef.Visibility = ViewStates.Invisible;
+                textViewViaTef.Visibility = ViewStates.Invisible;
                 imageViewViaPaygo.Visibility = ViewStates.Visible;
+
+                buttonVoucherOption.Enabled = true;
+                buttonVoucherOption.Visibility = ViewStates.Visible;
             };
 
 
@@ -257,7 +317,12 @@ namespace M8
                 SendPaygoParams(action);
             }
         }
-
+        //Retorna o valor monetário inserido, de maneira limpa. (Os TEFs devem receber o valor em centavos, 2000 para 20 reais, por exemplo).
+        private String getTextValueTEFClean()
+        {
+            //As vírgulas e pontos inseridas pelas máscaras são retiradas.
+            return editTextValueTEF.Text.Replace(",", "").Replace("\\.", "");
+        }
         public void SendPaygoParams(string action)
         {
             Dictionary<string, string> dictionaryValues = new Dictionary<string, string>();
@@ -292,7 +357,7 @@ namespace M8
             {
                 string imageViaBase64 = dictionary["via_cliente"];
 
-                byte[] decodedString = Base64.Decode(imageViaBase64, Base64Flags.Default);
+                byte[] decodedString = Android.Util.Base64.Decode(imageViaBase64, Base64Flags.Default);
                 Bitmap decodedByte = BitmapFactory.DecodeByteArray(decodedString, 0, decodedString.Length);
                 imageViewViaPaygo.SetImageBitmap(decodedByte);
 
@@ -352,7 +417,18 @@ namespace M8
                 return false;
             }
         }
-
+        public String getSelectedPaymentCode()
+        {
+            switch (selectedPaymentMethod)
+            {
+                case "CREDITO":
+                    return "3";
+                case "DEBITO":
+                    return "2";
+                default: //case "Todos"
+                    return "0";
+            }
+        }
         public void SendSitefParams(string action)
         {
             //PARAMS DEFAULT TO ALL ACTION M-SITEF
@@ -425,6 +501,61 @@ namespace M8
             StartActivityForResult(intentToMsitef, 4321);
         }
 
+        private void sendElginTefParams(String action)
+        {
+            //Configura o valor da transação.
+            intentToElginTef.PutExtra("valor", getTextValueTEFClean());
+
+            switch (action)
+            {
+                case ("VENDA"):
+                    intentToElginTef.PutExtra("modalidade", getSelectedPaymentCode());
+                    switch (selectedPaymentMethod)
+                    {
+                        case "CREDITO":
+                            intentToElginTef.PutExtra("numParcelas", editTextInstallmentsTEF.Text);
+                            switch (selectedInstallmentsMethod)
+                            {
+                                case "A_VISTA":
+                                    intentToElginTef.PutExtra("transacoesHabilitadas", "26");
+                                    break;
+                                case "LOJA":
+                                    intentToElginTef.PutExtra("transacoesHabilitadas", "27");
+                                    break;
+                                case "ADM":
+                                    intentToElginTef.PutExtra("transacoesHabilitadas", "28");
+                                    break;
+                            }
+                            break;
+                        case "DEBITO":
+                            intentToElginTef.PutExtra("transacoesHabilitadas", "16");
+                            intentToElginTef.PutExtra("numParcelas", "");
+                            break;
+                    }
+                    break;
+                case "CANCELAMENTO":
+                    if (lastElginTefNSU.Equals(""))
+                    {
+                        Alert("Alert", "É necessário realizar uma transação antres para realizar o cancelamento no TEF ELGIN!");
+                        return;
+                    }
+
+                    intentToElginTef.PutExtra("modalidade", "200");
+
+                    //Data do dia de hoje, usada como um dos parâmetros necessário para o cancelamento de transação no TEF Elgin.
+                    DateTime todayDate = DateTime.Now;
+
+                    //Objeto capaz de formatar a date para o formato aceito pelo Elgin TEF ("aaaaMMdd") (20220923).
+                    var formatInfo = new CultureInfo("ja-JP").DateTimeFormat;
+                    formatInfo.DateSeparator = "";
+
+                    intentToElginTef.PutExtra("data", todayDate.ToString());
+                    intentToElginTef.PutExtra("NSU_SITEF", lastElginTefNSU);
+                    break;
+            }
+            StartActivityForResult(intentToElginTef, REQUEST_CODE_ELGINTEF);
+        }
+
         public string PaymentToYourCode(string payment)
         {
             switch (payment)
@@ -457,7 +588,7 @@ namespace M8
                     {
                         viaClienteMsitef = sitefReturn.VIACLIENTE;
 
-                        textViewViaMsitef.Text = viaClienteMsitef;
+                        textViewViaTef.Text = viaClienteMsitef;
 
                         if(print)
                         {
