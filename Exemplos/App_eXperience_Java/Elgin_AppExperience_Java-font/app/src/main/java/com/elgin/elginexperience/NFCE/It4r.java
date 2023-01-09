@@ -97,23 +97,23 @@ public final class It4r extends It4rAbstract {
         Thread configurateXmlNfceThread = new Thread(() ->
         {
             try {
-                dmf.RegAlterarValor_NFCe("CONFIGURACAO\\EmpPK", "YPxRwGxIbpWZtwhuC0m+Wg==", false);
-                dmf.RegAlterarValor_NFCe("CONFIGURACAO\\EmpCK", "eKdz2fcZg9ZMt3DrfF/KSIVoH59Ca6nN", false);
-                dmf.RegAlterarValor_NFCe("IDE\\cUF", "43", false);
-                dmf.RegAlterarValor_NFCe("EMIT\\CNPJ", "06354976000149", false);
-                dmf.RegAlterarValor_NFCe("EMIT\\IE", "1470049241", false);
-                dmf.RegAlterarValor_NFCe("EMIT\\xNome", "ITFast", false);
-                dmf.RegAlterarValor_NFCe("EMIT\\ENDEREMIT\\UF", "RS", false);
-                dmf.RegAlterarValor_NFCe("EMIT\\CRT", "3", false);
-                dmf.RegAlterarValor_NFCe("EMIT\\CRT", "3", false);
-                dmf.RegAlterarValor_NFCe("CONFIGURACAO\\TipoAmbiente", "2", false);
+                dmf.RegAlterarValor_NFCe("CONFIGURACAO\\EmpPK", "<INSERIR SEUS DADOS>", false);
+                dmf.RegAlterarValor_NFCe("CONFIGURACAO\\EmpCK", "<INSERIR SEUS DADOS>", false);
+                dmf.RegAlterarValor_NFCe("IDE\\cUF", "<INSERIR SEUS DADOS>", false);
+                dmf.RegAlterarValor_NFCe("EMIT\\CNPJ", "<INSERIR SEUS DADOS>", false);
+                dmf.RegAlterarValor_NFCe("EMIT\\IE", "<INSERIR SEUS DADOS>", false);
+                dmf.RegAlterarValor_NFCe("EMIT\\xNome", "<INSERIR SEUS DADOS>", false);
+                dmf.RegAlterarValor_NFCe("EMIT\\ENDEREMIT\\UF", "<INSERIR SEUS DADOS>", false);
+                dmf.RegAlterarValor_NFCe("EMIT\\CRT", "<INSERIR SEUS DADOS>", false);
+                dmf.RegAlterarValor_NFCe("EMIT\\CRT", "<INSERIR SEUS DADOS>", false);
+                dmf.RegAlterarValor_NFCe("CONFIGURACAO\\TipoAmbiente", "<TIPO DE AMBIENTE>", false);
                 dmf.RegAlterarValor_NFCe("CONFIGURACAO\\Impressora", "EPSON", false);
                 dmf.RegAlterarValor_NFCe("CONFIGURACAO\\AvisoContingencia", "1", false);
                 dmf.RegAlterarValor_NFCe("CONFIGURACAO\\ImpressaoCompleta", "2", false);
                 dmf.RegAlterarValor_NFCe("CONFIGURACAO\\NumeracaoAutomatica", "1", false);
                 dmf.RegAlterarValor_NFCe("CONFIGURACAO\\HabilitarSAT", "0", false);
-                dmf.RegAlterarValor_NFCe("CONFIGURACAO\\IdToken", "000001", false);
-                dmf.RegAlterarValor_NFCe("CONFIGURACAO\\Token", "1A451E99-0FE0-4C13-B97E-67D698FFBC37", false);
+                dmf.RegAlterarValor_NFCe("CONFIGURACAO\\IdToken", "<INSERIR SEUS DADOS>", false);
+                dmf.RegAlterarValor_NFCe("CONFIGURACAO\\Token", "<INSERIR SEUS DADOS>", false);
                 dmf.RegAlterarValor_NFCe("IDE\\Serie", "133", false);
                 dmf.RegAlterarValor_NFCe("CONFIGURACAO\\NT\\VersaoNT", "400", false);
                 dmf.RegAlterarValor_NFCe("CONFIGURACAO\\EstadoCFe", "0", false);

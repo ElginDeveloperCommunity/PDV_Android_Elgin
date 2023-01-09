@@ -10,6 +10,7 @@ import com.elgin.e1.Impressora.Termica;
 
 import java.io.File;
 import java.util.Map;
+import java.util.Objects;
 
 public class PrinterService {
     public Activity mActivity;
@@ -22,37 +23,47 @@ public class PrinterService {
         Termica.setContext(mActivity);
     }
 
+    // Construtor sem argumento utilizado apenas para a criação de testes de validaçõ dos parâmetros.
+    public PrinterService() {
+
+    }
+
     public int printerInternalImpStart() {
         printerStop();
         int result = Termica.AbreConexaoImpressora(6, "M8", "", 0);
 
-        if(result == 0) this.isPrinterInternSelected = true;
+        if (result == 0) this.isPrinterInternSelected = true;
 
         return result;
     }
 
     public int printerExternalImpStartByIP(String model, String ip, int port) {
+        Objects.requireNonNull(model, "model");
+        Objects.requireNonNull(ip, "ip");
+
         printerStop();
         try {
             int result = Termica.AbreConexaoImpressora(3, model, ip, port);
 
-            if(result == 0) this.isPrinterInternSelected = false;
+            if (result == 0) this.isPrinterInternSelected = false;
 
             return result;
-        }catch (Exception e){
+        } catch (Exception e) {
             return printerInternalImpStart();
         }
     }
 
-    public int printerExternalImpStartByUSB(String model){
+    public int printerExternalImpStartByUSB(String model) {
+        Objects.requireNonNull(model);
+
         printerStop();
-        try{
+        try {
             int result = Termica.AbreConexaoImpressora(1, model, "USB", 0);
 
-            if(result == 0) this.isPrinterInternSelected = false;
+            if (result == 0) this.isPrinterInternSelected = false;
 
             return result;
-        }catch (Exception e){
+        } catch (Exception e) {
             return printerInternalImpStart();
         }
     }
@@ -61,45 +72,49 @@ public class PrinterService {
         Termica.FechaConexaoImpressora();
     }
 
-    public int AvancaLinhas(Map map) {
-        int lines = (Integer) map.get("quant");
+    public int AvancaLinhas(Map<String, Object> map) {
+        final int lines = (Integer) Objects.requireNonNull(map.get("quant"), "quant");
+
         return Termica.AvancaPapel(lines);
     }
 
-    public int cutPaper(Map map) {
-        int lines = (Integer) map.get("quant");
+    public int cutPaper(Map<String, Object> map) {
+        final int lines = (Integer) Objects.requireNonNull(map.get("quant"), "quant");
+
         return Termica.Corte(lines);
     }
 
-    public int imprimeTexto(Map map) {
-        String text = (String) map.get("text");
-        String align = (String) map.get("align");
-        String font = (String) map.get("font");
-        int fontSize = (Integer) map.get("fontSize");
-
-        //System.out.println(text + " " + align + " " + font + " " + String.valueOf(fontSize));
+    public int imprimeTexto(Map<String, Object> map) {
+        final String text = (String) Objects.requireNonNull(map.get("text"), "text");
+        final String align = (String) Objects.requireNonNull(map.get("align"), "align");
+        final String font = (String) Objects.requireNonNull(map.get("font"), "font");
+        final int fontSize = (Integer) Objects.requireNonNull(map.get("fontSize"), "fontSize");
 
         int result = 0;
-
         int alignValue = 0;
         int styleValue = 0;
 
         // ALINHAMENTO VALUE
-        if (align.equals("Esquerda")) {
-            alignValue = 0;
-        } else if (align.equals("Centralizado")) {
-            alignValue = 1;
-        } else {
-            alignValue = 2;
+        switch (align) {
+            case "Esquerda":
+                alignValue = 0;
+                break;
+            case "Centralizado":
+                alignValue = 1;
+                break;
+            default:
+                alignValue = 2;
+                break;
         }
+
         //STILO VALUE
         if (font.equals("FONT B")) {
             styleValue += 1;
         }
-        if ((boolean) map.get("isUnderline")) {
+        if ((boolean) Objects.requireNonNull(map.get("isUnderline"))) {
             styleValue += 2;
         }
-        if ((boolean) map.get("isBold")) {
+        if ((boolean) Objects.requireNonNull(map.get("isBold"))) {
             styleValue += 8;
         }
 
@@ -108,45 +123,54 @@ public class PrinterService {
     }
 
     private int codeOfBarCode(String barCodeName) {
-        if (barCodeName.equals("UPC-A"))
-            return 0;
-        else if (barCodeName.equals("UPC-E"))
-            return 1;
-        else if (barCodeName.equals("EAN 13") || barCodeName.equals("JAN 13"))
-            return 2;
-        else if (barCodeName.equals("EAN 8") || barCodeName.equals("JAN 8"))
-            return 3;
-        else if (barCodeName.equals("CODE 39"))
-            return 4;
-        else if (barCodeName.equals("ITF"))
-            return 5;
-        else if (barCodeName.equals("CODE BAR"))
-            return 6;
-        else if (barCodeName.equals("CODE 93"))
-            return 7;
-        else if (barCodeName.equals("CODE 128"))
-            return 8;
-        else return 0;
+        switch (barCodeName) {
+            case "UPC-A":
+                return 0;
+            case "UPC-E":
+                return 1;
+            case "EAN 13":
+            case "JAN 13":
+                return 2;
+            case "EAN 8":
+            case "JAN 8":
+                return 3;
+            case "CODE 39":
+                return 4;
+            case "ITF":
+                return 5;
+            case "CODE BAR":
+                return 6;
+            case "CODE 93":
+                return 7;
+            case "CODE 128":
+                return 8;
+            default:
+                throw new AssertionError(barCodeName);
+        }
     }
 
-    public int imprimeBarCode(Map map) {
-        int barCodeType = codeOfBarCode((String) map.get("barCodeType"));
-        String text = (String) map.get("text");
-        int height = (Integer) map.get("height");
-        int width = (Integer) map.get("width");
-        String align = (String) map.get("align");
+    public int imprimeBarCode(Map<String, Object> map) {
+        final int barCodeType = codeOfBarCode((String) Objects.requireNonNull(map.get("barCodeType"), "barCodeType"));
+        final String text = (String) Objects.requireNonNull(map.get("text"), "text");
+        final int height = (Integer) Objects.requireNonNull(map.get("height"), "height");
+        final int width = (Integer) Objects.requireNonNull(map.get("width"), "width");
+        final String align = (String) Objects.requireNonNull(map.get("align"), "align");
 
-        int hri = 4; // NO PRINT
-        int result;
-        int alignValue;
+        final int hri = 4; // NO PRINT
+        final int result;
+        final int alignValue;
 
         // ALINHAMENTO VALUE
-        if (align.equals("Esquerda")) {
-            alignValue = 0;
-        } else if (align.equals("Centralizado")) {
-            alignValue = 1;
-        } else {
-            alignValue = 2;
+        switch (align) {
+            case "Esquerda":
+                alignValue = 0;
+                break;
+            case "Centralizado":
+                alignValue = 1;
+                break;
+            default:
+                alignValue = 2;
+                break;
         }
 
         Termica.DefinePosicao(alignValue);
@@ -156,21 +180,26 @@ public class PrinterService {
         return result;
     }
 
-    public int imprimeQR_CODE(Map map) {
-        int size = (Integer) map.get("qrSize");
-        String text = (String) map.get("text");
-        String align = (String) map.get("align");
-        int nivelCorrecao = 2;
-        int result;
-        int alignValue;
+    public int imprimeQR_CODE(Map<String, Object> map) {
+        final int size = (Integer) Objects.requireNonNull(map.get("qrSize"), "qrSize");
+        final String text = (String) Objects.requireNonNull(map.get("text"), "text");
+        final String align = (String) Objects.requireNonNull(map.get("align"), "align");
+
+        final int nivelCorrecao = 2;
+        final int result;
+        final int alignValue;
 
         // ALINHAMENTO VALUE
-        if (align.equals("Esquerda")) {
-            alignValue = 0;
-        } else if (align.equals("Centralizado")) {
-            alignValue = 1;
-        } else {
-            alignValue = 2;
+        switch (align) {
+            case "Esquerda":
+                alignValue = 0;
+                break;
+            case "Centralizado":
+                alignValue = 1;
+                break;
+            default:
+                alignValue = 2;
+                break;
         }
 
         Termica.DefinePosicao(alignValue);
@@ -180,41 +209,35 @@ public class PrinterService {
     }
 
     public int imprimeImagem(Bitmap bitmap) {
-        int result;
-
         //Verifica se o método de impressão atual é por impressora interna ou externa e utiliza a função adequada para cada um
-        if(isPrinterInternSelected) result = Termica.ImprimeBitmap(bitmap);
-        else {
-            result = Termica.ImprimeImagem(bitmap);
-        }
-
-        return result;
+        return isPrinterInternSelected ? Termica.ImprimeBitmap(bitmap) : Termica.ImprimeImagem(bitmap);
     }
 
-    public int imprimeXMLNFCe(Map map) {
-        String xmlNFCe = (String) map.get("xmlNFCe");
-        System.out.println(xmlNFCe);
-        int indexcsc = (int) map.get("indexcsc");
-        String csc = (String) map.get("csc");
-        int param = (int) map.get("param");
+    public int imprimeXMLNFCe(Map<String, Object> map) {
+        final String xmlNFCe = (String) Objects.requireNonNull(map.get("xmlNFCe"), "xmlNFCe");
+        final int indexcsc = (int) Objects.requireNonNull(map.get("indexcsc"), "indexcsc");
+        final String csc = (String) Objects.requireNonNull(map.get("csc"), "csc");
+        final int param = (int) Objects.requireNonNull(map.get("param"), "param");
+
         return Termica.ImprimeXMLNFCe(xmlNFCe, indexcsc, csc, param);
     }
 
-    public int imprimeXMLSAT(Map map) {
-        String xml = (String) map.get("xmlSAT");
-        int param = (int) map.get("param");
+    public int imprimeXMLSAT(Map<String, Object> map) {
+        final String xml = (String) Objects.requireNonNull(map.get("xmlSAT"), "xmlSAT");
+        final int param = (int) Objects.requireNonNull(map.get("param"), "param");
+
         return Termica.ImprimeXMLSAT(xml, param);
     }
 
-    public int imprimeCupomTEF(Map map){
-        String base64 = (String) map.get("base64");
+    public int imprimeCupomTEF(Map<String, Object> map) {
+        final String base64 = (String) Objects.requireNonNull(map.get("base64"));
 
         return Termica.ImprimeCupomTEF(base64);
     }
 
-    public int statusGaveta() { return Termica.StatusImpressora(1); }
+    public int statusGaveta() {return Termica.StatusImpressora(1);}
 
-    public int abrirGaveta() { return Termica.AbreGavetaElgin(); }
+    public int abrirGaveta() {return Termica.AbreGavetaElgin();}
 
     public int statusSensorPapel() {
         return Termica.StatusImpressora(3);

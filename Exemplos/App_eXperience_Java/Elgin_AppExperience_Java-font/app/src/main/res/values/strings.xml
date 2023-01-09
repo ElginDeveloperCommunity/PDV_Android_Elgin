@@ -9,7 +9,8 @@
     <string name="text_button_tef">TEF</string>
     <string name="text_button_sat">SAT</string>
     <string name="text_button_shipay">CARTEIRA DIGITAL</string>
-    <string name="text_footer_java_android">Java Android 2.2.0</string>
+    <string name="text_button_pix4">PIX 4</string>
+    <string name="text_footer_java_android">Java Android 3.0.0</string>
     <string name="text_title_impressora">IMPRESSORA</string>
     <string name="text_title_tef">TEF</string>
     <string name="text_title_e1_bridge">E1 - BRIDGE</string>

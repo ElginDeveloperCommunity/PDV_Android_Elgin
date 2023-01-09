@@ -33,8 +33,6 @@ import br.com.daruma.framework.mobile.exception.DarumaException;
 
 public class NfcePage extends AppCompatActivity {
 
-    //Código da intent de request de permissão para escrever dados no diretório externo
-    private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 1234;
     //Printer Object
     public static PrinterService printerInstance;
     private final It4r it4rObj = new It4r(DarumaMobile.inicializar(this, "@FRAMEWORK(LOGMEMORIA=200;TRATAEXCECAO=TRUE;TIMEOUTWS=8000;SATNATIVO=FALSE);@SOCKET(HOST=192.168.210.94;PORT=9100;)"));
@@ -69,21 +67,18 @@ public class NfcePage extends AppCompatActivity {
         buttonConfigurateNfce.setOnClickListener(v -> configurateNfce());
 
         buttonSendNfceSale.setOnClickListener(v -> sendSaleNfce(editTextProductName.getText().toString(), editTextProductPrice.getText().toString()));
-
     }
 
     //Função que configura NFC-e para a emissão, após a sua execução ocorrer corretamente o botão para o envio da NFc-e deve ser habilitado
     public void configurateNfce() {
-        if (isStoragePermissionGranted()) {
-            try {
-                it4rObj.configurarXmlNfce();
-                Toast.makeText(this, "NFC-e configurada com sucesso!", Toast.LENGTH_LONG).show();
-                buttonSendNfceSale.setEnabled(true);
-            } catch (DarumaException e) {
-                Toast.makeText(this, "Erro na configuração de NFC-e", Toast.LENGTH_LONG).show();
-                buttonSendNfceSale.setEnabled(false);
-                e.printStackTrace();
-            }
+        try {
+            it4rObj.configurarXmlNfce();
+            Toast.makeText(this, "NFC-e configurada com sucesso!", Toast.LENGTH_LONG).show();
+            buttonSendNfceSale.setEnabled(true);
+        } catch (DarumaException e) {
+            Toast.makeText(this, "Erro na configuração de NFC-e", Toast.LENGTH_LONG).show();
+            buttonSendNfceSale.setEnabled(false);
+            e.printStackTrace();
         }
     }
 
@@ -152,39 +147,6 @@ public class NfcePage extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         printerInstance.printerStop();
-    }
-
-    //Checa se a permissão para escrever arquivos em diretórios externos foi garantida, se não tiver ; peça novamente
-    public boolean isStoragePermissionGranted() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                Log.v("DEBUG", "A permissão está garantida!");
-                return true;
-            } else {
-                Log.v("DEBUG", "A permissão está negada!");
-                //Pedindo permissão
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_WRITE_EXTERNAL_STORAGE);
-                return false;
-            }
-        } else { //A permissão é automaticamente concecida em sdk > 23 na instalação
-            Log.v("DEBUG", "A permissão está garantida!");
-            return true;
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        Log.d("DEBUG", String.valueOf(requestCode));
-        if (requestCode == REQUEST_CODE_WRITE_EXTERNAL_STORAGE && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Log.v("DEBUG", "Permission: " + permissions[0] + "was " + grantResults[0]);
-            //A permissão necessária acabou de ser garantida, continue com a operação
-
-            configurateNfce();
-        } else if (requestCode == REQUEST_CODE_WRITE_EXTERNAL_STORAGE) {
-            Toast.makeText(this, "É necessário garantir a permissão de armazenamento para a montagem da NFCe a ser enviada!", Toast.LENGTH_LONG).show();
-        }
     }
 
     //Função que lê o xml que representa a nota NFC-e emitida e retorna uma String com o conteúdo
