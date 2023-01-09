@@ -18,7 +18,7 @@
     "@react-navigation/stack": "^5.14.4",
     "moment": "^2.29.1",
     "react": "17.0.1",
-    "react-native": "0.64.0",
+    "react-native": "^0.64.4",
     "react-native-currency-input": "^1.0.1",
     "react-native-dialog": "^9.2.1",
     "react-native-fs": "^2.19.0",

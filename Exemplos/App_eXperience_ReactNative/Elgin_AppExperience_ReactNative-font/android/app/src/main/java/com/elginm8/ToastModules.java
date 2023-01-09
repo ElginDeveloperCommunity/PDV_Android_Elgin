@@ -17,6 +17,9 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 
+import com.elginm8.Pix4.Framework;
+import com.elginm8.Pix4.Pix4Service;
+import com.elginm8.Pix4.Produto;
 import com.facebook.react.bridge.ActivityEventListener;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -38,7 +41,6 @@ import br.com.setis.interfaceautomacao.Operacoes;
 
 public class ToastModules extends ReactContextBaseJavaModule implements ActivityEventListener {
     public static ReactApplicationContext reactContext;
-    public static int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 1234;
 
     Bundle instanceBundle = new Bundle();
 
@@ -308,6 +310,27 @@ public class ToastModules extends ReactContextBaseJavaModule implements Activity
     }
 
     @ReactMethod
+    public void runPix4(ReadableMap configsReceived) {
+        WritableMap result = Arguments.createMap();
+
+        if (configsReceived.getString("typePix4").equals("executeStoreImages")) {
+            Pix4Service.executeStoreImages();
+        } else if (configsReceived.getString("typePix4").equals("abreConexaoDisplay")) {
+            Pix4Service.abreConexaoDisplay();
+        } else if (configsReceived.getString("typePix4").equals("apresentaQrCodeLinkGihtub")) {
+            Framework framework = new Framework(configsReceived.getString("nome"), configsReceived.getString("githubLink"));
+            Pix4Service.apresentaQrCodeLinkGihtub(framework);
+        } else if (configsReceived.getString("typePix4").equals("adicionaProdutoApresenta")) {
+            Produto produto = new Produto(configsReceived.getString("nome"), configsReceived.getString("preco"), configsReceived.getString("assetFileName"), configsReceived.getString("outputFileName"));
+            Pix4Service.adicionaProdutoApresenta(produto);
+        } else if (configsReceived.getString("typePix4").equals("carregarImagens")) {
+            Pix4Service.carregarImagens();
+        } else if (configsReceived.getString("typePix4").equals("apresentaListaCompras")) {
+            Pix4Service.apresentaListaCompras();
+        }
+    }
+
+    @ReactMethod
     public void runBridge(ReadableMap configReceived) {
         WritableMap result = Arguments.createMap();
 
@@ -409,13 +432,10 @@ public class ToastModules extends ReactContextBaseJavaModule implements Activity
     public void sendNfceOption(ReadableMap map) {
         Log.d("DEBUG", "oxe " + map.toString());
 
-        //É necessário que a permissão esteja garantida para as operações NFCe
-        if (isStoragePermissionGranted()) {
-            if (map.getString("typeNfce").equals("CONFIGURATE_XML_NFCE"))
-                configurateXmlNfce();
-            else
-                sendSaleNfce(map);
-        }
+        if (map.getString("typeNfce").equals("CONFIGURATE_XML_NFCE"))
+            configurateXmlNfce();
+        else
+            sendSaleNfce(map);
     }
 
     private void sendSaleNfce(ReadableMap map) {
@@ -512,24 +532,6 @@ public class ToastModules extends ReactContextBaseJavaModule implements Activity
                     .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
                     .emit("eventSendSaleNfce", "Erro na configuração da venda " + e.getMessage());
             return;
-        }
-    }
-
-    //Checa se a permissão para escrever arquivos em diretórios externos foi garantida, se não tiver ; peça novamente
-    public boolean isStoragePermissionGranted() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (reactContext.checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                Log.v("DEBUG", "A permissão está garantida!");
-                return true;
-            } else {
-                Log.v("DEBUG", "A permissão está negada!");
-                //Pedindo permissão
-                ActivityCompat.requestPermissions(reactContext.getCurrentActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_WRITE_EXTERNAL_STORAGE);
-                return false;
-            }
-        } else { //A permissão é automaticamente concecida em sdk > 23 na instalação
-            Log.v("DEBUG", "A permissão está garantida!");
-            return true;
         }
     }
 }

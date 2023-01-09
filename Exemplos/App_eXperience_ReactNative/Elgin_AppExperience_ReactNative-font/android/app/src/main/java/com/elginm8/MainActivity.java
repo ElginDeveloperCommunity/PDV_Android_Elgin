@@ -1,5 +1,6 @@
 package com.elginm8;
 
+import com.elginm8.Pix4.Pix4Service;
 import com.facebook.react.ReactActivity;
 
 import com.elginm8.NFCE.It4r;
@@ -24,6 +25,7 @@ public class MainActivity extends ReactActivity {
   public static BridgeService bridge;
   public static It4r it4rObj;
   public static Context mContext;
+  public static Pix4Service pix4Service;
 
   /**
    * Returns the name of the main component registered from JavaScript. This is used to schedule
@@ -47,20 +49,6 @@ public class MainActivity extends ReactActivity {
     balanca = new Balanca(activity);
     bridge = new BridgeService(activity);
     it4rObj = new It4r(DarumaMobile.inicializar(this, "@FRAMEWORK(LOGMEMORIA=200;TRATAEXCECAO=TRUE;TIMEOUTWS=8000;SATNATIVO=FALSE);@SOCKET(HOST=192.168.210.94;PORT=9100;)"));
-  }
-
-  @Override
-  public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-    Log.d("DEBUG", String.valueOf(requestCode));
-    if (requestCode == ToastModules.REQUEST_CODE_WRITE_EXTERNAL_STORAGE && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-      Log.v("DEBUG", "Permission: " + permissions[0] + "was " + grantResults[0]);
-      //A permissão necessária acabou de ser garantida, continue com a operação
-
-      ToastModules.configurateXmlNfce();
-    } else if (requestCode == ToastModules.REQUEST_CODE_WRITE_EXTERNAL_STORAGE) {
-      Toast.makeText(this, "É necessário garantir a permissão de armazenamento para a montagem da NFCe a ser enviada!", Toast.LENGTH_LONG).show();
-    }
+    pix4Service = new Pix4Service(activity);
   }
 }

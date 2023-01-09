@@ -4,7 +4,7 @@ import {View, Text, StyleSheet} from 'react-native';
 const Footer = () => {
   return (
     <View style={styles.viewFooter}>
-      <Text style={styles.textFooter}>REACT NATIVE 2.2.0</Text>
+      <Text style={styles.textFooter}>REACT NATIVE 3.0.0</Text>
     </View>
   );
 };

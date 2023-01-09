@@ -192,7 +192,7 @@ dependencies {
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
-    implementation(name: 'e1-v2.0.4-release', ext: 'aar')
+    implementation(name: 'e1-V02.15.01-release', ext: 'aar')
     implementation(name: 'minipdvm8', ext: 'aar')
 
     implementation(name: 'darumamobile', ext: 'aar')
@@ -200,7 +200,6 @@ dependencies {
     implementation(name: 'satelgin-7.0.1-release', ext: 'aar')
     implementation("androidx.startup:startup-runtime:1.1.0")
 
-    implementation 'com.github.felHR85:UsbSerial:4.5.2'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
     implementation 'com.google.code.gson:gson:2.8.6'
