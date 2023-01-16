@@ -80,7 +80,7 @@ class FragmentPrinterImage : Fragment() {
                 imageView!!.setImageBitmap(bitmapImage)
             }
         } else {
-            Toast.makeText(MainActivity.context, "You haven't picked Image", Toast.LENGTH_LONG)
+            Toast.makeText(activity, "You haven't picked Image", Toast.LENGTH_LONG)
                 .show()
         }
     }
@@ -94,14 +94,14 @@ class FragmentPrinterImage : Fragment() {
             PrinterMenu.printer?.imprimeImagem(bitmap1)
         } else {
             var id = 0
-            id = MainActivity.context!!.applicationContext.resources.getIdentifier(
+            id = activity.applicationContext.resources.getIdentifier(
                 NAME_IMAGE,
                 DEF_TYPE,
-                MainActivity.context!!.applicationContext.packageName
+                activity.applicationContext.packageName
             )
             println("id: $id")
             bitmap1 = BitmapFactory.decodeResource(
-                MainActivity.context!!.applicationContext.resources,
+                activity.applicationContext.resources,
                 id
             )
             PrinterMenu.printer?.imprimeImagem(bitmap1)

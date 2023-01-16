@@ -150,11 +150,11 @@ class SatPage : AppCompatActivity() {
         } else {
             "satgo3"
         }
-        val ins = MainActivity.context!!.resources.openRawResource(
-            MainActivity.context!!.resources.getIdentifier(
+        val ins = this.resources.openRawResource(
+            this.resources.getIdentifier(
                 xmlEnviaDadosVenda,
                 "raw",
-                MainActivity.context!!.packageName
+                this.packageName
             )
         )
         val br = BufferedReader(InputStreamReader(ins))
@@ -187,11 +187,11 @@ class SatPage : AppCompatActivity() {
     fun sendCancelarVendaSAT() {
         var retorno = "..."
         var stringXMLSat: String
-        val ins = MainActivity.context!!.resources.openRawResource(
-            MainActivity.context!!.resources.getIdentifier(
+        val ins = this.resources.openRawResource(
+            this.resources.getIdentifier(
                 xmlCancelamento,
                 "raw",
-                MainActivity.context!!.packageName
+                this.packageName
             )
         )
         val br = BufferedReader(InputStreamReader(ins))

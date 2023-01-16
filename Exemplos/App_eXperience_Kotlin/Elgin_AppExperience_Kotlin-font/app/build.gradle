@@ -33,10 +33,11 @@ android {
 
 dependencies {
 
-    //LIBS ADDED TO PROJECT E1 EXPERIENCE
-    implementation(name: 'e1-v2.0.4-release', ext: 'aar')
+    implementation(name: 'e1-V02.15.01-release', ext: 'aar')
     implementation(name: 'minipdvm8', ext: 'aar')
     implementation(name: 'darumamobile', ext: 'aar')
+
+    implementation 'com.android.support:multidex:1.0.3'
 
     // Network
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
@@ -45,16 +46,11 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.squareup.okhttp3:okhttp:4.2.1'
 
-    //implementation('com.journeyapps:zxing-android-embedded:3.4.0')
-    //implementation 'com.google.zxing:core:3.4.0'
-
     implementation(name: 'satelgin-7.0.1-release', ext: 'aar')
     implementation("androidx.startup:startup-runtime:1.1.0")
 
-    implementation 'com.github.felHR85:UsbSerial:4.5.2'
     implementation(name: 'InterfaceAutomacao-v2.0.0.9', ext: 'aar')
     implementation 'org.apache.commons:commons-lang3:3.9'
-    implementation 'com.google.code.gson:gson:2.8.6'
 
     implementation 'androidx.appcompat:appcompat:1.3.0'
     implementation 'com.google.android.material:material:1.3.0'

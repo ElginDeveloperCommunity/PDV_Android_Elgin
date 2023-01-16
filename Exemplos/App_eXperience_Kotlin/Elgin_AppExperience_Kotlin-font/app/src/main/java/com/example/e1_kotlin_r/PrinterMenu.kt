@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -30,6 +31,7 @@ class PrinterMenu : AppCompatActivity() {
     lateinit var selectedPrinterModel: String
     private val EXTERNAL_PRINTER_MODEL_I9 = "i9"
     private val EXTERNAL_PRINTER_MODEL_I8 = "i8"
+    private val EXTERNAL_PRINTER_MODEL_I7_PLUS = "i7 PLUS"
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -172,7 +174,11 @@ class PrinterMenu : AppCompatActivity() {
 
     //Dialogo usado para escolher definir o modelo de impressora externa que sera estabelecida a conexao
     fun alertDialogSetSelectedPrinterModelThenConnect(externalConnectionMethod: String) {
-        val operations = arrayOf(EXTERNAL_PRINTER_MODEL_I9, EXTERNAL_PRINTER_MODEL_I8)
+        val operations = if (externalConnectionMethod.equals("USB")) arrayOf(
+            EXTERNAL_PRINTER_MODEL_I9,
+            EXTERNAL_PRINTER_MODEL_I8,
+            EXTERNAL_PRINTER_MODEL_I7_PLUS
+        ) else arrayOf(EXTERNAL_PRINTER_MODEL_I9, EXTERNAL_PRINTER_MODEL_I8)
         val builder = AlertDialog.Builder(mContext)
         builder.setTitle("Selecione o modelo de impressora a ser conectado")
 
@@ -199,8 +205,16 @@ class PrinterMenu : AppCompatActivity() {
     }
 
     fun setSelectedPrinterModel(whichSelected: Int) {
-        if (whichSelected == 0) selectedPrinterModel =
-            EXTERNAL_PRINTER_MODEL_I9 else selectedPrinterModel = EXTERNAL_PRINTER_MODEL_I8
+        if (whichSelected == 0) {
+            selectedPrinterModel =
+                EXTERNAL_PRINTER_MODEL_I9
+        } else if (whichSelected == 1) {
+            selectedPrinterModel = EXTERNAL_PRINTER_MODEL_I8
+        } else {
+            selectedPrinterModel = EXTERNAL_PRINTER_MODEL_I7_PLUS
+        }
+
+        Log.d("DEBUG", selectedPrinterModel);
     }
 
     fun showPrinterTextScreen() {

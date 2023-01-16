@@ -139,11 +139,11 @@ class FragmentPrinterText : Fragment() {
     @Throws(IOException::class)
     fun printXmlNFCe() {
         val stringXMLNFCe: String
-        val ins = MainActivity.context!!.resources.openRawResource(
-            MainActivity.context!!.resources.getIdentifier(
+        val ins = activity.resources.openRawResource(
+            activity.resources.getIdentifier(
                 xmlNFCe,
                 "raw",
-                MainActivity.context!!.packageName
+                activity.packageName
             )
         )
         val br = BufferedReader(InputStreamReader(ins))
@@ -174,11 +174,11 @@ class FragmentPrinterText : Fragment() {
     @Throws(IOException::class)
     fun printXmlSAT() {
         val stringXMLSat: String
-        val ins = MainActivity.context!!.resources.openRawResource(
-            MainActivity.context!!.resources.getIdentifier(
+        val ins = activity.resources.openRawResource(
+            activity.resources.getIdentifier(
                 xmlSAT,
                 "raw",
-                MainActivity.context!!.packageName
+                activity.packageName
             )
         )
         val br = BufferedReader(InputStreamReader(ins))

@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.e1_kotlin_r">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,6 +27,7 @@
         <activity android:name=".NFCE.NfcePage" />
         <activity android:name=".ShipayMenu" />
         <activity android:name=".BalancaPage" />
+        <activity android:name=".Pix4Page" />
         <activity android:name=".SatPage" />
         <activity android:name=".BarCodeReader" />
         <activity android:name=".Tef" />
