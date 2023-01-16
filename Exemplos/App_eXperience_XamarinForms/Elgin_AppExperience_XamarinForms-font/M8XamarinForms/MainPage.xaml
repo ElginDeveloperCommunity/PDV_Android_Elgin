@@ -7,58 +7,57 @@
     <StackLayout>
         <Grid HorizontalOptions="Center" VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
-                <RowDefinition Height="25*"/>
-                <RowDefinition Height="65*"/>
-                <RowDefinition Height="10*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="20*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="70*"/>
             </Grid.ColumnDefinitions>
 
             <Image Grid.Row="0" Source="bannerElginSmall.png" Margin="0,50,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
-            <Grid Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" RowSpacing="10" ColumnSpacing="15" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="160"/>
-                    <RowDefinition Height="160"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="320"/>
-                    <ColumnDefinition Width="320"/>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Row="0" Grid.Column="0" ColumnSpacing="15" >
-                    <Frame Grid.Row="0" Grid.Column="0" Style="{StaticResource largeButton}">
+            <ScrollView Grid.Row="1" Orientation="Horizontal" Margin="50,35,50,30">
+                <StackLayout Orientation="Horizontal">
+                    <Frame Style="{StaticResource largeButton}">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OpenE1BridgePage" NumberOfTapsRequired="1" />
                         </Frame.GestureRecognizers>
                         <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
                             <Image Source="elginpay_logo.png" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
-                            <Label Text="E1 - BRIDGE" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand" FontSize="20" TextColor="Black"/>
+                            <Label Text="E1 - BRIDGE" Margin="0,0,0,5" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand" FontSize="15" TextColor="Black"/>
                         </StackLayout>
                     </Frame>
-                    <Frame Grid.Row="0" Grid.Column="1" Style="{StaticResource largeButton}">
+                    <Frame Style="{StaticResource largeButton}">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OpenNfcePage" NumberOfTapsRequired="1" />
                         </Frame.GestureRecognizers>
                         <StackLayout Orientation="Vertical">
                             <Image Source="nfce.png" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
-                            <Label Text="NFC-e" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" FontSize="20" TextColor="Black"/>
+                            <Label Text="NFC-e" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" FontSize="15" TextColor="Black"/>
                         </StackLayout>
                     </Frame>
-                </Grid>
-                <Grid Grid.Row="0" Grid.Column="1" ColumnSpacing="15" >
-                    <Button Style="{StaticResource navigationButton}" Clicked="OpenPrinterPage" Grid.Row="0" Grid.Column="0" Text="Impressora" ImageSource="printerL.png"/>
-                    <Button Style="{StaticResource navigationButton}" Clicked="OpenBalancaPage" Grid.Row="0" Grid.Column="1" Text="Balança" ImageSource="balanca.png"/>
-                </Grid>
-                <Grid Grid.Row="1" Grid.Column="0" ColumnSpacing="15" >
-                    <Button Style="{StaticResource navigationButton}" Clicked="OpenTefPage" Grid.Row="0" Grid.Column="0" Text="TEF" ImageSource="msitefL.png"/>
-                    <Button Style="{StaticResource navigationButton}" Clicked="OpenCarteiraDigitalPage" Grid.Row="0" Grid.Column="1" Text="Carteira Digital" ImageSource="msitefL.png"/>
-                </Grid>
-                <Grid Grid.Row="1" Grid.Column="1" ColumnSpacing="15" >
-                    <Button Style="{StaticResource navigationButton}" Clicked="OpenSatPage" Grid.Row="0" Grid.Column="1" Text="SAT" ImageSource="satL.png"/>
-                    <Button Style="{StaticResource navigationButton}" Clicked="OpenBarCodePage" Grid.Row="0" Grid.Column="0" Text="Código de Barras" ImageSource="barCodeL.png"/>
-                </Grid>
-            </Grid>
-            <Label Grid.Row="2" Text="Xamarin.Forms 2.2.0" VerticalOptions="End" HorizontalOptions="End" Padding="0,0,10,10"/>
+
+                    <Button Style="{StaticResource navigationButton}" Clicked="OpenPrinterPage" Text="Impressora" ImageSource="printerL.png"/>
+                    <Button Style="{StaticResource navigationButton}" Clicked="OpenBalancaPage" Text="Balança" ImageSource="balanca.png"/>
+
+                    <Button Style="{StaticResource navigationButton}" Clicked="OpenTefPage" Text="TEF" ImageSource="msitefL.png"/>
+                    <Button Style="{StaticResource navigationButton}" Clicked="OpenCarteiraDigitalPage" Text="Carteira Digital" ImageSource="msitefL.png"/>
+
+                    <Button Style="{StaticResource navigationButton}" Clicked="OpenSatPage" Text="SAT" ImageSource="satL.png"/>
+                    <Button Style="{StaticResource navigationButton}" Clicked="OpenBarCodePage" Text="Código de Barras" ImageSource="barCodeL.png"/>
+                    
+                    <Frame Style="{StaticResource largeButton}">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OpenPix4Page" NumberOfTapsRequired="1" />
+                        </Frame.GestureRecognizers>
+                        <StackLayout Orientation="Vertical">
+                            <Image Source="pix4.png" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
+                            <Label Text="PIX 4" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" FontSize="15" TextColor="Black"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+            <Label Grid.Row="2" Text="Xamarin.Forms 3.0.0" VerticalOptions="End" HorizontalOptions="End" Padding="0,0,10,10"/>
         </Grid>
     </StackLayout>
 
@@ -71,13 +70,15 @@
                 <Setter Property="CornerRadius" Value="25"/>
                 <Setter Property="ContentLayout" Value="Top,-10"/>
                 <Setter Property="Padding" Value="0,20,0,0"/>
-                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="WidthRequest" Value="130"/>
             </Style>
             <Style TargetType="Frame" x:Key="largeButton">
                 <Setter Property="BackgroundColor" Value="White"/>
                 <Setter Property="BorderColor" Value="Black"/>
                 <Setter Property="CornerRadius" Value="25"/>
                 <Setter Property="Padding" Value="20,20,20,10"/>
+                <Setter Property="WidthRequest" Value="90"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>

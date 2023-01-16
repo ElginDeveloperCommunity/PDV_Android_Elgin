@@ -14,6 +14,10 @@ namespace M8XamarinForms
 
         private string EXTERNAL_PRINTER_MODEL_I9 = "i9";
         private string EXTERNAL_PRINTER_MODEL_I8 = "i8";
+        private string EXTERNAL_PRINTER_MODEL_I7_PLUS = "i7 Plus";
+
+        private string EXTERNAL_CONNECTION_METHOD_USB = "USB";
+        private string EXTERNAL_CONNECTION_METHOD_IP = "IP";
 
         private string metodoConexao;
 
@@ -229,9 +233,6 @@ namespace M8XamarinForms
             RadioButton rb = sender as RadioButton;
             if (!rb.IsChecked) return;
 
-            string EXTERNAL_CONNECTION_METHOD_USB = "USB";
-            string EXTERNAL_CONNECTION_METHOD_IP = "IP";
-
             var conection = ipEntry.Text;
 
             if (rb == internalPrinterRadio)
@@ -298,7 +299,11 @@ namespace M8XamarinForms
 
         public async void AlertDialogSetSelectedPrinterModelThenConnect(string externalConnectionMethod)
         {
-            string[] models = { EXTERNAL_PRINTER_MODEL_I9, EXTERNAL_PRINTER_MODEL_I8 };
+            string[] models = { EXTERNAL_PRINTER_MODEL_I9, EXTERNAL_PRINTER_MODEL_I8, EXTERNAL_PRINTER_MODEL_I7_PLUS };
+            if (externalConnectionMethod == EXTERNAL_CONNECTION_METHOD_IP)
+            {
+                models = models[..2];
+            }
             string option = await DisplayActionSheet("Selecione o modelo de impressora a ser conectado", "CANCELAR", null, models);
             
             if (option == null) {

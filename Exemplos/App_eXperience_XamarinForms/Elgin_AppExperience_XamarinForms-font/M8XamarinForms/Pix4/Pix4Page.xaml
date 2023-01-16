@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="M8XamarinForms.Pix4Page"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout Padding="30,10,30,0">
+            <StackLayout Style="{StaticResource bannerStack}">
+                <Label Style="{StaticResource bannerLabel}" Text="PIX 4" />
+                <Image HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Source="bannerElginSmall.png"/>
+            </StackLayout>
+            <StackLayout Style="{StaticResource mainPix4Stack}">
+                <Label Text="QR CODE/LINK PARA OUTROS EXEMPLOS EM NOSSO GITHUB:" Style="{StaticResource mainLabel}" />
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Frame x:Name="btnJava" Style="{StaticResource btnTechQrCode}">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Java" Style="{StaticResource btnTechQrCodeLabel}"/>
+                            <Image Source="pix4_java.png" Style="{StaticResource btnTechQrCodeImage}" />
+                        </StackLayout>
+                    </Frame>
+                    <Frame x:Name="btnDelphi" Style="{StaticResource btnTechQrCode}">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Delphi" Style="{StaticResource btnTechQrCodeLabel}"/>
+                            <Image Source="pix4_delphi.png" Style="{StaticResource btnTechQrCodeImage}" />
+                        </StackLayout>
+                    </Frame>
+                    <Frame x:Name="btnFlutter" Style="{StaticResource btnTechQrCode}">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Flutter" Style="{StaticResource btnTechQrCodeLabel}"/>
+                            <Image Source="pix4_flutter.png" Style="{StaticResource btnTechQrCodeImage}"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame x:Name="btnXamarinAndroid" Style="{StaticResource btnTechQrCode}">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="X. Android" Style="{StaticResource btnTechQrCodeLabel}"/>
+                            <Image Source="pix4_xamarin_android.png" Style="{StaticResource btnTechQrCodeImage}"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame x:Name="btnXamarinForms" Style="{StaticResource btnTechQrCode}">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="X. Forms" Style="{StaticResource btnTechQrCodeLabel}"/>
+                            <Image Source="pix4_xamarin_forms.png" Style="{StaticResource btnTechQrCodeImage}"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame x:Name="btnReactNative" Style="{StaticResource btnTechQrCode}">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="R. Native" Style="{StaticResource btnTechQrCodeLabel}"/>
+                            <Image Source="pix4_react_native.png" Style="{StaticResource btnTechQrCodeImage}"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame x:Name="btnKotlin" Style="{StaticResource btnTechQrCode}">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Kotlin" Style="{StaticResource btnTechQrCodeLabel}"/>
+                            <Image Source="pix4_kotlin.png" Style="{StaticResource btnTechQrCodeImage}"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame x:Name="btnIonic" Style="{StaticResource btnTechQrCode}">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Ionic" Style="{StaticResource btnTechQrCodeLabel}"/>
+                            <Image Source="pix4_ionic.png" Style="{StaticResource btnTechQrCodeImage}"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+                <Label Text="PRODUTOS: " Style="{StaticResource mainLabel}"/>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Frame x:Name="btnAbacaxi" Style="{StaticResource btnProduto}">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Abacaxi" Style="{StaticResource btnProdutoLabelNome}"/>
+                            <Image Source="pix4_abacaxi.png" Style="{StaticResource btnProdutoImage}" />
+                            <Label Text="R$ 7.00" Style="{StaticResource btnProdutoLabelPreco}"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame x:Name="btnBanana" Style="{StaticResource btnProduto}">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Banana" Style="{StaticResource btnProdutoLabelNome}"/>
+                            <Image Source="pix4_banana.png" Style="{StaticResource btnProdutoImage}" />
+                            <Label Text="R$ 12.00" Style="{StaticResource btnProdutoLabelPreco}"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame x:Name="btnChocolate" Style="{StaticResource btnProduto}">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Chocolate" Style="{StaticResource btnProdutoLabelNome}"/>
+                            <Image Source="pix4_chocolate.png" Style="{StaticResource btnProdutoImage}" />
+                            <Label Text="R$ 10.00" Style="{StaticResource btnProdutoLabelPreco}"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame x:Name="btnDetergente" Style="{StaticResource btnProduto}">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Detergente" Style="{StaticResource btnProdutoLabelNome}"/>
+                            <Image Source="pix4_detergente.png" Style="{StaticResource btnProdutoImage}" />
+                            <Label Text="R$ 6.00" Style="{StaticResource btnProdutoLabelPreco}"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame x:Name="btnErvilha" Style="{StaticResource btnProduto}">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Ervilha" Style="{StaticResource btnProdutoLabelNome}"/>
+                            <Image Source="pix4_ervilha.png" Style="{StaticResource btnProdutoImage}" />
+                            <Label Text="R$ 4.00" Style="{StaticResource btnProdutoLabelPreco}"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Frame x:Name="btnFeijao" Style="{StaticResource btnProduto}">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Feijão" Style="{StaticResource btnProdutoLabelNome}"/>
+                            <Image Source="pix4_feijao.png" Style="{StaticResource btnProdutoImage}" />
+                            <Label Text="R$ 8.00" Style="{StaticResource btnProdutoLabelPreco}"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame x:Name="btnGoiabada" Style="{StaticResource btnProduto}">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Goiabada" Style="{StaticResource btnProdutoLabelNome}"/>
+                            <Image Source="pix4_goiabada.png" Style="{StaticResource btnProdutoImage}" />
+                            <Label Text="R$ 9.00" Style="{StaticResource btnProdutoLabelPreco}"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame x:Name="btnHamburguer" Style="{StaticResource btnProduto}">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Hambúrguer" Style="{StaticResource btnProdutoLabelNome}"/>
+                            <Image Source="pix4_hamburguer.png" Style="{StaticResource btnProdutoImage}" />
+                            <Label Text="R$ 14.00" Style="{StaticResource btnProdutoLabelPreco}"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame x:Name="btnIogurte" Style="{StaticResource btnProduto}">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Iogurte" Style="{StaticResource btnProdutoLabelNome}"/>
+                            <Image Source="pix4_iogurte.png" Style="{StaticResource btnProdutoImage}" />
+                            <Label Text="R$ 11.00" Style="{StaticResource btnProdutoLabelPreco}"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame x:Name="btnJaca" Style="{StaticResource btnProduto}">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Jaca" Style="{StaticResource btnProdutoLabelNome}"/>
+                            <Image Source="pix4_jaca.png" Style="{StaticResource btnProdutoImage}" />
+                            <Label Text="R$ 9.00" Style="{StaticResource btnProdutoLabelPreco}"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+                    <Button x:Name="btnShowShoppingList" Text="APRESENTAR LISTA DE COMPRAS" Style="{StaticResource btnPix4}"/>
+                    <Button x:Name="btnLoadImages" Text="CARREGAR IMAGENS NO PIX4" Style="{StaticResource btnPix4}" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Xamarin.Forms 3.0.0" TextColor="Gray" HorizontalOptions="End"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="StackLayout" x:Key="bannerStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HeightRequest" Value="50"/>
+            </Style>
+            <Style TargetType="Label" x:Key="bannerLabel">
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="mainPix4Stack">
+                <Setter Property="Orientation" Value="Vertical"/>
+                <Setter Property="VerticalOptions" Value="StartAndExpand"/>
+            </Style>
+            <Style TargetType="Label" x:Key="mainLabel">
+                <Setter Property="FontSize" Value="22"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            <Style TargetType="Frame" x:Key="btnTechQrCode">
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="WidthRequest" Value="80"/>
+                <Setter Property="HeightRequest" Value="80"/>
+                <Setter Property="Padding" Value="0,0,0,0"/>
+            </Style>
+            <Style TargetType="Label" x:Key="btnTechQrCodeLabel">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="VerticalOptions" Value="EndAndExpand"/>
+            </Style>
+            <Style TargetType="Image" x:Key="btnTechQrCodeImage">
+                <Setter Property="WidthRequest" Value="40"/>
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="VerticalOptions" Value="StartAndExpand"/>
+            </Style>
+            <Style TargetType="Frame" x:Key="btnProduto">
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="WidthRequest" Value="80"/>
+                <Setter Property="HeightRequest" Value="80"/>
+                <Setter Property="Padding" Value="0,0,0,5"/>
+            </Style>
+            <Style TargetType="Image" x:Key="btnProdutoImage">
+                <Setter Property="WidthRequest" Value="35"/>
+                <Setter Property="HeightRequest" Value="35"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+            </Style>
+            <Style TargetType="Label" x:Key="btnProdutoLabelNome">
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="VerticalOptions" Value="End"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+            </Style>
+            <Style TargetType="Label" x:Key="btnProdutoLabelPreco">
+                <Setter Property="FontSize" Value="11"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+            </Style>
+            <Style TargetType="Button" x:Key="btnPix4">
+                <Setter Property="BackgroundColor" Value="#0069A5"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="WidthRequest" Value="415" />
+                <Setter Property="HeightRequest" Value="40"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+</ContentPage>

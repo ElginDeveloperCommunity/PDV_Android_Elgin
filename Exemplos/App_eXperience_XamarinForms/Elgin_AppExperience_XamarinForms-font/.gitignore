@@ -1,3 +1,6 @@
 obj/
 .vs/
 bin/
+
+.suo
+slnx.sqlite

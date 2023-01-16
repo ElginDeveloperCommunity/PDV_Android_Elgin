@@ -58,11 +58,11 @@
     <Reference Include="daruma">
       <HintPath>..\dll\daruma.dll</HintPath>
     </Reference>
-    <Reference Include="e1_v2.0.4_release">
-      <HintPath>..\dll\e1_v2.0.4_release.dll</HintPath>
+    <Reference Include="E1_v2.15.01_release">
+      <HintPath>..\dll\E1_v2.15.01_release.dll</HintPath>
     </Reference>
-    <Reference Include="InterfaceAutomacao_v2.0.0.9">
-      <HintPath>..\dll\InterfaceAutomacao_v2.0.0.9.dll</HintPath>
+    <Reference Include="InterfaceAutomacao_v2.0.0.12">
+      <HintPath>..\dll\InterfaceAutomacao_v2.0.0.12.dll</HintPath>
     </Reference>
     <Reference Include="jdom2">
       <HintPath>..\dll\jdom2.dll</HintPath>
@@ -104,6 +104,7 @@
     <Compile Include="BarCodesEntryRenderer.cs" />
     <Compile Include="IE1BridgeImplementation.cs" />
     <Compile Include="IIt4rImplementation.cs" />
+    <Compile Include="IPix4Implementation.cs" />
     <Compile Include="IPrinterImplementation.cs" />
     <Compile Include="IBalancaImplementation.cs" />
     <Compile Include="ITefImplementation.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ISatImplementation.cs" />
+    <Compile Include="Utils\ActivityUtils.cs" />
     <Compile Include="Utils\Message.cs" />
     <Compile Include="Utils\ReadWriteStoragePermission .cs" />
   </ItemGroup>
@@ -220,6 +222,93 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\nfce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_delphi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_flutter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_ionic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_java.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_kotlin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_react_native.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_xamarin_android.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_xamarin_forms.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_abacaxi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_banana.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_chocolate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_detergente.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_ervilha.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_feijao.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_goiabada.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_hamburguer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_iogurte.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_jaca.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_image_abacaxi.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_image_banana.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_image_chocolate.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_image_detergente.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_image_ervilha.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_image_feijao.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_image_goiabada.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_image_hamburguer.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_image_iogurte.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pix4_image_jaca.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

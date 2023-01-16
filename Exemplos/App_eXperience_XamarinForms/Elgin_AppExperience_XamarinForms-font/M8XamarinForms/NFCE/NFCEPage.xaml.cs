@@ -25,23 +25,21 @@ namespace M8XamarinForms
             productPriceEntry.TextChanged += OnFinancialTextChanged;
 
             //Função que configura NFC-e para a emissão, após a sua execução ocorrer corretamente o botão para o envio da NFc-e deve ser habilitado
-            btnConfigurateNfce.Clicked += async delegate
+            btnConfigurateNfce.Clicked += delegate
             {
-                if (await IsStoragePermissionGranted()) { 
-                    try
-                    {
-                        it4rService.ConfigurarXmlNfce();
-                        DependencyService.Get<IMessage>().LongAlert("NFC-e configurada com sucesso!");
-                        btnSendNfceSale.IsEnabled = true;
-                        btnSendNfceSale.BackgroundColor = Color.FromHex("#0069A5");
-                    }
-                    catch (Exception e)
-                    {
-                        DependencyService.Get<IMessage>().LongAlert("Erro na configuração de NFC-e");
-                        btnSendNfceSale.IsEnabled = false;
-                        btnSendNfceSale.BackgroundColor = Color.LightGray;
-                        Console.WriteLine(e.Message);
-                    }
+                try
+                {
+                    it4rService.ConfigurarXmlNfce();
+                    DependencyService.Get<IMessage>().LongAlert("NFC-e configurada com sucesso!");
+                    btnSendNfceSale.IsEnabled = true;
+                    btnSendNfceSale.BackgroundColor = Color.FromHex("#0069A5");
+                }
+                catch (Exception e)
+                {
+                    DependencyService.Get<IMessage>().LongAlert("Erro na configuração de NFC-e");
+                    btnSendNfceSale.IsEnabled = false;
+                    btnSendNfceSale.BackgroundColor = Color.LightGray;
+                    Console.WriteLine(e.Message);
                 }
             };
 
@@ -115,18 +113,6 @@ namespace M8XamarinForms
                 Console.WriteLine(e.Message);
                 return;
             }
-        }
-
-        public async Task<bool> IsStoragePermissionGranted()
-        {
-            var writeExternalStoragePermission = DependencyService.Get<IWriteExternalStoragePermission>();
-            var status = await writeExternalStoragePermission.CheckStatusAsync();
-
-            if (status != PermissionStatus.Granted)
-            {
-                status = await writeExternalStoragePermission.RequestAsync();
-            }
-            return status == PermissionStatus.Granted;
         }
 
         private void OnFinancialTextChanged(object sender, TextChangedEventArgs e)

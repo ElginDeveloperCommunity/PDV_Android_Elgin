@@ -11821,43 +11821,130 @@ namespace M8XamarinForms.Droid
 			public const int notify_panel_notification_icon_bg = 2131165337;
 			
 			// aapt resource value: 0x7F07009A
-			public const int printerBarCode = 2131165338;
+			public const int pix4 = 2131165338;
 			
 			// aapt resource value: 0x7F07009B
-			public const int printerImage = 2131165339;
+			public const int pix4_abacaxi = 2131165339;
 			
 			// aapt resource value: 0x7F07009C
-			public const int printerL = 2131165340;
+			public const int pix4_banana = 2131165340;
 			
 			// aapt resource value: 0x7F07009D
-			public const int printerText = 2131165341;
+			public const int pix4_chocolate = 2131165341;
 			
 			// aapt resource value: 0x7F07009E
-			public const int QRCodeGithubElgin = 2131165342;
+			public const int pix4_delphi = 2131165342;
 			
 			// aapt resource value: 0x7F07009F
-			public const int RediCodeEan13 = 2131165343;
+			public const int pix4_detergente = 2131165343;
 			
 			// aapt resource value: 0x7F0700A0
-			public const int satL = 2131165344;
+			public const int pix4_ervilha = 2131165344;
 			
 			// aapt resource value: 0x7F0700A1
-			public const int status = 2131165345;
+			public const int pix4_feijao = 2131165345;
 			
 			// aapt resource value: 0x7F0700A2
-			public const int store = 2131165346;
+			public const int pix4_flutter = 2131165346;
 			
 			// aapt resource value: 0x7F0700A3
-			public const int test_custom_background = 2131165347;
+			public const int pix4_goiabada = 2131165347;
 			
 			// aapt resource value: 0x7F0700A4
-			public const int tooltip_frame_dark = 2131165348;
+			public const int pix4_hamburguer = 2131165348;
 			
 			// aapt resource value: 0x7F0700A5
-			public const int tooltip_frame_light = 2131165349;
+			public const int pix4_image_abacaxi = 2131165349;
 			
 			// aapt resource value: 0x7F0700A6
-			public const int voucher = 2131165350;
+			public const int pix4_image_banana = 2131165350;
+			
+			// aapt resource value: 0x7F0700A7
+			public const int pix4_image_chocolate = 2131165351;
+			
+			// aapt resource value: 0x7F0700A8
+			public const int pix4_image_detergente = 2131165352;
+			
+			// aapt resource value: 0x7F0700A9
+			public const int pix4_image_ervilha = 2131165353;
+			
+			// aapt resource value: 0x7F0700AA
+			public const int pix4_image_feijao = 2131165354;
+			
+			// aapt resource value: 0x7F0700AB
+			public const int pix4_image_goiabada = 2131165355;
+			
+			// aapt resource value: 0x7F0700AC
+			public const int pix4_image_hamburguer = 2131165356;
+			
+			// aapt resource value: 0x7F0700AD
+			public const int pix4_image_iogurte = 2131165357;
+			
+			// aapt resource value: 0x7F0700AE
+			public const int pix4_image_jaca = 2131165358;
+			
+			// aapt resource value: 0x7F0700AF
+			public const int pix4_iogurte = 2131165359;
+			
+			// aapt resource value: 0x7F0700B0
+			public const int pix4_ionic = 2131165360;
+			
+			// aapt resource value: 0x7F0700B1
+			public const int pix4_jaca = 2131165361;
+			
+			// aapt resource value: 0x7F0700B2
+			public const int pix4_java = 2131165362;
+			
+			// aapt resource value: 0x7F0700B3
+			public const int pix4_kotlin = 2131165363;
+			
+			// aapt resource value: 0x7F0700B4
+			public const int pix4_react_native = 2131165364;
+			
+			// aapt resource value: 0x7F0700B5
+			public const int pix4_xamarin_android = 2131165365;
+			
+			// aapt resource value: 0x7F0700B6
+			public const int pix4_xamarin_forms = 2131165366;
+			
+			// aapt resource value: 0x7F0700B7
+			public const int printerBarCode = 2131165367;
+			
+			// aapt resource value: 0x7F0700B8
+			public const int printerImage = 2131165368;
+			
+			// aapt resource value: 0x7F0700B9
+			public const int printerL = 2131165369;
+			
+			// aapt resource value: 0x7F0700BA
+			public const int printerText = 2131165370;
+			
+			// aapt resource value: 0x7F0700BB
+			public const int QRCodeGithubElgin = 2131165371;
+			
+			// aapt resource value: 0x7F0700BC
+			public const int RediCodeEan13 = 2131165372;
+			
+			// aapt resource value: 0x7F0700BD
+			public const int satL = 2131165373;
+			
+			// aapt resource value: 0x7F0700BE
+			public const int status = 2131165374;
+			
+			// aapt resource value: 0x7F0700BF
+			public const int store = 2131165375;
+			
+			// aapt resource value: 0x7F0700C0
+			public const int test_custom_background = 2131165376;
+			
+			// aapt resource value: 0x7F0700C1
+			public const int tooltip_frame_dark = 2131165377;
+			
+			// aapt resource value: 0x7F0700C2
+			public const int tooltip_frame_light = 2131165378;
+			
+			// aapt resource value: 0x7F0700C3
+			public const int voucher = 2131165379;
 			
 			static Drawable()
 			{
