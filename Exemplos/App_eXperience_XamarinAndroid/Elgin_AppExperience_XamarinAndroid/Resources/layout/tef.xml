@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    tools:context=".Tef">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/robotobold"
+            android:text="@string/text_title_tef"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="3dp"
+            app:srcCompat="@drawable/elgin_logo" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingHorizontal="10dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/buttonPaygoOption"
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/box"
+                        android:fontFamily="@font/robotobold"
+                        android:text="PAYGO"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:backgroundTint="@color/black" />
+
+                    <Button
+                        android:id="@+id/buttonMsitefOption"
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="30dp"
+                        android:background="@drawable/box"
+                        android:fontFamily="@font/robotobold"
+                        android:text="M-SITEF"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:backgroundTint="@color/black" />
+
+
+                    <Button
+                        android:id="@+id/buttonElginTefOption"
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="30dp"
+                        android:background="@drawable/box"
+                        android:fontFamily="@font/robotobold"
+                        android:text="TEF ELGIN"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:backgroundTint="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/robotobold"
+                        android:gravity="center_vertical"
+                        android:text="VALOR"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/editTextInputValueTEF"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_weight="1"
+                        android:backgroundTint="@android:color/black"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutNumberOfInstallmentsTEF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/robotobold"
+                        android:gravity="center_vertical"
+                        android:text="N° PARCELAS"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/editTextInputInstallmentsTEF"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_weight="1"
+                        android:backgroundTint="@android:color/black"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/robotobold"
+                        android:gravity="center_vertical"
+                        android:text="IP"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/editTextInputIPTEF"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="5px"
+                        android:layout_weight="1"
+                        android:backgroundTint="@android:color/black"
+                        android:ems="10"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/robotobold"
+                        android:text="FORMAS DE PAGAMENTO:"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/buttonCreditOption"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:background="@drawable/box"
+                            android:drawableTop="@drawable/card_icon"
+                            android:fontFamily="@font/robotobold"
+                            android:paddingTop="5dp"
+                            android:text="CRÉDITO"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            app:backgroundTint="@color/black"
+                            tools:ignore="SmallSp" />
+
+                        <Button
+                            android:id="@+id/buttonDebitOption"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_marginStart="15dp"
+                            android:background="@drawable/box"
+                            android:drawableTop="@drawable/card_icon"
+                            android:fontFamily="@font/robotobold"
+                            android:paddingTop="5dp"
+                            android:text="DÉBITO"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            app:backgroundTint="@color/black"
+                            tools:ignore="SmallSp" />
+
+                        <Button
+                            android:id="@+id/buttonVoucherOption"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_marginStart="15dp"
+                            android:background="@drawable/box"
+                            android:drawableTop="@drawable/voucher_icon"
+                            android:fontFamily="@font/robotobold"
+                            android:paddingTop="5dp"
+                            android:text="TODOS"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            app:backgroundTint="@color/black" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/robotobold"
+                        android:text="TIPO DE PARCELAMENTO:"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayoutInstallmentsMethodsTEF"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/buttonStoreOption"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:background="@drawable/box"
+                            android:drawableTop="@drawable/store_icon"
+                            android:fontFamily="@font/robotobold"
+                            android:paddingTop="5dp"
+                            android:text="Loja"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            app:backgroundTint="@color/black" />
+
+                        <Button
+                            android:id="@+id/buttonAdmOption"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_marginStart="15dp"
+                            android:background="@drawable/box"
+                            android:drawableTop="@drawable/adm_icon"
+                            android:fontFamily="@font/robotobold"
+                            android:paddingTop="5dp"
+                            android:text="Adm"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            app:backgroundTint="@color/black"
+                            tools:ignore="SmallSp" />
+
+                        <Button
+                            android:id="@+id/buttonCashOption"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:layout_marginStart="15dp"
+                            android:background="@drawable/box"
+                            android:drawableTop="@drawable/card_icon"
+                            android:fontFamily="@font/robotobold"
+                            android:paddingTop="5dp"
+                            android:text="A vista"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            app:backgroundTint="@color/black" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/buttonSendTransactionTEF"
+                        android:layout_width="0dp"
+                        android:layout_height="40sp"
+                        android:layout_marginEnd="15sp"
+                        android:layout_weight="1"
+                        android:background="@drawable/round_button"
+                        android:text="Enviar Transação"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/buttonCancelTransactionTEF"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/round_button"
+                        android:text="Cancelar Transação"
+                        android:textColor="@color/design_default_color_on_primary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/buttonConfigsTEF"
+                        android:layout_width="0dp"
+                        android:layout_height="40sp"
+                        android:layout_weight="1"
+                        android:background="@drawable/round_button"
+                        android:text="Configuração"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingHorizontal="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/box"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <ImageView
+                    android:id="@+id/imageViewViaPaygo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/textViewViaTef"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="..."
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="50dp"
+            android:text="@string/text_footer_xamarin_android"
+            android:textColor="#7F7F7F"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+</RelativeLayout>

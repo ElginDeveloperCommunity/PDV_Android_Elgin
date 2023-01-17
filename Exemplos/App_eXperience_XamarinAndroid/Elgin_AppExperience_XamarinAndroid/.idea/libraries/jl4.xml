@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="jl4">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/obj/Debug/110/lp/86/jl/annotations.zip!/" />
+      <root url="jar://$PROJECT_DIR$/obj/Debug/110/lp/86/jl/classes.jar!/" />
+      <root url="jar://$PROJECT_DIR$/obj/Debug/110/lp/86/jl/res.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

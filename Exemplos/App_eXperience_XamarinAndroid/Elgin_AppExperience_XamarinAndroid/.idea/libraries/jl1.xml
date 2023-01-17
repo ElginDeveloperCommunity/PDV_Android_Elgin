@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="jl1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/obj/Debug/110/lp/0/jl/__reference__jdom-2.0.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/obj/Debug/110/lp/0/jl/classes.jar!/" />
+      <root url="jar://$PROJECT_DIR$/obj/Debug/110/lp/0/jl/__reference__ksoap2-android-assembly-3.3.0-jar-with-dependencies.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
