@@ -32,7 +32,7 @@ android {
 dependencies {
 
     //LIBS ADDED TO PROJECT E1 EXPERIENCE
-    implementation(name: 'e1-V02.15.01-release', ext: 'aar')
+    implementation(name: 'e1-V02.16.00-release', ext: 'aar')
     implementation(name: 'minipdvm8', ext: 'aar')
     implementation(name: 'darumamobile', ext: 'aar')
 

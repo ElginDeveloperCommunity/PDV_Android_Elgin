@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".KioskMode">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:id="@+id/title"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/text_title_kiosk"
+            android:fontFamily="@font/robotobold"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            />
+        <ImageView
+            android:id="@+id/imageView3"
+            android:paddingTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/elgin_logo"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardNavigationBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardBackgroundColor="@color/ivory"
+            app:cardPreventCornerOverlap="true"
+            android:layout_margin="10dp"
+            >
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:textAlignment="center"
+                android:id="@+id/switchNavigationBar"
+                android:text="BARRA DE NAVEGAÇÃO"
+                android:textStyle="bold"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardStatusBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardBackgroundColor="@color/ivory"
+            app:cardMaxElevation="12dp"
+            app:cardPreventCornerOverlap="true"
+            android:layout_margin="10dp"
+            >
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:textAlignment="center"
+                android:id="@+id/switchStatusBar"
+                android:text="BARRA DE STATUS"
+                android:textStyle="bold"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardBackgroundColor="@color/ivory"
+            app:cardMaxElevation="12dp"
+            app:cardPreventCornerOverlap="true"
+            android:layout_margin="10dp"
+            >
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:textAlignment="center"
+                android:id="@+id/switchPowerButtonr"
+                android:text="BOTÂO POWER"
+                android:textStyle="bold"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                />
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonBack"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VOLTAR"
+        android:textStyle="bold"
+        >
+
+    </Button>
+
+    <Button
+        android:id="@+id/buttonFullKioskMode"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FULL KIOSK"
+        android:textStyle="bold"
+        >
+
+    </Button>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

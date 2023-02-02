@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout buttonShipay;
     LinearLayout buttonBalancaOption;
     LinearLayout buttonPix4;
+    LinearLayout buttonKiosk;
 
     private final static int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 1;
 
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         buttonSAT = findViewById(R.id.buttonSAT);
         buttonBarCodeReaderOption = findViewById(R.id.buttonBarCodeReaderOption);
         buttonPix4 = findViewById(R.id.buttonPix4);
+        buttonKiosk = findViewById(R.id.buttonKioskMode);
 
         buttonE1Bridge.setOnClickListener(view -> openE1BridgeScreen());
 
@@ -66,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
         buttonBalancaOption.setOnClickListener(v -> openBalancaScreen());
 
         buttonPix4.setOnClickListener(v -> openPix4Screen());
+
+        buttonKiosk.setOnClickListener(v -> openKioskMode());
 
         initializeArrowsFunctionality();
 
@@ -115,6 +119,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openPix4Screen() {
         Intent intent = new Intent(this, Pix4Page.class);
+        startActivity(intent);
+    }
+
+    public void openKioskMode() {
+        Intent intent = new Intent(this, KioskMode.class);
         startActivity(intent);
     }
 
