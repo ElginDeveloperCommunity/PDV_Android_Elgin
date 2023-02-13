@@ -17,6 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Kiosk\KioskPage.xaml.cs">
+      <DependentUpon>KioskPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Balanca\SatPage.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>

@@ -58,8 +58,8 @@
     <Reference Include="daruma">
       <HintPath>..\dll\daruma.dll</HintPath>
     </Reference>
-    <Reference Include="E1_v2.15.01_release">
-      <HintPath>..\dll\E1_v2.15.01_release.dll</HintPath>
+    <Reference Include="E1_v2.16.00_release">
+      <HintPath>..\dll\E1_v2.16.00_release.dll</HintPath>
     </Reference>
     <Reference Include="InterfaceAutomacao_v2.0.0.12">
       <HintPath>..\dll\InterfaceAutomacao_v2.0.0.12.dll</HintPath>
@@ -104,6 +104,7 @@
     <Compile Include="BarCodesEntryRenderer.cs" />
     <Compile Include="IE1BridgeImplementation.cs" />
     <Compile Include="IIt4rImplementation.cs" />
+    <Compile Include="IKioskImplementation.cs" />
     <Compile Include="IPix4Implementation.cs" />
     <Compile Include="IPrinterImplementation.cs" />
     <Compile Include="IBalancaImplementation.cs" />
@@ -309,6 +310,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\pix4_image_jaca.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\kiosk.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

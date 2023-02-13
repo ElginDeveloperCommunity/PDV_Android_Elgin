@@ -80,5 +80,10 @@ namespace M8XamarinForms
             await Navigation.PushAsync(new Pix4Page());
         }
 
+        async void OpenKioskPage(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new KioskPage());
+        }
+
     }
 }

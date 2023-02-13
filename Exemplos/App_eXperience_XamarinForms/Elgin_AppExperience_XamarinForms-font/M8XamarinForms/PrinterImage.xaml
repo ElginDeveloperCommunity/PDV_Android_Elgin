@@ -58,7 +58,7 @@
                 </StackLayout>
             </StackLayout>
             <StackLayout>
-                <Label Text="Xamarin.Forms 3.0.0" TextColor="Gray" HorizontalOptions="End"/>
+                <Label Text="Xamarin.Forms 3.1.0" TextColor="Gray" HorizontalOptions="End"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

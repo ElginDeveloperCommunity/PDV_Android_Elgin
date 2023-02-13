@@ -55,9 +55,19 @@
                             <Label Text="PIX 4" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" FontSize="15" TextColor="Black"/>
                         </StackLayout>
                     </Frame>
+
+                    <Frame Style="{StaticResource largeButton}">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OpenKioskPage" NumberOfTapsRequired="1" />
+                        </Frame.GestureRecognizers>
+                        <StackLayout Orientation="Vertical">
+                            <Image Source="kiosk.png" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
+                            <Label Text="KIOSK" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" FontSize="15" TextColor="Black"/>
+                        </StackLayout>
+                    </Frame>
                 </StackLayout>
             </ScrollView>
-            <Label Grid.Row="2" Text="Xamarin.Forms 3.0.0" VerticalOptions="End" HorizontalOptions="End" Padding="0,0,10,10"/>
+            <Label Grid.Row="2" Text="Xamarin.Forms 3.1.0" VerticalOptions="End" HorizontalOptions="End" Padding="0,0,10,10"/>
         </Grid>
     </StackLayout>
 
