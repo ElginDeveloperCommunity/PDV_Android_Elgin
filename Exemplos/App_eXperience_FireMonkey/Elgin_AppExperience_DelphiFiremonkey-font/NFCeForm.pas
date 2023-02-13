@@ -69,16 +69,29 @@ procedure TFrmNFCe.FormActivate(Sender: TObject);
 begin
     PermissionsService.RequestPermissions([JStringToString(TJManifest_permission.JavaClass.READ_EXTERNAL_STORAGE),
                                            JStringToString(TJManifest_permission.JavaClass.WRITE_EXTERNAL_STORAGE)],
-    procedure(const APermissions: TArray<string>; const AGrantResults: TArray<TPermissionStatus>)
-    begin
-      if (Length(AGrantResults) = 2)
-      and (AGrantResults[0] = TPermissionStatus.Granted)
-      and (AGrantResults[1] = TPermissionStatus.Granted) then
-      else
-        begin
-          ShowMessage('Permissões para acesso a Biblioteca não concedida!');
-        end;
-    end);
+    {$IF CompilerVersion > 34.0}   {Delphi 11+}
+      procedure(const APermissions: TClassicStringDynArray; const AGrantResults: TClassicPermissionStatusDynArray)
+      begin
+        if (Length(AGrantResults) = 2)
+          and (AGrantResults[0] = TPermissionStatus.Granted)
+          and (AGrantResults[1] = TPermissionStatus.Granted) then
+        else
+          begin
+            ShowMessage('Permissões para acesso a Biblioteca não concedida!');
+          end;
+      end)
+    {$ELSE} {Delphi 10-}
+      procedure(const APermissions: TArray<string>; const AGrantResults: TArray<TPermissionStatus>)
+      begin
+        if (Length(AGrantResults) = 2)
+          and (AGrantResults[0] = TPermissionStatus.Granted)
+          and (AGrantResults[1] = TPermissionStatus.Granted) then
+        else
+          begin
+            ShowMessage('Permissões para acesso a Biblioteca não concedida!');
+          end;
+      end)
+    {$ENDIF};
 
     edtNome.Text:= 'Café';
     edtPreco.Text:= '9.90';

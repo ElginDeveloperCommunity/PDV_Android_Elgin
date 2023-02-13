@@ -26,12 +26,16 @@ uses
   DialogCupomForm in 'DialogCupomForm.pas' {frmDialogCupom},
   DialogTimeoutForm in 'DialogTimeoutForm.pas' {frmDialogTimeout},
   DialogConfigSenhaForm in 'DialogConfigSenhaForm.pas' {frmDialogConfigSenha},
-  Elgin.JNI.E1 in 'libs\Elgin.JNI.E1.pas',
-  Elgin.JNI.Sat in 'libs\Elgin.JNI.Sat.pas',
-  Elgin.JNI.Daruma in 'libs\libs_daruma\Elgin.JNI.Daruma.pas',
   NFCeForm in 'NFCeForm.pas' {FrmNFCe},
   It4r in 'It4r.pas',
-  TefElgin in 'TefElgin.pas';
+  TefElgin in 'TefElgin.pas',
+  Elgin.JNI.Daruma in 'libs\Elgin.JNI.Daruma.pas',
+  Elgin.JNI.Sat in 'libs\Elgin.JNI.Sat.pas',
+  PixForm in 'PixForm.pas' {FrmPix4},
+  Pix4 in 'Pix4.pas',
+  KioskiForm in 'KioskiForm.pas' {FrmKioski},
+  Kioski in 'Kioski.pas',
+  Elgin.JNI.E1 in 'libs\Elgin.JNI.E1.pas';
 
 {$R *.res}
 
@@ -51,5 +55,7 @@ begin
   Application.CreateForm(TfrmDialogCupom, frmDialogCupom);
   Application.CreateForm(TfrmDialogTimeout, frmDialogTimeout);
   Application.CreateForm(TfrmDialogConfigSenha, frmDialogConfigSenha);
+  Application.CreateForm(TFrmPix4, FrmPix4);
+  Application.CreateForm(TFrmKioski, FrmKioski);
   Application.Run;
 end.

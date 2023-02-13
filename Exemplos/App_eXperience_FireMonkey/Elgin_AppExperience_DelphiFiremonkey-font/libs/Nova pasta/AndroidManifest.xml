@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.elgin.e1"
+    android:versionCode="2"
+    android:versionName="02.16.00" >
+
+    <uses-sdk
+        android:minSdkVersion="19"
+        android:targetSdkVersion="31" />
+
+    <uses-feature android:name="android.hardware.usb.host" />
+
+    <uses-permission android:name="android.permission.CLOUDPOS_PRINTER" />
+    <uses-permission android:name="android.permission.CLOUDPOS_HIDE_STATUS_BAR" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.MANAGE_ACTIVITY_STACKS"
+        tools:ignore="ProtectedPermissions" />
+
+    <application>
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge" >
+            <meta-data
+                android:name="com.elgin.e1.Comunicacao.ConUSB"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="com.elgin.e1.Pagamento.Brigde.ConfigFileInitializer"
+                android:value="androidx.startup" />
+        </provider>
+    </application>
+
+</manifest>

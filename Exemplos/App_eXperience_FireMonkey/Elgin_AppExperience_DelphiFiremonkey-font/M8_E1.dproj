@@ -267,15 +267,25 @@
             <Form>frmDialogConfigSenha</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="libs\Elgin.JNI.E1.pas"/>
-        <DCCReference Include="libs\Elgin.JNI.Sat.pas"/>
-        <DCCReference Include="libs\libs_daruma\Elgin.JNI.Daruma.pas"/>
         <DCCReference Include="NFCeForm.pas">
             <Form>FrmNFCe</Form>
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="It4r.pas"/>
         <DCCReference Include="TefElgin.pas"/>
+        <DCCReference Include="libs\Elgin.JNI.Daruma.pas"/>
+        <DCCReference Include="libs\Elgin.JNI.Sat.pas"/>
+        <DCCReference Include="PixForm.pas">
+            <Form>FrmPix4</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Pix4.pas"/>
+        <DCCReference Include="KioskiForm.pas">
+            <Form>FrmKioski</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Kioski.pas"/>
+        <DCCReference Include="libs\Elgin.JNI.E1.pas"/>
         <None Include="assets\xmlNFCe.xml"/>
         <None Include="assets\xmlSAT.xml"/>
         <RcItem Include="images\barcode_icon.png">
@@ -308,16 +318,10 @@
         <JavaReference Include="libs\startup-runtime-1.1.0.jar">
             <Disabled/>
         </JavaReference>
-        <JavaReference Include="libs\usbserial-4.5.2.jar">
-            <Disabled/>
-        </JavaReference>
         <None Include="assets\cupomNFCe.xml"/>
         <None Include="assets\cupomSatCancelamento.xml"/>
         <None Include="assets\cupomSat.xml"/>
         <JavaReference Include="libs\InterfaceAutomacao-v2.0.0.9.jar">
-            <Disabled/>
-        </JavaReference>
-        <JavaReference Include="libs\e1-v2.0.4-release.jar">
             <Disabled/>
         </JavaReference>
         <JavaReference Include="libs\core-3.4.1.jar">
@@ -335,6 +339,52 @@
             <Disabled/>
         </JavaReference>
         <JavaReference Include="libs\gson-2.8.5.jar">
+            <Disabled/>
+        </JavaReference>
+        <RcItem Include="assets\pix4_image_abacaxi.jpg">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>JpgImage_1</ResourceId>
+        </RcItem>
+        <RcItem Include="assets\pix4_image_banana.jpg">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>JpgImage_2</ResourceId>
+        </RcItem>
+        <RcItem Include="assets\pix4_image_chocolate.jpg">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>JpgImage_3</ResourceId>
+        </RcItem>
+        <RcItem Include="assets\pix4_image_detergente.jpg">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>JpgImage_4</ResourceId>
+        </RcItem>
+        <RcItem Include="assets\pix4_image_ervilha.jpg">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>JpgImage_5</ResourceId>
+        </RcItem>
+        <RcItem Include="assets\pix4_image_feijao.jpg">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>JpgImage_6</ResourceId>
+        </RcItem>
+        <RcItem Include="assets\pix4_image_goiabada.jpg">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>JpgImage_7</ResourceId>
+        </RcItem>
+        <RcItem Include="assets\pix4_image_hamburguer.jpg">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>JpgImage_8</ResourceId>
+        </RcItem>
+        <RcItem Include="assets\pix4_image_iogurte.jpg">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>JpgImage_9</ResourceId>
+        </RcItem>
+        <RcItem Include="assets\pix4_image_jaca.jpg">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>JpgImage_10</ResourceId>
+        </RcItem>
+        <JavaReference Include="libs\DisplaySDK-2.2.0.jar">
+            <Disabled/>
+        </JavaReference>
+        <JavaReference Include="libs\e1-V02.16.00-release.jar">
             <Disabled/>
         </JavaReference>
         <BuildConfiguration Include="Release">
@@ -363,6 +413,12 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
+                <DeployFile LocalName="assets\pix4_image_chocolate.jpg" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="libs\jni\armeabi-v7a\libsatprotocol.so" Configuration="Debug" Class="File">
                     <Platform Name="Android">
                         <RemoteDir>library\lib\armeabi-v7a\</RemoteDir>
@@ -441,6 +497,12 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="assets\pix4_image_hamburguer.jpg" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="Android\Release\styles-v21.xml" Configuration="Release" Class="AndroidSplashStylesV21">
                     <Platform Name="Android">
                         <RemoteName>styles.xml</RemoteName>
@@ -516,6 +578,18 @@
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="assets\cancelamentosatgo.xml" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="assets\pix4_image_iogurte.jpg" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="assets\pix4_image_jaca.jpg" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Android">
                         <RemoteDir>.\assets\internal\</RemoteDir>
                         <Overwrite>true</Overwrite>
@@ -650,6 +724,12 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="assets\pix4_image_feijao.jpg" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_SplashImage_640x480.png" Configuration="Release" Class="Android_SplashImage640">
                     <Platform Name="Android">
                         <RemoteName>splash_image.png</RemoteName>
@@ -673,18 +753,6 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_192x192.png" Configuration="Release" Class="Android_LauncherIcon192">
-                    <Platform Name="Android">
-                        <RemoteName>ic_launcher.png</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="$(BDS)\lib\android\debug\armeabi-v7a\libnative-activity.so" Configuration="Release" Class="AndroidLibnativeArmeabiv7aFile">
-                    <Platform Name="Android64">
-                        <RemoteName>libM8_E1.so</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_SplashImage_426x320.png" Configuration="Release" Class="Android_SplashImage426">
                     <Platform Name="Android64">
                         <RemoteName>splash_image.png</RemoteName>
@@ -696,9 +764,33 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="assets\pix4_image_detergente.jpg" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\lib\android\debug\armeabi-v7a\libnative-activity.so" Configuration="Release" Class="AndroidLibnativeArmeabiv7aFile">
+                    <Platform Name="Android64">
+                        <RemoteName>libM8_E1.so</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_192x192.png" Configuration="Release" Class="Android_LauncherIcon192">
+                    <Platform Name="Android">
+                        <RemoteName>ic_launcher.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_36x36.png" Configuration="Debug" Class="Android_LauncherIcon36">
                     <Platform Name="Android">
                         <RemoteName>ic_launcher.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="assets\pix4_image_abacaxi.jpg" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -766,6 +858,12 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="assets\pix4_image_banana.jpg" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_NotificationIcon_72x72.png" Configuration="Release" Class="Android_NotificationIcon72">
                     <Platform Name="Android">
                         <RemoteName>ic_notification.png</RemoteName>
@@ -793,6 +891,12 @@
                 </DeployFile>
                 <DeployFile LocalName="Android64\Release\styles.xml" Configuration="Release" Class="AndroidSplashStyles">
                     <Platform Name="Android64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="assets\pix4_image_ervilha.jpg" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -870,6 +974,12 @@
                 <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_72x72.png" Configuration="Release" Class="Android_LauncherIcon72">
                     <Platform Name="Android">
                         <RemoteName>ic_launcher.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="assets\pix4_image_goiabada.jpg" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

@@ -2,7 +2,7 @@ unit It4r;
 
 interface
   uses Elgin.JNI.Daruma,
-    System.Threading,
+//    System.Threading,
     System.Classes,
     System.SysUtils,
     FMX.Types,

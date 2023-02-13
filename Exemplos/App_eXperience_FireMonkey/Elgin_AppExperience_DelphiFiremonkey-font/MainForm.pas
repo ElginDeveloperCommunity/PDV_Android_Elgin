@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Layouts,
   FMX.Objects,TefForm,SatForm, ImpressoraForm, BarcodeForm, ShipayForm,
-  BalancaForm;
+  BalancaForm, PixForm;
 
 type
   TfrmMain = class(TForm)
@@ -48,6 +48,22 @@ type
     recNFCe: TRectangle;
     Image8: TImage;
     Label7: TLabel;
+    Layout3: TLayout;
+    GridPanelLayout5: TGridPanelLayout;
+    Rectangle1: TRectangle;
+    Image9: TImage;
+    Label8: TLabel;
+    Rectangle2: TRectangle;
+    Image10: TImage;
+    Label9: TLabel;
+    Layout4: TLayout;
+    GridPanelLayout6: TGridPanelLayout;
+    Rectangle3: TRectangle;
+    Image11: TImage;
+    Label10: TLabel;
+    Rectangle4: TRectangle;
+    Image12: TImage;
+    Label11: TLabel;
     procedure rectMenuTEFClick(Sender: TObject);
     procedure rectMenuSATClick(Sender: TObject);
     procedure rectMenuShipayClick(Sender: TObject);
@@ -60,6 +76,7 @@ type
     procedure recBalancaClick(Sender: TObject);
     procedure recNFCeClick(Sender: TObject);
     procedure recBridgeClick(Sender: TObject);
+    procedure Rectangle1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -73,7 +90,7 @@ implementation
 
 {$R *.fmx}
 
-uses BridgeForm, NFCeForm;
+uses BridgeForm, NFCeForm, KioskiForm;
 {$R *.LgXhdpiTb.fmx ANDROID}
 {$R *.XLgXhdpiTb.fmx ANDROID}
 
@@ -86,12 +103,17 @@ end;
 
 procedure TfrmMain.recBridgeClick(Sender: TObject);
 begin
-  frmBridge.Show;
+  FrmKioski.Show;
 end;
 
 procedure TfrmMain.recNFCeClick(Sender: TObject);
 begin
    frmNFCe.Show;
+end;
+
+procedure TfrmMain.Rectangle1Click(Sender: TObject);
+begin
+  FrmPix4.Show;
 end;
 
 procedure TfrmMain.rectMenuBarCodeClick(Sender: TObject);

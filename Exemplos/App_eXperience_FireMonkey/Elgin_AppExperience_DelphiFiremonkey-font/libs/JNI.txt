@@ -1,0 +1,2 @@
+E1
+	java2op -jar cloudpossdkinterface_en_slim.jar cloudpossdkinterfaceimpl_001_en-slim.jar cloudpossdk-s-1.0.2.jar core-3.4.1.jar gson-2.8.5.jar InterfaceAutomacao-v2.0.0.9.jar minipdvm8.jar printHtml_fixR.jar startup-runtime-1.1.0.jar e1-V02.16.00-release.jar -unit Elgin.JNI.E1

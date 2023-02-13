@@ -62,8 +62,8 @@ implementation
 
 function TPrinter.AvancaLinhas(rbImpInterna:boolean): integer;
 begin
-   if rbImpInterna=True then TJTermica.JavaClass.AvancaPapel(100)
-   else TJTermica.JavaClass.AvancaPapel(40);
+   if rbImpInterna=True then TJTermica.JavaClass.AvancaPapel(50)
+   else TJTermica.JavaClass.AvancaPapel(20);
 end;
 
 function TPrinter.codeOfBarCode(barCodeName: BARCODE_TYPE): integer;

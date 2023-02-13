@@ -136,8 +136,6 @@ type
     layoutImpressora: TLayout;
     cbImpressora: TComboBox;
     Label23: TLabel;
-    listI9: TListBoxItem;
-    listI8: TListBoxItem;
     procedure menuImpressaoTextoClick(Sender: TObject);
     procedure menuImpressaoBarcodeClick(Sender: TObject);
     procedure menuImpressaoImagemClick(Sender: TObject);
@@ -232,17 +230,75 @@ begin
 end;
 
 procedure TfrmImpressora.cbImpressoraChange(Sender: TObject);
+var
+  tipoImp, Result: integer;
+  conexao: string;
+  config : TStringList;
 begin
-  case cbImpressora.ItemIndex of
-      0: modelo := 'i9';
-      1: modelo := 'i8';
+  if rdImpUSB.IsChecked = True then
+    begin
+      case cbImpressora.ItemIndex of
+          0: modelo := 'i9';
+          1: modelo := 'i8';
+          2: modelo := 'i7 Plus';
+      end;
+
+      tipoImp:= 1;
+      conexao:= 'USB';
+
+    Log.d('Imp Ext: modelo: ' + modelo +
+            '    tipo: ' + inttostr(tipoImp) +
+            '  conxão: ' + conexao);
+
+    Result:= Impressora.PrinterExternalImpStart(modelo, conexao, tipoImp, 0);
+
+    if Result <> 0 then
+    begin
+      rbImpInterna.IsChecked := True;
+      showmessage('Impressora USB não conectada');
+    end;
+  end
+  else if rdImpExterna.IsChecked = True then
+  begin
+    case cbImpressora.ItemIndex of
+          0: modelo := 'i9';
+          1: modelo := 'i8';
+    end;
+  begin
+    if TRegEx.IsMatch(edtIP.Text,'^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]):[0-9]+$') then
+    begin
+      config := TStringList.Create;
+      config.StrictDelimiter:= True;
+      config.Delimiter := ':';
+      config.DelimitedText := edtIP.Text;
+      tipoImp := 3;
+
+      Log.d('Imp: \nmodelo: ' + modelo + '\t ip : ' + config[0] + '\t conxão: ' + inttostr(tipoImp) + '\t port: ' + config[1]);
+
+      Result:= Impressora.PrinterExternalImpStart(modelo, config[0], tipoImp, strtoint(config[1]));
+      if Result <> 0 then
+      begin
+        rbImpInterna.IsChecked := True;
+        showmessage('Impressora IP não conectada');
+        log.d('Impressora IP não conectada');
+      end;
+    end else
+    begin
+      rbImpInterna.IsChecked := True;
+      ShowMessage('Ip Inválido!');
+
+      log.d('Ip Inválido!');
+    end;
   end;
-  if rdImpUSB.IsChecked then
-    rdImpUSBChange(Sender)
-  else if rdImpExterna.IsChecked then
-    rdImpExternaClick(Sender)
-  else if rbImpInterna.IsChecked then
-    rbImpInternaClick(Sender);
+  end;
+
+
+//  if rdImpUSB.IsChecked then
+//    rdImpUSBChange(Sender)
+//  else if rdImpExterna.IsChecked then
+//    rdImpExternaClick(Sender)
+//  else if rbImpInterna.IsChecked then
+//    rbImpInternaClick(Sender);
        
 end;
 
@@ -301,7 +357,7 @@ procedure TfrmImpressora.FormActivate(Sender: TObject);
 begin
     Impressora.printerInternalImpStart();
     rbImpInterna.IsChecked := True;
-    cbImpressora.ItemIndex := 0;
+    cbImpressora.ItemIndex := -1;
     modelo:= 'i9';
 
     rbEsquerda.IsChecked:= True;
@@ -321,17 +377,32 @@ begin
 
     PermissionsService.RequestPermissions([JStringToString(TJManifest_permission.JavaClass.READ_EXTERNAL_STORAGE),
                                            JStringToString(TJManifest_permission.JavaClass.WRITE_EXTERNAL_STORAGE)],
-    procedure(const APermissions: TArray<string>; const AGrantResults: TArray<TPermissionStatus>)
-    begin
-      if (Length(AGrantResults) = 2)
-      and (AGrantResults[0] = TPermissionStatus.Granted)
-      and (AGrantResults[1] = TPermissionStatus.Granted) then
-      else
-        begin
-          ShowMessage('Permissões para acesso a Biblioteca não concedida!');
-        end;
-    end)
 
+
+
+    {$IF CompilerVersion > 34.0}   {Delphi 11+}
+      procedure(const APermissions: TClassicStringDynArray; const AGrantResults: TClassicPermissionStatusDynArray)
+      begin
+        if (Length(AGrantResults) = 2)
+          and (AGrantResults[0] = TPermissionStatus.Granted)
+          and (AGrantResults[1] = TPermissionStatus.Granted) then
+        else
+          begin
+            ShowMessage('Permissões para acesso a Biblioteca não concedida!');
+          end;
+      end)
+    {$ELSE} {Delphi 10-}
+      procedure(const APermissions: TArray<string>; const AGrantResults: TArray<TPermissionStatus>)
+      begin
+        if (Length(AGrantResults) = 2)
+          and (AGrantResults[0] = TPermissionStatus.Granted)
+          and (AGrantResults[1] = TPermissionStatus.Granted) then
+        else
+          begin
+            ShowMessage('Permissões para acesso a Biblioteca não concedida!');
+          end;
+      end)
+    {$ENDIF}
 
 
 end;
@@ -421,30 +492,30 @@ begin
 //   else
 //      edtIP.Enabled := False;
 
-  if rdImpExterna.IsChecked then
-  begin
-    if TRegEx.IsMatch(edtIP.Text,'^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]):[0-9]+$') then
-    begin
-      config := TStringList.Create;
-      config.StrictDelimiter:= True;
-      config.Delimiter := ':';
-      config.DelimitedText := edtIP.Text;
-      tipoImp := 3;
-
-      Log.d('Imp: \nmodelo: ' + modelo + '\t ip : ' + config[0] + '\t conxão: ' + inttostr(tipoImp) + '\t port: ' + config[1]);
-
-      Result:= Impressora.PrinterExternalImpStart(modelo, config[0], tipoImp, strtoint(config[1]));
-      if Result <> 0 then
-      begin
-        rbImpInterna.IsChecked := True;
-        showmessage('Impressora IP não conectada');
-      end;
-    end else
-    begin
-      ShowMessage('Ip Inválido!');
-      rbImpInterna.IsChecked := True;
-    end;
-  end;
+//  if rdImpExterna.IsChecked then
+//  begin
+//    if TRegEx.IsMatch(edtIP.Text,'^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]):[0-9]+$') then
+//    begin
+//      config := TStringList.Create;
+//      config.StrictDelimiter:= True;
+//      config.Delimiter := ':';
+//      config.DelimitedText := edtIP.Text;
+//      tipoImp := 3;
+//
+//      Log.d('Imp: \nmodelo: ' + modelo + '\t ip : ' + config[0] + '\t conxão: ' + inttostr(tipoImp) + '\t port: ' + config[1]);
+//
+//      Result:= Impressora.PrinterExternalImpStart(modelo, config[0], tipoImp, strtoint(config[1]));
+//      if Result <> 0 then
+//      begin
+//        rbImpInterna.IsChecked := True;
+//        showmessage('Impressora IP não conectada');
+//      end;
+//    end else
+//    begin
+//      ShowMessage('Ip Inválido!');
+//      rbImpInterna.IsChecked := True;
+//    end;
+//  end;
 
 end;
 
@@ -481,22 +552,67 @@ var
 tipoImp, Result:integer;
 conexao:string;
 begin
+
   if rdImpUSB.IsChecked = True then
   begin
-    tipoImp:= 1;
-    conexao:= 'USB';
-
-    Log.d('Imp: modelo: ' + modelo +
-            '    tipo: ' + inttostr(tipoImp) +
-            '  conxão: ' + conexao);
-
-    Result:= Impressora.PrinterExternalImpStart(modelo, conexao, tipoImp, 0);
-    if Result <> 0 then
+    if cbImpressora.Items.IndexOf('I7') = -1 then
     begin
-      rbImpInterna.IsChecked := True;
-      showmessage('Impressora USB não conectada');
+      log.d('Imp Ext: Nao existe I&');
+      cbImpressora.Items.Add('I7');
+//      modelo:='i7';
     end;
+  end
+  else
+  begin
+    if cbImpressora.Items.IndexOf('I7') <> -1 then
+    begin
+      cbImpressora.Items.Delete(cbImpressora.Items.IndexOf('I7'));
+//      modelo:='i8';
+      cbImpressora.ItemIndex:= -1;    // volta a apresentar a primeira opção
+    end;
+
+
+
   end;
+//  if rdImpUSB.IsChecked = True then
+//  begin
+//    tipoImp:= 1;
+//    conexao:= 'USB';
+//
+//    Log.d('Imp Ext: modelo: ' + modelo +
+//            '    tipo: ' + inttostr(tipoImp) +
+//            '  conxão: ' + conexao);
+//    Log.d('Imp Ext: ' + inttostr(cbImpressora.Items.IndexOf('I7')));
+//    if cbImpressora.Items.IndexOf('I7') = -1 then
+//    begin
+//      log.d('Imp Ext: Nao existe I&');
+//      cbImpressora.Items.Add('I7');
+//      modelo:='i7';
+//    end;
+//
+//    Log.d('Imp Ext: Existe I7' + inttostr(cbImpressora.Items.IndexOf('I7')));
+//
+//    Result:= Impressora.PrinterExternalImpStart(modelo, conexao, tipoImp, 0);
+//
+//    Log.d('Imp Ext: Result de conexão i7' + inttostr(Result));
+//    if Result <> 0 then
+//    begin
+//      rbImpInterna.IsChecked := True;
+//      showmessage('Impressora USB não conectada');
+//    end;
+//  end
+//  else
+//  begin
+//    if cbImpressora.Items.IndexOf('I7') <> -1 then
+//    begin
+//      cbImpressora.Items.Delete(cbImpressora.Items.IndexOf('I7'));
+//      modelo:='i8';
+//      cbImpressora.ItemIndex:= -1;    // volta a apresentar a primeira opção
+//    end;
+//
+//
+//
+//  end;
 end;
 
 procedure TfrmImpressora.rbImpInternaClick(Sender: TObject);
