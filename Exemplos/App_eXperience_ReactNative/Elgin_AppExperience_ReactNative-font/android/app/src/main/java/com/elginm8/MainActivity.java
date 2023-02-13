@@ -26,6 +26,7 @@ public class MainActivity extends ReactActivity {
   public static It4r it4rObj;
   public static Context mContext;
   public static Pix4Service pix4Service;
+  public static KioskService kioskService;
 
   /**
    * Returns the name of the main component registered from JavaScript. This is used to schedule
@@ -50,5 +51,6 @@ public class MainActivity extends ReactActivity {
     bridge = new BridgeService(activity);
     it4rObj = new It4r(DarumaMobile.inicializar(this, "@FRAMEWORK(LOGMEMORIA=200;TRATAEXCECAO=TRUE;TIMEOUTWS=8000;SATNATIVO=FALSE);@SOCKET(HOST=192.168.210.94;PORT=9100;)"));
     pix4Service = new Pix4Service(activity);
+    kioskService = new KioskService(activity);
   }
 }

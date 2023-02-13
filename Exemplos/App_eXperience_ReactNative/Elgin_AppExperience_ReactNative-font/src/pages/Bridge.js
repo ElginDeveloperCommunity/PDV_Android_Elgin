@@ -1,4 +1,4 @@
-import React, {useRef, useState, useEffect} from 'react';
+import React, {useState} from 'react';
 
 import {
   StyleSheet,
@@ -7,7 +7,6 @@ import {
   Image,
   TouchableOpacity,
   Alert,
-  FlatList,
   TextInput,
 } from 'react-native';
 
@@ -23,6 +22,8 @@ import Footer from '../components/Footer';
 
 import BridgeService from '../services/service_bridge';
 
+const todayDate = moment().utcOffset('-04:00').format('DD/MM/YY');
+
 const Bridge = () => {
   var bridgeService = new BridgeService();
 
@@ -33,10 +34,6 @@ const Bridge = () => {
   const [installmentType, setInstallmentType] = useState('1');
 
   const PDV = 'PDV1';
-
-  const [todayDate, setTodayDate] = useState(
-    moment().utcOffset('-04:00').format('DD/MM/YY'),
-  );
   const [refCode, setRefCode] = useState('');
 
   const [isCancelationDialogVisible, setIsCancelationDialogVisible] = useState(
@@ -65,9 +62,6 @@ const Bridge = () => {
   const [sendPassword, setSendPassword] = useState(false);
   const [password, setPassword] = useState('');
   const [passwordEntered, setPasswordEntered] = useState('');
-
-  const numIPRef = useRef(null);
-  var isFirstTime = true;
 
   const buttonsPayment = [
     {
@@ -155,13 +149,13 @@ const Bridge = () => {
     ) {
       shouldSendPassword();
 
-      if (paymentMeth == 'Crédito') {
+      if (paymentMeth === 'Crédito') {
         bridgeService.sendIniciaVendaCredito(
-          parseInt(generateRandomForBridgeTransactions()),
+          parseInt(generateRandomForBridgeTransactions(), 10),
           PDV,
           valor.replace(/[^\d]+/g, ''),
-          parseInt(installmentType),
-          parseInt(numParcelas),
+          parseInt(installmentType, 10),
+          parseInt(numParcelas, 10),
         );
 
         let actualEvent = DeviceEventEmitter.addListener(
@@ -177,7 +171,7 @@ const Bridge = () => {
         }, 2000);
       } else {
         bridgeService.sendIniciaVendaDebito(
-          parseInt(generateRandomForBridgeTransactions()),
+          parseInt(generateRandomForBridgeTransactions(), 10),
           PDV,
           valor.replace(/[^\d]+/g, ''),
         );
@@ -198,12 +192,12 @@ const Bridge = () => {
   }
 
   function cancelTransaction() {
-    if (refCode != '') {
+    if (refCode.trim() !== '') {
       setIsCancelationDialogVisible(false);
 
       if (tryToUpdateBridgeServer()) {
         bridgeService.sendIniciaCancelamentoVenda(
-          parseInt(generateRandomForBridgeTransactions()),
+          parseInt(generateRandomForBridgeTransactions(), 10),
           PDV,
           valor.replace(/[^\d]+/g, ''),
           todayDate,
@@ -238,9 +232,9 @@ const Bridge = () => {
     if (tryToUpdateBridgeServer()) {
       shouldSendPassword();
       bridgeService.sendIniciaOperacaoAdministrativa(
-        parseInt(generateRandomForBridgeTransactions()),
+        parseInt(generateRandomForBridgeTransactions(), 10),
         PDV,
-        parseInt(selectedAdmOperation),
+        parseInt(selectedAdmOperation, 10),
       );
 
       let actualEvent = DeviceEventEmitter.addListener(
@@ -261,9 +255,9 @@ const Bridge = () => {
     if (tryToUpdateBridgeServer()) {
       shouldSendPassword();
 
-      if (couponType == 'nfce') {
+      if (couponType === 'nfce') {
         doBridgeXmlNFCe();
-      } else if (couponType == 'sat') {
+      } else if (couponType === 'sat') {
         doBridgeXmlSAT();
       } else {
         doBridgeXmlCancelment();
@@ -383,7 +377,7 @@ const Bridge = () => {
   }
 
   function configureTerminalPassword() {
-    if (selectedPasswordConfig == 'enablePassword') {
+    if (selectedPasswordConfig === 'enablePassword') {
       setIsInputPasswordDialogVisible(true);
     } else {
       if (!sendPassword) {
@@ -414,7 +408,7 @@ const Bridge = () => {
   }
 
   function enableTerminalPassword() {
-    if (passwordEntered == '') {
+    if (passwordEntered === '') {
       Alert.alert(
         'Erro na Senha',
         'Por favor insira um valor para a senha desejada!',
@@ -441,12 +435,12 @@ const Bridge = () => {
   }
 
   function setTransactionTimeOut() {
-    if (newTimeOut == '') {
+    if (newTimeOut.trim() === '') {
       Alert.alert('Alerta', 'O valor para o TimeOut não pode ser vazio.');
     } else {
       if (tryToUpdateBridgeServer()) {
         shouldSendPassword();
-        bridgeService.sendSetTimeOut(parseInt(newTimeOut));
+        bridgeService.sendSetTimeOut(parseInt(newTimeOut, 10));
 
         let actualEvent = DeviceEventEmitter.addListener(
           'eventSetTimeOut',
@@ -500,17 +494,17 @@ const Bridge = () => {
   }
 
   function isInstallmentsFieldValid() {
-    if (paymentMeth == 'Crédito') {
+    if (paymentMeth === 'Crédito') {
       if (
-        (installmentType == '2' || installmentType == '3') &&
-        parseInt(numParcelas) < 2
+        (installmentType === '2' || installmentType === '3') &&
+        parseInt(numParcelas, 10) < 2
       ) {
         Alert.alert(
           'Erro no parcelamento',
           'O número de parcelas deve ser maior que 2!',
         );
         return false;
-      } else if (numParcelas == '') {
+      } else if (numParcelas === '') {
         Alert.alert(
           'Erro no parcelamento',
           'O número de parcelas não pode ser vazio!',
@@ -525,14 +519,14 @@ const Bridge = () => {
   }
 
   function isTransactionPortValid() {
-    if (parseInt(trasactionPort) > 65535) {
+    if (parseInt(trasactionPort, 10) > 65535) {
       Alert.alert(
         'Erro na Porta de Transação',
         'O valor inserido na porta de transação excede o limite esbelecido de 65535!',
         'OK',
       );
       return false;
-    } else if (trasactionPort == ' ') {
+    } else if (trasactionPort.trim() === '') {
       Alert.alert(
         'Erro na Porta de Transação',
         'O valor inserido na porta de transação não pode ser vazio',
@@ -544,13 +538,13 @@ const Bridge = () => {
   }
 
   function isStatusPortValid() {
-    if (parseInt(trasactionPort) > 65535) {
+    if (parseInt(trasactionPort, 10) > 65535) {
       Alert.alert(
         'Erro na Porta de Status',
         'O valor inserido na porta de status excede o limite esbelecido de 65535!',
       );
       return false;
-    } else if (trasactionPort == ' ') {
+    } else if (trasactionPort.trim() === '') {
       Alert.alert(
         'Erro na Porta de Status',
         'O valor inserido na porta de status não pode ser vazio',
@@ -567,8 +561,8 @@ const Bridge = () => {
     if (isIpAdressValid() && isTransactionPortValid() && isStatusPortValid()) {
       bridgeService.sendSetServer(
         numIP,
-        parseInt(trasactionPort),
-        parseInt(statusPort),
+        parseInt(trasactionPort, 10),
+        parseInt(statusPort, 10),
       );
 
       return true;
@@ -596,19 +590,24 @@ const Bridge = () => {
       case 'cancelationDialog':
         setIsCancelationDialogVisible(false);
         setRefCode('');
+        break;
       case 'passwordConfigDialog':
         setIsPasswordDialogVisible(false);
         setSelectedPasswordConfig('');
+        break;
       case 'passwordInputDialog':
         setPasswordEntered('');
         setIsInputPasswordDialogVisible(false);
+        break;
       case 'successPassword':
         setIsPasswordDialogVisible(false);
         setIsInputPasswordDialogVisible(false);
         setPasswordEntered('');
+        break;
       case 'timeOutInputDialog':
         setIsTimeOutInputVisible(false);
         setNewTimeOut('');
+        break;
     }
   }
 
@@ -672,7 +671,7 @@ const Bridge = () => {
                 <TouchableOpacity
                   style={[
                     styles.paymentButton,
-                    {borderColor: id === paymentMeth ? '#23F600' : 'black'},
+                    id === paymentMeth && styles.paymentButtonSelected,
                   ]}
                   key={index}
                   onPress={onPress}>
@@ -691,10 +690,7 @@ const Bridge = () => {
                   <TouchableOpacity
                     style={[
                       styles.paymentButton,
-                      {
-                        borderColor:
-                          id === installmentType ? '#23F600' : 'black',
-                      },
+                      id === installmentType && styles.paymentButtonSelected,
                     ]}
                     key={index}
                     onPress={onPress}>
@@ -1055,9 +1051,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 2,
     borderRadius: 15,
+    borderColor: 'black',
     width: 60,
     height: 60,
     marginHorizontal: 5,
+  },
+  paymentButtonSelected: {
+    borderColor: '#23F600',
   },
   typeTEFButton: {
     justifyContent: 'center',

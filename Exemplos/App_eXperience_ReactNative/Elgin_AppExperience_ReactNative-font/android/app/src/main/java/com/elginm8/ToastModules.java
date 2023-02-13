@@ -331,6 +331,23 @@ public class ToastModules extends ReactContextBaseJavaModule implements Activity
     }
 
     @ReactMethod
+    public void runKiosk(ReadableMap configsReceived) {
+        WritableMap result = Arguments.createMap();
+
+        if (configsReceived.getString("typeKiosk").equals("switchBarraNavegacao")) {
+            KioskService.executeKioskOperation(KioskService.KIOSK_CONFIG.BARRA_NAVEGACAO, configsReceived.getBoolean("value"));
+        } else if (configsReceived.getString("typeKiosk").equals("switchBarraStatus")) {
+            KioskService.executeKioskOperation(KioskService.KIOSK_CONFIG.BARRA_STATUS, configsReceived.getBoolean("value"));
+        } else if (configsReceived.getString("typeKiosk").equals("switchBotaoPower")) {
+            KioskService.executeKioskOperation(KioskService.KIOSK_CONFIG.BOTAO_POWER, configsReceived.getBoolean("value"));
+        } else if (configsReceived.getString("typeKiosk").equals("resetKioskMode")) {
+            KioskService.resetKioskMode();
+        } else if (configsReceived.getString("typeKiosk").equals("setFullKioskMode")) {
+            KioskService.setFullKioskMode();
+        }
+    }
+
+    @ReactMethod
     public void runBridge(ReadableMap configReceived) {
         WritableMap result = Arguments.createMap();
 

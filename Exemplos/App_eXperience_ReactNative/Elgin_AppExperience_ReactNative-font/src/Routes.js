@@ -15,6 +15,7 @@ import CarteiraDigital from './pages/CarteiraDigital';
 import Bridge from './pages/Bridge';
 import Nfce from './pages/Nfce';
 import Pix4 from './pages/Pix4';
+import Kiosk from './pages/Kiosk';
 
 export default function Routes() {
   return (
@@ -30,6 +31,7 @@ export default function Routes() {
         <AppStack.Screen component={CarteiraDigital} name="CarteiraDigital" />
         <AppStack.Screen component={SAT} name="SAT" />
         <AppStack.Screen component={Pix4} name="Pix4" />
+        <AppStack.Screen component={Kiosk} name="Kiosk" />
       </AppStack.Navigator>
     </NavigationContainer>
   );

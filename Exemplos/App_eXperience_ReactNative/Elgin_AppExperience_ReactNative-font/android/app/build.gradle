@@ -192,12 +192,12 @@ dependencies {
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
-    implementation(name: 'e1-V02.15.01-release', ext: 'aar')
+    implementation(name: 'e1-V02.16.00-release', ext: 'aar')
     implementation(name: 'minipdvm8', ext: 'aar')
 
     implementation(name: 'darumamobile', ext: 'aar')
 
-    implementation(name: 'satelgin-7.0.1-release', ext: 'aar')
+    implementation(name: 'satelgin-8.0.1-release', ext: 'aar')
     implementation("androidx.startup:startup-runtime:1.1.0")
 
     implementation 'androidx.appcompat:appcompat:1.1.0'

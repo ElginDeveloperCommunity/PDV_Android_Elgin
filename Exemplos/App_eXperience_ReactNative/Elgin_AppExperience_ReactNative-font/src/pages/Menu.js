@@ -137,6 +137,15 @@ const Menu = () => {
               />
               <Text style={styles.textButton}>PIX 4</Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.menuButton}
+              onPress={() => navigator.navigate('Kiosk')}>
+              <Image
+                style={styles.icon}
+                source={require('../icons/kiosk.png')}
+              />
+              <Text style={styles.textButton}>KIOSK</Text>
+            </TouchableOpacity>
           </ScrollView>
         </View>
         <Footer />

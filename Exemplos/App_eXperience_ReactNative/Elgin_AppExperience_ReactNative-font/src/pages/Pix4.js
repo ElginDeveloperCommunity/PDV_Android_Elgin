@@ -1,13 +1,6 @@
 import React, {useEffect} from 'react';
 
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  DeviceEventEmitter,
-  Image,
-} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -161,14 +154,6 @@ const Pix4 = () => {
 
   function sendCarregarImagens() {
     pix4Service.sendCarregarImagens();
-
-    let actualEvent = DeviceEventEmitter.addListener('eventLerPeso', event => {
-      //var actualReturn = event.resultLerPeso;
-    });
-
-    setTimeout(() => {
-      actualEvent.remove();
-    }, 2000);
   }
 
   function sendApresentaListaCompras() {
