@@ -3,9 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.e1_kotlin_r">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,7 +12,14 @@
         android:theme="@style/Theme.E1_KOTLIN_R"
         tools:replace="android:theme">
         <activity
-            android:name=".Tef_2"
+            android:name=".KioskPage"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".KioskMode"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -26,6 +30,7 @@
             android:exported="false" />
         <activity android:name=".NFCE.NfcePage" />
         <activity android:name=".ShipayMenu" />
+<!--        <activity android:name=".KioskMode" />-->
         <activity android:name=".BalancaPage" />
         <activity android:name=".Pix4Page" />
         <activity android:name=".SatPage" />
@@ -40,8 +45,10 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 

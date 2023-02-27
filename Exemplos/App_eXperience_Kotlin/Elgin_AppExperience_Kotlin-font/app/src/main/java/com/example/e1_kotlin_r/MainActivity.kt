@@ -1,7 +1,6 @@
 package com.example.e1_kotlin_r
 
 import android.Manifest
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -25,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var buttonE1Bridge: LinearLayout
     lateinit var buttonNfce: LinearLayout
     lateinit var buttonPix4: LinearLayout
+    lateinit var buttonKiosk: LinearLayout
 
     private val REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 1
 
@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         buttonBalancaOption = findViewById(R.id.buttonBalancaOption)
         buttonE1Bridge = findViewById(R.id.buttonE1Bridge)
         buttonPix4 = findViewById(R.id.buttonPix4)
+        buttonKiosk = findViewById(R.id.buttonKioskMode)
 
         buttonPrinterOption.setOnClickListener({ openPrinterScreen() })
         buttonTefOption.setOnClickListener({ openTefScreen() })
@@ -51,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         buttonE1Bridge.setOnClickListener({openBridgeScreen()})
         buttonNfce.setOnClickListener({openNfce()})
         buttonPix4.setOnClickListener ({openPix4Screen()})
+        buttonKiosk.setOnClickListener({openKioskMode()})
 
         askWriteExternalStoragePermission();
     }
@@ -132,4 +134,8 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun openKioskMode() {
+        val intent = Intent(this, KioskMode::class.java)
+        startActivity(intent)
+    }
 }

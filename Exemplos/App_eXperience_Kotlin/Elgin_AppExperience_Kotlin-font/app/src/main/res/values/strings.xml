@@ -7,8 +7,10 @@
     <string name="text_button_sat">SAT</string>
     <string name="text_button_shipay">CARTEIRA DIGITAL</string>
     <string name="text_button_pix4">PIX 4</string>
-    <string name="text_footer_kotlin">Kotlin 3.0.0</string>
+    <string name="text_footer_kotlin">Kotlin 3.1.0</string>
+    <string name="text_button_kiosk">KIOSK</string>
     <string name="text_title_impressora">IMPRESSORA</string>
+    <string name="text_title_kiosk">KIOSK</string>
     <string name="text_title_e1_bridge">E1-BRIDGE</string>
     <string name="text_button_balance">BALANÇA</string>
     <string name="text_title_tef">TEF</string>
