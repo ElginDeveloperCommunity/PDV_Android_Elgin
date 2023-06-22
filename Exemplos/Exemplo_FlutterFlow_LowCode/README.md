@@ -1,7 +1,7 @@
 # Exemplo FlutterFlow PDV M10
 
 ## FlutterFlow
-FlutterFlow provides tooling that helps real world developers & users build apps using it - it’s a straightforward, easy to use tool that can generate very powerful results. FlutterFlow brings the power of a rich platform to everybody.
+O FlutterFlow fornece ferramentas que ajudam os desenvolvedores e usuários do mundo real a criar aplicativos Low Code. É uma ferramenta direta e fácil de usar que pode gerar resultados muito poderosos. O FlutterFlow traz o poder de uma plataforma avançada para todos.
 
 ## FlutterFlow com o M10
 FlutterFlow permite criar aplicações nativas Android, e por meio do plugin Flutter da Elgin, é possível comunicar com o M10 usando o [Intent Digital Hub](https://github.com/ElginDeveloperCommunity/TEF-Elgin/tree/master/Instaladores_Android/Homologa%C3%A7%C3%A3o/IDH) disponível também na [playstore](https://play.google.com/store/apps/details?id=com.elgin.e1.digitalhub).
