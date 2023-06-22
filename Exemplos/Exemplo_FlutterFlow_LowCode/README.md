@@ -8,5 +8,7 @@ FlutterFlow permite criar aplicações nativas Android, e por meio do plugin Flu
 
 [Leo Andrade](https://github.com/LeoAndradeNet/) em parceria com a ElginDeveloperCommunity criou um aplicativo usando o FlutterFlow, e você pode conferir [aqui](https://app.flutterflow.io/project/elgin-oj3ccs).
 
-Veja o vídeo do Leo Andrade onde ele explica como funciona o projeto:
+Veja o vídeo do Leo Andrade onde ele explica como funciona o projeto: 
+<br>
+
 [<img src="https://i3.ytimg.com/vi/4ywU4PDG4AY/maxresdefault.jpg" width="50%">](https://youtu.be/4ywU4PDG4AY "COMO CRIAR UMA AUTOMAÇÃO COMERCIAL COM FLUTTERFLOW + ELGIN")<br>
