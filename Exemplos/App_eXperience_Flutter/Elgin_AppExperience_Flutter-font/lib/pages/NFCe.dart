@@ -1,11 +1,9 @@
 import 'dart:async';
 
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_m8/Widgets/widgets.dart';
-import 'package:flutter_m8/main.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../services/service_nfce.dart';

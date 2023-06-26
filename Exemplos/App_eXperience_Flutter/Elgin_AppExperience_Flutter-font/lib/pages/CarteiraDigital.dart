@@ -4,7 +4,6 @@ import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_m8/Widgets/widgets.dart';
 import 'package:flutter_m8/components/components.dart';
-import 'package:flutter_m8/services/service_printer.dart';
 import 'package:flutter_m8/services/service_shipay.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -31,8 +30,8 @@ class _SitefPageState extends State<DigitalWalletPage> {
   String qrCodeViaClientBase64Shipay = '';
   String dateLastSaleShipay = '';
   String walletLastSaleShipay = '';
-  String deep_link = "";
-  String qr_code_text = "";
+  String deepLink = "";
+  String qrCodeText = "";
   String walletReturn = "";
 
   List<dynamic> wallets = [];
@@ -99,10 +98,10 @@ class _SitefPageState extends State<DigitalWalletPage> {
     walletReturn = json['wallet'];
 
     if (selectedWalletType != "pix") {
-      deep_link = json['deep_link'];
+      deepLink = json['deep_link'];
     }
 
-    qr_code_text = json['qr_code_text'];
+    qrCodeText = json['qr_code_text'];
 
     setState(() {
       String returnQrCodeBase64 = json['qr_code'];
@@ -132,7 +131,7 @@ class _SitefPageState extends State<DigitalWalletPage> {
             new TextButton(
               child: new Text("Sim"),
               onPressed: () async {
-                final json = await shipayService.deleteOrder(
+                await shipayService.deleteOrder(
                   orderId: orderIDShipay,
                   accessToken: accessTokenShipay,
                 );
@@ -178,14 +177,14 @@ class _SitefPageState extends State<DigitalWalletPage> {
   }
 
   getClipboardPix() {
-    FlutterClipboard.copy(qr_code_text).then((value) => showToast());
+    FlutterClipboard.copy(qrCodeText).then((value) => showToast());
   }
 
   getOpenMercadoPago() async {
-    if (await canLaunch(deep_link)) {
-      await launch(deep_link);
+    if (await canLaunch(deepLink)) {
+      await launch(deepLink);
     } else {
-      throw 'Could not launch $deep_link';
+      throw 'Could not launch $deepLink';
     }
   }
 

@@ -21,6 +21,7 @@ extension FrameworkEnumExtension on Framework {
       case Framework.REACT_NATIVE:
         return 'R. Native';
       default:
+        // ignore: sdk_version_since
         return '${this.name[0].toUpperCase()}${this.name.substring(1).toLowerCase()}';
     }
   }

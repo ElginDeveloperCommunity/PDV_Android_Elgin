@@ -15,6 +15,7 @@ enum Produto {
 
 extension ProdutoEnumExtension on Produto {
   String get nameForButton {
+    // ignore: sdk_version_since
     return '${this.name[0].toUpperCase()}${this.name.substring(1).toLowerCase()}';
   }
 

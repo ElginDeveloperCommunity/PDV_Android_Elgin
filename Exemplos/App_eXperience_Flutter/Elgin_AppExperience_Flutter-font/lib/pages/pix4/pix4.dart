@@ -20,7 +20,6 @@ class _Pix4PageState extends State<Pix4Page> {
     super.initState();
 
     pix4serviceObj.executeStoreImage();
-    pix4serviceObj.openDisplayConnection();
   }
 
   @override

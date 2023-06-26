@@ -162,9 +162,6 @@ public class MainActivity extends FlutterActivity {
         }
 
         switch ((String) requireNonNull(params.get("acao"))) {
-            case "OpenDisplayConnection":
-                pix4ServiceObj.abreConexaoDisplay();
-                break;
             case "ExecuteStoreImage":
                 final Pix4ImagesStorageService storageService = new Pix4ImagesStorageService(this);
                 storageService.executeStoreImages();

@@ -5,8 +5,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
-
-import com.elgin.e1.DisplayPIX4.PIX4;
+import com.elgin.e1.display.E1_Display;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -21,58 +20,29 @@ final public class Pix4Service {
 
     public Pix4Service(Activity activityRef) {
         mActivity = activityRef;
-        PIX4.setActivity(mActivity);
-    }
-
-    public void abreConexaoDisplay() {
-        int result =  PIX4.AbreConexaoDisplay();
-
-        final String message;
-        switch (result) {
-            case 0:
-                message = "Conexão com o dispositivo PIX4 bem sucedida!";
-                break;
-            case -12:
-                message= "Dispositivo não existe!";
-                break;
-            case 13:
-                message = "Permissão negada!";
-                break;
-            case -14:
-                message = "Erro desconhecido!";
-                break;
-            case -19:
-                message = "Dispositivo removido inesperadamente!";
-                break;
-            case -1:
-                message = "Conexão mal sucedida";
-                break;
-            default:
-                throw new AssertionError(result); // Outro valor não é esperado.
-        }
-
-        Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show();
+        // pode ser especificado pix4 ou tpro
+        E1_Display.init(mActivity, E1_Display.DisplayDevices.AUTO);
     }
 
     public int inicializaDisplay() {
-        return PIX4.InicializaDisplay();
+        return E1_Display.InicializaDisplay();
     }
 
     public int reinicializaDisplay() {
-        return PIX4.ReinicializaDisplay();
+        return E1_Display.ReinicializaDisplay();
     }
 
     public int desconectarDisplay() {
-        return PIX4.DesconectarDisplay();
+        return E1_Display.DesconectarDisplay();
     }
 
     public int obtemVersãoFirmware() {
-        return PIX4.ObtemVersaoFirmware();
+        return E1_Display.ObtemVersaoFirmware();
     }
 
     // Apresenta uma imagem no display, para o app-experience as imagens estão todas na mesma dimensão e serão colocadas na mesma posição.
     private int apresentaImagemProdutoDisplay(Produto produto) {
-        return PIX4.ApresentaImagemDisplay(produto.fileName, 0, 0, 0);
+        return E1_Display.ApresentaImagemDisplay(produto.fileName, 0, 0, 0);
     }
 
     // Apresenta um QRCode na tela do dispostivo, para o app-experience todos os códigos terão o mesmo tamanho e estarão nas mesma posição.
@@ -88,12 +58,12 @@ final public class Pix4Service {
         final String msgPart3 = String.format("%-26s", message.substring(52, 77));
         final String msgPart4 = String.format("%-26s", message.substring(77));
 
-        PIX4.ApresentaQrCode(framework.githubLink, 200, 80, 50);
-        PIX4.ApresentaTextoColorido(separador, 5, 20, 340, 0, "#005344");
-        PIX4.ApresentaTextoColorido(msgPart1, 6, 20, 360, 0, "#005344");
-        PIX4.ApresentaTextoColorido(msgPart2, 7, 20, 390, 0, "#005344");
-        PIX4.ApresentaTextoColorido(msgPart3, 8, 20, 420, 0, "#005344");
-        PIX4.ApresentaTextoColorido(msgPart4, 9, 22, 450, 0, "#005344");
+        E1_Display.ApresentaQrCode(framework.githubLink, 200, 80, 50);
+        E1_Display.ApresentaTextoColorido(separador, 5, 20, 340, 0, "#005344");
+        E1_Display.ApresentaTextoColorido(msgPart1, 6, 20, 360, 0, "#005344");
+        E1_Display.ApresentaTextoColorido(msgPart2, 7, 20, 390, 0, "#005344");
+        E1_Display.ApresentaTextoColorido(msgPart3, 8, 20, 420, 0, "#005344");
+        E1_Display.ApresentaTextoColorido(msgPart4, 9, 22, 450, 0, "#005344");
     }
 
     // Apresenta, utilizando a função "ApresentaTextoColorido", rótulo com as informações do produto e quantidades adicionadas.
@@ -113,9 +83,9 @@ final public class Pix4Service {
         this.inicializaDisplay();
 
         this.apresentaImagemProdutoDisplay(produto);
-        PIX4.ApresentaTextoColorido(separador, 17, 22, 400, 0, "#005344");
-        PIX4.ApresentaTextoColorido(nomePreco, 18, 20, 420, 0, "#005344");
-        PIX4.ApresentaTextoColorido(qtdTotal, 19, 20, 450, 0, "#005344");
+        E1_Display.ApresentaTextoColorido(separador, 17, 22, 400, 0, "#005344");
+        E1_Display.ApresentaTextoColorido(nomePreco, 18, 20, 420, 0, "#005344");
+        E1_Display.ApresentaTextoColorido(qtdTotal, 19, 20, 450, 0, "#005344");
     }
 
     // Apresenta a lista de produtos.
@@ -124,7 +94,7 @@ final public class Pix4Service {
         this.inicializaDisplay();
 
         for (Produto produto : carrinho) {
-            PIX4.ApresentaListaCompras(produto.nome, produto.preco);
+            E1_Display.ApresentaListaCompras(produto.nome, produto.preco);
         }
     }
 
@@ -138,7 +108,7 @@ final public class Pix4Service {
 
             mHandler.post(() -> Toast.makeText(mActivity," O carregamento das imagens começou, aguarde até a mensagem de término do carregamento!", Toast.LENGTH_LONG).show());
             for (Produto produto : Produto.values()) {
-                int result = PIX4.CarregaImagemDisplay(produto.fileName, imagesPath + produto.fileName, 320, 480);
+                int result = E1_Display.CarregaImagemDisplay(produto.fileName, imagesPath + produto.fileName, 320, 480);
 
                 mHandler.post(() -> Toast.makeText(mActivity, (result == 0) ? ("A imagem do produto: " + produto.nome + " carregou com sucesso!") : ("Ocorreu um erro no carregamento da imagem do produto: " + produto.nome + "!\n Tente novamente!"), Toast.LENGTH_SHORT).show());
             }

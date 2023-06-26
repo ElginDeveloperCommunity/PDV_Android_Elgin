@@ -8,14 +8,6 @@ class Pix4Service {
     return await _platform.invokeMethod("pix4", {"args": args});
   }
 
-  Future<void> openDisplayConnection() async {
-    Map<String, dynamic> mapParam = new Map();
-
-    mapParam['acao'] = 'OpenDisplayConnection';
-
-    return await _sendFunctionToAndroid(mapParam);
-  }
-
   Future<void> executeStoreImage() async {
     Map<String, dynamic> mapParam = new Map();
 

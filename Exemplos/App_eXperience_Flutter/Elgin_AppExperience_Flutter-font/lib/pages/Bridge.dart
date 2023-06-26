@@ -1,18 +1,14 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:math';
 
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_m8/Struct/enums.dart';
 import 'package:flutter_m8/Widgets/widgets.dart';
-import 'package:flutter_m8/components/components.dart';
 import 'package:flutter_m8/services/service_bridge.dart';
 import 'package:intl/intl.dart';
-import 'package:path_provider/path_provider.dart';
 
 class BridgePage extends StatefulWidget {
   @override
@@ -211,11 +207,11 @@ class _BridgePageState extends State<BridgePage> {
       FilteringTextInputFormatter cancelTrasanctionFilterToOnlyDigits =
           FilteringTextInputFormatter.allow(RegExp('[0-9]'));
 
-      OnInputRefChanged(String newInputRef) {
+      onInputRefChanged(String newInputRef) {
         inputRef = newInputRef;
       }
 
-      OnPressedAction(int pressedAction) {
+      onPressedAction(int pressedAction) {
         Navigator.of(context).pop();
 
         //Se a opção OK foi selecionada
@@ -227,8 +223,6 @@ class _BridgePageState extends State<BridgePage> {
           //O valor da transação deve ser enviado ao Bridge em centavos (ex R$ 20,00 deve ser passado 2000), portanto removemos a ',' antes da passagem do parametro valorTotal
           String transactionValueFormatted =
               controllerTransactionValue.text.replaceAll(',', '');
-
-          String bridgeReturn = '';
 
           bridgeService
               .iniciaCancelamentoVenda(
@@ -249,8 +243,8 @@ class _BridgePageState extends State<BridgePage> {
       GeneralWidgets.showAlertDialogWithInputField(
           mainWidgetContext: context,
           dialogTitle: 'Código de Referência: ',
-          onTextInput: OnInputRefChanged,
-          onPressedAction: OnPressedAction,
+          onTextInput: onInputRefChanged,
+          onPressedAction: onPressedAction,
           textInputType: TextInputType.number,
           filteringTextInputFormatter: cancelTrasanctionFilterToOnlyDigits);
     }
@@ -269,7 +263,6 @@ class _BridgePageState extends State<BridgePage> {
         Navigator.of(context).pop();
 
         const int PRESSED_ACTION_ENABLEPASSWORD = 0;
-        const int PRESSED_ACTION_DISABLEPASSWORD = 1;
 
         //Função e String utilizada para o recebimento do input no campo de diálogo
         String passwordToBeSet = '';
@@ -487,7 +480,7 @@ class _BridgePageState extends State<BridgePage> {
                   dialogTitle: 'Retorno E1 - BRIDGE',
                   dialogText: stringRetornoSetTimeout);
             });
-          } on FormatException catch (e) {
+          } on FormatException {
             GeneralWidgets.showAlertDialog(
                 mainWidgetContext: context,
                 dialogTitle: 'Alerta',
@@ -657,12 +650,6 @@ class _BridgePageState extends State<BridgePage> {
   int generateRandomIntForBridgeTransaction() {
     var random = new Random();
     return random.nextInt(999999);
-  }
-
-  Future<bool> _onBackPressed() async {
-    // Your back press code here...
-    Components.infoDialog(context: context, message: 'backPressed');
-    return true;
   }
 
   @override
