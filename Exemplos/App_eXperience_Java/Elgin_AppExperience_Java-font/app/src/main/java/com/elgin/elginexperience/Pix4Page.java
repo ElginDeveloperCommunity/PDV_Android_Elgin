@@ -29,7 +29,6 @@ public class Pix4Page extends AppCompatActivity {
         pix4ImagesStorageService.executeStoreImages();
 
         pix4Obj = new Pix4Service(this);
-        pix4Obj.abreConexaoDisplay();
 
         initQrCodeViews();
 

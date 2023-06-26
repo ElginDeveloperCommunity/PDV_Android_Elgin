@@ -49,6 +49,8 @@ public class PrinterMenu extends AppCompatActivity {
     private static final String EXTERNAL_PRINTER_MODEL_I8 = "i8";
     private static final String EXTERNAL_PRINTER_MODEL_I7_PLUS = "i7 PLUS";
 
+    private static final String EXTERNAL_PRINTER_MODEL_MP4200 = "MP-4200";
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,7 +165,7 @@ public class PrinterMenu extends AppCompatActivity {
 
         final String[] operations;
         if (externalConnectionMethod.equals("USB")) {
-            operations = new String[]{EXTERNAL_PRINTER_MODEL_I9, EXTERNAL_PRINTER_MODEL_I8, EXTERNAL_PRINTER_MODEL_I7_PLUS};
+            operations = new String[]{EXTERNAL_PRINTER_MODEL_I9, EXTERNAL_PRINTER_MODEL_I8, EXTERNAL_PRINTER_MODEL_I7_PLUS, EXTERNAL_PRINTER_MODEL_MP4200};
         } else {
             operations = new String[]{EXTERNAL_PRINTER_MODEL_I9, EXTERNAL_PRINTER_MODEL_I8};
         }
@@ -205,6 +207,9 @@ public class PrinterMenu extends AppCompatActivity {
                 break;
             case 2:
                 selectedPrinterModel = EXTERNAL_PRINTER_MODEL_I7_PLUS;
+                break;
+            case 3:
+                selectedPrinterModel = EXTERNAL_PRINTER_MODEL_MP4200;
                 break;
             default:
                 throw new AssertionError(whichSelected); // Todos os índices para modelos disponibilizados no alert foram cobertos, algum caso deve ter ocorrido.

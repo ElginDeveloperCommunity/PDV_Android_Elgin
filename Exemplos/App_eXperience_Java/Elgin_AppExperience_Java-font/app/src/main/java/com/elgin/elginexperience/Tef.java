@@ -308,7 +308,7 @@ public class Tef extends AppCompatActivity {
 
         //Se for uma venda ou cancelamento, deve ser feito a configuração a seguir para a classe que lidará com o pagamento via paygo.
         if (acao != Acao.CONFIGURACAO) {
-            mapValues.put("valor", getTextValueTEFClean());
+            mapValues.put("valor", "2.00");
             mapValues.put("parcelas", Integer.parseInt(editTextInstallmentsTEF.getText().toString()));
             mapValues.put("formaPagamento", formaPagamentoSelecionada);
             mapValues.put("tipoParcelamento", formaFinanciamentoSelecionada);
@@ -383,7 +383,7 @@ public class Tef extends AppCompatActivity {
 
     private void sendElginTefParams(Acao acao) {
         //Configura o valor da transação.
-        intentToElginTef.putExtra("valor", getTextValueTEFClean());
+        intentToElginTef.putExtra("valor", "2.00");
 
         switch (acao) {
             case VENDA:
