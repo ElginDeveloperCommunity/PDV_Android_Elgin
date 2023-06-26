@@ -4,7 +4,7 @@ import android.app.Activity
 import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
-import com.elgin.e1.DisplayPIX4.PIX4
+import com.elgin.e1.display.E1_Display
 import com.example.e1_kotlin_r.Pix4Page
 import java.math.BigDecimal
 
@@ -13,43 +13,28 @@ class Pix4Service(val mActivity: Activity) {
     private val carrinho: MutableList<Produto> = ArrayList()
 
     init {
-        PIX4.setActivity(mActivity)
-    }
-
-    fun abreConexaoDisplay() {
-        val result = PIX4.AbreConexaoDisplay()
-        val message: String
-        message = when (result) {
-            0 -> "Conexão com o dispositivo PIX4 bem sucedida!"
-            -12 -> "Dispositivo não existe!"
-            13 -> "Permissão negada!"
-            -14 -> "Erro desconhecido!"
-            -19 -> "Dispositivo removido inesperadamente!"
-            -1 -> "Conexão mal sucedida"
-            else -> throw AssertionError(result) // Outro valor não é esperado.
-        }
-        Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show()
+        E1_Display.init(mActivity, E1_Display.DisplayDevices.AUTO)
     }
 
     fun inicializaDisplay(): Int {
-        return PIX4.InicializaDisplay()
+        return E1_Display.InicializaDisplay()
     }
 
     fun reinicializaDisplay(): Int {
-        return PIX4.ReinicializaDisplay()
+        return E1_Display.ReinicializaDisplay()
     }
 
     fun desconectarDisplay(): Int {
-        return PIX4.DesconectarDisplay()
+        return E1_Display.DesconectarDisplay()
     }
 
     fun obtemVersãoFirmware(): Int {
-        return PIX4.ObtemVersaoFirmware()
+        return E1_Display.ObtemVersaoFirmware()
     }
 
     // Apresenta uma imagem no display, para o app-experience as imagens estão todas na mesma dimensão e serão colocadas na mesma posição.
     fun apresentaImagemProdutoDisplay(produto: Produto): Int {
-        return PIX4.ApresentaImagemDisplay(produto.fileName, 0, 0, 0)
+        return E1_Display.ApresentaImagemDisplay(produto.fileName, 0, 0, 0)
     }
 
     // Apresenta um QRCode na tela do dispostivo, para o app-experience todos os códigos terão o mesmo tamanho e estarão nas mesma posição.
@@ -63,12 +48,12 @@ class Pix4Service(val mActivity: Activity) {
         val msgPart2 = String.format("%-26s", message.substring(26, 52))
         val msgPart3 = String.format("%-26s", message.substring(52, 77))
         val msgPart4 = String.format("%-26s", message.substring(77))
-        PIX4.ApresentaQrCode(framework.githubLink, 200, 80, 50)
-        PIX4.ApresentaTextoColorido(separador, 5, 20, 340, 0, "#005344")
-        PIX4.ApresentaTextoColorido(msgPart1, 6, 20, 360, 0, "#005344")
-        PIX4.ApresentaTextoColorido(msgPart2, 7, 20, 390, 0, "#005344")
-        PIX4.ApresentaTextoColorido(msgPart3, 8, 20, 420, 0, "#005344")
-        PIX4.ApresentaTextoColorido(msgPart4, 9, 22, 450, 0, "#005344")
+        E1_Display.ApresentaQrCode(framework.githubLink, 200, 80, 50)
+        E1_Display.ApresentaTextoColorido(separador, 5, 20, 340, 0, "#005344")
+        E1_Display.ApresentaTextoColorido(msgPart1, 6, 20, 360, 0, "#005344")
+        E1_Display.ApresentaTextoColorido(msgPart2, 7, 20, 390, 0, "#005344")
+        E1_Display.ApresentaTextoColorido(msgPart3, 8, 20, 420, 0, "#005344")
+        E1_Display.ApresentaTextoColorido(msgPart4, 9, 22, 450, 0, "#005344")
     }
 
     // Apresenta, utilizando a função "ApresentaTextoColorido", rótulo com as informações do produto e quantidades adicionadas.
@@ -92,9 +77,9 @@ class Pix4Service(val mActivity: Activity) {
         // Refresh no display.
         inicializaDisplay()
         apresentaImagemProdutoDisplay(produto)
-        PIX4.ApresentaTextoColorido(separador, 17, 22, 400, 0, "#005344")
-        PIX4.ApresentaTextoColorido(nomePreco, 18, 20, 420, 0, "#005344")
-        PIX4.ApresentaTextoColorido(qtdTotal, 19, 20, 450, 0, "#005344")
+        E1_Display.ApresentaTextoColorido(separador, 17, 22, 400, 0, "#005344")
+        E1_Display.ApresentaTextoColorido(nomePreco, 18, 20, 420, 0, "#005344")
+        E1_Display.ApresentaTextoColorido(qtdTotal, 19, 20, 450, 0, "#005344")
     }
 
     // Apresenta a lista de produtos.
@@ -102,7 +87,7 @@ class Pix4Service(val mActivity: Activity) {
         // Refresh no display.
         inicializaDisplay()
         for (produto in carrinho) {
-            PIX4.ApresentaListaCompras(produto.name, produto.preco)
+            E1_Display.ApresentaListaCompras(produto.name, produto.preco)
         }
     }
 
@@ -120,7 +105,7 @@ class Pix4Service(val mActivity: Activity) {
                 ).show()
             }
             for (produto in Produto.values()) {
-                val result = PIX4.CarregaImagemDisplay(
+                val result = E1_Display.CarregaImagemDisplay(
                     produto.fileName, imagesPath + produto.fileName, 320, 480
                 )
                 mHandler.post {

@@ -26,7 +26,6 @@ class Pix4Page : AppCompatActivity() {
         pix4ImagesStorageService!!.executeStoreImages()
 
         pix4Obj = Pix4Service(this)
-        pix4Obj!!.abreConexaoDisplay()
 
         initQrCodeViews()
 
@@ -36,58 +35,50 @@ class Pix4Page : AppCompatActivity() {
     }
 
     private fun initQrCodeViews() {
-        val buttonJava: LinearLayout
-        val buttonDelphi: LinearLayout
-        val buttonFlutter: LinearLayout
-        val buttonXamarinAndrod: LinearLayout
-        val buttonXamarinForms: LinearLayout
-        val buttonReactNative: LinearLayout
-        val buttonKotlin: LinearLayout
-        val buttonIonic: LinearLayout
-        buttonJava = findViewById(R.id.buttonJava)
-        buttonDelphi = findViewById(R.id.buttonDelphi)
-        buttonFlutter = findViewById(R.id.buttonFlutter)
-        buttonXamarinAndrod = findViewById(R.id.buttonXamarinAndroid)
-        buttonXamarinForms = findViewById(R.id.buttonXamarinForms)
-        buttonReactNative = findViewById(R.id.buttonReactNative)
-        buttonKotlin = findViewById(R.id.buttonKotlin)
-        buttonIonic = findViewById(R.id.buttonIonic)
-        buttonJava.setOnClickListener { v: View? ->
+        val buttonJava: LinearLayout = findViewById(R.id.buttonJava)
+        val buttonDelphi: LinearLayout = findViewById(R.id.buttonDelphi)
+        val buttonFlutter: LinearLayout = findViewById(R.id.buttonFlutter)
+        val buttonXamarinAndroid: LinearLayout = findViewById(R.id.buttonXamarinAndroid)
+        val buttonXamarinForms: LinearLayout = findViewById(R.id.buttonXamarinForms)
+        val buttonReactNative: LinearLayout = findViewById(R.id.buttonReactNative)
+        val buttonKotlin: LinearLayout = findViewById(R.id.buttonKotlin)
+        val buttonIonic: LinearLayout = findViewById(R.id.buttonIonic)
+        buttonJava.setOnClickListener {
             pix4Obj!!.apresentaQrCodeLinkGihtub(
                 Framework.JAVA
             )
         }
-        buttonDelphi.setOnClickListener { v: View? ->
+        buttonDelphi.setOnClickListener { _: View? ->
             pix4Obj!!.apresentaQrCodeLinkGihtub(
                 Framework.DELPHI
             )
         }
-        buttonFlutter.setOnClickListener { v: View? ->
+        buttonFlutter.setOnClickListener {
             pix4Obj!!.apresentaQrCodeLinkGihtub(
                 Framework.FLUTTER
             )
         }
-        buttonXamarinAndrod.setOnClickListener { v: View? ->
+        buttonXamarinAndroid.setOnClickListener { _: View? ->
             pix4Obj!!.apresentaQrCodeLinkGihtub(
                 Framework.XAMARIN_ANDROID
             )
         }
-        buttonXamarinForms.setOnClickListener { v: View? ->
+        buttonXamarinForms.setOnClickListener { _: View? ->
             pix4Obj!!.apresentaQrCodeLinkGihtub(
                 Framework.XAMARIN_FORMS
             )
         }
-        buttonReactNative.setOnClickListener { v: View? ->
+        buttonReactNative.setOnClickListener { _: View? ->
             pix4Obj!!.apresentaQrCodeLinkGihtub(
                 Framework.REACT_NATIVE
             )
         }
-        buttonKotlin.setOnClickListener { v: View? ->
+        buttonKotlin.setOnClickListener { _: View? ->
             pix4Obj!!.apresentaQrCodeLinkGihtub(
                 Framework.KOTLIN
             )
         }
-        buttonIonic.setOnClickListener { v: View? ->
+        buttonIonic.setOnClickListener { _: View? ->
             pix4Obj!!.apresentaQrCodeLinkGihtub(
                 Framework.IONIC
             )
@@ -95,72 +86,62 @@ class Pix4Page : AppCompatActivity() {
     }
 
     private fun initProductViews() {
-        val buttonAbacaxi: LinearLayout
-        val buttonBanana: LinearLayout
-        val buttonChocolote: LinearLayout
-        val buttonDetergente: LinearLayout
-        val buttonErvilha: LinearLayout
-        val buttonFeijao: LinearLayout
-        val buttonGoiabada: LinearLayout
-        val buttonHamburguer: LinearLayout
-        val buttonIogurte: LinearLayout
-        val buttonJaca: LinearLayout
-        buttonAbacaxi = findViewById(R.id.buttonAbacaxi)
-        buttonBanana = findViewById(R.id.buttonBanana)
-        buttonChocolote = findViewById(R.id.buttonChocolate)
-        buttonDetergente = findViewById(R.id.buttonDetergente)
-        buttonErvilha = findViewById(R.id.buttonErvilha)
-        buttonFeijao = findViewById(R.id.buttonFeijao)
-        buttonGoiabada = findViewById(R.id.buttonGoiabada)
-        buttonHamburguer = findViewById(R.id.buttonHamburguer)
-        buttonIogurte = findViewById(R.id.buttonIogurte)
-        buttonJaca = findViewById(R.id.buttonJaca)
-        buttonAbacaxi.setOnClickListener { v: View? ->
+        val buttonAbacaxi: LinearLayout = findViewById(R.id.buttonAbacaxi)
+        val buttonBanana: LinearLayout = findViewById(R.id.buttonBanana)
+        val buttonChocolote: LinearLayout = findViewById(R.id.buttonChocolate)
+        val buttonDetergente: LinearLayout = findViewById(R.id.buttonDetergente)
+        val buttonErvilha: LinearLayout = findViewById(R.id.buttonErvilha)
+        val buttonFeijao: LinearLayout = findViewById(R.id.buttonFeijao)
+        val buttonGoiabada: LinearLayout = findViewById(R.id.buttonGoiabada)
+        val buttonHamburguer: LinearLayout = findViewById(R.id.buttonHamburguer)
+        val buttonIogurte: LinearLayout = findViewById(R.id.buttonIogurte)
+        val buttonJaca: LinearLayout = findViewById(R.id.buttonJaca)
+        buttonAbacaxi.setOnClickListener { _: View? ->
             pix4Obj!!.adicionaProdutoApresenta(
                 Produto.ABACAXI
             )
         }
-        buttonBanana.setOnClickListener { v: View? ->
+        buttonBanana.setOnClickListener { _: View? ->
             pix4Obj!!.adicionaProdutoApresenta(
                 Produto.BANANA
             )
         }
-        buttonChocolote.setOnClickListener { v: View? ->
+        buttonChocolote.setOnClickListener { _: View? ->
             pix4Obj!!.adicionaProdutoApresenta(
                 Produto.CHOCOLATE
             )
         }
-        buttonDetergente.setOnClickListener { v: View? ->
+        buttonDetergente.setOnClickListener { _: View? ->
             pix4Obj!!.adicionaProdutoApresenta(
                 Produto.DETERGENTE
             )
         }
-        buttonErvilha.setOnClickListener { v: View? ->
+        buttonErvilha.setOnClickListener { _: View? ->
             pix4Obj!!.adicionaProdutoApresenta(
                 Produto.ERVILHA
             )
         }
-        buttonFeijao.setOnClickListener { v: View? ->
+        buttonFeijao.setOnClickListener { _: View? ->
             pix4Obj!!.adicionaProdutoApresenta(
                 Produto.FEIJAO
             )
         }
-        buttonGoiabada.setOnClickListener { v: View? ->
+        buttonGoiabada.setOnClickListener { _: View? ->
             pix4Obj!!.adicionaProdutoApresenta(
                 Produto.GOIABADA
             )
         }
-        buttonHamburguer.setOnClickListener { v: View? ->
+        buttonHamburguer.setOnClickListener { _: View? ->
             pix4Obj!!.adicionaProdutoApresenta(
                 Produto.HAMBURGUER
             )
         }
-        buttonIogurte.setOnClickListener { v: View? ->
+        buttonIogurte.setOnClickListener { _: View? ->
             pix4Obj!!.adicionaProdutoApresenta(
                 Produto.IOGURTE
             )
         }
-        buttonJaca.setOnClickListener { v: View? ->
+        buttonJaca.setOnClickListener { _: View? ->
             pix4Obj!!.adicionaProdutoApresenta(
                 Produto.JACA
             )
@@ -169,8 +150,8 @@ class Pix4Page : AppCompatActivity() {
 
     private fun initActionButtons() {
         val buttonShowShoppingList = findViewById<Button>(R.id.buttonShowShoppingList)
-        buttonShowShoppingList.setOnClickListener { v: View? -> pix4Obj!!.apresentaListaCompras() }
+        buttonShowShoppingList.setOnClickListener { _: View? -> pix4Obj!!.apresentaListaCompras() }
         val buttonLoadImages = findViewById<Button>(R.id.buttonLoadImagesOnPIX4)
-        buttonLoadImages.setOnClickListener { v: View? -> pix4Obj!!.carregarImagens() }
+        buttonLoadImages.setOnClickListener { _: View? -> pix4Obj!!.carregarImagens() }
     }
 }

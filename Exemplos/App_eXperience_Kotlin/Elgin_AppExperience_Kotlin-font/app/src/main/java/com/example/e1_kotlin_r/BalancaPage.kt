@@ -10,14 +10,14 @@ import java.util.*
 
 
 class BalancaPage : AppCompatActivity() {
-    var balanca: Balanca? = null
-    var textReturnValueBalanca: TextView? = null
-    lateinit var radioGroupModels: RadioGroup
-    lateinit var radioButtonDP30CK: RadioButton
-    lateinit var spinnerProtocols: Spinner
-    lateinit var buttonConfigurarBalanca: Button
-    lateinit var buttonLerPeso: Button
-    var typeModel = "DP30CK"
+    private var balanca: Balanca? = null
+    private var textReturnValueBalanca: TextView? = null
+    private lateinit var radioGroupModels: RadioGroup
+    private lateinit var radioButtonDP30CK: RadioButton
+    private lateinit var spinnerProtocols: Spinner
+    private lateinit var buttonConfigurarBalanca: Button
+    private lateinit var buttonLerPeso: Button
+    private var typeModel = "DP30CK"
     var typeProtocol = "PROTOCOL 0"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,35 +32,35 @@ class BalancaPage : AppCompatActivity() {
 
 
         //CONFIGS MODEL BALANÇA
-        radioButtonDP30CK.setChecked(true)
+        radioButtonDP30CK.isChecked = true
         radioGroupModels = findViewById(R.id.radioGroupModels)
-        radioGroupModels.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
+        radioGroupModels.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.radioButtonDP30CK -> typeModel = "DP30CK"
                 R.id.radioButtonSA110 -> typeModel = "SA110"
                 R.id.radioButtonDPSC -> typeModel = "DPSC"
             }
-        })
+        }
 
         //CONFIGS PROTOCOLS
-        spinnerProtocols.setOnItemSelectedListener(object : OnItemSelectedListener {
+        spinnerProtocols.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
             override fun onItemSelected(adapter: AdapterView<*>, v: View, i: Int, lng: Long) {
                 typeProtocol = adapter.getItemAtPosition(i).toString()
             }
-        })
-        buttonConfigurarBalanca.setOnClickListener(View.OnClickListener { sendConfigBalanca() })
-        buttonLerPeso.setOnClickListener(View.OnClickListener { sendLerPesoBalanca() })
+        }
+        buttonConfigurarBalanca.setOnClickListener { sendConfigBalanca() }
+        buttonLerPeso.setOnClickListener { sendLerPesoBalanca() }
     }
 
-    fun sendConfigBalanca() {
+    private fun sendConfigBalanca() {
         val mapValues: MutableMap<String?, Any?> = HashMap()
         mapValues["model"] = typeModel
         mapValues["protocol"] = typeProtocol
         balanca!!.configBalanca(mapValues)
     }
 
-    fun sendLerPesoBalanca() {
+    private fun sendLerPesoBalanca() {
         val retorno = balanca!!.lerPesoBalanca()
         textReturnValueBalanca!!.text = retorno
     }

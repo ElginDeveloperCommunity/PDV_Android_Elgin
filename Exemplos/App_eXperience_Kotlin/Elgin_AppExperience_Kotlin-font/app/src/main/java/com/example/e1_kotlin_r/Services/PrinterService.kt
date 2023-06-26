@@ -63,12 +63,16 @@ class PrinterService(var mActivity: Activity) {
         var styleValue = 0
 
         // ALINHAMENTO VALUE
-        alignValue = if (align == "Esquerda") {
-            0
-        } else if (align == "Centralizado") {
-            1
-        } else {
-            2
+        alignValue = when (align) {
+            "Esquerda" -> {
+                0
+            }
+            "Centralizado" -> {
+                1
+            }
+            else -> {
+                2
+            }
         }
         //STILO VALUE
         if (font == "FONT B") {
@@ -95,20 +99,21 @@ class PrinterService(var mActivity: Activity) {
         val width = map["width"] as Int
         val align = map["align"] as String?
         val hri = 4 // NO PRINT
-        val result: Int
-        val alignValue: Int
 
         // ALINHAMENTO VALUE
-        alignValue = if (align == "Esquerda") {
-            0
-        } else if (align == "Centralizado") {
-            1
-        } else {
-            2
+        val alignValue: Int = when (align) {
+            "Esquerda" -> {
+                0
+            }
+            "Centralizado" -> {
+                1
+            }
+            else -> {
+                2
+            }
         }
         Termica.DefinePosicao(alignValue)
-        result = Termica.ImpressaoCodigoBarras(barCodeType, text, height, width, hri)
-        return result
+        return Termica.ImpressaoCodigoBarras(barCodeType, text, height, width, hri)
     }
 
     fun imprimeQR_CODE(map: Map<*, *>): Int {
@@ -116,28 +121,29 @@ class PrinterService(var mActivity: Activity) {
         val text = map["text"] as String?
         val align = map["align"] as String?
         val nivelCorrecao = 2
-        val result: Int
-        val alignValue: Int
 
         // ALINHAMENTO VALUE
-        alignValue = if (align == "Esquerda") {
-            0
-        } else if (align == "Centralizado") {
-            1
-        } else {
-            2
+        val alignValue: Int = when (align) {
+            "Esquerda" -> {
+                0
+            }
+
+            "Centralizado" -> {
+                1
+            }
+
+            else -> {
+                2
+            }
         }
         Termica.DefinePosicao(alignValue)
-        result = Termica.ImpressaoQRCode(text, size, nivelCorrecao)
-        return result
+        return Termica.ImpressaoQRCode(text, size, nivelCorrecao)
     }
 
     fun imprimeImagem(bitmap: Bitmap?): Int {
-        val result: Int
 
         //Verifica se o método de impressão atual é por impressora interna ou externa e utiliza a função adequada para cada um
-        result =
-            if (isPrinterInternSelected) Termica.ImprimeBitmap(bitmap) else {
+        val result: Int = if (isPrinterInternSelected) Termica.ImprimeBitmap(bitmap) else {
                 Termica.ImprimeImagem(bitmap)
             }
         return result

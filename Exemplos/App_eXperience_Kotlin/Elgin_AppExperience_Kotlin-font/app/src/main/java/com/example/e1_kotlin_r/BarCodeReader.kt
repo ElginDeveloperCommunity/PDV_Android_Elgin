@@ -11,19 +11,19 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class BarCodeReader : AppCompatActivity() {
-    lateinit var buttonInitRead: Button
-    lateinit var buttonCleanAllInputs: Button
+    private lateinit var buttonInitRead: Button
+    private lateinit var buttonCleanAllInputs: Button
 
-    lateinit var editTextCodeBar1: EditText
-    lateinit var editTextCodeBar2: EditText
-    lateinit var editTextCodeBar3: EditText
-    lateinit var editTextCodeBar4: EditText
-    lateinit var editTextCodeBar5: EditText
-    lateinit var editTextCodeBar6: EditText
-    lateinit var editTextCodeBar7: EditText
-    lateinit var editTextCodeBar8: EditText
-    lateinit var editTextCodeBar9: EditText
-    lateinit var editTextCodeBar10: EditText
+    private lateinit var editTextCodeBar1: EditText
+    private lateinit var editTextCodeBar2: EditText
+    private lateinit var editTextCodeBar3: EditText
+    private lateinit var editTextCodeBar4: EditText
+    private lateinit var editTextCodeBar5: EditText
+    private lateinit var editTextCodeBar6: EditText
+    private lateinit var editTextCodeBar7: EditText
+    private lateinit var editTextCodeBar8: EditText
+    private lateinit var editTextCodeBar9: EditText
+    private lateinit var editTextCodeBar10: EditText
 
     lateinit var imageViewCodeBar1: ImageView
     lateinit var imageViewCodeBar2: ImageView
@@ -145,7 +145,7 @@ class BarCodeReader : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (!s.toString().isEmpty()) {
+                if (s.toString().isNotEmpty()) {
                     imageViewCodeBar1.visibility = View.VISIBLE
                     textViewCodeBar1.visibility = View.VISIBLE
                 }
@@ -162,7 +162,7 @@ class BarCodeReader : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (!s.toString().isEmpty()) {
+                if (s.toString().isNotEmpty()) {
                     imageViewCodeBar2.visibility = View.VISIBLE
                     textViewCodeBar2.visibility = View.VISIBLE
                 }
@@ -179,7 +179,7 @@ class BarCodeReader : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (!s.toString().isEmpty()) {
+                if (s.toString().isNotEmpty()) {
                     imageViewCodeBar3.visibility = View.VISIBLE
                     textViewCodeBar3.visibility = View.VISIBLE
                 }
@@ -196,7 +196,7 @@ class BarCodeReader : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (!s.toString().isEmpty()) {
+                if (s.toString().isNotEmpty()) {
                     imageViewCodeBar4.visibility = View.VISIBLE
                     textViewCodeBar4.visibility = View.VISIBLE
                 }
@@ -213,7 +213,7 @@ class BarCodeReader : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (!s.toString().isEmpty()) {
+                if (s.toString().isNotEmpty()) {
                     imageViewCodeBar5.visibility = View.VISIBLE
                     textViewCodeBar5.visibility = View.VISIBLE
                 }
@@ -230,7 +230,7 @@ class BarCodeReader : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (!s.toString().isEmpty()) {
+                if (s.toString().isNotEmpty()) {
                     imageViewCodeBar6.visibility = View.VISIBLE
                     textViewCodeBar6.visibility = View.VISIBLE
                 }
@@ -247,7 +247,7 @@ class BarCodeReader : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (!s.toString().isEmpty()) {
+                if (s.toString().isNotEmpty()) {
                     imageViewCodeBar7.visibility = View.VISIBLE
                     textViewCodeBar7.visibility = View.VISIBLE
                 }
@@ -264,7 +264,7 @@ class BarCodeReader : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (!s.toString().isEmpty()) {
+                if (s.toString().isNotEmpty()) {
                     imageViewCodeBar8.visibility = View.VISIBLE
                     textViewCodeBar8.visibility = View.VISIBLE
                 }
@@ -281,7 +281,7 @@ class BarCodeReader : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (!s.toString().isEmpty()) {
+                if (s.toString().isNotEmpty()) {
                     imageViewCodeBar9.visibility = View.VISIBLE
                     textViewCodeBar9.visibility = View.VISIBLE
                 }
@@ -298,7 +298,7 @@ class BarCodeReader : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (!s.toString().isEmpty()) {
+                if (s.toString().isNotEmpty()) {
                     imageViewCodeBar10.visibility = View.VISIBLE
                     textViewCodeBar10.visibility = View.VISIBLE
                 }

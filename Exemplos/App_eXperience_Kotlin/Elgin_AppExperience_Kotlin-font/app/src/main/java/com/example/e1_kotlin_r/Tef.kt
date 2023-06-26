@@ -9,7 +9,11 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Base64
 import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
@@ -17,10 +21,9 @@ import br.com.setis.interfaceautomacao.Operacoes
 import com.example.e1_kotlin_r.InputMasks.InputMaskMoney
 import com.example.e1_kotlin_r.Services.PrinterService
 import com.google.gson.Gson
-import org.json.JSONException
-import org.json.JSONObject
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Random
 import java.util.regex.Pattern
 
 class Tef : AppCompatActivity() {
@@ -107,7 +110,7 @@ class Tef : AppCompatActivity() {
         setContentView(R.layout.activity_tef)
         context = this
         paygo = Paygo(this)
-        printer = PrinterService(this);
+        printer = PrinterService(this)
         printer.printerInternalImpStart()
 
         //INIT BUTTONS TYPE TEF
@@ -141,16 +144,16 @@ class Tef : AppCompatActivity() {
         textViewViaTef = findViewById(R.id.textViewViaTef)
 
         linearLayoutNumberOfInstallmentsTEF =
-            findViewById(R.id.linearLayoutNumberOfInstallmentsTEF);
-        linearLayoutInstallmentsMethodsTEF = findViewById(R.id.linearLayoutInstallmentsMethodsTEF);
+            findViewById(R.id.linearLayoutNumberOfInstallmentsTEF)
+        linearLayoutInstallmentsMethodsTEF = findViewById(R.id.linearLayoutInstallmentsMethodsTEF)
 
         //INIT DEFAULT INPUTS
         //Aplica a máscara de moeda ao campo de valor, para melhor formatação do valor entrado.
-        editTextValueTEF.addTextChangedListener(InputMaskMoney(editTextValueTEF));
+        editTextValueTEF.addTextChangedListener(InputMaskMoney(editTextValueTEF))
         //Valor inicial de 20 reais.
-        editTextValueTEF.setText("2000");
+        editTextValueTEF.setText("2000")
 
-        editTextIpTEF.setText("192.168.0.31");
+        editTextIpTEF.setText("192.168.0.31")
 
         //Aplica regras iniciais da tela.
         initialBusinessRule()
