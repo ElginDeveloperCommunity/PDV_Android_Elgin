@@ -9,6 +9,7 @@ import 'package:flutter_m8/pages/NFCe.dart';
 import 'package:flutter_m8/pages/pix4/pix4.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import 'KioskMode.dart';
 import 'barCodeReader.dart';
 import 'printer_pages/printer_menu.dart';
 import 'sat.dart';
@@ -156,6 +157,15 @@ class _MenuPageState extends State<MenuPage> {
                           horizonalPaddingAssetImage: 10,
                           width: 110,
                           screen: Pix4Page()),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      moduleButton(
+                          nameButton: "Modo Kiosk",
+                          assetImage: "assets/images/kiosk.png",
+                          horizonalPaddingAssetImage: 10,
+                          width: 110,
+                          screen: KioskMode()),
                     ],
                   ),
                 ),

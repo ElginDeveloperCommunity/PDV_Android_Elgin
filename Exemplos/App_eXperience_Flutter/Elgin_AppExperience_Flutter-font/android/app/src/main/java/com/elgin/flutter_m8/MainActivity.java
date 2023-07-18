@@ -49,6 +49,8 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugins.GeneratedPluginRegistrant;
 
+import com.elgin.flutter_m8.KioskMode.KIOSK_CONFIG;
+
 public class MainActivity extends FlutterActivity {
     public static MethodChannel.Result resultFlutter;
 
@@ -67,6 +69,7 @@ public class MainActivity extends FlutterActivity {
     Balanca balanca;
     Paygo paygo;
     ServiceSat serviceSat;
+    KioskMode kioskMode;
     Activity activity;
     //Objeto da classe E1BridgeService para uso das funções Bridge
     E1BridgeService bridgeService;
@@ -85,6 +88,7 @@ public class MainActivity extends FlutterActivity {
         paygo = new Paygo(activity);
         balanca = new Balanca(activity);
         serviceSat = new ServiceSat(activity);
+        kioskMode = new KioskMode(activity);
 
         it4rObj = new It4r(DarumaMobile.inicializar(this, "@FRAMEWORK(LOGMEMORIA=200;TRATAEXCECAO=TRUE;TIMEOUTWS=8000;SATNATIVO=FALSE);@SOCKET(HOST=192.168.210.94;PORT=9100;)"));
 
@@ -129,6 +133,9 @@ public class MainActivity extends FlutterActivity {
                 case "pix4":
                     formatActionPix4(params);
                     break;
+                case "kiosk":
+                    formatActionKioskMode(params);
+                    break;
                 case "askExternalStoragePermission":
                     askWriteExternalStoragePermission();
                     break;
@@ -155,6 +162,36 @@ public class MainActivity extends FlutterActivity {
         }
     }
 
+    private void formatActionKioskMode(Map<String, Object> params) {
+        if (kioskMode == null) {
+            kioskMode = new KioskMode(this);
+        }
+
+        switch ((String) requireNonNull(params.get("acao"))) {
+            case "navegacao":
+                kioskMode.executeKioskOperation(KIOSK_CONFIG.BARRA_NAVEGACAO, (Boolean) params.get("isChecked"));
+                break;
+            case "status":
+                kioskMode.executeKioskOperation(KIOSK_CONFIG.BARRA_STATUS, (Boolean) params.get("isChecked"));
+                break;
+            case "power":
+                kioskMode.executeKioskOperation(KIOSK_CONFIG.BOTAO_POWER, (Boolean) params.get("isChecked"));
+                break;
+            case "full":
+                kioskMode.executeKioskOperation(KIOSK_CONFIG.BARRA_NAVEGACAO, false);
+                kioskMode.executeKioskOperation(KIOSK_CONFIG.BARRA_STATUS, false);
+                kioskMode.executeKioskOperation(KIOSK_CONFIG.BOTAO_POWER, false);
+                break;
+            case "undo_full":
+                kioskMode.executeKioskOperation(KIOSK_CONFIG.BARRA_NAVEGACAO, true);
+                kioskMode.executeKioskOperation(KIOSK_CONFIG.BARRA_STATUS, true);
+                kioskMode.executeKioskOperation(KIOSK_CONFIG.BOTAO_POWER, true);
+                break;
+            default:
+                throw new NotImplementedException("Ação não encontrada para o módulo PIX4!!!");
+        }
+        resultFlutter.success("success");
+    }
 
     private void formatActionPix4(Map<String, Object> params) {
         if (pix4ServiceObj == null) {
@@ -789,6 +826,12 @@ public class MainActivity extends FlutterActivity {
                 resultFlutter.success(data.getStringExtra("mensagem"));
             }
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        kioskMode.resetKioskMode();
     }
 
     public enum FunctionsNfce {CONFIGURATE_XML_NFCE, SEND_SALE_NFCE}

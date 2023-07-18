@@ -24,7 +24,7 @@ public class Printer {
 
     public int printerInternalImpStart() {
         printerStop();
-        int result = Termica.AbreConexaoImpressora(6, "M8", "", 0);
+        int result = Termica.AbreConexaoImpressora(5, "", "", 0);
         return result;
     }
 

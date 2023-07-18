@@ -140,7 +140,7 @@ class GeneralWidgets extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(right: 40),
         child: Text(
-          "Flutter - 3.0.0",
+          "Flutter - 3.1.2",
           style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
         ),
       ),

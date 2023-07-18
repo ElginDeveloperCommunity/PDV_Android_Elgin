@@ -1,0 +1,56 @@
+Initialized native services in: C:\Users\gabriel.franzeri.ELGIN\.gradle\native
+Initialized jansi services in: C:\Users\gabriel.franzeri.ELGIN\.gradle\native
+
+Welcome to Gradle 7.2!
+
+Here are the highlights of this release:
+ - Toolchain support for Scala
+ - More cache hits when Java source files have platform-specific line endings
+ - More resilient remote HTTP build cache behavior
+
+For more details see https://docs.gradle.org/7.2/release-notes.html
+
+Found daemon DaemonInfo{pid=28656, address=[6eacc921-02bb-45ad-81fa-ed298b0fc223 port:15155, addresses:[/127.0.0.1]], state=Idle, lastBusy=1687554571893, context=DefaultDaemonContext[uid=1272f7b2-19db-402e-9691-899d3cafa622,javaHome=C:\Users\gabriel.franzeri.ELGIN\.jdks\corretto-18.0.2,daemonRegistryDir=C:\Users\gabriel.franzeri.ELGIN\.gradle\daemon,pid=28656,idleTimeout=10800000,priority=NORMAL,daemonOpts=--add-opens,java.base/java.util=ALL-UNNAMED,--add-opens,java.base/java.lang=ALL-UNNAMED,--add-opens,java.base/java.lang.invoke=ALL-UNNAMED,--add-opens,java.base/java.util=ALL-UNNAMED,--add-opens,java.prefs/java.util.prefs=ALL-UNNAMED,--add-opens,java.prefs/java.util.prefs=ALL-UNNAMED,--add-opens,java.base/java.nio.charset=ALL-UNNAMED,--add-opens,java.base/java.net=ALL-UNNAMED,--add-opens,java.base/java.util.concurrent.atomic=ALL-UNNAMED,-Xmx1536M,-Dfile.encoding=utf8,-Duser.country=BR,-Duser.language=pt,-Duser.variant]} however its context does not match the desired criteria.
+Java home is different.
+Wanted: DefaultDaemonContext[uid=null,javaHome=C:\Program Files (x86)\Java\jre1.8.0_341,daemonRegistryDir=C:\Users\gabriel.franzeri.ELGIN\.gradle\daemon,pid=29932,idleTimeout=null,priority=NORMAL,daemonOpts=-Xmx1536M,-Dfile.encoding=windows-1252,-Duser.country=BR,-Duser.language=pt,-Duser.variant]
+Actual: DefaultDaemonContext[uid=1272f7b2-19db-402e-9691-899d3cafa622,javaHome=C:\Users\gabriel.franzeri.ELGIN\.jdks\corretto-18.0.2,daemonRegistryDir=C:\Users\gabriel.franzeri.ELGIN\.gradle\daemon,pid=28656,idleTimeout=10800000,priority=NORMAL,daemonOpts=--add-opens,java.base/java.util=ALL-UNNAMED,--add-opens,java.base/java.lang=ALL-UNNAMED,--add-opens,java.base/java.lang.invoke=ALL-UNNAMED,--add-opens,java.base/java.util=ALL-UNNAMED,--add-opens,java.prefs/java.util.prefs=ALL-UNNAMED,--add-opens,java.prefs/java.util.prefs=ALL-UNNAMED,--add-opens,java.base/java.nio.charset=ALL-UNNAMED,--add-opens,java.base/java.net=ALL-UNNAMED,--add-opens,java.base/java.util.concurrent.atomic=ALL-UNNAMED,-Xmx1536M,-Dfile.encoding=utf8,-Duser.country=BR,-Duser.language=pt,-Duser.variant]
+
+  Looking for a different daemon...
+Found daemon DaemonInfo{pid=22636, address=[76af7367-05eb-4928-ac1b-58a63db2463a port:17573, addresses:[/127.0.0.1]], state=Idle, lastBusy=1687557335647, context=DefaultDaemonContext[uid=acc8d806-287e-4bf0-87d8-f96c9aec9441,javaHome=C:\Program Files\Android\Android Studio\jbr,daemonRegistryDir=C:\Users\gabriel.franzeri.ELGIN\.gradle\daemon,pid=22636,idleTimeout=10800000,priority=NORMAL,daemonOpts=--add-opens,java.base/java.util=ALL-UNNAMED,--add-opens,java.base/java.lang=ALL-UNNAMED,--add-opens,java.base/java.lang.invoke=ALL-UNNAMED,--add-opens,java.base/java.util=ALL-UNNAMED,--add-opens,java.prefs/java.util.prefs=ALL-UNNAMED,--add-opens,java.prefs/java.util.prefs=ALL-UNNAMED,--add-opens,java.base/java.nio.charset=ALL-UNNAMED,--add-opens,java.base/java.net=ALL-UNNAMED,--add-opens,java.base/java.util.concurrent.atomic=ALL-UNNAMED,-Xmx1536M,-Dfile.encoding=windows-1252,-Duser.country=BR,-Duser.language=pt,-Duser.variant]} however its context does not match the desired criteria.
+Java home is different.
+Wanted: DefaultDaemonContext[uid=null,javaHome=C:\Program Files (x86)\Java\jre1.8.0_341,daemonRegistryDir=C:\Users\gabriel.franzeri.ELGIN\.gradle\daemon,pid=29932,idleTimeout=null,priority=NORMAL,daemonOpts=-Xmx1536M,-Dfile.encoding=windows-1252,-Duser.country=BR,-Duser.language=pt,-Duser.variant]
+Actual: DefaultDaemonContext[uid=acc8d806-287e-4bf0-87d8-f96c9aec9441,javaHome=C:\Program Files\Android\Android Studio\jbr,daemonRegistryDir=C:\Users\gabriel.franzeri.ELGIN\.gradle\daemon,pid=22636,idleTimeout=10800000,priority=NORMAL,daemonOpts=--add-opens,java.base/java.util=ALL-UNNAMED,--add-opens,java.base/java.lang=ALL-UNNAMED,--add-opens,java.base/java.lang.invoke=ALL-UNNAMED,--add-opens,java.base/java.util=ALL-UNNAMED,--add-opens,java.prefs/java.util.prefs=ALL-UNNAMED,--add-opens,java.prefs/java.util.prefs=ALL-UNNAMED,--add-opens,java.base/java.nio.charset=ALL-UNNAMED,--add-opens,java.base/java.net=ALL-UNNAMED,--add-opens,java.base/java.util.concurrent.atomic=ALL-UNNAMED,-Xmx1536M,-Dfile.encoding=windows-1252,-Duser.country=BR,-Duser.language=pt,-Duser.variant]
+
+  Looking for a different daemon...
+Removing 0 daemon stop events from registry
+Previous Daemon (29728) stopped at Fri Jun 23 18:37:05 BRT 2023 by user or operating system
+Previous Daemon (3336) stopped at Fri Jun 23 18:45:41 BRT 2023 by user or operating system
+Starting a Gradle Daemon, 2 incompatible and 2 stopped Daemons could not be reused, use --status for details
+Starting process 'Gradle build daemon'. Working directory: C:\Users\gabriel.franzeri.ELGIN\.gradle\daemon\7.2 Command: C:\Program Files (x86)\Java\jre1.8.0_341\bin\java.exe -Xmx1536M -Dfile.encoding=windows-1252 -Duser.country=BR -Duser.language=pt -Duser.variant -cp C:\Users\gabriel.franzeri.ELGIN\.gradle\wrapper\dists\gradle-7.2-bin\2dnblmf4td7x66yl1d74lt32g\gradle-7.2\lib\gradle-launcher-7.2.jar org.gradle.launcher.daemon.bootstrap.GradleDaemon 7.2
+Successfully started process 'Gradle build daemon'
+An attempt to start the daemon took 3.718 secs.
+The client will now receive all logging from the daemon (pid: 21412). The daemon log file: C:\Users\gabriel.franzeri.ELGIN\.gradle\daemon\7.2\daemon-21412.out.log
+Starting build in new daemon [memory: 1.4 GiB]
+Using 8 worker leases.
+Watching the file system is configured to be enabled if available
+Now considering [D:\documents\business\tech\tests\android\app-experience\Elgin_AppExperience_Flutter-font\android] as hierarchies to watch
+Not watching anything anymore
+File system watching is active
+Starting Build
+Settings evaluated using settings file 'D:\documents\business\tech\tests\android\app-experience\Elgin_AppExperience_Flutter-font\android\settings.gradle'.
+Projects loaded. Root project using build file 'D:\documents\business\tech\tests\android\app-experience\Elgin_AppExperience_Flutter-font\android\build.gradle'.
+Included projects: [root project 'android', project ':app', project ':flutter_keyboard_visibility', project ':flutter_plugin_android_lifecycle', project ':fluttertoast', project ':image_picker', project ':path_provider_android', project ':url_launcher_android']
+
+> Configure project :
+Evaluating root project 'android' using build file 'D:\documents\business\tech\tests\android\app-experience\Elgin_AppExperience_Flutter-font\android\build.gradle'.
+
+> Configure project :app
+Evaluating project ':app' using build file 'D:\documents\business\tech\tests\android\app-experience\Elgin_AppExperience_Flutter-font\android\app\build.gradle'.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.2/userguide/command_line_interface.html#sec:command_line_warnings
+Not watching anything anymore
+Watched directory hierarchies: []
