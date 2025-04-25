@@ -36,31 +36,44 @@ public class InputMaskMoney implements TextWatcher {
 
         //Impedir erro de null pointer exception caso string vazia / impedir loop caso a própia classe tenha causado uma alteração no editText.
         String newValue = editable.toString().trim();
-        if (_ignore) return;
+        if (_ignore || newValue.isEmpty()) return;
 
-        //Transforma casas decimais em valor inteiro
-        String newValueInIntenger = newValue.replaceAll("[,.]", "");
+        //Remove todos os caracteres não numéricos exceto ponto e vírgula
+        String newValueInIntenger = newValue.replaceAll("[^0-9,.]", "").replaceAll("[,.]", "");
 
-        //Transforma o novo valor em BigDecimal
-        BigDecimal newValueInBigDecimal = new BigDecimal(newValueInIntenger);
-        //Seta a escala de precisão para duas casas decimais somente
-        newValueInBigDecimal = newValueInBigDecimal.setScale(2);
-        //Divide o valor por 100, para obtermos novamente as casas decimais
-        newValueInBigDecimal = newValueInBigDecimal.divide( new BigDecimal("100"));
+        try {
+            //Transforma o novo valor em BigDecimal
+            BigDecimal newValueInBigDecimal = new BigDecimal(newValueInIntenger);
+            //Seta a escala de precisão para duas casas decimais somente
+            newValueInBigDecimal = newValueInBigDecimal.setScale(2);
+            //Divide o valor por 100, para obtermos novamente as casas decimais
+            newValueInBigDecimal = newValueInBigDecimal.divide(new BigDecimal("100"));
 
-        //Formatando o valor para o formato de moeda
-        String newValueFormattedInCurrency = NumberFormat.getCurrencyInstance().format(newValueInBigDecimal);
-        //Removendo o símbolo da moeda (é possível que o símbolo da moeda contenha caracteres que precisam ser escapados, por esta razão são agrupados no regex)
-        String newValueInCurrencyClean = newValueFormattedInCurrency.replaceAll("[" + NumberFormat.getCurrencyInstance().getCurrency().getSymbol() + "]", "");
+            //Formatando o valor para o formato de moeda
+            NumberFormat nf = NumberFormat.getCurrencyInstance();
+            nf.setGroupingUsed(false); // Desativa o agrupamento de milhares
+            String newValueFormattedInCurrency = nf.format(newValueInBigDecimal);
+            
+            //Removendo o símbolo da moeda e substituindo ponto por vírgula
+            String newValueInCurrencyClean = newValueFormattedInCurrency
+                .replaceAll("[" + nf.getCurrency().getSymbol() + "]", "")
+                .replace(".", ",")
+                .trim();
 
-        //Previne o loop
-        _ignore = true;
-        //Atualiza o campo com o valor tratado
-        editText.setText(newValueInCurrencyClean);
-        //Define o cursor de inserção para a ultima posição
-        editText.setSelection(newValueInCurrencyClean.length());
+            //Previne o loop
+            _ignore = true;
+            //Atualiza o campo com o valor tratado
+            editText.setText(newValueInCurrencyClean);
+            //Define o cursor de inserção para a ultima posição
+            editText.setSelection(newValueInCurrencyClean.length());
 
-        //Permite que o TextWatcher observe uma mudança novamente
-        _ignore = false;
+            //Permite que o TextWatcher observe uma mudança novamente
+            _ignore = false;
+        } catch (NumberFormatException e) {
+            //Se ocorrer erro na conversão, limpa o campo
+            _ignore = true;
+            editText.setText("");
+            _ignore = false;
+        }
     }
 }
