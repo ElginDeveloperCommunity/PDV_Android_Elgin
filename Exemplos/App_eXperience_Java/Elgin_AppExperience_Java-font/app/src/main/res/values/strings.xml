@@ -11,6 +11,7 @@
     <string name="text_button_shipay">CARTEIRA DIGITAL</string>
     <string name="text_button_pix4">PIX 4</string>
     <string name="text_button_kiosk">KIOSK</string>
+    <string name="text_button_visor">VISOR</string>
     <string name="text_footer_java_android">Java Android 3.1.0</string>
     <string name="text_title_impressora">IMPRESSORA</string>
     <string name="text_title_kiosk">KIOSK</string>

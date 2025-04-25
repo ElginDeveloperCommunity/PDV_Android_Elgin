@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout buttonBalancaOption;
     LinearLayout buttonPix4;
     LinearLayout buttonKiosk;
+    LinearLayout buttonVisor;
 
     private final static int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 1;
 
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         buttonBarCodeReaderOption = findViewById(R.id.buttonBarCodeReaderOption);
         buttonPix4 = findViewById(R.id.buttonPix4);
         buttonKiosk = findViewById(R.id.buttonKioskMode);
+        buttonVisor = findViewById(R.id.buttonVisor);
 
         buttonE1Bridge.setOnClickListener(view -> openE1BridgeScreen());
 
@@ -69,7 +71,21 @@ public class MainActivity extends AppCompatActivity {
 
         buttonPix4.setOnClickListener(v -> openPix4Screen());
 
-        buttonKiosk.setOnClickListener(v -> openKioskMode());
+        buttonKiosk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, KioskMode.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonVisor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, VisorActivity.class);
+                startActivity(intent);
+            }
+        });
 
         initializeArrowsFunctionality();
 
@@ -122,11 +138,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openKioskMode() {
-        Intent intent = new Intent(this, KioskMode.class);
-        startActivity(intent);
-    }
-
     // Inicia o funcionamento das setas na scroll view.
     private void initializeArrowsFunctionality() {
         final ImageView leftArrow = findViewById(R.id.leftArrow);
@@ -157,17 +168,45 @@ public class MainActivity extends AppCompatActivity {
 
     // Pede a permissão de escrita no diretório externo.
     private void askWriteExternalStoragePermission() {
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_WRITE_EXTERNAL_STORAGE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // No Android 13+, usamos as novas permissões de mídia
+            if (checkSelfPermission(Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, 
+                    new String[]{
+                        Manifest.permission.READ_MEDIA_IMAGES,
+                        Manifest.permission.READ_MEDIA_VIDEO
+                    }, 
+                    REQUEST_CODE_WRITE_EXTERNAL_STORAGE
+                );
+            }
+        } else {
+            // Para versões anteriores ao Android 13
+            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, 
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 
+                    REQUEST_CODE_WRITE_EXTERNAL_STORAGE
+                );
+            }
+        }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        // Impede que a aplicação continue caso a permissão seja negada, uma vez que vários módulos dependem da permissão de acesso ao armazenamento.
-        if (requestCode == REQUEST_CODE_WRITE_EXTERNAL_STORAGE && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_DENIED) {
-            Toast.makeText(this, "É necessário conceder a permissão para as funcionalidades NFC-e e PIX 4!", Toast.LENGTH_LONG).show();
-            closeApplication();
+        if (requestCode == REQUEST_CODE_WRITE_EXTERNAL_STORAGE) {
+            boolean allPermissionsGranted = true;
+            for (int result : grantResults) {
+                if (result != PackageManager.PERMISSION_GRANTED) {
+                    allPermissionsGranted = false;
+                    break;
+                }
+            }
+
+            if (!allPermissionsGranted) {
+                Toast.makeText(this, "É necessário conceder as permissões para as funcionalidades NFC-e e PIX 4!", Toast.LENGTH_LONG).show();
+                closeApplication();
+            }
         }
     }
 

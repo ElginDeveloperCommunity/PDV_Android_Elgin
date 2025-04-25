@@ -116,19 +116,16 @@ public class FragmentPrinterText extends Fragment {
         radioGroupAlign.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @SuppressLint("NonConstantResourceId")
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.radioButtonLeft:
-                        typeOfAlignment = "Esquerda";
-                        break;
-                    case R.id.radioButtonCenter:
-                        typeOfAlignment = "Centralizado";
-                        break;
-                    case R.id.radioButtonRight:
-                        typeOfAlignment = "Direita";
-                        break;
+                if (checkedId == R.id.radioButtonLeft) {
+                    typeOfAlignment = "Esquerda";
+                } else if (checkedId == R.id.radioButtonCenter) {
+                    typeOfAlignment = "Centralizado";
+                } else if (checkedId == R.id.radioButtonRight) {
+                    typeOfAlignment = "Direita";
                 }
             }
         });
+
 
         //CONFIGS FONT FAMILY
         spinnerFontFamily.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

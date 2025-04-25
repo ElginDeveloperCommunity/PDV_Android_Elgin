@@ -90,16 +90,14 @@ public class SatPage extends AppCompatActivity {
         radioGroupModelsSAT.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @SuppressLint("NonConstantResourceId")
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.radioButtonSMARTSAT:
-                        typeModelSAT = "SMART SAT";
-                        break;
-                    case R.id.radioButtonSATGO:
-                        typeModelSAT = "SATGO";
-                        break;
+                if (checkedId == R.id.radioButtonSMARTSAT) {
+                    typeModelSAT = "SMART SAT";
+                } else if (checkedId == R.id.radioButtonSATGO) {
+                    typeModelSAT = "SATGO";
                 }
             }
         });
+
 
         buttonConsultarSAT.setOnClickListener(new View.OnClickListener() {
             @Override

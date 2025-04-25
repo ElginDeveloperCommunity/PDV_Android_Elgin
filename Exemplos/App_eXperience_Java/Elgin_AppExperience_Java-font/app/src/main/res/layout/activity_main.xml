@@ -416,9 +416,41 @@
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
-
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/buttonVisor"
+                    android:layout_width="110dp"
+                    android:layout_height="120dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/box"
+                    android:clickable="true"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/visor" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/text_button_visor"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

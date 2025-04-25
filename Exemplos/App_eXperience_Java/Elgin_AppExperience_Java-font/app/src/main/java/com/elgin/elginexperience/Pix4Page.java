@@ -10,12 +10,12 @@ import static com.elgin.elginexperience.Services.Pix4.Produto.*;
 import static com.elgin.elginexperience.Services.Pix4.Framework.*;
 
 import com.elgin.elginexperience.Services.Pix4.Pix4ImagesStorageService;
-import com.elgin.elginexperience.Services.Pix4.Pix4Service;
+import com.elgin.elginexperience.Services.Pix4.displayService;
 
 public class Pix4Page extends AppCompatActivity {
 
     // Objeto com implementação do uso do PIX 4.
-    private Pix4Service pix4Obj;
+    private displayService pix4Obj;
 
     // Objeto que contém a lógica de salvamento das imagens que serão carregadas dentro do dispositivo e, posteriormente, carregado no PIX4.
     private Pix4ImagesStorageService pix4ImagesStorageService;
@@ -28,7 +28,7 @@ public class Pix4Page extends AppCompatActivity {
         pix4ImagesStorageService = new Pix4ImagesStorageService(this);
         pix4ImagesStorageService.executeStoreImages();
 
-        pix4Obj = new Pix4Service(this);
+        pix4Obj = new displayService(this);
 
         initQrCodeViews();
 

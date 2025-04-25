@@ -81,29 +81,24 @@ public class PrinterMenu extends AppCompatActivity {
         radioGroupConnectPrinterIE.setOnCheckedChangeListener((group, checkedId) -> {
             final String EXTERNAL_CONNECTION_METHOD_USB = "USB";
             final String EXTERNAL_CONNECTION_METHOD_IP = "IP";
-            switch (checkedId) {
 
-                case R.id.radioButtonConnectPrinterIntern:
-                    printer.printerInternalImpStart();
-                    break;
-
-                case R.id.radioButtonConnectPrinterExternByIP:
-                    if (isIpValid(editTextInputIP.getText().toString())) {
-                        //Invoca o alertDialog que permite a escolha do modelo de impressora antes da tentativa de iniciar a conexão por IP
-                        alertDialogSetSelectedPrinterModelThenConnect(EXTERNAL_CONNECTION_METHOD_IP);
-                    } else {
-                        //Se não foi possível validar o ip antes da chama da função, retorne para a conexão com impressora interna
-                        alertMessageStatus("Digite um IP válido.");
-                        radioButtonConnectPrinterIntern.setChecked(true);
-                    }
-                    break;
-
-                case R.id.radioButtonConnectPrinterExternByUSB:
-                    //Invoca o alertDialog que permite a escolha do modelo de impressora antes da tentativa de iniciar a conexão por IP
-                    alertDialogSetSelectedPrinterModelThenConnect(EXTERNAL_CONNECTION_METHOD_USB);
-                    break;
+            if (checkedId == R.id.radioButtonConnectPrinterIntern) {
+                printer.printerInternalImpStart();
+            } else if (checkedId == R.id.radioButtonConnectPrinterExternByIP) {
+                if (isIpValid(editTextInputIP.getText().toString())) {
+                    // Invoca o alertDialog que permite a escolha do modelo de impressora antes da tentativa de iniciar a conexão por IP
+                    alertDialogSetSelectedPrinterModelThenConnect(EXTERNAL_CONNECTION_METHOD_IP);
+                } else {
+                    // Se não foi possível validar o ip antes da chama da função, retorne para a conexão com impressora interna
+                    alertMessageStatus("Digite um IP válido.");
+                    radioButtonConnectPrinterIntern.setChecked(true);
+                }
+            } else if (checkedId == R.id.radioButtonConnectPrinterExternByUSB) {
+                // Invoca o alertDialog que permite a escolha do modelo de impressora antes da tentativa de iniciar a conexão por USB
+                alertDialogSetSelectedPrinterModelThenConnect(EXTERNAL_CONNECTION_METHOD_USB);
             }
         });
+
 
         buttonPrinterTextSelected.setBackgroundTintList(AppCompatResources.getColorStateList(mContext, R.color.azul));
 

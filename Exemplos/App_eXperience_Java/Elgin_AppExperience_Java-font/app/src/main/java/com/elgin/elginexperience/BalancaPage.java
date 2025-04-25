@@ -54,16 +54,12 @@ public class BalancaPage extends AppCompatActivity {
         radioGroupModels.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @SuppressLint("NonConstantResourceId")
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.radioButtonDP30CK:
-                        typeModel = "DP30CK";
-                        break;
-                    case R.id.radioButtonSA110:
-                        typeModel = "SA110";
-                        break;
-                    case R.id.radioButtonDPSC:
-                        typeModel = "DPSC";
-                        break;
+                if (checkedId == R.id.radioButtonDP30CK) {
+                    typeModel = "DP30CK";
+                } else if (checkedId == R.id.radioButtonSA110) {
+                    typeModel = "SA110";
+                } else if (checkedId == R.id.radioButtonDPSC) {
+                    typeModel = "DPSC";
                 }
             }
         });

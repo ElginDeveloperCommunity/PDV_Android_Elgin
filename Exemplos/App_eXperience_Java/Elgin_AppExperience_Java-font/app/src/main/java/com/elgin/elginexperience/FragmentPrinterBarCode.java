@@ -89,22 +89,20 @@ public class FragmentPrinterBarCode extends Fragment {
         radioGroupAlignBarCode.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @SuppressLint("NonConstantResourceId")
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.radioButtonBarCodeAlignLeft:
-                        typAlignOfBarCode = "Esquerda";
-                        System.out.println(typAlignOfBarCode);
-                        break;
-                    case R.id.radioButtonBarCodeAlignCenter:
-                        typAlignOfBarCode = "Centralizado";
-                        System.out.println(typAlignOfBarCode);
-                        break;
-                    case R.id.radioButtonBarCodeAlignRight:
-                        typAlignOfBarCode = "Direita";
-                        System.out.println(typAlignOfBarCode);
-                        break;
+                if (checkedId == R.id.radioButtonBarCodeAlignLeft) {
+                    typAlignOfBarCode = "Esquerda";
+                    System.out.println(typAlignOfBarCode);
+                } else if (checkedId == R.id.radioButtonBarCodeAlignCenter) {
+                    typAlignOfBarCode = "Centralizado";
+                    System.out.println(typAlignOfBarCode);
+                } else if (checkedId == R.id.radioButtonBarCodeAlignRight) {
+                    typAlignOfBarCode = "Direita";
+                    System.out.println(typAlignOfBarCode);
                 }
             }
         });
+
+
 
         //CONFIGS WIDTH BAR CODE
         spinnerBarCodeWidth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
