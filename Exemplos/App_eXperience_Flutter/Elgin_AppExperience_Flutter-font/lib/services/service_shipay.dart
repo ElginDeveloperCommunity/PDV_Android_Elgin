@@ -11,11 +11,11 @@ class ShipayService {
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, String>{
-        "access_key": "123",
+        "access_key": "",
         "secret_key":
-            "123",
+            "",
         "client_id":
-            "123"
+            ""
       }),
     );
 
